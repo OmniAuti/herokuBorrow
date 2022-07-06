@@ -1,10 +1,10 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 import { postSingleItem } from "../api/api";
 
-const PostItem = () => {
+const PostItemForm = () => {
   const [formData, setFormData] = useState({
-    type: "pencil",
+    type: "",
     quantity: 1,
     description: "",
     condition: "new",
@@ -42,7 +42,14 @@ const PostItem = () => {
     try {
       await postSingleItem(formData);
       e.target.reset();
-      setFormData({ ...formData, quantity: 1 });
+      setFormData({
+        type: "",
+        quantity: 1,
+        description: "",
+        condition: "new",
+        location: "",
+        zipcode: "",
+      });
     } catch (err) {
       console.log(err);
     }
@@ -57,11 +64,12 @@ const PostItem = () => {
         <label htmlFor="type">Type of supplies</label>
         <select
           id="type"
-          className="w-full h-12 my-1 pl-1 text-center rounded-md"
+          className="w-full h-12 my-2 pl-1 text-center rounded-md"
           required
           onChange={(e) => handleTypeChange(e)}
+          value={formData.type}
         >
-          <option default value="pencil">
+          <option value="pencil">
             Pencil
           </option>
           <option value="pen">Pen</option>
@@ -92,7 +100,8 @@ const PostItem = () => {
           type="text"
           name="type"
           maxLength="49"
-          pattern="{49}"
+          pattern="/{49}/"
+          value={formData.description}
         />
         <label htmlFor="quantity">Quantity</label>
         <input
@@ -112,6 +121,7 @@ const PostItem = () => {
           required
           onChange={(e) => handleConditionChange(e)}
           className="block w-full h-12 my-2 pl-1 text-center rounded-md"
+          value={formData.condition}
         >
           <option default value="new">
             New
@@ -129,6 +139,7 @@ const PostItem = () => {
           type="text"
           name="location"
           maxLength="49"
+          value={formData.location}
         />
         <label htmlFor="zipcode">Zipcode</label>
         <input
@@ -140,6 +151,7 @@ const PostItem = () => {
           pattern="[0-9]{5}"
           maxLength="5"
           name="zipcode"
+          value={formData.zipcode}
         />
         <input
           type="submit"
@@ -150,4 +162,4 @@ const PostItem = () => {
   );
 };
 
-export default PostItem;
+export default PostItemForm;

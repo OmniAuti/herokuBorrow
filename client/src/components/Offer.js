@@ -1,4 +1,4 @@
-import PostItem from "./PostItem";
+import PostItemForm from "./PostItemForm";
 
 const Offer = () => {
 
@@ -9,7 +9,7 @@ const Offer = () => {
   return (
     <section className="flex items-center justify-center flex-col">
       <h1 className="text-center mb-20 text-5xl">What do you have to offer</h1>
-      <PostItem />
+      <PostItemForm />
     </section>
   );
 };

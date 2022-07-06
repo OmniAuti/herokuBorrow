@@ -1,9 +1,37 @@
 const Items = require("../models/ItemModel");
+const AskItems = require('../models/AskModel')
 
 const getAllItems = async (req, res) => {
   try {
     const items = await Items.find({});
     res.status(200).send(items);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Error" });
+  }
+};
+
+
+const createSingleItem = async (req, res) => {
+  try {
+    const item = new Items({
+      type: req.body.type,
+      quantity: req.body.quantity,
+      description: req.body.description,
+      condition: req.body.condition,
+      location: req.body.location,
+      zipcode: req.body.zipcode,
+    });
+
+    console.log(req.body, "BODIED");
+
+    await item.save((err, post) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.status(201).json(post);
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Error" });
@@ -37,6 +65,36 @@ console.log(queryObj)
   }
 };
 
+
+const postAskItem = async (req,res) => {
+    try {
+      const askItem = new AskItems({
+        who: req.body.who,
+        type:req.body.type,
+        quantity:req.body.quantity,
+        condition:req.body.condition,
+        location:req.body.location,
+        zipcode:req.body.zipcode,
+      })
+
+
+      await askItem.save((err, post) => {
+        if (err) {
+          console.log(err);
+          return
+        }
+        res.status(201).json(post)
+      })
+    }
+    catch(e) 
+    {
+      console.log(e)
+      res.status(500).json({msg: 'Error'})
+    }
+}
+
+
+// NOT YET IMPLEMENTED =======================
 const getSingleItem = async (req, res) => {
   try {
   } catch (error) {
@@ -44,31 +102,7 @@ const getSingleItem = async (req, res) => {
     res.status(500).json({ msg: "Error" });
   }
 };
-const createSingleItem = async (req, res) => {
-  try {
-    const item = new Items({
-      type: req.body.type,
-      quantity: req.body.quantity,
-      description: req.body.description,
-      condition: req.body.condition,
-      location: req.body.location,
-      zipcode: req.body.zipcode,
-    });
 
-    console.log(req.body, "BODIED");
-
-    await item.save((err, post) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      res.status(201).json(post);
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Error" });
-  }
-};
 const editSingleItem = async (req, res) => {
   try {
   } catch (error) {
@@ -91,4 +125,5 @@ module.exports = {
   editSingleItem,
   deleteSingleItem,
   getFilteredItems,
+  postAskItem
 };

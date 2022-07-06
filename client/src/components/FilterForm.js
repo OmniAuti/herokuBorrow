@@ -1,9 +1,8 @@
 import { filteredQuery } from "../api/api";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 const FilterForm = ({ dispatch }) => {
-  const navigate = useNavigate();
+  
   const [filterQuery, setFilterQuery] = useState({
     type: "",
     quantity: "",
@@ -14,6 +13,11 @@ const FilterForm = ({ dispatch }) => {
   const [dataDump, setDataDump] = useState([]);
 
   // THEN FILTERS COMPONET
+
+  const handleQuantitiy = (e) => {
+    if (e.target.value.length > 3) return;
+    setFilterQuery({...filterQuery, quantity: e.target.value})
+  }
 
   const handleQuery = async (e) => {
     e.preventDefault();
@@ -37,12 +41,12 @@ const FilterForm = ({ dispatch }) => {
       onSubmit={(e) => handleQuery(e)}
     >
       <div className="text-black flex justify-around items-center w-full mt-2">
-        <div>
-          <label className="mx-2" htmlFor="type">
+        <div className="flex flex-col items-center justify-around">
+          <label className="my-2" htmlFor="type">
             Type of supplies
           </label>
           <select
-            className="text-black"
+            className="text-black text-2xl rounded-sm"
             id="type"
             value={filterQuery.type}
             onChange={(e) =>
@@ -73,32 +77,30 @@ const FilterForm = ({ dispatch }) => {
             <option value="calculator">Calculator</option>
           </select>
         </div>
-        <div>
-          <label className="mx-2" htmlFor="quantity">
+        <div className="flex flex-col items-center justify-around">
+          <label className="my-2" htmlFor="quantity">
             Quantity
           </label>
           <input
-            className="text-black"
+            className="text-black pl-1 text-2xl rounded-sm"
             id="quantity"
             value={filterQuery.quantity}
             onChange={(e) =>
-              setFilterQuery({
-                ...filterQuery,
-                quantity: Number(e.target.value),
-              })
+              handleQuantitiy(e)
             }
             type="number"
             name="quantity"
             max="999"
             min="0"
+            maxLength={3}
           />
         </div>
-        <div>
-          <label className="mx-2" htmlFor="condition">
+        <div className="flex flex-col items-center justify-around">
+          <label className="my-2" htmlFor="condition">
             Condition
           </label>
           <select
-            className="text-black"
+            className="text-black text-2xl rounded-sm"
             id="condition"
             value={filterQuery.condition}
             onChange={(e) =>
@@ -116,12 +118,12 @@ const FilterForm = ({ dispatch }) => {
             <option value="heavily used">Heavily Used</option>
           </select>
         </div>
-        <div>
-          <label className="mx-2" htmlFor="location">
+        <div className="flex flex-col items-center justify-around">
+          <label className="my-2" htmlFor="location">
             Location
           </label>
           <input
-            className="text-black"
+            className="text-black pl-1 text-2xl rounded-sm"
             id="location"
             value={filterQuery.location}
             onChange={(e) =>
@@ -130,15 +132,15 @@ const FilterForm = ({ dispatch }) => {
             type="text"
             name="location"
             maxLength="49"
-            placeholder="Location"
+            placeholder="Somewhere City"
           />
         </div>
-        <div>
-          <label className="mx-2" htmlFor="zipcode">
+        <div className="flex flex-col items-center justify-around">
+          <label className="my-2" htmlFor="zipcode">
             Zipcode
           </label>
           <input
-            className="text-black"
+            className="text-black pl-1 text-2xl rounded-sm"
             id="zipcode"
             value={filterQuery.zipcode}
             onChange={(e) =>
@@ -148,11 +150,11 @@ const FilterForm = ({ dispatch }) => {
             pattern="[0-9]{5}"
             maxLength="5"
             name="zipcode"
-            placeholder="Zipcode"
+            placeholder="12345"
           />
         </div>
       </div>
-      <button className="text-white border px-5 py-2 m-2 mx-auto w-24">
+      <button className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-1/5">
         Submit
       </button>
     </form>

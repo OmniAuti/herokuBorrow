@@ -8,9 +8,11 @@ const {
   editSingleItem,
   deleteSingleItem,
   getFilteredItems,
+  postAskItem
 } = require("../controller/controllers");
 
 router.route('/').get(getAllItems).post(createSingleItem);
 router.route('/filter').get(getFilteredItems)
+router.route('/ask').post(postAskItem)
 
 module.exports = router;

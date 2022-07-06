@@ -1,8 +1,10 @@
+import AskItemForm from "./AskItemForm";
+
 const Ask = () => {
     return (
         <section>
-            <h1>Ask</h1>
-            <p>This needs to be created after the profile ability.</p>
+            <h1 className="text-5xl my-5 text-center">Ask</h1>
+            <AskItemForm/>
         </section>
     )
 }

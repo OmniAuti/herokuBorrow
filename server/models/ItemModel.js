@@ -27,9 +27,11 @@ const ItemSchema = new mongoose.Schema({
   },
   zipcode: {
     type: String,
-    require:[true, 'Must provide a ZIP code'],
+    required:[true, 'Must provide a ZIP code'],
   }
-  
 })
 
-module.exports = mongoose.model('Items', ItemSchema)
+
+
+
+module.exports = mongoose.model('items', ItemSchema)

@@ -35,7 +35,7 @@ const Borrow = () => {
     <section>
       <h1 className="text-5xl text-center my-5">Available Supplies</h1>
 
-      <div className="mx-auto h-fit w-fit mt-5">
+      <div className="mx-auto h-fit w-fit my-5">
         <button
           className="p-2 mx-auto"
           onClick={() => setActiveFilter(!activeFilter)}
@@ -45,7 +45,7 @@ const Borrow = () => {
       </div>
       <div
         className={
-          activeFilter ? "border h-24 transition-all overflow-hidden" : "h-0 transition-all overflow-hidden"
+          activeFilter ? "bg-sky-900 h-44 transition-all overflow-hidden rounded-sm" : "h-0 transition-all overflow-hidden"
         }
       >
 

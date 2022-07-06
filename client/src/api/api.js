@@ -2,9 +2,10 @@ import axios from "axios";
 
 const url = "http://localhost:2000/api/v1/items";
 const urlTwo = "http://localhost:2000/api/v1/items/filter";
+const urlThree = "http://localhost:2000/api/v1/items/ask";
 
 export const fetchAllItems = async () => {
-  return axios.get(url).catch((err) => console.log(err));
+  return axios.get(url)
 };
 
 export const postSingleItem = async (item) => {
@@ -12,6 +13,9 @@ export const postSingleItem = async (item) => {
 };
 
 export const filteredQuery = async (params) => {
-  return axios.get(urlTwo, {params: params}).catch(err => console.log(err))
+  return axios.get(urlTwo, {params: params})
 }
 
+export const postAskItem = (askItem) => {
+  return axios.post(urlThree, askItem)
+}
