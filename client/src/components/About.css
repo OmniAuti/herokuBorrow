@@ -1,0 +1,43 @@
+.school-supplies-background {
+    background-image: url('/public/imgs/school-supplies.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90%;
+    width: 90%;
+    opacity: .05;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%)
+}
+
+.breaking-the-bank-background {
+   background-image: url('/public/imgs/piggy-bank.svg');
+   background-size: contain;
+   background-position: center;
+   background-repeat: no-repeat;
+   height: 90%;
+   width: 90%;
+   opacity: .05;
+   top: 50%;
+   left:50%;
+   transform: translate(-50%, -50%)
+}
+
+
+.teacher-background {
+    background-image: url('/public/imgs/education.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90%;
+    width: 90%;
+    opacity: .05;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%)
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

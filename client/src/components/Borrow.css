@@ -1,0 +1,11 @@
+.filter-icon {
+     background-image: url('/public/imgs/filterIcon.svg');
+     background-position: center;
+     background-size:cover;
+     background-repeat: no-repeat;
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
