@@ -34,4 +34,4 @@ const ItemSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('items', ItemSchema)
+module.exports = mongoose.model('Items', ItemSchema)

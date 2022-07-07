@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 const OurGoal = () => {
   return (
     <section className="h-full my-24 mx-auto container">
-      <h2 className="text-center text-5xl mb-5 font-light">The Goal</h2>
+      <h2 className="text-center text-5xl mb-5 font-light">Our Goal</h2>
       <p className="font-thin text-center text-2xl w-1/2 mx-auto mb-5">
-        To build a free resource to connect families and teachers with those that can afford to help their community.
+        To build a free resource that connects families and teachers with those that can afford to help their community.
       </p>
       <div className="flex items-center justify-around">
         <Link className='w-1/3 p-5' to="/borrow">

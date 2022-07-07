@@ -5,6 +5,15 @@
      background-repeat: no-repeat;
 }
 
+.empty-borrow-array-binoc {
+     background-image: url('/public/imgs/binoculars.svg');
+     background-position: center;
+     background-size:cover;
+     background-repeat: no-repeat;
+     height: 200px;
+     width: 200px;
+}
+
 
 @tailwind base;
 @tailwind components;

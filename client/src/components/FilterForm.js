@@ -155,7 +155,7 @@ const FilterForm = ({ dispatch }) => {
         </div>
       </div>
       <button className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-1/5">
-        Submit
+        Filter Supplies
       </button>
     </form>
   );

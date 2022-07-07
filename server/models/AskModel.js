@@ -16,7 +16,7 @@ const AskItems = new mongoose.Schema({
         required: [true, 'Must provide a quantity'],
       },
       condition: {
-        type: String,
+        type: Array,
           required: [true, 'Must provide condition'],
       },
       location: {
