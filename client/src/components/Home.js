@@ -3,13 +3,13 @@ import MainSupplyDump from "./MainSupplyDump";
 import HeroCOA from "./HeroCOA";
 import OurGoal from "./OurGoal";
 
-const Home = () => {
+const Home = ({modalDispatch}) => {
   return (
     <>
       <HeroCOA />
       <About />
       <OurGoal />
-      <MainSupplyDump />
+      <MainSupplyDump modalDispatch={modalDispatch} />
     </>
   );
 };

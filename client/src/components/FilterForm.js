@@ -1,7 +1,7 @@
 import { filteredQuery } from "../api/api";
 import { useState, useEffect } from "react";
 
-const FilterForm = ({ dispatch }) => {
+const FilterForm = ({ dispatch, handleLoading }) => {
   const [filterQuery, setFilterQuery] = useState({
     type: "",
     quantity: "",
@@ -20,13 +20,15 @@ const FilterForm = ({ dispatch }) => {
 
   const handleQuery = async (e) => {
     e.preventDefault();
-
+    handleLoading(false);
     await filteredQuery(filterQuery)
       .then((res) => setDataDump(res.data))
       .catch((err) => console.log(err));
   };
 
   const handleReset = async (e) => {
+    handleLoading(false);
+
     const clearedSearch = {
       type: "",
       quantity: "",
@@ -35,7 +37,7 @@ const FilterForm = ({ dispatch }) => {
       zipcode: "",
     };
 
-    setFilterQuery(clearedSearch)
+    setFilterQuery(clearedSearch);
 
     await filteredQuery(clearedSearch)
       .then((res) => setDataDump(res.data))
@@ -43,10 +45,11 @@ const FilterForm = ({ dispatch }) => {
   };
 
   useEffect(() => {
+    handleLoading(true);
     dispatch({ type: "LOADED", payload: dataDump });
 
     return () => {
-      console.log("cleared Filter");
+      console.log("Cleared Filter");
     };
   }, [dataDump]);
 
@@ -171,7 +174,7 @@ const FilterForm = ({ dispatch }) => {
         </button>
         <input
           onClick={(e) => handleReset(e)}
-          className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-2/5"
+          className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-2/5 cursor-pointer"
           type="reset"
           value="Clear Filters"
         />

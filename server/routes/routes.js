@@ -14,5 +14,6 @@ const {
 router.route('/').get(getAllItems).post(createSingleItem);
 router.route('/filter').get(getFilteredItems)
 router.route('/ask').post(postAskItem)
+router.route('/modal').get(getSingleItem)
 
 module.exports = router;

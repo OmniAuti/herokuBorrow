@@ -1,5 +1,5 @@
 const Items = require("../models/ItemModel");
-const AskItems = require('../models/AskModel')
+const AskItems = require("../models/AskModel");
 
 const getAllItems = async (req, res) => {
   try {
@@ -10,7 +10,6 @@ const getAllItems = async (req, res) => {
     res.status(500).json({ msg: "Error" });
   }
 };
-
 
 const createSingleItem = async (req, res) => {
   try {
@@ -57,7 +56,7 @@ const getFilteredItems = async (req, res) => {
     if (req.query.zipcode.length > 0) {
       queryObj.zipcode = req.query.zipcode;
     }
-console.log(queryObj)
+    console.log(queryObj);
     const filteredItems = await Items.find(queryObj);
     res.status(200).json(filteredItems);
   } catch (e) {
@@ -65,43 +64,41 @@ console.log(queryObj)
   }
 };
 
+const postAskItem = async (req, res) => {
+  try {
+    const askItem = new AskItems({
+      who: req.body.who,
+      type: req.body.type,
+      quantity: req.body.quantity,
+      condition: req.body.condition,
+      location: req.body.location,
+      zipcode: req.body.zipcode,
+    });
 
-const postAskItem = async (req,res) => {
-    try {
-      const askItem = new AskItems({
-        who: req.body.who,
-        type:req.body.type,
-        quantity:req.body.quantity,
-        condition:req.body.condition,
-        location:req.body.location,
-        zipcode:req.body.zipcode,
-      })
+    await askItem.save((err, post) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.status(201).json(post);
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ msg: "Error" });
+  }
+};
 
-
-      await askItem.save((err, post) => {
-        if (err) {
-          console.log(err);
-          return
-        }
-        res.status(201).json(post)
-      })
-    }
-    catch(e) 
-    {
-      console.log(e)
-      res.status(500).json({msg: 'Error'})
-    }
-}
-
-
-// NOT YET IMPLEMENTED =======================
 const getSingleItem = async (req, res) => {
   try {
+    const id = req.query[0];
+    const modalItem = await Items.findById(id);
+    res.status(200).json(modalItem)
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Error" });
   }
 };
+// NOT YET IMPLEMENTED =======================
 
 const editSingleItem = async (req, res) => {
   try {
@@ -125,5 +122,5 @@ module.exports = {
   editSingleItem,
   deleteSingleItem,
   getFilteredItems,
-  postAskItem
+  postAskItem,
 };
