@@ -2,7 +2,6 @@ import { filteredQuery } from "../api/api";
 import { useState, useEffect } from "react";
 
 const FilterForm = ({ dispatch }) => {
-  
   const [filterQuery, setFilterQuery] = useState({
     type: "",
     quantity: "",
@@ -16,13 +15,29 @@ const FilterForm = ({ dispatch }) => {
 
   const handleQuantitiy = (e) => {
     if (e.target.value.length > 3) return;
-    setFilterQuery({...filterQuery, quantity: e.target.value})
-  }
+    setFilterQuery({ ...filterQuery, quantity: e.target.value });
+  };
 
   const handleQuery = async (e) => {
     e.preventDefault();
 
     await filteredQuery(filterQuery)
+      .then((res) => setDataDump(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const handleReset = async (e) => {
+    const clearedSearch = {
+      type: "",
+      quantity: "",
+      condition: "",
+      location: "",
+      zipcode: "",
+    };
+
+    setFilterQuery(clearedSearch)
+
+    await filteredQuery(clearedSearch)
       .then((res) => setDataDump(res.data))
       .catch((err) => console.log(err));
   };
@@ -85,9 +100,7 @@ const FilterForm = ({ dispatch }) => {
             className="text-black pl-1 text-2xl rounded-sm"
             id="quantity"
             value={filterQuery.quantity}
-            onChange={(e) =>
-              handleQuantitiy(e)
-            }
+            onChange={(e) => handleQuantitiy(e)}
             type="number"
             name="quantity"
             max="999"
@@ -108,9 +121,7 @@ const FilterForm = ({ dispatch }) => {
             }
           >
             {" "}
-            <option value="">
-              Select Condition
-            </option>
+            <option value="">Select Condition</option>
             <option value=""></option>
             <option value="new">New</option>
             <option value="slightly used">Slightly Used</option>
@@ -154,9 +165,17 @@ const FilterForm = ({ dispatch }) => {
           />
         </div>
       </div>
-      <button className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-1/5">
-        Filter Supplies
-      </button>
+      <div className="w-1/2 flex items-center justify-around">
+        <button className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-2/5">
+          Filter Supplies
+        </button>
+        <input
+          onClick={(e) => handleReset(e)}
+          className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-2/5"
+          type="reset"
+          value="Clear Filters"
+        />
+      </div>
     </form>
   );
 };

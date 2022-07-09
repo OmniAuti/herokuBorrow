@@ -1,6 +1,7 @@
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
+import { useReducer } from "react";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -11,11 +12,17 @@ import Offer from "./components/Offer";
 import AboutPage from "./components/AboutPage";
 //WRAP FOR SCROLL TO TOP ON NEW ROUTE
 import ScrollToTop from "./components/ScrollToTop";
+import SingleItemFocusModal from "./components/SingleItemFocusModal";
+
+
 
 function App() {
   return (
     <>
       <Header />
+
+      <SingleItemFocusModal/>
+
       <main className="App bg-black h-full min-h-screen w-screen px-5 py-5 relative">
         <ScrollToTop>
           <Routes>
