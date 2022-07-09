@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="h-36 w-screen bg-gray-900 grid grid-cols-3 grid-rows-4">
+    <footer className="h-36 w-screen bg-gray-900 grid grid-cols-3 grid-rows-4 px-5">
       <div className="border row-span-2 row-start-2 col-start-1 col-span-1 flex justify-center items-center text-3xl">
-        <h2 className="text-center">Logo</h2>
+        <Link to="/"><h2 className="text-center">Logo</h2></Link>
       </div>
       <div className="font-thin col-start-2 row-span-4  flex justify-around items-center flex-col">
         <Link className="" to="/about">

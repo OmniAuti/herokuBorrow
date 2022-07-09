@@ -5,8 +5,8 @@
      background-repeat: no-repeat;
 }
 
-.empty-borrow-array-binoc {
-     background-image: url('/public/imgs/binoculars.svg');
+.empty-supplies-array {
+     background-image: url('/public/imgs/empty-box.svg');
      background-position: center;
      background-size:cover;
      background-repeat: no-repeat;

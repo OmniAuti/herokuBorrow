@@ -22,6 +22,5 @@ export const postAskItem = (askItem) => {
 }
 
 export const getSingleItem = async (id) => {
-  console.log(id, 'api')
     return axios.get(urlFour, {params: id})
 }

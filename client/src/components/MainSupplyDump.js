@@ -1,24 +1,28 @@
 import DumpObject from "./DumpObject";
 import Loading from "./Loading";
+import EmptySuppliesPlaceHolder from "./EmptySuppliesPlaceholder";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { fetchAllItems } from "../api/api";
 
-import { Link } from "react-router-dom";
 
 const MainSupplyDump = ({ modalDispatch }) => {
   const [dumpData, setDumpData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [background, setBackground] = useState("bg-sky-900");
 
   useEffect(() => {
-    fetchAllItems().then((res) => setDumpData(res.data));
-    setIsLoaded(true);
 
+      fetchAllItems().then((res) => setDumpData(res.data));
+      handleLoad() 
     return () => {
       console.log("cleared");
     };
   }, []);
+
+  const handleLoad = useCallback(() => {
+    setIsLoaded(true);
+  }, [dumpData])
+
 
   return (
     <section className="mt-24 w-full h-full overflow-hidden px-5 bg-sky-900 rounded-md my-24">
@@ -28,21 +32,7 @@ const MainSupplyDump = ({ modalDispatch }) => {
       {isLoaded ? (
         <div className="flex items-center justify-around flex-wrap mb-10">
           {dumpData.length <= 0 ? (
-            <div className="h-72 mt-10 mx-auto text-center">
-              <h2 className="text-2xl my-5 font-light">
-                Sorry, there appears to be no one offering supplies in your area
-              </h2>
-              <p className="text-2xl font-thin">
-                Try posting on the{" "}
-                <Link
-                  to="/ask"
-                  className="underline underline-offset-4 hover:underline-offset-1"
-                >
-                  Ask page
-                </Link>{" "}
-                to meet your needs
-              </p>
-            </div>
+            <EmptySuppliesPlaceHolder/>
           ) : (
             dumpData
               .slice(0, 3)
@@ -56,7 +46,7 @@ const MainSupplyDump = ({ modalDispatch }) => {
           )}
         </div>
       ) : (
-        <Loading background={background} />
+        <Loading background={"bg-sky-900"} fontColor={"text-white"} outerBackground={"bg-white"} />
       )}
     </section>
   );

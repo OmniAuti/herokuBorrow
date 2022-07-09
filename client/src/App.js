@@ -18,35 +18,54 @@ import { getSingleItem } from "./api/api";
 const modalReducer = (state, action) => {
   switch (action.type) {
     case "MODAL":
-      return { modalId: action.payload };
+      return { modalId: action.payload, active: !state.active };
   }
 };
 
 function App() {
-  const [state, modalDispatch] = useReducer(modalReducer, { modalId: "" });
+  const [state, modalDispatch] = useReducer(modalReducer, {
+    modalId: "",
+    active: false,
+  });
   const [modalData, setModalData] = useState([]);
+  const [activeModal, setActiveModal] = useState(false);
+  const [modalLoaded, setModalLoaded] = useState(false)
+
 
   useEffect(() => {
     if (state.modalId.length <= 0) return;
     handleModalData(state.modalId);
-    return () => {
-      console.log('cleared')
-    }
-  }, [state.modalId]);
+  }, [state.active]);
 
-  const handleModalData = useCallback(async (id) => {
-    
+  const handleModalData = async (id) => {
+    setActiveModal(true);
+
     await getSingleItem(id)
       .then((res) => setModalData(res.data))
       .catch((err) => console.log(err));
+  };
 
-  }, [state.modalId]);
+  const handleCloseModal = () => {
+    setActiveModal(false);
+    setModalLoaded(false)
+  };
+
+  const handleOpenModal = () => {
+    setModalLoaded(true)
+  }
 
   return (
     <>
       <Header />
 
-      <SingleItemFocusModal data={modalData} />
+      <SingleItemFocusModal
+        data={modalData}
+        activeModal={activeModal}
+        handleModalData={handleModalData}
+        handleCloseModal={handleCloseModal}
+        handleOpenModal={handleOpenModal}
+        modalLoaded={modalLoaded}
+      />
 
       <main className="App bg-black h-full min-h-screen w-screen px-5 py-5 relative">
         <ScrollToTop>

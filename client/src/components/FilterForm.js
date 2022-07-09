@@ -45,9 +45,8 @@ const FilterForm = ({ dispatch, handleLoading }) => {
   };
 
   useEffect(() => {
-    handleLoading(true);
     dispatch({ type: "LOADED", payload: dataDump });
-
+    handleLoading(true);
     return () => {
       console.log("Cleared Filter");
     };
