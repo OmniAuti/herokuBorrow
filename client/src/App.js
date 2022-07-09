@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
-import { useReducer, useState, useEffect } from "react";
+import { useReducer, useState, useEffect, useCallback } from "react";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -28,15 +28,19 @@ function App() {
 
   useEffect(() => {
     if (state.modalId.length <= 0) return;
-    console.log(state.modalId, "in APP");
     handleModalData(state.modalId);
+    return () => {
+      console.log('cleared')
+    }
   }, [state.modalId]);
 
-  const handleModalData = async (id) => {
+  const handleModalData = useCallback(async (id) => {
+    
     await getSingleItem(id)
       .then((res) => setModalData(res.data))
       .catch((err) => console.log(err));
-  };
+
+  }, [state.modalId]);
 
   return (
     <>
