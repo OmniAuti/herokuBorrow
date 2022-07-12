@@ -8,11 +8,11 @@
     opacity: .05;
     top: 50%;
     left:50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
 }
 
-.breaking-the-bank-background {
-   background-image: url('/public/imgs/piggy-bank.svg');
+.cap-background {
+   background-image: url('/public/imgs/cap.svg');
    background-size: contain;
    background-position: center;
    background-repeat: no-repeat;
@@ -37,6 +37,7 @@
     left:50%;
     transform: translate(-50%, -50%)
 }
+
 
 @tailwind base;
 @tailwind components;
