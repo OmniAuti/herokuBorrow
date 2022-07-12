@@ -141,7 +141,7 @@ const About = () => {
               Sadly, teachers can only deduct a maximum of $250 dollars with the
               <a href="https://www.irs.gov/taxtopics/tc458" target="_blank">
                 {" "}
-                <u>Educator Expense Deduction</u>
+                <span className="underline underline-offset-1">Educator Expense Deduction</span>
               </a>{" "}
               each year. It's unacceptable that we ask teachers to spend
               their own money to provide a quality learning enviroment. Teachers should be focused on helping
