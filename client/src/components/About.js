@@ -1,7 +1,6 @@
 import styles from "./About.css";
 
 const About = () => {
-
   return (
     <article id="about-home" className=" mx-auto scroll-mt-5">
       <div className=" min-h-fit w-3/4 mt-36 bg-sky-900 mx-auto rounded-md grid grid-cols-2 grid-rows-2 mb-4 relative">
@@ -118,43 +117,40 @@ const About = () => {
                 </li>
               </ul>
             </div>
-            </div>
           </div>
+        </div>
 
-          <div className="bg-sky-900 w-1/2 h-80 rounded-md ml-2 relative">
-            <div className="teacher-background absolute"></div>
-            <div className="absolute w-full h-full p-5">
-              <h3 className="text-2xl font-light mb-2 mt-0 text-center">
-                What about the teachers?
-              </h3>
-              <p className="font-thin">
-                The national average that teachers spend on classroom supplies
-                is around $750 of their own money every year. 30% of teachers
-                spend $1000 or more on supplies for their classrooms.
-              </p>
-              <br></br>
+        <div className="bg-sky-900 w-1/2 h-80 rounded-md ml-2 relative">
+          <div className="teacher-background absolute"></div>
+          <div className="absolute w-full h-full p-5">
+            <h3 className="text-2xl font-light mb-2 mt-0 text-center">
+              What about the teachers?
+            </h3>
+            <p className="font-thin">
+              The national average that teachers spend on classroom supplies is
+              around $750 of their own money every year. 30% of teachers spend
+              $1000 or more on supplies for their classrooms.
+            </p>
+            <br></br>
 
-              <p>
-                <i>Can't teachers just write off the expenses?</i>
-              </p>
+            <p>
+              <i>Can't teachers just write off the expenses?</i>
+            </p>
+            <br></br>
+            <p className="font-thin">
+              Sadly, teachers can only deduct a maximum of $250 dollars with the
+              <a href="https://www.irs.gov/taxtopics/tc458" target="_blank">
+                {" "}
+                <u>Educator Expense Deduction</u>
+              </a>{" "}
+              each year. It's unacceptable that we ask teachers to spend
+              their own money to provide a quality learning enviroment. Teachers should be focused on helping
+              students reach their full potential and not worrying if they have the
+              supplies to complete each lesson.
               <br></br>
-              <p className="font-thin">
-                Sadly, teachers can only deduct a maximum of $250 dollars with
-                the
-                <a href="https://www.irs.gov/taxtopics/tc458" target="_blank">
-                  {" "}
-                  <u>Educator Expense Deduction</u>
-                </a>{" "}
-                each year. As an already underpaid profession, it's unacceptable
-                that we ask teachers to keep spending their own money. Teachers
-                should be focused on helping their students reach their true
-                potential, not worrying if they have the supplies to properly
-                teach each lesson.
-                <br></br>
-              </p>
-            </div>
+            </p>
           </div>
-        
+        </div>
       </div>
     </article>
   );
