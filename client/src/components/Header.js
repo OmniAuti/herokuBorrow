@@ -19,7 +19,7 @@ const Header = () => {
       <div className="ml-10 w-3/5 h-full p-2 ">
         <Link className="pl-5  w-fit h-full group  cursor-pointer flex items-center font-thin" to="/">
           <img className="h-full" alt="Borrow A Pencil Logo" src="./imgs/logo.svg" />{" "}
-          <h2 className="ml-5 pr-5 group-hover:underline underline-offset-2">Borrow A Pencil</h2>
+          <h2 className="ml-5 pr-5 before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 hover:before:opacity-100 after:opacity-100 hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-[0px] hover:after:w-[109px] after:bottom-0 after:right-[19px]  after:transition-[width] after:absolute after:bg-white hover:before:w-[109px] relative before:h-[2px] before:bottom-0 ">Borrow A Pencil</h2>
         </Link>
       </div>
 
