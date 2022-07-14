@@ -13,18 +13,18 @@ const Footer = () => {
             alt="Borrow A Pencil Logo"
             src="./imgs/logo.svg"
           />{" "}
-          <h2 className="ml-5 pr-5 group-hover:underline underline-offset-1">Borrow A Pencil</h2>
+          <h2 className="ml-5 pr-5 group-hover:underline underline-offset-2">Borrow A Pencil</h2>
         </Link>
       </div>
       <div className="font-thin col-start-2 row-span-4  flex justify-around items-center flex-col">
-        <Link className="hover:underline underline-offset-1 w-full h-full flex items-center justify-center" to="/about">
+        <Link className="hover:underline underline-offset-2 w-full h-full flex items-center justify-center" to="/about">
           About
         </Link>
-        <Link className="hover:underline underline-offset-1 w-full h-full flex items-center justify-center" to="/borrow">Borrow</Link>
+        <Link className="hover:underline underline-offset-2 w-full h-full flex items-center justify-center" to="/borrow">Borrow</Link>
       </div>
       <div className="font-thin col-start-3 row-span-4 flex justify-around items-center flex-col">
-        <Link className="hover:underline underline-offset-1 w-full h-full flex items-center justify-center" to="/offer">Offer</Link>
-        <Link className="hover:underline underline-offset-1 w-full h-full flex items-center justify-center" to="/ask">Ask</Link>
+        <Link className="hover:underline underline-offset-2 w-full h-full flex items-center justify-center" to="/offer">Offer</Link>
+        <Link className="hover:underline underline-offset-2 w-full h-full flex items-center justify-center" to="/ask">Ask</Link>
       </div>
     </footer>
   );

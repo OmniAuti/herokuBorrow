@@ -5,15 +5,17 @@ import EmptySuppliesPlaceHolder from "./EmptySuppliesPlaceholder";
 import { useCallback, useEffect, useState } from "react";
 import { fetchAllItems } from "../api/api";
 
-
 const MainSupplyDump = ({ modalDispatch }) => {
   const [dumpData, setDumpData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-
+    try {
       fetchAllItems().then((res) => setDumpData(res.data));
-      handleLoad() 
+      handleLoad();
+    } catch (e) {
+      console.log(e);
+    }
     return () => {
       console.log("cleared");
     };
@@ -21,8 +23,7 @@ const MainSupplyDump = ({ modalDispatch }) => {
 
   const handleLoad = useCallback(() => {
     setIsLoaded(true);
-  }, [dumpData])
-
+  }, [dumpData]);
 
   return (
     <section className="mt-24 w-full h-full overflow-hidden px-5 bg-sky-900 rounded-md my-24">
@@ -32,7 +33,7 @@ const MainSupplyDump = ({ modalDispatch }) => {
       {isLoaded ? (
         <div className="flex items-center justify-around flex-wrap mb-10">
           {dumpData.length <= 0 ? (
-            <EmptySuppliesPlaceHolder/>
+            <EmptySuppliesPlaceHolder />
           ) : (
             dumpData
               .slice(0, 3)
@@ -46,7 +47,11 @@ const MainSupplyDump = ({ modalDispatch }) => {
           )}
         </div>
       ) : (
-        <Loading background={"bg-sky-900"} fontColor={"text-white"} outerBackground={"bg-white"} />
+        <Loading
+          background={"bg-sky-900"}
+          fontColor={"text-white"}
+          outerBackground={"bg-white"}
+        />
       )}
     </section>
   );

@@ -34,7 +34,11 @@ const Borrow = ({ modalDispatch }) => {
   }, []);
 
   const handleLoading = async () => {
-    await fetchAllItems().then((res) => setDataDump(res.data));
+    try {
+      await fetchAllItems().then((res) => setDataDump(res.data));
+    } catch(e) {
+      console.log(e)
+    }
     setIsLoaded(true);
   };
   return (

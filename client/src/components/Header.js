@@ -19,7 +19,7 @@ const Header = () => {
       <div className="ml-10 w-3/5 h-full p-2 ">
         <Link className="pl-5  w-fit h-full group  cursor-pointer flex items-center font-thin" to="/">
           <img className="h-full" alt="Borrow A Pencil Logo" src="./imgs/logo.svg" />{" "}
-          <h2 className="ml-5 pr-5 group-hover:underline underline-offset-1">Borrow A Pencil</h2>
+          <h2 className="ml-5 pr-5 group-hover:underline underline-offset-2">Borrow A Pencil</h2>
         </Link>
       </div>
 
@@ -28,14 +28,14 @@ const Header = () => {
           <li className="cursor-pointer grow flex items-center justify-center group">
             {aboutLocation ? (
               <Link
-                className="group-hover:underline grow flex h-full items-center justify-center"
+                className="group-hover:underline underline-offset-2 grow flex h-full items-center justify-center"
                 to="/about"
               >
                 About
               </Link>
             ) : (
               <a
-                className="group-hover:underline grow flex h-full items-center justify-center"
+                className="group-hover:underline underline-offset-2 grow flex h-full items-center justify-center"
                 target="_self"
                 href="#about-home"
               >
@@ -45,7 +45,7 @@ const Header = () => {
           </li>
           <li className="cursor-pointer grow flex items-center justify-center group">
             <Link
-              className="group-hover:underline grow flex h-full items-center justify-center"
+              className="group-hover:underline underline-offset-2 grow flex h-full items-center justify-center"
               to="/borrow"
             >
               Borrow
@@ -53,7 +53,7 @@ const Header = () => {
           </li>
           <li className="cursor-pointer grow flex items-center justify-center group">
             <Link
-              className="group-hover:underline grow flex h-full items-center justify-center"
+              className="group-hover:underline underline-offset-2 grow flex h-full items-center justify-center"
               to="/offer"
             >
               Offer
@@ -61,7 +61,7 @@ const Header = () => {
           </li>
           <li className="cursor-pointer grow flex items-center justify-center group">
             <Link
-              className="group-hover:underline grow flex h-full items-center justify-center"
+              className="group-hover:underline underline-offset-2 grow flex h-full items-center justify-center"
               to="/ask"
             >
               Ask
@@ -69,7 +69,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <div className="mr-10 cursor-pointer hover:underline h-full terxt-center w-fit flex items-center justify-center">
+      <div className="mr-10 cursor-pointer hover:underline underline-offset-2 h-full terxt-center w-fit flex items-center justify-center">
         Account
       </div>
     </header>
