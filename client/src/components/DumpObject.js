@@ -30,7 +30,7 @@ const DumpObject = ({ data, modalDispatch }) => {
   return (
     <div onClick={() => modalDispatch({type: "MODAL", payload: data._id})} className=" w-[calc(33.3333%-24px)] rounded-md my-5 mx-[12px] p-1 cursor-pointer" style={{ backgroundColor: cardBgColor }}>
        <div
-        className=" bg-white w-full h-full rounded-md p-5"
+        className=" bg-white w-full h-full rounded-md p-5 shadow-inner transition-all hover:shadow-black outline"
         
       >
         <img

@@ -30,22 +30,22 @@ const About = () => {
           <div className="border-solid border-2 border-sky-500 w-3/4 h-3/5 relative">
             <div className="border-solid border-2 border-sky-500 h-full w-full bg-sky-900 absolute right-5 top-5">
               <div className="w-full h-full text-center py-3 px-2">
-                <h3 className="mb-4">
+                <h3 className="mb-3">
                   Cost of School Supplies<br></br>
                   <i>On Average</i>
                 </h3>
                 <div className="flex items-center justify-around">
                   <div className="w-1/5 mx-1">
-                    <p className="font-thin text-left">Elementary</p>
-                    <div className="bg-red-500">$1,017.37</div>
+                    <p className="font-thin text-left mb-1">Elementary</p>
+                    <div className="bg-red-500 py-1">$1,017.37</div>
                   </div>
                   <div className="w-2/5 mx-1">
-                    <p className="font-thin text-left">Middle School</p>
-                    <div className="bg-blue-500">$1,277.35</div>
+                    <p className="font-thin text-left mb-1">Middle School</p>
+                    <div className="bg-blue-500 py-1">$1,277.35</div>
                   </div>
                   <div className="w-3/5 mx-1">
-                    <p className="font-thin text-left">High School</p>
-                    <div className="bg-green-500">$1,667.90</div>
+                    <p className="font-thin text-left mb-1">High School</p>
+                    <div className="bg-green-500 py-1">$1,667.90</div>
                   </div>
                 </div>
               </div>
