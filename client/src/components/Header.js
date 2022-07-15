@@ -35,7 +35,7 @@ const Header = () => {
               </Link>
             ) : (
               <a
-                className="group-hover:underline underline-offset-2 grow flex h-full items-center justify-center"
+                className="grow flex h-full items-center justify-center"
                 target="_self"
                 href="#about-home"
               >
