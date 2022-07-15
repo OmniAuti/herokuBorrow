@@ -13,7 +13,7 @@ const Footer = () => {
             alt="Borrow A Pencil Logo"
             src="./imgs/logo.svg"
           />{" "}
-          <h2 className="ml-5 before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 group-hover:before:opacity-100 after:opacity-100 group-hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">
+          <h2 className="ml-5 before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-100 group-hover:before:opacity-0 after:opacity-0 group-hover:after:opacity-100 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">
             Borrow A Pencil
           </h2>
         </Link>
@@ -23,13 +23,13 @@ const Footer = () => {
           className="group w-full h-full flex items-center justify-center"
           to="/about"
         >
-          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 group-hover:before:opacity-100 after:opacity-100 group-hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">About</p>
+          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-100 group-hover:before:opacity-0 after:opacity-0 group-hover:after:opacity-100 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">About</p>
         </Link>
         <Link
           className="group w-full h-full flex items-center justify-center"
           to="/borrow"
         >
-          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 group-hover:before:opacity-100 after:opacity-100 group-hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">Borrow</p>
+          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-100 group-hover:before:opacity-0 after:opacity-0 group-hover:after:opacity-100 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">Borrow</p>
         </Link>
       </div>
       <div className="font-thin col-start-3 row-span-4 flex justify-around items-center flex-col">
@@ -37,13 +37,13 @@ const Footer = () => {
           className="group w-full h-full flex items-center justify-center"
           to="/offer"
         >
-          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 group-hover:before:opacity-100 after:opacity-100 group-hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">Offer</p>
+          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-100 group-hover:before:opacity-0 after:opacity-0 group-hover:after:opacity-100 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">Offer</p>
         </Link>
         <Link
           className="group w-full h-full flex items-center justify-center"
           to="/ask"
         >
-          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 group-hover:before:opacity-100 after:opacity-100 group-hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">Ask</p>
+          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-100 group-hover:before:opacity-0 after:opacity-0 group-hover:after:opacity-100 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">Ask</p>
         </Link>
       </div>
     </footer>
