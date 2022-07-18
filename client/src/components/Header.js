@@ -20,7 +20,7 @@ const Header = () => {
   }, [location]);
 
   return (
-    <header className="h-24 flex items-center w-full bg-black relative sm:overflow-y-hidden">
+    <header className="h-24 flex items-center w-full bg-black relative sm:overflow-y-hidden z-50">
       <div className="sm:w-3/5 w-3/4 h-full p-2">
         <Link
           className="sm:px-5 px-0 w-fit h-full group  cursor-pointer flex items-center font-thin"

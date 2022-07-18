@@ -55,7 +55,7 @@ function App() {
   }
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-x-hidden">
       <Header />
 
       <SingleItemFocusModal
@@ -67,7 +67,7 @@ function App() {
         modalLoaded={modalLoaded}
       />
 
-      <main  className="App  bg-black h-full min-h-screen w-screen px-5 py-5 relative -z-50">
+      <main  className="App  bg-black h-full min-h-screen w-screen px-5 py-5 relative">
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<Home modalDispatch={modalDispatch} />} />
