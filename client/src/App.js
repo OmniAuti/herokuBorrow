@@ -10,10 +10,12 @@ import Borrow from "./components/Borrow";
 import Ask from "./components/Ask";
 import Offer from "./components/Offer";
 import AboutPage from "./components/AboutPage";
+
 //WRAP FOR SCROLL TO TOP ON NEW ROUTE
 import ScrollToTop from "./components/ScrollToTop";
 import SingleItemFocusModal from "./components/SingleItemFocusModal";
 import { getSingleItem } from "./api/api";
+import AccountGateway from "./components/AccountGateway";
 
 const modalReducer = (state, action) => {
   switch (action.type) {
@@ -29,8 +31,7 @@ function App() {
   });
   const [modalData, setModalData] = useState([]);
   const [activeModal, setActiveModal] = useState(false);
-  const [modalLoaded, setModalLoaded] = useState(false)
-
+  const [modalLoaded, setModalLoaded] = useState(false);
 
   useEffect(() => {
     if (state.modalId.length <= 0) return;
@@ -47,12 +48,12 @@ function App() {
 
   const handleCloseModal = () => {
     setActiveModal(false);
-    setModalLoaded(false)
+    setModalLoaded(false);
   };
 
   const handleOpenModal = () => {
-    setModalLoaded(true)
-  }
+    setModalLoaded(true);
+  };
 
   return (
     <div className="overflow-x-hidden">
@@ -67,15 +68,13 @@ function App() {
         modalLoaded={modalLoaded}
       />
 
-      <main  className="App  bg-black h-full min-h-screen w-screen px-5 py-5 relative">
+      <main className="App  bg-black h-full min-h-screen w-screen px-5 py-5 relative">
         <ScrollToTop>
           <Routes>
             <Route path="/" element={<Home modalDispatch={modalDispatch} />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route
-              path="/borrow"
-              element={<Borrow modalDispatch={modalDispatch} />}
-            />
+            <Route path="/borrow" element={<Borrow modalDispatch={modalDispatch} />} />
+            <Route path='/account-gateway' element={<AccountGateway/>}/>
             <Route path="/offer" element={<Offer />} />
             <Route path="/ask" element={<Ask />} />
           </Routes>
