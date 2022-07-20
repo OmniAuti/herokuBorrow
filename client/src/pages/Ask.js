@@ -1,4 +1,4 @@
-import AskItemForm from "./AskItemForm";
+import AskItemForm from "../components/AskItemForm";
 
 const Ask = () => {
     return (

@@ -1,4 +1,4 @@
-const AccountSignUp = ({handleActiveSignUp, activeSignUp}) => {
+const AccountSignUp = ({handleActiveSignUp, activeSignUp, handleSignUpSubmit}) => {
   return (
     <div
       className={

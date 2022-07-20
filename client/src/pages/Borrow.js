@@ -3,11 +3,11 @@ import styles from "./Borrow.css";
 import { fetchAllItems } from "../api/api";
 
 import { useEffect, useState, useReducer, useCallback } from "react";
-import DumpObject from "./DumpObject";
-import FilterForm from "./FilterForm";
+import SupplyObjectCard from "../components/SupplyObjectCard";
+import FilterForm from "../components/FilterForm";
 import { Link } from "react-router-dom";
-import Loading from "./Loading";
-import EmptyFilteredSuppliesPlaceHolder from "./EmptyFilteredSuppliesPlaceholder";
+import Loading from "../components/Loading";
+import EmptyFilteredSuppliesPlaceHolder from "../components/EmptyFilteredSuppliesPlaceholder";
 
 const Borrow = ({ modalDispatch }) => {
   // WHEN YOU CLICK ON ONE DO A SINGLE ITEM SEARCH TO PULL MODAL CARD OF INTERESTED ITEM
@@ -75,7 +75,7 @@ const Borrow = ({ modalDispatch }) => {
             <EmptyFilteredSuppliesPlaceHolder />
           ) : (
             dataDump.map((data) => (
-              <DumpObject
+              <SupplyObjectCard
                 modalDispatch={modalDispatch}
                 key={data._id}
                 data={data}

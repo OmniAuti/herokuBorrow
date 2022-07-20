@@ -1,21 +1,24 @@
 import "./App.css";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useReducer, useState, useEffect, useCallback } from "react";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./components/Home";
-import Borrow from "./components/Borrow";
-import Ask from "./components/Ask";
-import Offer from "./components/Offer";
-import AboutPage from "./components/AboutPage";
+//PAGES
+import Home from "./pages/Home";
+import Borrow from "./pages/Borrow";
+import Ask from "./pages/Ask";
+import AboutPage from "./pages/AboutPage";
+import Offer from "./pages/Offer";
+import AccountGateway from "./pages/AccountGateway";
+import AccountDashboard from "./pages/AccountDashboard";
 
 //WRAP FOR SCROLL TO TOP ON NEW ROUTE
 import ScrollToTop from "./components/ScrollToTop";
 import SingleItemFocusModal from "./components/SingleItemFocusModal";
 import { getSingleItem } from "./api/api";
-import AccountGateway from "./components/AccountGateway";
+
 
 const modalReducer = (state, action) => {
   switch (action.type) {
@@ -75,6 +78,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/borrow" element={<Borrow modalDispatch={modalDispatch} />} />
             <Route path='/account-gateway' element={<AccountGateway/>}/>
+            <Route path='/account' element={<AccountDashboard/>}/>
             <Route path="/offer" element={<Offer />} />
             <Route path="/ask" element={<Ask />} />
           </Routes>

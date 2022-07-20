@@ -1,6 +1,8 @@
 import { useState } from "react";
-import AccountSignUp from "./AccountSignUp";
-import AccountSignIn from "./AccountSignIn";
+
+
+import AccountSignUp from "../components/AccountSignUp";
+import AccountSignIn from "../components/AccountSignIn";
 
 const AccountGateway = () => {
   const [activeSignUp, setActiveSignUp] = useState(false);

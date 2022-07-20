@@ -1,4 +1,4 @@
-const DumpObject = ({ data, modalDispatch }) => {
+const SupplyObjectCard = ({ data, modalDispatch }) => {
   var cardBgColor;
 
   switch (data.type) {
@@ -51,4 +51,4 @@ const DumpObject = ({ data, modalDispatch }) => {
   );
 };
 
-export default DumpObject;
+export default SupplyObjectCard;

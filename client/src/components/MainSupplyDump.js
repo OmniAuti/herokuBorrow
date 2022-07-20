@@ -1,4 +1,4 @@
-import DumpObject from "./DumpObject";
+import SupplyObjectCard from "./SupplyObjectCard";
 import Loading from "./Loading";
 import EmptySuppliesPlaceHolder from "./EmptySuppliesPlaceholder";
 
@@ -38,7 +38,7 @@ const MainSupplyDump = ({ modalDispatch }) => {
             dumpData
               .slice(0, 3)
               .map((data) => (
-                <DumpObject
+                <SupplyObjectCard
                   modalDispatch={modalDispatch}
                   key={data._id}
                   data={data}

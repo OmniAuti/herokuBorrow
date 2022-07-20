@@ -1,7 +1,7 @@
-import About from "./About";
-import MainSupplyDump from "./MainSupplyDump";
-import HeroCOA from "./HeroCOA";
-import OurGoal from "./OurGoal";
+import About from "../components/About";
+import MainSupplyDump from "../components/MainSupplyDump";
+import HeroCOA from "../components/HeroCOA";
+import OurGoal from "../components/OurGoal";
 
 const Home = ({modalDispatch}) => {
   return (

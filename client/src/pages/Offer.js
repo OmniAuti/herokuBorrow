@@ -1,4 +1,4 @@
-import PostItemForm from "./PostItemForm";
+import PostItemForm from "../components/PostItemForm";
 
 const Offer = () => {
 
