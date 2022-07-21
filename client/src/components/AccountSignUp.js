@@ -1,4 +1,8 @@
-const AccountSignUp = ({handleActiveSignUp, activeSignUp, handleSignUpSubmit}) => {
+const AccountSignUp = ({
+  handleActiveSignUp,
+  activeSignUp,
+  handleSignUpSubmit,
+}) => {
   return (
     <div
       className={
@@ -9,7 +13,9 @@ const AccountSignUp = ({handleActiveSignUp, activeSignUp, handleSignUpSubmit}) =
     >
       <div className="m-1 w-3/4">
         {activeSignUp ? (
-          <p className="text-black text-2xl text-center border-b pb-2">Sign Up</p>
+          <p className="text-black text-2xl text-center border-b pb-2">
+            Sign Up
+          </p>
         ) : (
           <button
             onClick={handleActiveSignUp}
@@ -19,7 +25,10 @@ const AccountSignUp = ({handleActiveSignUp, activeSignUp, handleSignUpSubmit}) =
           </button>
         )}
       </div>
-      <form className="text-black w-3/4">
+      <form
+        onSubmit={(e) => handleSignUpSubmit(e)}
+        className="text-black w-3/4"
+      >
         <div className="flex flex-col my-1 py-2">
           <label htmlFor="email" className="text-black">
             Email

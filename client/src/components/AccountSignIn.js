@@ -5,7 +5,7 @@ const AccountSignIn = ({handleActiveSignIn, activeSignUp, handleSignInSubmit}) =
       <div className="m-1 w-full text-center">
         {activeSignUp ? <button onClick={handleActiveSignIn} className="text-black underline underline-offset-0 text-center w-full">Already Have An Account? Sign In Here</button> : <p className="text-black text-2xl border-b pb-2 w-3/4 mx-auto text-center">Sign In</p>}
       </div>
-      <form className="text-black w-3/4">
+      <form onSubmit={(e) => handleSignInSubmit(e)} className="text-black w-3/4">
         <div className="flex flex-col my-1 py-2">
           <label htmlFor="inemail" className="text-black">
             Email
