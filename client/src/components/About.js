@@ -72,7 +72,7 @@ const About = () => {
       </div>
 
       <div className="flex items-center justify-around mx-auto px-10">
-        <div className="bg-sky-900 w-1/2 h-80 rounded-md mr-2 relative overflow-hidden">
+        <div className="bg-sky-900 w-1/2 h-80 min-h-fit rounded-md mr-2 relative overflow-hidden">
           <div className="cap-background absolute"></div>
           <div className="rounded-md p-5 absolute">
             <h2 className="text-2xl font-light mb-2 mt-0 text-center">
@@ -122,7 +122,7 @@ const About = () => {
 
         <div className="bg-sky-900 w-1/2 h-80 rounded-md ml-2 relative">
           <div className="teacher-background absolute"></div>
-          <div className="absolute w-full h-full p-5">
+          <div className=" w-full p-5 ">
             <h3 className="text-2xl font-light mb-2 mt-0 text-center">
               What about the teachers?
             </h3>

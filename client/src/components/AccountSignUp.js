@@ -1,8 +1,42 @@
-const AccountSignUp = ({
-  handleActiveSignUp,
-  activeSignUp,
-  handleSignUpSubmit,
-}) => {
+import { useState, useRef } from "react";
+import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
+const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
+  const { createUser } = UserAuth();
+  const navigate = useNavigate()
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const confirmedCheck = useRef();
+
+  const handleSignUpSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      return alert('Please confirm that passwords match')
+    }
+    await createUser(email, password)
+    navigate('/dashboard')
+  };
+
+  const handleConfirmedPassword = () => {
+    console.log(password, confirmPassword, 'huh')
+    if (password !== confirmPassword) {
+      confirmedCheck.current.style.outline = '2px solid #ef4444'
+      confirmedCheck.current.style.outlineOffset = '2px'
+    } else if (password === confirmPassword) {
+      confirmedCheck.current.style.outline = '2px solid #22c55e'
+      confirmedCheck.current.style.outlineOffset = '2px'
+    }
+
+    if (confirmPassword === '') {
+      confirmedCheck.current.style.outline = 'none'
+    }
+
+  };
+
   return (
     <div
       className={
@@ -34,6 +68,7 @@ const AccountSignUp = ({
             Email
           </label>
           <input
+            onChange={(e) => setEmail(e.target.value)}
             className="shadow-inner p-1 rounded-sm text-black my-1 border"
             id="email"
             type="email"
@@ -45,6 +80,7 @@ const AccountSignUp = ({
             Password
           </label>
           <input
+            onChange={(e) => setPassword(e.target.value)}
             className="shadow-inner p-1 rounded-sm text-black my-1 border"
             id="password-retype"
             type="password"
@@ -56,6 +92,9 @@ const AccountSignUp = ({
             Confirm Password
           </label>
           <input
+            ref={confirmedCheck}
+            onKeyUp={handleConfirmedPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             id="password"
             type="password"
             placeholder="Confirm Password"

@@ -1,8 +1,8 @@
 import "./App.css";
-
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useReducer, useState, useEffect, useCallback } from "react";
-
+// FUNCTIONALITY
+import { Routes, Route} from "react-router-dom";
+import { useReducer, useState, useEffect } from "react";
+// COMPONENTS
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 //PAGES
@@ -13,13 +13,15 @@ import AboutPage from "./pages/AboutPage";
 import Offer from "./pages/Offer";
 import AccountGateway from "./pages/AccountGateway";
 import AccountDashboard from "./pages/AccountDashboard";
-
+import ProtectedUserRoute from "./components/ProtectedUserRoute";
 //WRAP FOR SCROLL TO TOP ON NEW ROUTE
 import ScrollToTop from "./components/ScrollToTop";
 import SingleItemFocusModal from "./components/SingleItemFocusModal";
+//CONTEXT IMPORT
+import AuthContextProvider from "./context/AuthContext";
+// APPI CALLS
 import { getSingleItem } from "./api/api";
-
-
+// USE REDUCER FUNCTION
 const modalReducer = (state, action) => {
   switch (action.type) {
     case "MODAL":
@@ -60,31 +62,47 @@ function App() {
 
   return (
     <div className="overflow-x-hidden">
-      <Header />
+      <AuthContextProvider>
+        <Header />
 
-      <SingleItemFocusModal
-        data={modalData}
-        activeModal={activeModal}
-        handleModalData={handleModalData}
-        handleCloseModal={handleCloseModal}
-        handleOpenModal={handleOpenModal}
-        modalLoaded={modalLoaded}
-      />
+        <SingleItemFocusModal
+          data={modalData}
+          activeModal={activeModal}
+          handleModalData={handleModalData}
+          handleCloseModal={handleCloseModal}
+          handleOpenModal={handleOpenModal}
+          modalLoaded={modalLoaded}
+        />
 
-      <main className="App  bg-black h-full min-h-screen w-screen px-5 py-5 relative">
-        <ScrollToTop>
-          <Routes>
-            <Route path="/" element={<Home modalDispatch={modalDispatch} />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/borrow" element={<Borrow modalDispatch={modalDispatch} />} />
-            <Route path='/account-gateway' element={<AccountGateway/>}/>
-            <Route path='/account' element={<AccountDashboard/>}/>
-            <Route path="/offer" element={<Offer />} />
-            <Route path="/ask" element={<Ask />} />
-          </Routes>
-        </ScrollToTop>
-      </main>
-      <Footer />
+        <main className="App  bg-black h-full min-h-screen w-screen px-5 py-5 relative">
+          <ScrollToTop>
+            <Routes>
+              <Route
+                path="/"
+                element={<Home modalDispatch={modalDispatch} />}
+              />
+              <Route path="/about" element={<AboutPage />} />
+              <Route
+                path="/borrow"
+                element={<Borrow modalDispatch={modalDispatch} />}
+              />
+              <Route path="/account-gateway" element={<AccountGateway />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedUserRoute>
+                    {" "}
+                    <AccountDashboard />{" "}
+                  </ProtectedUserRoute>
+                }
+              />
+              <Route path="/offer" element={<Offer />} />
+              <Route path="/ask" element={<Ask />} />
+            </Routes>
+          </ScrollToTop>
+        </main>
+        <Footer />
+      </AuthContextProvider>
     </div>
   );
 }

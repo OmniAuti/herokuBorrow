@@ -1,4 +1,25 @@
-const AccountSignIn = ({handleActiveSignIn, activeSignUp, handleSignInSubmit}) => {
+import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+
+const AccountSignIn = ({handleActiveSignIn, activeSignUp}) => {
+
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+
+  const navigate = useNavigate()
+
+
+  const {logInUser} = UserAuth()
+
+  const handleSignInSubmit = async (e) => {
+    e.preventDefault();
+    await logInUser(email, password)
+    navigate('/dashboard')
+  };
+
+
     return (
 
       <div className="flex flex-col items-center justify-center py-2  w-full">
@@ -11,6 +32,7 @@ const AccountSignIn = ({handleActiveSignIn, activeSignUp, handleSignInSubmit}) =
             Email
           </label>
           <input
+          onChange={(e) => setEmail(e.target.value)}
             className="shadow-inner p-1 rounded-sm text-black my-1 border"
             id="inemail"
             type="email"
@@ -22,6 +44,7 @@ const AccountSignIn = ({handleActiveSignIn, activeSignUp, handleSignInSubmit}) =
             Password
           </label>
           <input
+            onChange={(e) => setPassword(e.target.value)}
             className="shadow-inner p-1 rounded-sm text-black my-1 border"
             id="inpassword-retype"
             type="password"

@@ -1,6 +1,4 @@
 import { useState } from "react";
-
-
 import AccountSignUp from "../components/AccountSignUp";
 import AccountSignIn from "../components/AccountSignIn";
 
@@ -20,13 +18,6 @@ const AccountGateway = () => {
     setActiveSignUp(false);
   };
 
-  const handleSignInSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const handleSignUpSubmit = (e) => {
-    e.preventDefault()
-  }
 
   return (
     <section className="flex items-center justify-center flex-col">
@@ -40,13 +31,11 @@ const AccountGateway = () => {
         <AccountSignIn
           handleActiveSignIn={handleActiveSignIn}
           activeSignUp={activeSignUp}
-          handleSignInSubmit={handleSignInSubmit}
         />
 
         <AccountSignUp
           handleActiveSignUp={handleActiveSignUp}
           activeSignUp={activeSignUp}
-          handleSignUpSubmit={handleSignUpSubmit}
         />
       </div>
     </section>

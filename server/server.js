@@ -19,7 +19,7 @@ const port = 2000;
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
+    await connectDB(process.env.NODE_APP_MONGO_URI);
     server.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );

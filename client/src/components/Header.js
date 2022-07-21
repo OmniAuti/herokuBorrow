@@ -78,7 +78,7 @@ const Header = () => {
         <ul className="flex flex-col sm:flex-row justify-around font-thin w-full h-full">
           <button
             onClick={() => handleActiveHamburger()}
-            className="sm:hidden h-[45px] relative"
+            className="sm:hidden h-[45px] relative order-1 sm:order-none"
           >
             <div
               className={
@@ -96,7 +96,7 @@ const Header = () => {
             ></div>
           </button>
 
-          <li className="cursor-pointer grow flex items-center justify-center group">
+          <li className="cursor-pointer grow flex items-center justify-center group order-last sm:order-none">
             {aboutLocation ? (
               <Link
                 className="grow flex h-full items-center justify-center"
@@ -118,7 +118,7 @@ const Header = () => {
               </a>
             )}
           </li>
-          <li className="cursor-pointer grow flex items-center justify-center group">
+          <li className="cursor-pointer grow flex items-center justify-center group order-3 sm:order-none">
             <Link
               className="grow flex h-full items-center justify-center"
               to="/borrow"
@@ -128,7 +128,7 @@ const Header = () => {
               </p>
             </Link>
           </li>
-          <li className="cursor-pointer grow flex items-center justify-center group">
+          <li className="cursor-pointer grow flex items-center justify-center group order-4 sm:order-none">
             <Link
               className="grow flex h-full items-center justify-center"
               to="/offer"
@@ -138,7 +138,7 @@ const Header = () => {
               </p>
             </Link>
           </li>
-          <li className="cursor-pointer grow flex items-center justify-center group">
+          <li className="cursor-pointer grow flex items-center justify-center group order-5 sm:order-none">
             <Link
               className="grow flex h-full items-center justify-center"
               to="/ask"
@@ -148,14 +148,12 @@ const Header = () => {
               </p>
             </Link>
           </li>
-          <li className="cursor-pointer grow flex items-center justify-center group">
+          <li className="cursor-pointer grow flex items-center justify-center group order-2 sm:order-none">
             <Link
               className="grow flex h-full items-center justify-center "
-              to="/account"
+              to="/dashboard"
             >
-              <p className="text-xl sm:text-base font-normal before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 group-hover:before:opacity-100 after:opacity-100 group-hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">
-                Account
-              </p>
+              <img className="h-fit w-[30px]" src="/imgs/user.svg" alt="Account Icon"/>
             </Link>
           </li>
         </ul>
