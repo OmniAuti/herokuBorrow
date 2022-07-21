@@ -30,13 +30,13 @@ const AccountDashboard = () => {
         </div>
       </div>
       <div className="row-start-1 row-end-5 min-h-[350px] col-start-2 col-end-5 bg-slate-400 rounded-sm">
-        <p>Asked</p>
+        <p className="w-full text-2xl text-center my-2">Asked</p>
       </div>
       <div className="row-start-1 row-end-5 min-h-[350px] col-start-5 col-end-8 bg-slate-400 rounded-sm">
-        <p>Offered</p>
+        <p className="w-full text-2xl text-center my-2">Offered</p>
       </div>
       <div className="row-start-5 min-h-[250px] row-end-7  col-start-2 col-span-6 bg-slate-400 rounded-sm">
-        <p>Borrowed</p>
+        <p className="w-full text-2xl text-center my-2">Borrowed</p>
       </div>
     </section>
   );
