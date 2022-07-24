@@ -1,6 +1,6 @@
 import "./App.css";
 // FUNCTIONALITY
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useReducer, useState, useEffect } from "react";
 // COMPONENTS
 import Header from "./components/Header";
@@ -82,11 +82,13 @@ function App() {
                 element={<Home modalDispatch={modalDispatch} />}
               />
               <Route path="/about" element={<AboutPage />} />
+
               <Route
                 path="/borrow"
                 element={<Borrow modalDispatch={modalDispatch} />}
               />
               <Route path="/account-gateway" element={<AccountGateway />} />
+
               <Route
                 path="/dashboard"
                 element={
@@ -96,7 +98,9 @@ function App() {
                   </ProtectedUserRoute>
                 }
               />
+
               <Route path="/offer" element={<Offer />} />
+
               <Route path="/ask" element={<Ask />} />
             </Routes>
           </ScrollToTop>

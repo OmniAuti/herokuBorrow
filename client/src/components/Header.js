@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Header = () => {
-  const [aboutLocation, setAboutLocation] = useState(false);
   const [hamburger, setHamburger] = useState(false);
 
   const location = useLocation();
@@ -10,14 +9,6 @@ const Header = () => {
   const handleActiveHamburger = () => {
     setHamburger(!hamburger);
   };
-
-  useEffect(() => {
-    if (location.pathname !== "/") {
-      setAboutLocation(true);
-      return;
-    }
-    setAboutLocation(false);
-  }, [location]);
 
   return (
     <header className="h-24 flex items-center w-full bg-black relative sm:overflow-y-hidden z-50">
@@ -97,7 +88,7 @@ const Header = () => {
           </button>
 
           <li className="cursor-pointer grow flex items-center justify-center group order-last sm:order-none">
-            {aboutLocation ? (
+            {location.pathname !== '/' ? (
               <Link
                 className="grow flex h-full items-center justify-center"
                 to="/about"
@@ -150,7 +141,7 @@ const Header = () => {
           </li>
           <li className="cursor-pointer grow flex items-center justify-center group order-2 sm:order-none">
             <Link
-              className="grow flex h-full items-center justify-center "
+              className="grow flex h-full items-center justify-center"
               to="/dashboard"
             >
               <img className="h-fit w-[30px]" src="/imgs/user.svg" alt="Account Icon"/>

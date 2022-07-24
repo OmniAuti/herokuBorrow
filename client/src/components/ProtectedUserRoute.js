@@ -5,7 +5,7 @@ const ProtectedUserRoute = ({children}) => {
 
     const {user} = UserAuth()
     console.log(user)
-    
+
     return user !== null ? children : <Navigate to="/account-gateway"/>;
 }
 
