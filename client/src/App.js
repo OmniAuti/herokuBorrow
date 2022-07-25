@@ -74,7 +74,7 @@ function App() {
           modalLoaded={modalLoaded}
         />
 
-        <main className="App  bg-black h-full min-h-screen w-screen px-5 py-5 relative">
+        <main className="App  bg-black h-full min-h-screen w-screen px-5 pb-5 relative">
           <ScrollToTop>
             <Routes>
               <Route

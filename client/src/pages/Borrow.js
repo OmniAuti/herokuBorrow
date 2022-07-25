@@ -43,7 +43,7 @@ const Borrow = ({ modalDispatch }) => {
   };
   return (
     <section>
-      <h1 className="text-5xl text-center my-5">Available Supplies</h1>
+      <h1 className="text-5xl text-center mb-5">Available Supplies</h1>
 
       <div className="mx-auto h-fit w-fit my-5">
         <button

@@ -5,25 +5,25 @@ const OurGoal = () => {
   return (
     <section className="h-full my-24 mx-auto container">
       <h2 className="text-center text-5xl mb-5 font-light">The Goal</h2>
-      <p className="font-thin text-center text-2xl w-1/2 mx-auto mb-5">
+      <p className="font-thin text-center text-2xl w-full md:w-1/2 mx-auto mb-5">
         To build a free resource that connects families and teachers with those that can afford to help their community.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-around">
-        <Link className='w-1/3 p-5 group' to="/borrow">
+        <Link className='w-full md:w-1/3 p-5 group' to="/borrow">
         <div className="flex items-center justify-center flex-col">
           <div className="borrow-container my-3"></div>
           <p className="text-2xl group-hover:underline underline-offset-2">Borrow</p>
           <p className="font-thin text-center">Browse supplies in your area</p>
         </div>
         </Link>
-        <Link className='w-1/3 mx-5 p-5 group' to="/offer">
+        <Link className='w-full md:w-1/3 md:mx-5 p-5 group' to="/offer">
         <div className="flex items-center justify-center flex-col">
           <div className="offer-container my-3"></div>
           <p className="text-2xl group-hover:underline underline-offset-2">Offer</p>
           <p className="font-thin text-center">Post supplies that you have to offer</p>
         </div>
         </Link>
-        <Link className='w-1/3 p-5 group' to="/borrow">
+        <Link className='w-full md:w-1/3 p-5 group' to="/borrow">
         <div className="flex items-center justify-center flex-col">
           <div className="ask-container my-3"></div>
           <p className="text-2xl group-hover:underline underline-offset-2">Ask</p>

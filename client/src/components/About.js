@@ -3,7 +3,7 @@ import styles from "./About.css";
 const About = () => {
   return (
     <article id="about-home" className=" mx-auto scroll-mt-5">
-      <div className=" min-h-fit -ml-5 w-screen sm:w-full sm:ml-0 md:w-3/4 mt-24 bg-sky-900 md:mx-auto rounded-md grid grid-cols-2 grid-rows-2 mb-4 relative">
+      <div className=" min-h-fit -ml-5 w-screen sm:w-full sm:ml-0 md:w-3/4 bg-sky-900 md:mx-auto rounded-md grid grid-cols-2 grid-rows-2 mb-4 relative mt-10">
         <div className="school-supplies-background absolute top-1/3 h-2/3 sm:top-1/2"></div>
 
         <div
@@ -100,7 +100,7 @@ const About = () => {
             </p>
             <br></br>
 
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row items-center justify-around">
               <ul className="float-left text-center">
                 <li className="underline underline-offset-1">
                   With Supplies:{" "}

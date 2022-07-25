@@ -14,7 +14,7 @@ const AccountDashboard = () => {
   }
 
   return (
-    <section className=" grid grid-cols-7 grid-rows-6 gap-3">
+    <section className=" grid grid-cols-7 grid-rows-6 gap-3 pt-5">
       <div className="flex flex-col items-center col-start-1 col-end-2 row-start-1 row-end-7">
         <div className="w-full mt-5 flex justify-center relative overflow-hidden group">
           <button

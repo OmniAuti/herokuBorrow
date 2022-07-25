@@ -75,8 +75,9 @@ const HeroCOA = () => {
 
   return (
     <section className="flex flex-col items-start  md:flex-row md:justify-around min-h-screen">
-      <div className="w-full min-h-screen flex flex-col sm:items-start lg:w-2/3 mr-0 md:mr-5">
-        <div className="w-full h-2/4 relative overflow-hidden pb-2">
+
+      <div className="w-full min-h-screen flex flex-col justify-evenly sm:items-start lg:w-2/3 mr-0 md:mr-5">
+        <div className="w-full sm:h-2/4 relative overflow-hidden pb-2">
           <h1
             id="h1-hero-xs"
             className="sm:text-8xl xl:text-9xl text-6xl font-extralight sm:tracking-wide pl-0 sm:pl-9 md:pl-16 pt-0"
@@ -104,29 +105,31 @@ const HeroCOA = () => {
             </div>
           </h1>
         </div>
-        <div className="h-1/4 mt-10 sm:mt-0">
-          <p className=" mb-10 mt-0 sm:mt-6 text-center md:text-left md:pl-16 italic tracking-wide font-thin text-xl md:whitespace-nowrap">
+
+        <div className="">
+          <p className=" sm:mb-0 mt-0 text-center md:text-left md:pl-16 italic tracking-wide font-thin text-xl md:whitespace-nowrap">
             An easy and effortless community resource for those who are
             <br></br>struggling to get the supplies they need to succeed in
             school
           </p>
         </div>
-        <div className="md:h-fit flex flex-col sm:flex-row item-center justify-around md:justify-start md:pl-16">
+
+        <div className="mb-10 md:h-fit flex flex-col sm:flex-row item-center justify-evenly md:justify-start md:pl-16">
           <Link
             to="/borrow"
-            className="text-center px-10 py-5 text-2xl mb-5  sm:mb-5 mx-5 md:mx-0 rounded-md hover:bg-sky-500 bg-sky-400 transition-colors"
+            className="text-center px-10 py-5 sm:text-2xl mt-2 md:mt-2 mb-2 md:mb-5 mx-5 md:mx-0 rounded-md hover:bg-sky-500 bg-sky-400 transition-colors"
           >
             Borrow Supplies
           </Link>
           <Link
             to="/offer"
-            className="text-center px-10 py-5 text-2xl mx-5 sm:mb-5 md:mr-0 border-2 border-solid rounded-md border-sky-100 hover:border-green-500 transition-colors"
+            className="text-center px-10 py-5 sm:text-2xl mx-5 my-2 md:mb-5 md:mr-0 border-2 border-solid rounded-md border-sky-100 hover:border-green-500 transition-colors"
           >
             Offer Supplies
           </Link>
           <Link
             to="/ask"
-            className="text-center px-10 py-5 text-2xl sm:mt-0 mx-5 my-5 sm:mb-5 md:mr-0 border-2 border-solid rounded-md border-sky-100 hover:border-red-500 transition-colors"
+            className="text-center px-10 py-5 sm:text-2xl mx-5 mt-2 md:mb-5 mb-2 md:mr-0 border-2 border-solid rounded-md border-sky-100 hover:border-red-500 transition-colors"
           >
             Ask For Supplies
           </Link>
