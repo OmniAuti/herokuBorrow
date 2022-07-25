@@ -3,11 +3,11 @@ import styles from "./About.css";
 const About = () => {
   return (
     <article id="about-home" className=" mx-auto scroll-mt-5">
-      <div className=" min-h-fit w-3/4 mt-36 bg-sky-900 mx-auto rounded-md grid grid-cols-2 grid-rows-2 mb-4 relative">
-        <div className="school-supplies-background absolute"></div>
+      <div className=" min-h-fit -ml-5 w-screen sm:w-full sm:ml-0 md:w-3/4 mt-24 bg-sky-900 md:mx-auto rounded-md grid grid-cols-2 grid-rows-2 mb-4 relative">
+        <div className="school-supplies-background absolute top-1/3 h-2/3 sm:top-1/2"></div>
 
         <div
-          className="col-span-1 row-span-2 flex flex-col
+          className="col-span-2 xl:col-span-1 xl:row-span-2 flex flex-col
         justify-center items-start px-5 pt-5 z-50"
         >
           <h2 className="text-3xl mb-5 font-light w-full text-center">
@@ -26,26 +26,38 @@ const About = () => {
           </p>
         </div>
 
-        <div className="col-span-1 row-span-2 flex items-center justify-center">
-          <div className="border-solid border-2 border-sky-500 w-3/4 h-3/5 relative">
+        <div className="col-span-2 xl:col-span-1 xl:row-span-2 flex items-center justify-center px-10 xl:px-0">
+          <div className="border-solid border-2 border-sky-500 w-full xl:w-3/4 bg-sky-900 h-72 sm:h-2/3 lg:h-4/5 xl:h-3/5 relative">
             <div className="border-solid border-2 border-sky-500 h-full w-full bg-sky-900 absolute right-5 top-5">
               <div className="w-full h-full text-center py-3 px-2">
                 <h3 className="mb-3">
                   Cost of School Supplies<br></br>
                   <i>On Average</i>
                 </h3>
-                <div className="flex items-center justify-around">
-                  <div className="w-1/5 mx-1">
-                    <p className="font-thin text-left mb-1">Elementary</p>
-                    <div className="bg-red-500 py-1">$1,017.37</div>
+                <div className="flex items-center flex-col sm:flex-row">
+                  <div className="sm:w-1/5 w-full mx-1">
+                    <p className="font-thin sm:text-left mb-1 text-center">
+                      Elementary
+                    </p>
+                    <div className="bg-red-500 py-1 min-w-fit mx-auto sm:mx-0 px-4 sm:px-0 w-1/5 sm:w-full">
+                      $1,017.37
+                    </div>
                   </div>
-                  <div className="w-2/5 mx-1">
-                    <p className="font-thin text-left mb-1">Middle School</p>
-                    <div className="bg-blue-500 py-1">$1,277.35</div>
+                  <div className="sm:w-2/5 w-full mx-1">
+                    <p className="font-thin sm:text-left text-center mb-1 xl:whitespace-nowrap">
+                      Middle School
+                    </p>
+                    <div className="bg-blue-500 py-1 mx-auto sm:mx-0 min-w-fit px-8 sm:px-0 w-2/5 sm:w-full">
+                      $1,277.35
+                    </div>
                   </div>
-                  <div className="w-3/5 mx-1">
-                    <p className="font-thin text-left mb-1">High School</p>
-                    <div className="bg-green-500 py-1">$1,667.90</div>
+                  <div className="sm:w-3/5 w-full mx-1">
+                    <p className="font-thin sm:text-left text-center mb-1">
+                      High School
+                    </p>
+                    <div className="bg-green-500 py-1 mx-auto sm:mx-0 min-w-fit px-10 sm:px-0 w-3/5 sm:w-full">
+                      $1,667.90
+                    </div>
                   </div>
                 </div>
               </div>
@@ -53,7 +65,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className=" w-full col-span-2 pb-5 px-5 row-span-1 z-50">
+        <div className="w-full col-span-2 pb-5 px-5 row-span-1 z-50">
           <br></br>
           <p className="font-thin text-lg">
             According to a
@@ -71,8 +83,8 @@ const About = () => {
         </div>
       </div>
 
-      <div className="flex h-fit border items-center justify-around mx-auto px-10">
-        <div className="bg-sky-900 w-1/2 h-fit rounded-md mr-2 relative overflow-hidden">
+      <div className="flex h-fit mx-auto flex-col md:flex-row">
+        <div className="bg-sky-900 md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] rounded-md md:mr-2 relative overflow-hidden">
           <div className="cap-background absolute"></div>
           <div className="rounded-md p-5 z-50">
             <h2 className="text-2xl font-light mb-2 mt-0 text-center">
@@ -88,7 +100,7 @@ const About = () => {
             </p>
             <br></br>
 
-            <div>
+            <div className="flex flex-col lg:flex-row">
               <ul className="float-left text-center">
                 <li className="underline underline-offset-1">
                   With Supplies:{" "}
@@ -102,7 +114,7 @@ const About = () => {
                 </li>
               </ul>
 
-              <ul className="float-right text-center">
+              <ul className="float-right text-center mt-5 lg:mt-0">
                 <li className="underline underline-offset-1">
                   Without Supplies:
                 </li>
@@ -120,7 +132,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="bg-sky-900 w-1/2 h-fit rounded-md ml-2 relative overflow-hidden">
+        <div className="bg-sky-900 mt-5 md:mt-0 md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] rounded-md md:ml-2 relative overflow-hidden">
           <div className="teacher-background absolute"></div>
           <div className="rounded-md p-5 z-50">
             <h3 className="text-2xl font-light mb-2 mt-0 text-center">
@@ -141,12 +153,15 @@ const About = () => {
               Sadly, teachers can only deduct a maximum of $250 dollars with the
               <a href="https://www.irs.gov/taxtopics/tc458" target="_blank">
                 {" "}
-                <span className="underline underline-offset-1">Educator Expense Deduction</span>
+                <span className="underline underline-offset-1">
+                  Educator Expense Deduction
+                </span>
               </a>{" "}
-              each year. It's unacceptable that we ask teachers to spend
-              their own money to provide a quality learning enviroment. Teachers should be focused on helping
-              students reach their full potential and not worrying if they have the
-              supplies to complete each lesson.
+              each year. It's unacceptable that we ask teachers to spend their
+              own money to provide a quality learning enviroment. Teachers
+              should be focused on helping students reach their full potential
+              and not worrying if they have the supplies to complete each
+              lesson.
               <br></br>
             </p>
           </div>
