@@ -99,9 +99,9 @@ function App() {
                 }
               />
 
-              <Route path="/offer" element={<Offer />} />
+              <Route path="/offer" element={<ProtectedUserRoute> <Offer /></ProtectedUserRoute>} />
 
-              <Route path="/ask" element={<Ask />} />
+              <Route path="/ask" element={<ProtectedUserRoute><Ask /></ProtectedUserRoute>} />
             </Routes>
           </ScrollToTop>
         </main>

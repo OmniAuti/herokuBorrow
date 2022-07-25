@@ -107,9 +107,9 @@ const HeroCOA = () => {
         </div>
 
         <div className="">
-          <p className=" sm:mb-0 mt-0 text-center md:text-left md:pl-16 italic tracking-wide font-thin text-xl md:whitespace-nowrap">
+          <p className="xl:w-3/4 sm:mb-0 mt-0 text-center md:text-left md:pl-16 italic tracking-wide font-thin text-xl ">
             An easy and effortless community resource for those who are
-            <br></br>struggling to get the supplies they need to succeed in
+            struggling to get the supplies they need to succeed in
             school
           </p>
         </div>
