@@ -1,39 +1,56 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { postSingleItem } from "../api/api";
+import { UserAuth } from "../context/AuthContext";
 
 const PostItemForm = () => {
+  const { user } = UserAuth();
+
   const [formData, setFormData] = useState({
     type: "",
     quantity: 1,
     description: "",
-    condition: "new",
+    condition: "",
     location: "",
     zipcode: "",
+    postType: "offer",
+    _uid: "",
   });
+  //  APPENDING FIREBASE USER ID ONTO ITEM POST
+  useEffect(() => {
+    handleUIDChange(user);
+  }, [formData.type]);
 
   const handleTypeChange = (e) => {
     setFormData({ ...formData, type: e.target.value });
   };
-
   const handleDescriptionChange = (e) => {
     setFormData({ ...formData, description: e.target.value });
   };
-
   const handleQuantityChange = (e) => {
     if (e.target.value.length > 3) return;
     setFormData({ ...formData, quantity: e.target.value });
   };
-
   const handleConditionChange = (e) => {
     setFormData({ ...formData, condition: e.target.value });
   };
-
   const handleLocationChange = (e) => {
     setFormData({ ...formData, location: e.target.value });
   };
   const handleZIPChange = (e) => {
     setFormData({ ...formData, zipcode: e.target.value });
+  };
+
+  const handleUIDChange = async (user) => {
+    if (!user) return;
+    try {
+      if (user.uid === undefined) return;
+      var uid = await user.uid;
+      console.log(uid);
+      setFormData({ ...formData, _uid: uid });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -46,9 +63,11 @@ const PostItemForm = () => {
         type: "",
         quantity: 1,
         description: "",
-        condition: "new",
+        condition: "",
         location: "",
         zipcode: "",
+        postType: "offer",
+        _uid: "",
       });
     } catch (err) {
       console.log(err);
@@ -69,9 +88,8 @@ const PostItemForm = () => {
           onChange={(e) => handleTypeChange(e)}
           value={formData.type}
         >
-          <option value="pencil">
-            Pencil
-          </option>
+          <option value="">Select A Type Of Supplies</option>
+          <option value="pencil">Pencil</option>
           <option value="pen">Pen</option>
           <option value="ruler">Ruler</option>
           <option value="protractor">Protractor</option>
@@ -94,14 +112,13 @@ const PostItemForm = () => {
         <label htmlFor="description">Description</label>
         <input
           id="description"
-          required
           onChange={(e) => handleDescriptionChange(e)}
           className="block w-full h-12 my-2 pl-1 text-center rounded-md"
           type="text"
           name="type"
           maxLength="49"
-          pattern="/{49}/"
           value={formData.description}
+          placeholder="This has . . ."
         />
         <label htmlFor="quantity">Quantity</label>
         <input
@@ -123,6 +140,9 @@ const PostItemForm = () => {
           className="block w-full h-12 my-2 pl-1 text-center rounded-md"
           value={formData.condition}
         >
+          <option default value="">
+            Select Condition Of Supplies
+          </option>
           <option default value="new">
             New
           </option>
@@ -140,6 +160,7 @@ const PostItemForm = () => {
           name="location"
           maxLength="49"
           value={formData.location}
+          placeholder="Somewhere City"
         />
         <label htmlFor="zipcode">Zipcode</label>
         <input
@@ -152,6 +173,7 @@ const PostItemForm = () => {
           maxLength="5"
           name="zipcode"
           value={formData.zipcode}
+          placeholder="12345"
         />
         <input
           type="submit"

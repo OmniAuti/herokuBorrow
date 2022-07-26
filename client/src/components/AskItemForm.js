@@ -1,15 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { postAskItem } from "../api/api";
 
+import { UserAuth } from "../context/AuthContext";
+
 const AskItemForm = () => {
+  const { user } = UserAuth();
+
   const [askObj, setAskObj] = useState({
-    who: "teacher",
+    who: "",
     type: "",
     quantity: 1,
     condition: [],
     location: "",
     zipcode: "",
+    postType: "ask",
+    _uid: "",
   });
+
+  const handleUIDChange = async (user) => {
+    if (!user) return;
+    try {
+      if (user.uid === undefined) return;
+      var uid = await user.uid;
+      console.log(uid);
+      setAskObj({ ...askObj, _uid: uid });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    handleUIDChange(user);
+  }, [askObj.type]);
 
   const checkBoxArr = [
     { id: 1, value: "New", checked: false },
@@ -39,12 +61,14 @@ const AskItemForm = () => {
       await postAskItem(askObj);
       e.target.reset();
       setAskObj({
-        who: "teacher",
+        who: "",
         type: "",
         quantity: 1,
         condition: "",
         location: "",
         zipcode: "",
+        postType: "ask",
+        _uid: "",
       });
     } catch (err) {
       console.log(err);
@@ -65,6 +89,9 @@ const AskItemForm = () => {
           required
           value={setAskObj.who}
         >
+          <option default value="">
+            Who Are You?
+          </option>
           <option default value="teacher">
             Teacher
           </option>
@@ -79,6 +106,7 @@ const AskItemForm = () => {
           required
           onChange={(e) => setAskObj({ ...askObj, type: e.target.value })}
         >
+          <option value="">Select Type Of Supplies</option>
           <option value="pencil">Pencil</option>
           <option value="pen">Pen</option>
           <option value="ruler">Ruler</option>
@@ -108,6 +136,7 @@ const AskItemForm = () => {
           name="quantity"
           max="999"
           min="1"
+          value={askObj.quantity}
           onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
         />
         <label htmlFor="condition">Willing Condition</label>
@@ -137,6 +166,7 @@ const AskItemForm = () => {
           name="location"
           maxLength="49"
           onChange={(e) => setAskObj({ ...askObj, location: e.target.value })}
+          placeholder="Somewhere City"
         />
         <label htmlFor="zipcode">Zipcode</label>
         <input
@@ -148,6 +178,7 @@ const AskItemForm = () => {
           maxLength="5"
           name="zipcode"
           onChange={(e) => setAskObj({ ...askObj, zipcode: e.target.value })}
+          placeholder="12345"
         />
         <input
           type="submit"

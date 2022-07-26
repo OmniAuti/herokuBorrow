@@ -6,7 +6,7 @@ const AccountDashboard = () => {
   const navigate = useNavigate()
 
   const { user, logOutUser } = UserAuth();
-  console.log(user);
+  // console.log(user);
 
   const handleLogOutUser = async () => {
     await logOutUser()

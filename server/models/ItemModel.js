@@ -12,7 +12,6 @@ const ItemSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required:[true, 'Must provide description'],
     trim: true,
     maxlength:[49, 'Description can not be more than 49 characters']
   },
@@ -28,6 +27,12 @@ const ItemSchema = new mongoose.Schema({
   zipcode: {
     type: String,
     required:[true, 'Must provide a ZIP code'],
+  },
+  postType: {
+    type: String,
+  },
+  _uid: {
+    type: String,
   }
 })
 

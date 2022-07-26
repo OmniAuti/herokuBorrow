@@ -8,7 +8,6 @@ const urlFour = "http://localhost:2000/api/v1/items/modal"
 export const fetchAllItems = async () => {
   return axios.get(url)
 };
-
 export const postSingleItem = async (item) => {
   return axios.post(url, item);
 };

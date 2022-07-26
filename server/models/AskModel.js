@@ -27,6 +27,9 @@ const AskItems = new mongoose.Schema({
       zipcode: {
         type: String,
         required:[true, 'Must provide a ZIP code'],
+      },
+      postType: {
+        type: String,
       }
 })
 
