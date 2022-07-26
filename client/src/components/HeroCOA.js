@@ -75,33 +75,36 @@ const HeroCOA = () => {
 
   return (
     <section className="flex flex-col items-start  md:flex-row md:justify-around min-h-screen">
-
       <div className="w-full min-h-screen flex flex-col justify-evenly sm:items-start lg:w-2/3 mr-0 md:mr-5">
-        <div className="w-full sm:h-2/4 relative overflow-hidden pb-2">
+        <div className="md:w-full w-fit pr-5 md:pr-0 mx-auto sm:h-2/4 relative overflow-hidden pb-2">
           <h1
             id="h1-hero-xs"
-            className="sm:text-8xl xl:text-9xl text-6xl font-extralight sm:tracking-wide pl-0 sm:pl-9 md:pl-16 pt-0"
+            className=" whitespace-nowrap sm:text-8xl xl:text-9xl text-6xl font-extralight sm:tracking-wide pl-0 sm:pl-0 md:pl-16 pt-0"
           >
             <div className="">
-              Can I <br></br>borrow<br></br>a
-              <div
-                ref={wordContainer}
-                className="inline-block w-fit absolute ml-2 sm:ml-5 hero-text-box overflow-hidden pb-72"
-              >
-                {word.map((x) => (
-                  <span
-                    key={x.id}
-                    style={{
-                      transform: `translateY(-${transformInterval}%)`,
-                      color: `${x.color}`,
-                    }}
-                    className={`${x.color} block `}
-                  >
-                    {x.item}
-                    <span className={x.color}>?</span>
-                  </span>
-                ))}
-              </div>
+              <h1 className="inline-block md:block">Can I</h1>
+              <h1 className="inline-block md:block ml-3 sm:pl-3 md:pl-0 md:ml-0">borrow</h1>
+              <h1 className="">
+                a
+                <div
+                  ref={wordContainer}
+                  className="inline-block w-fit absolute ml-2 sm:ml-5 hero-text-box overflow-hidden pb-72"
+                >
+                  {word.map((x) => (
+                    <span
+                      key={x.id}
+                      style={{
+                        transform: `translateY(-${transformInterval}%)`,
+                        color: `${x.color}`,
+                      }}
+                      className={`${x.color} block `}
+                    >
+                      {x.item}
+                      <span className={x.color}>?</span>
+                    </span>
+                  ))}
+                </div>
+              </h1>
             </div>
           </h1>
         </div>
@@ -109,8 +112,7 @@ const HeroCOA = () => {
         <div className="">
           <p className="xl:w-3/4 sm:mb-0 mt-0 text-center md:text-left md:pl-16 italic tracking-wide font-thin text-xl ">
             An easy and effortless community resource for those who are
-            struggling to get the supplies they need to succeed in
-            school
+            struggling to get the supplies they need to succeed in school
           </p>
         </div>
 
