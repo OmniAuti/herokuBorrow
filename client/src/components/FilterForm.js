@@ -1,7 +1,7 @@
 import { filteredQuery } from "../api/api";
 import { useState, useEffect } from "react";
 
-const FilterForm = ({ dispatch, handleLoading }) => {
+const FilterForm = ({ dispatch }) => {
   const [filterQuery, setFilterQuery] = useState({
     type: "",
     quantity: "",
@@ -20,14 +20,13 @@ const FilterForm = ({ dispatch, handleLoading }) => {
 
   const handleQuery = async (e) => {
     e.preventDefault();
-    handleLoading(false);
     await filteredQuery(filterQuery)
       .then((res) => setDataDump(res.data))
       .catch((err) => console.log(err));
+      console.log(dataDump)
   };
 
   const handleReset = async (e) => {
-    handleLoading(false);
 
     const clearedSearch = {
       type: "",
@@ -46,7 +45,6 @@ const FilterForm = ({ dispatch, handleLoading }) => {
 
   useEffect(() => {
     dispatch({ type: "LOADED", payload: dataDump });
-    handleLoading(true);
     return () => {
       console.log("Cleared Filter");
     };
@@ -72,7 +70,6 @@ const FilterForm = ({ dispatch, handleLoading }) => {
           >
             {" "}
             <option value="">Select Type</option>
-            <option value=""></option>
             <option value="pencil">Pencil</option>
             <option value="pen">Pen</option>
             <option value="ruler">Ruler</option>
@@ -108,6 +105,7 @@ const FilterForm = ({ dispatch, handleLoading }) => {
             max="999"
             min="0"
             maxLength={3}
+            placeholder="1"
           />
         </div>
         <div className="flex flex-col items-center justify-around">

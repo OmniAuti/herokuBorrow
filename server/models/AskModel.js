@@ -30,7 +30,10 @@ const AskItems = new mongoose.Schema({
       },
       postType: {
         type: String,
-      }
+      },
+      _uid: {
+        type: String,
+      },
 })
 
 module.exports = mongoose.model('AskItems', AskItems)

@@ -20,6 +20,8 @@ const createSingleItem = async (req, res) => {
       condition: req.body.condition,
       location: req.body.location,
       zipcode: req.body.zipcode,
+      postType: req.body.postType,
+      _uid: req.body._uid,
     });
 
     console.log(req.body, "BODIED");
@@ -73,6 +75,8 @@ const postAskItem = async (req, res) => {
       condition: req.body.condition,
       location: req.body.location,
       zipcode: req.body.zipcode,
+      postType: req.body.postType,
+      _uid: req.body._uid,
     });
 
     await askItem.save((err, post) => {
@@ -115,6 +119,15 @@ const deleteSingleItem = async (req, res) => {
   }
 };
 
+const getAccountItems = async (req,res) => {
+  const accountItems = await Items.find(req.query);
+  res.status(200).send(accountItems)
+}
+
+const getAccountAskItem = async (req,res) => {
+  
+}
+
 module.exports = {
   getAllItems,
   getSingleItem,
@@ -123,4 +136,5 @@ module.exports = {
   deleteSingleItem,
   getFilteredItems,
   postAskItem,
+  getAccountItems
 };

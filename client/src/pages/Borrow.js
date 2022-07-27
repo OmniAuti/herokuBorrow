@@ -60,7 +60,7 @@ const Borrow = ({ modalDispatch }) => {
             : "h-0 transition-all overflow-hidden"
         }
       >
-        <FilterForm handleLoading={handleLoading} dispatch={dispatch} />
+        <FilterForm dispatch={dispatch} />
       </div>
 
       {isLoaded ? (

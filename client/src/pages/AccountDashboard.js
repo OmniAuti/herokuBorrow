@@ -1,20 +1,37 @@
+import { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { getAccountItems } from "../api/api";
+import SupplyObjectCard from "../components/SupplyObjectCard";
 
 const AccountDashboard = () => {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { user, logOutUser } = UserAuth();
-  // console.log(user);
+
+  const [accountData, setAccountData] = useState([])
+
+  useEffect(() => {
+    if (user === undefined) return
+    console.log(user.uid)
+    getAccountItems({_uid: user.uid}).then(res => setAccountData(res.data))
+    console.log(accountData)
+  }, [user])
+
+
 
   const handleLogOutUser = async () => {
-    await logOutUser()
-    navigate('/account-gateway')
-  }
+    await logOutUser();
+    navigate("/account-gateway");
+  };
+
+console.log(accountData.filter(data => data.postType === 'offer'), 'filtered')
 
   return (
     <section className=" grid grid-cols-7 grid-rows-6 gap-3 pt-5">
+
+      
       <div className="flex flex-col items-center col-start-1 col-end-2 row-start-1 row-end-7">
         <div className="w-full mt-5 flex justify-center relative overflow-hidden group">
           <button
@@ -62,14 +79,27 @@ const AccountDashboard = () => {
           </button>
         </div>
       </div>
+
       <div className="row-start-1 row-end-5 min-h-[350px] col-start-2 col-end-5 bg-slate-400 rounded-sm">
         <p className="w-full text-2xl text-center my-2">Asked</p>
+        <div>
+          Asked Dump
+        </div>
       </div>
+
       <div className="row-start-1 row-end-5 min-h-[350px] col-start-5 col-end-8 bg-slate-400 rounded-sm">
         <p className="w-full text-2xl text-center my-2">Offered</p>
+        <div className="flex flex-wrap">
+          {accountData.length > 0 ? accountData.filter(data => data.postType === 'offer').map(data => <SupplyObjectCard key={data._id} data={data}/>) : <p>You Offer Nothing</p>}
+        </div>
       </div>
       <div className="row-start-5 min-h-[250px] row-end-7  col-start-2 col-span-6 bg-slate-400 rounded-sm">
         <p className="w-full text-2xl text-center my-2">Borrowed</p>
+        <div>
+          Borrow Dump
+
+      
+        </div>
       </div>
     </section>
   );
