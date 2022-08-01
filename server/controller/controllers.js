@@ -121,11 +121,12 @@ const deleteSingleItem = async (req, res) => {
 
 const getAccountItems = async (req,res) => {
   const accountItems = await Items.find(req.query);
-  res.status(200).send(accountItems)
+  res.status(200).json(accountItems)
 }
 
-const getAccountAskItem = async (req,res) => {
-  
+const getAccountItemsAsked = async (req,res) => {
+    const accountItems = await AskItems.find(req.query);
+    res.status(200).json(accountItems)
 }
 
 module.exports = {
@@ -136,5 +137,6 @@ module.exports = {
   deleteSingleItem,
   getFilteredItems,
   postAskItem,
-  getAccountItems
+  getAccountItems,
+  getAccountItemsAsked,
 };

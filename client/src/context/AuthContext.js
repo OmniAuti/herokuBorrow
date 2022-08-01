@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  sendSignInLinkToEmail
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -21,14 +22,17 @@ const AuthContextProvider = ({ children }) => {
         setUser(null);
       }
     });
-
     return () => {
       unsubscribe();
     };
   }, []);
 
-  const createUser = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+  const createUser = async (email, password) => {
+
+    const ActionCodeSettings = {url: "http://localhost:3000/dashboard",handleCodeInApp: true,}
+    await createUserWithEmailAndPassword(auth, email, password);
+    await sendSignInLinkToEmail(auth, email, ActionCodeSettings)
+    return console.log('check email')
   };
 
   const logInUser = (email, password) => {

@@ -9,13 +9,15 @@ const {
   deleteSingleItem,
   getFilteredItems,
   postAskItem,
-  getAccountItems
+  getAccountItems,
+  getAccountItemsAsked,
 } = require("../controller/controllers");
 
 router.route('/').get(getAllItems).post(createSingleItem);
 router.route('/filter').get(getFilteredItems)
 router.route('/ask').post(postAskItem)
 router.route('/modal').get(getSingleItem)
-router.route('/account').get(getAccountItems)
+router.route('/account-items').get(getAccountItems)
+router.route('/account-asked').get(getAccountItemsAsked)
 
 module.exports = router;

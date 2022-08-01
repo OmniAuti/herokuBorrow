@@ -22,7 +22,6 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
   };
 
   const handleConfirmedPassword = () => {
-    console.log(password, confirmPassword, 'huh')
     if (password !== confirmPassword) {
       confirmedCheck.current.style.outline = '2px solid #ef4444'
       confirmedCheck.current.style.outlineOffset = '2px'
