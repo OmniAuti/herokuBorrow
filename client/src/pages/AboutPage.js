@@ -94,7 +94,7 @@ const AboutPage = () => {
             <div className="cap-background absolute"></div>
             <div className="sm:rounded-md p-5 z-50">
               <h2 className="text-2xl font-light mb-2 mt-0 text-center">
-                What happens if a student is not prepared?
+                What if a student is not prepared?
               </h2>
               <p className="font-thin">
                 Students must be prepared to learn when they enter the classroom
