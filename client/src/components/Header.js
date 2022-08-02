@@ -88,32 +88,20 @@ const Header = () => {
           </button>
 
           <li className="cursor-pointer grow flex items-center justify-center group order-last sm:order-none">
-            {location.pathname !== "/" ? (
-              <Link
-                className="grow flex h-full items-center justify-center"
-                to="/about"
+            <Link
+              className="grow flex h-full items-center justify-center"
+              to="/about"
+            >
+              <p
+                className={
+                  location.pathname === "/about"
+                    ? "text-xl sm:text-base underline underline-offset-2 decoration-2 decoration-inherit"
+                    : "text-xl sm:text-base before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 group-hover:before:opacity-100 after:opacity-100 group-hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0"
+                }
               >
-                <p
-                  className={
-                    location.pathname === "/about"
-                      ? "text-xl sm:text-base underline underline-offset-2 decoration-2 decoration-inherit"
-                      : "text-xl sm:text-base before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 group-hover:before:opacity-100 after:opacity-100 group-hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0"
-                  }
-                >
-                  About
-                </p>
-              </Link>
-            ) : (
-              <a
-                className="grow flex h-full items-center justify-center"
-                target="_self"
-                href="#about-home"
-              >
-                <p className="text-xl sm:text-base before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-0 group-hover:before:opacity-100 after:opacity-100 group-hover:after:opacity-0 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">
-                  About
-                </p>
-              </a>
-            )}
+                About
+              </p>
+            </Link>
           </li>
           <li className="cursor-pointer grow flex items-center justify-center group order-3 sm:order-none">
             <Link

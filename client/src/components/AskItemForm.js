@@ -44,20 +44,27 @@ const AskItemForm = () => {
     if (e.target.checked === true) {
       setAskObj({
         ...askObj,
-        condition: [...askObj.condition, e.target.value],
+        condition: [...askObj.condition, `${e.target.value}, `],
       });
     } else if (e.target.checked === false) {
-      const idx = askObj.condition.indexOf(e.target.value);
+      const idx = askObj.condition.indexOf(`${e.target.value}, `);
       const arr = askObj.condition;
       arr.splice(idx, 1);
       setAskObj({ ...askObj, condition: arr });
     }
   };
 
+  const handleCommas = async () => {
+    var arr = askObj.condition;
+    arr[arr.length - 1]  = arr[arr.length - 1].slice(0, arr[arr.length - 1].length - 2) 
+    setAskObj({...askObj, condition: arr})
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(askObj);
     try {
+      await handleCommas();
+      console.log(askObj);
       await postAskItem(askObj);
       e.target.reset();
       setAskObj({

@@ -13,7 +13,7 @@ const AboutPage = () => {
         justify-center items-start px-5 pt-5 z-40"
           >
             <h2 className="text-3xl mb-5 font-light w-full text-center">
-              Can I borrow a pencil?
+              Borrow for good
             </h2>
             <p className="font-thin text-lg">
               A simple request from a student can often seem like nothing, but
