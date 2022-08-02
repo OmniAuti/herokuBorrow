@@ -2,6 +2,8 @@ import "./App.css";
 // FUNCTIONALITY
 import { Routes, Route } from "react-router-dom";
 import { useReducer, useState, useEffect } from "react";
+// ROUTER
+import { useLocation } from "react-router-dom";
 // COMPONENTS
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -38,10 +40,21 @@ function App() {
   const [activeModal, setActiveModal] = useState(false);
   const [modalLoaded, setModalLoaded] = useState(false);
 
+
+  const location = useLocation()
+
+  useEffect(() => {
+    if (activeModal === true) {
+      handleCloseModal()
+    }
+  }, [location.pathname])
+
   useEffect(() => {
     if (state.modalId.length <= 0) return;
     handleModalData(state.modalId);
   }, [state.active]);
+
+
 
   const handleModalData = async (id) => {
     setActiveModal(true);

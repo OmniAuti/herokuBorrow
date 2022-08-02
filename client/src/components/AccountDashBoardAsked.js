@@ -3,7 +3,7 @@ import AccountSupplyLoading from "./AccountSupplyLoading";
 
 const AccountDashboardAsked = ({ accountAskedData, isAskLoaded }) => {
   return (
-    <div className="row-start-1 row-end-5 min-h-[350px] col-start-2 max-h-screen  col-end-5 bg-slate-400 rounded-sm overflow-scroll">
+    <div className="row-start-1 row-end-5 min-h-[450px] col-start-2 max-h-screen  col-end-5 bg-slate-400 rounded-sm overflow-scroll">
       <p className="w-full text-2xl text-center py-2 sticky top-0 bg-slate-400">
         Asked
       </p>

@@ -8,15 +8,18 @@ const About = () => {
 
         <div
           className="col-span-2 xl:col-span-1 xl:row-span-2 flex flex-col
-        justify-center items-start px-5 pt-5"
+        justify-center items-start px-5 pt-5 z-50"
         >
           <h2 className="text-3xl mb-5 font-light w-full text-center">
-            Can I borrow a pencil?
+            Borrow for good
           </h2>
           <p className="font-thin text-lg">
             A simple request from a student can often seem like nothing, but for
-            some, it may present an underlying problem that faces families
-            around the country.
+            some, it may represent an underlying problem that faces families
+            around the country. Proper supplies for the classroom can be
+            expensive and unatainable as the school year carries on. We're here
+            to connect those that can afford to give a little to help those that
+            need a little.
           </p>
           <br></br>
           <p className="font-thin text-lg">
@@ -27,7 +30,7 @@ const About = () => {
         </div>
 
         <div className="col-span-2 xl:col-span-1 xl:row-span-2 flex items-center justify-center px-10 xl:px-0">
-          <div className="border-solid border-2 border-sky-500 w-5/6 xl:w-3/4 bg-sky-900 h-72 sm:h-3/4 md:h-5/6 xl:3/4 relative">
+          <div className="border-solid border-2 border-sky-500 w-5/6 xl:w-3/4 bg-sky-900 h-72 sm:h-3/4 md:max-h-[200px] relative">
             <div className="border-solid border-2 border-sky-500 h-full w-full bg-sky-900 absolute right-5 top-5">
               <div className="w-full h-full text-center py-5 px-2">
                 <h3 className="mb-3">

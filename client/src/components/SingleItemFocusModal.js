@@ -34,7 +34,7 @@ const SingleItemFocusModal = ({ data, activeModal, handleCloseModal,handleOpenMo
             <p className="text-black my-1">Zipcode: {data.zipcode}</p>
           </div>
           <button className="bg-sky-500 w-full h-12 my-5 rounded-sm">
-            Contact Offeror
+            Inquire
           </button>
 
           <button
