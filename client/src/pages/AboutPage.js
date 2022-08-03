@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import OurGoal from "../components/OurGoal";
 
 const AboutPage = () => {
   return (
@@ -92,11 +93,12 @@ const AboutPage = () => {
         <div className="flex h-fit mx-auto flex-col md:flex-row">
           <div className="bg-sky-900 md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:mr-2 relative overflow-hidden">
             <div className="cap-background absolute"></div>
-            <div className="sm:rounded-md p-5 z-50">
+
+            <div className="sm:rounded-md p-5 z-50 w-full h-full absolute">
               <h2 className="text-2xl font-light mb-2 mt-0 text-center">
                 What if a student is not prepared?
               </h2>
-              <p className="font-thin">
+              <p className="font-thin ">
                 Students must be prepared to learn when they enter the classroom
                 each and every day. Those that come to class without the
                 adequate supplies tend to be less focused the lessons their
@@ -106,11 +108,9 @@ const AboutPage = () => {
               </p>
               <br></br>
 
-              <div className="flex flex-col lg:flex-row">
+              <div className="flex flex-col lg:flex-row justify-between">
                 <ul className="float-left text-center">
-                  <li className="underline underline-offset-1">
-                    With Supplies:{" "}
-                  </li>
+                  <li className="underline underline-offset-1">Prepared: </li>
                   <li className="my-1 font-thin">Higher Grade Average</li>
                   <li className="my-1 font-thin">
                     Greater Attitude Towards Learning
@@ -121,9 +121,48 @@ const AboutPage = () => {
                 </ul>
 
                 <ul className="float-right text-center mt-5 lg:mt-0">
-                  <li className="underline underline-offset-1">
-                    Without Supplies:
+                  <li className="underline underline-offset-1">Unprepared:</li>
+                  <li className="my-1 font-thin">
+                    Less Inclined To Focus In Class
                   </li>
+                  <li className="my-1 font-thin">
+                    Susceptible To Ridicule From Classmates
+                  </li>
+                  <li className="my-1 font-thin whitespace-pre-wrap">
+                    More Likely To Cause Classroom Disruptions
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="sm:rounded-md p-5 z-50 w-full h-full">
+              <h2 className="text-2xl font-light mb-2 mt-0 text-center opacity-0">
+                What if a student is not prepared?
+              </h2>
+              <p className="font-thin opacity-0">
+                Students must be prepared to learn when they enter the classroom
+                each and every day. Those that come to class without the
+                adequate supplies tend to be less focused the lessons their
+                teacher has planned for them. If a student doesn't have the
+                supplies they need to complete their daily work, it can snowball
+                into more than just below average grades.
+              </p>
+              <br></br>
+
+              <div className="flex flex-col lg:flex-row justify-between opacity-0">
+                <ul className="float-left text-center">
+                  <li className="underline underline-offset-1">Prepared: </li>
+                  <li className="my-1 font-thin">Higher Grade Average</li>
+                  <li className="my-1 font-thin">
+                    Greater Attitude Towards Learning
+                  </li>
+                  <li className="my-1 font-thin">
+                    Better Peer Relationships And Self-Image
+                  </li>
+                </ul>
+
+                <ul className="float-right text-center mt-5 lg:mt-0 opacity-0">
+                  <li className="underline underline-offset-1">Unprepared:</li>
                   <li className="my-1 font-thin">
                     Less Inclined To Focus In Class
                   </li>
@@ -139,9 +178,9 @@ const AboutPage = () => {
           </div>
 
           <div className="bg-sky-900 mt-5 md:mt-0 md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:ml-2 relative overflow-hidden">
-            <div className="teacher-background absolute"></div>
-            <div className="sm:rounded-md p-5 z-50">
-              <h3 className="text-2xl font-light mb-2 mt-0 text-center">
+            <div className="teacher-background absolute z-0"></div>
+            <div className="sm:rounded-md p-5 z-50 absolute w-full h-full">
+              <h3 className="text-2xl font-light mb-2 mt-0 text-center z-50">
                 What about the teachers?
               </h3>
               <p className="font-thin">
@@ -176,48 +215,7 @@ const AboutPage = () => {
         </div>
       </article>
 
-      <section className="h-full my-24 mx-auto container">
-        <h2 className="text-center text-5xl mb-5 font-light">The Goal</h2>
-        <p className="font-thin text-center text-2xl w-full md:w-1/2 mx-auto mb-5">
-          To build a free resource that connects families and teachers with
-          those that can afford to help their community.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-around">
-          <Link className="w-full md:w-1/3 p-5 group" to="/borrow">
-            <div className="flex items-center justify-center flex-col">
-              <div className="borrow-container my-3"></div>
-              <p className="text-2xl group-hover:underline underline-offset-2">
-                Borrow
-              </p>
-              <p className="font-thin text-center">
-                Browse supplies in your area
-              </p>
-            </div>
-          </Link>
-          <Link className="w-full md:w-1/3 md:mx-5 p-5 group" to="/offer">
-            <div className="flex items-center justify-center flex-col">
-              <div className="offer-container my-3"></div>
-              <p className="text-2xl group-hover:underline underline-offset-2">
-                Offer
-              </p>
-              <p className="font-thin text-center">
-                Post supplies that you have to offer
-              </p>
-            </div>
-          </Link>
-          <Link className="w-full md:w-1/3 p-5 group" to="/borrow">
-            <div className="flex items-center justify-center flex-col">
-              <div className="ask-container my-3"></div>
-              <p className="text-2xl group-hover:underline underline-offset-2">
-                Ask
-              </p>
-              <p className="font-thin text-center">
-                Post an ad looking for something specific
-              </p>
-            </div>
-          </Link>
-        </div>
-      </section>
+      <OurGoal />
     </>
   );
 };

@@ -6,7 +6,7 @@ const OurGoal = () => {
     <section className="h-full my-24 mx-auto container">
       <h2 className="text-center text-5xl mb-5 font-light">The Goal</h2>
       <p className="font-thin text-center text-2xl w-full md:w-1/2 mx-auto mb-5">
-        To build a free resource that connects families and teachers with those that can afford to help their community.
+        To build a free resource that connects families and teachers with those that can afford to help students in their community.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-around">
         <Link className='w-full md:w-1/3 p-5 group' to="/borrow">
