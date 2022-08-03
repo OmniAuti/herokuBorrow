@@ -1,5 +1,5 @@
 .school-supplies-background {
-    background-image: url('/public/imgs/school-supplies.svg');
+    background-image: url('/public/imgs/schoolsupplies.svg');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
@@ -20,7 +20,6 @@
    top: 50%;
    left:50%;
    transform: translate(-50%, -50%);
-   z-index: 0;
 }
 
 

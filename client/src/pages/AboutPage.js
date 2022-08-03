@@ -101,7 +101,7 @@ const AboutPage = () => {
               <p className="font-thin ">
                 Students must be prepared to learn when they enter the classroom
                 each and every day. Those that come to class without the
-                adequate supplies tend to be less focused the lessons their
+                adequate supplies tend to be less focused on the lessons their
                 teacher has planned for them. If a student doesn't have the
                 supplies they need to complete their daily work, it can snowball
                 into more than just below average grades.
@@ -142,7 +142,7 @@ const AboutPage = () => {
               <p className="font-thin opacity-0">
                 Students must be prepared to learn when they enter the classroom
                 each and every day. Those that come to class without the
-                adequate supplies tend to be less focused the lessons their
+                adequate supplies tend to be less focused on the lessons their
                 teacher has planned for them. If a student doesn't have the
                 supplies they need to complete their daily work, it can snowball
                 into more than just below average grades.

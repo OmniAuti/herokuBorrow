@@ -3,7 +3,7 @@ import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { getAccountItems, getAccountItemsAsked} from "../api/api";
 import AccountDashboardAsked from "../components/AccountDashBoardAsked";
-import AccountDashboardBorrowed from "../components/AccountDashBoardBorrowed";
+import AccountDashboardBorrowedInterest from "../components/AccountDashBoardBorrowed";
 import AccountDashboardOffered from "../components/AccountDashBoardOffered";
 import AccountDashboardSettingsBar from "./AccountDashboardSettingsBar";
 
@@ -53,7 +53,7 @@ const handleLogOutUser = async () => {
       <AccountDashboardSettingsBar handleLogOutUser={handleLogOutUser}/>
       <AccountDashboardAsked isAskLoaded={isAskLoaded} accountAskedData={accountAskedData}/>
       <AccountDashboardOffered isItemsLoaded={isItemsLoaded} accountItemsData={accountItemsData}/>
-      <AccountDashboardBorrowed isItemsLoaded={isItemsLoaded} accountItemsData={accountItemsData}/>
+      <AccountDashboardBorrowedInterest isItemsLoaded={isItemsLoaded} accountItemsData={accountItemsData}/>
 
 
 
