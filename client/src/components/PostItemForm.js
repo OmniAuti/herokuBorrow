@@ -75,10 +75,11 @@ const PostItemForm = () => {
   };
 
   return (
-    <div className="text-center block ">
+    <div className="text-center block w-1/2 mx-2 max-h-screen min-h-[750px]">
+      <h2 className="text-3xl mb-5 underline">Offer Some Supplies</h2>
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="text-black text-2xl rounded-md"
+        className="text-black text-2xl"
       >
         <label htmlFor="type">Type of supplies</label>
         <select
@@ -150,7 +151,7 @@ const PostItemForm = () => {
           <option value="moderately used">Moderately Used</option>
           <option value="heavily used">Heavily Used</option>
         </select>
-        <label htmlFor="location">Location</label>
+        <label htmlFor="location">General Location</label>
         <input
           id="location"
           required

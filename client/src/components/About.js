@@ -8,12 +8,12 @@ const About = () => {
 
         <div
           className="col-span-2 xl:col-span-1 xl:row-span-2 flex flex-col
-        justify-center items-start px-5 pt-5 z-50"
+        justify-center items-start px-5 pt-5"
         >
-          <h2 className="text-3xl mb-5 font-light w-full text-center">
+          <h2 className="text-3xl mb-5 font-light w-full text-center z-10">
             Borrow for good
           </h2>
-          <p className="font-thin text-lg">
+          <p className="font-thin text-lg z-10">
             A simple request from a student can often seem like nothing, but for
             some, it may represent an underlying problem that faces families
             around the country. Proper supplies for the classroom can be
@@ -22,7 +22,7 @@ const About = () => {
             need a little.
           </p>
           <br></br>
-          <p className="font-thin text-lg">
+          <p className="font-thin text-lg z-10">
             In the United States there are an estimated 11.6 million children
             living below the poverty line. For these families, purchasing school
             supplies is not something that fits in their budget.
@@ -68,7 +68,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="w-full col-span-2 pb-5 px-5 row-span-1 z-50">
+        <div className="w-full col-span-2 pb-5 px-5 row-span-1 z-10">
           <br></br>
           <p className="font-thin text-lg">
             According to a

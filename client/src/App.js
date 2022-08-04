@@ -39,9 +39,23 @@ function App() {
   const [modalData, setModalData] = useState([]);
   const [activeModal, setActiveModal] = useState(false);
   const [modalLoaded, setModalLoaded] = useState(false);
+  const [userZipcode, setUserZipCode] = useState('')
 
 
   const location = useLocation()
+
+  // USING FOR POSSIBLE DEFAULT PULL FROM LOCAL POSTS
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition(getzipcode, (err) => {
+  //     console.log(err)
+  //   })
+  // }, [])
+
+  // const getzipcode = async (position) => {
+  //   console.log(position)
+  //   fetch(`https://api.opencagedata.com/geocode/v1/json?q=${41.964159}+${-87.6797706}&key=6172764d97b8435b90574015c5f717fb`).then(res => res.json()).then(data => console.log(data))
+    
+  // }
 
   useEffect(() => {
     if (activeModal === true) {

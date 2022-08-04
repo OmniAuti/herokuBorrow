@@ -122,7 +122,6 @@ const FilterForm = ({ dispatch }) => {
           >
             {" "}
             <option value="">Select Condition</option>
-            <option value=""></option>
             <option value="new">New</option>
             <option value="slightly used">Slightly Used</option>
             <option value="moderately used">Moderately Used</option>
@@ -131,7 +130,7 @@ const FilterForm = ({ dispatch }) => {
         </div>
         <div className="flex flex-col items-center justify-around">
           <label className="my-2" htmlFor="location">
-            Location
+            General Location
           </label>
           <input
             className="text-black pl-1 text-2xl rounded-sm"

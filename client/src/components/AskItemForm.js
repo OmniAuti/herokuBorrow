@@ -82,9 +82,10 @@ const AskItemForm = () => {
     }
   };
   return (
-    <div className="text-center block w-1/2 mx-auto">
+    <div className="text-center block w-1/2 mx-2 max-h-screen min-h-[750px]">
+      <h2 className="text-3xl underline mb-5">Ask For Supplies</h2>
       <form
-        className="text-black text-2xl rounded-md"
+        className="text-black text-2xl"
         onSubmit={(e) => handleSubmit(e)}
       >
         <label htmlFor="who">I am a . . .</label>
@@ -146,7 +147,7 @@ const AskItemForm = () => {
           value={askObj.quantity}
           onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
         />
-        <label htmlFor="condition">Willing Condition</label>
+        <label htmlFor="condition">Acceptable Condition</label>
 
         <div className="flex flex-wrap items-center justify-around">
           {checkBoxArr.map((checkbox) => {
@@ -164,7 +165,7 @@ const AskItemForm = () => {
             );
           })}
         </div>
-        <label htmlFor="location">Location</label>
+        <label htmlFor="location">General Location</label>
         <input
           id="location"
           required
