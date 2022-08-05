@@ -4,6 +4,9 @@ import HeroCOA from "../components/HeroCOA";
 import OurGoal from "../components/OurGoal";
 
 const Home = ({modalDispatch}) => {
+
+
+
   return (
     <>
       <HeroCOA />

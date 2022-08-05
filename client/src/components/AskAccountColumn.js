@@ -3,9 +3,9 @@ import AccountSupplyLoading from "./AccountSupplyLoading";
 
 const AskAccountColumn = ({ accountAskedData, isAskLoaded }) => {
   return (
-    <div className="w-1/2 max-h-screen min-h-[750px]  bg-slate-400 rounded-sm overflow-scroll">
+    <div className="w-screen -ml-5 sm:-ml-0 sm:w-full mb-10 lg:w-1/2 max-h-screen min-h-[750px]  bg-slate-400 rounded-sm overflow-scroll">
       <p className="w-full text-3xl underline text-center py-2 sticky top-0 bg-slate-400">
-        Already Asked For
+        Currently Asked For
       </p>
       {!isAskLoaded ? (
         <div className="flex flex-wrap">

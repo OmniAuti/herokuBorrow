@@ -27,10 +27,10 @@ const Offer = () => {
 
   return (
     <section className="flex flex-col">
-      <h1 className="text-center mb-20 text-5xl">What do you have to offer</h1>
-      <div className="flex justify-around items-start px-2">
-      <PostItemForm />
+      <h1 className="text-center mb-10 text-5xl">Offer</h1>
+      <div className="flex flex-col lg:flex-row justify-around">
       <OfferedAccountColumn isItemsLoaded={isItemsLoaded} accountItemsData={accountItemsData}/>
+      <PostItemForm />
       </div>
     </section>
   );

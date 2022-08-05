@@ -39,7 +39,7 @@ function App() {
   const [modalData, setModalData] = useState([]);
   const [activeModal, setActiveModal] = useState(false);
   const [modalLoaded, setModalLoaded] = useState(false);
-  const [userZipcode, setUserZipCode] = useState('')
+ // const [userZipcode, setUserZipCode] = useState('')
 
 
   const location = useLocation()

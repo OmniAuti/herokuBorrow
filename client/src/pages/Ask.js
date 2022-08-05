@@ -24,10 +24,11 @@ useEffect(() => {
 
     return (
         <section className="w-full flex flex-col">
-            <h1 className="text-5xl mb-5 text-center">Ask</h1>
-            <div className="flex">
-            <AskItemForm/>
+            <h1 className="text-5xl mb-10 text-center">Ask</h1>
+            <div className="flex flex-col lg:flex-row">
             <AskAccountColumn accountAskedData={accountAskedData} isAskLoaded={isAskLoaded}/>
+
+            <AskItemForm/>
             </div>
         </section>
     )
