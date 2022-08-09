@@ -5,13 +5,13 @@ const {
   getAllItems,
   getSingleItem,
   createSingleItem,
-  bookmarkSingleItem,
-  deleteSingleItem,
+  bookmarkChangeStatus,
   getFilteredItems,
   postAskItem,
   getAccountItems,
   getAccountItemsAsked,
   postBookmark,
+  deleteBookmark
 } = require("../controller/controllers");
 
 router.route('/').get(getAllItems).post(createSingleItem);
@@ -21,6 +21,7 @@ router.route('/modal').get(getSingleItem)
 router.route('/account-items').get(getAccountItems)
 router.route('/account-asked').get(getAccountItemsAsked)
 router.route('/bookmarked').post(postBookmark)
-router.route('/bookmark').put(bookmarkSingleItem)
+router.route('/bookmark-change-status').put(bookmarkChangeStatus)
+router.route('/delete-bookmark').delete(deleteBookmark)
 
 module.exports = router;

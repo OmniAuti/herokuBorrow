@@ -7,7 +7,8 @@ const urlFour = "http://localhost:2000/api/v1/items/modal"
 const urlFive = "http://localhost:2000/api/v1/items/account-items"
 const urlSix = "http://localhost:2000/api/v1/items/account-asked"
 const urlSeven = "http://localhost:2000/api/v1/items/bookmarked"
-const urlEight = "http://localhost:2000/api/v1/items/bookmark"
+const urlEight = "http://localhost:2000/api/v1/items/bookmark-change-status"
+const urlNine = "http://localhost:2000/api/v1/items/delete-bookmark"
 
 export const fetchAllItems = async () => {
   return axios.get(url)
@@ -39,6 +40,10 @@ export const postBookmark = async (bookmark) => {
   return axios.post(urlSeven, bookmark)
 }
 
-export const bookmarkItem = async (id) => {
-  return axios.put(urlEight, {id: id});
+export const bookmarkChangeStatus = async (bookmark) => {
+  return axios.put(urlEight, bookmark);
+}
+
+export const deleteBookmark = async (bookmark) => {
+  return axios.delete(urlNine, { data: bookmark })
 }

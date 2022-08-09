@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { postBookmark, bookmarkItem } from "../api/api";
+import { postBookmark, bookmarkChangeStatus, deleteBookmark } from "../api/api";
 import { UserAuth } from "../context/AuthContext";
 import Loading from "./Loading";
 
@@ -28,10 +28,14 @@ const SingleItemFocusModal = ({
   const handleBookmark = async () => {
     var bookmark = { _uid: user.uid, postId: data._id };
     try {
-      console.log(bookmark);
-  
-       await postBookmark(bookmark);
-      await bookmarkItem(data._id)
+      if (data.bookmarked === true) {
+        // DELETE 
+        await deleteBookmark(bookmark)
+        await bookmarkChangeStatus(bookmark) 
+      } else if (data.bookmarked === false) {
+        await postBookmark(bookmark);
+        await bookmarkChangeStatus(bookmark) 
+      }
       handleModalBookmark()
     } catch (e) {
       console.error(e);
