@@ -1,5 +1,6 @@
 const Items = require("../models/ItemModel");
 const AskItems = require("../models/AskModel");
+const BookmarkSchema = require("../models/BookmarkModel");
 
 const getAllItems = async (req, res) => {
   try {
@@ -22,6 +23,7 @@ const createSingleItem = async (req, res) => {
       zipcode: req.body.zipcode,
       postType: req.body.postType,
       _uid: req.body._uid,
+      bookmarked: req.body.bookmarked,
     });
 
     console.log(req.body, "BODIED");
@@ -96,7 +98,7 @@ const getSingleItem = async (req, res) => {
   try {
     const id = req.query[0];
     const modalItem = await Items.findById(id);
-    res.status(200).json(modalItem)
+    res.status(200).json(modalItem);
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Error" });
@@ -104,13 +106,18 @@ const getSingleItem = async (req, res) => {
 };
 // NOT YET IMPLEMENTED =======================
 
-const editSingleItem = async (req, res) => {
+const bookmarkSingleItem = async (req, res) => {
   try {
+    var item = await Items.findOne({_id: req.body.id})
+    item.bookmarked = !item.bookmarked;
+    await item.save()
+    res.send('bookmark saved')
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Error" });
   }
 };
+
 const deleteSingleItem = async (req, res) => {
   try {
   } catch (error) {
@@ -119,24 +126,46 @@ const deleteSingleItem = async (req, res) => {
   }
 };
 
-const getAccountItems = async (req,res) => {
+const getAccountItems = async (req, res) => {
   const accountItems = await Items.find(req.query);
-  res.status(200).json(accountItems)
-}
+  res.status(200).json(accountItems);
+};
 
-const getAccountItemsAsked = async (req,res) => {
-    const accountItems = await AskItems.find(req.query);
-    res.status(200).json(accountItems)
-}
+const getAccountItemsAsked = async (req, res) => {
+  const accountItems = await AskItems.find(req.query);
+  res.status(200).json(accountItems);
+};
+
+const postBookmark = async (req, res) => {
+  try {
+    const bookmark = new BookmarkSchema({
+      _uid: req.body._uid,
+      postType: 'bookmark',
+      postId: req.body.postId,
+    })
+
+    await bookmark.save((err, post) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.status(201).json(post);
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ msg: "Error" });
+  }
+};
 
 module.exports = {
   getAllItems,
   getSingleItem,
   createSingleItem,
-  editSingleItem,
+  bookmarkSingleItem,
   deleteSingleItem,
   getFilteredItems,
   postAskItem,
   getAccountItems,
   getAccountItemsAsked,
+  postBookmark,
 };

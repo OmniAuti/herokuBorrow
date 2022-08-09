@@ -1,5 +1,7 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
-
+import { postBookmark, bookmarkItem } from "../api/api";
+import { UserAuth } from "../context/AuthContext";
 import Loading from "./Loading";
 
 const SingleItemFocusModal = ({
@@ -8,7 +10,11 @@ const SingleItemFocusModal = ({
   handleCloseModal,
   handleOpenModal,
   modalLoaded,
+  handleModalBookmark,
 }) => {
+
+  console.log(data.bookmarked, 'bookmarked')
+
   useEffect(() => {
     if (Object.values(data).length <= 0) return;
     handleOpenModal();
@@ -16,6 +22,21 @@ const SingleItemFocusModal = ({
       console.log("cleared");
     };
   }, [data]);
+
+  const { user } = UserAuth();
+
+  const handleBookmark = async () => {
+    var bookmark = { _uid: user.uid, postId: data._id };
+    try {
+      console.log(bookmark);
+  
+       await postBookmark(bookmark);
+      await bookmarkItem(data._id)
+      handleModalBookmark()
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <div
@@ -48,7 +69,6 @@ const SingleItemFocusModal = ({
               </p>
 
               <ul className="mt-5 ml-2 px-2">
-
                 <li className="text-black m-1 mt-2 font-medium">
                   Quantity:{" "}
                   <span className="text-black font-light">{data.quantity}</span>
@@ -80,12 +100,25 @@ const SingleItemFocusModal = ({
                     </span>
                   </a>
                 </li>
-
               </ul>
-              <div className="h-12 absolute rounded-full w-12 top-1/2 right-0 cursor-pointer hover:scale-105"><img className="" src="/imgs/bookmark.svg" alt="Add Post Icon"/></div>
 
+           
+              <div
+                onClick={() => handleBookmark()}
+                className="h-12 absolute rounded-full w-12 top-1/2 right-0 cursor-pointer hover:scale-105"
+              >
+                {data.bookmarked === false ? <img
+                  className=""
+                  src="/imgs/bookmark.svg"
+                  alt="Add Post Icon"
+                /> : <img
+                className=""
+                src="/imgs/bookmarkBooked.svg"
+                alt="Add Post Icon"
+              /> }
+              </div>
             </div>
-                                         
+
             <button className="bg-sky-500 w-full h-10 my-2 rounded-sm hover:bg-sky-900">
               Inquire
             </button>

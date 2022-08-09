@@ -15,6 +15,7 @@ const PostItemForm = () => {
     zipcode: "",
     postType: "offer",
     _uid: "",
+    bookmarked: false,
   });
   //  APPENDING FIREBASE USER ID ONTO ITEM POST
   useEffect(() => {
@@ -68,6 +69,7 @@ const PostItemForm = () => {
         zipcode: "",
         postType: "offer",
         _uid: "",
+        bookmarked: false,
       });
     } catch (err) {
       console.log(err);

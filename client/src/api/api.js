@@ -6,6 +6,8 @@ const urlThree = "http://localhost:2000/api/v1/items/ask";
 const urlFour = "http://localhost:2000/api/v1/items/modal"
 const urlFive = "http://localhost:2000/api/v1/items/account-items"
 const urlSix = "http://localhost:2000/api/v1/items/account-asked"
+const urlSeven = "http://localhost:2000/api/v1/items/bookmarked"
+const urlEight = "http://localhost:2000/api/v1/items/bookmark"
 
 export const fetchAllItems = async () => {
   return axios.get(url)
@@ -31,4 +33,12 @@ export const getAccountItems = async (_uid) => {
 }
 export const getAccountItemsAsked = async (_uid) => {
   return axios.get(urlSix,  {params: _uid})
+}
+
+export const postBookmark = async (bookmark) => {
+  return axios.post(urlSeven, bookmark)
+}
+
+export const bookmarkItem = async (id) => {
+  return axios.put(urlEight, {id: id});
 }

@@ -39,6 +39,7 @@ function App() {
   const [modalData, setModalData] = useState([]);
   const [activeModal, setActiveModal] = useState(false);
   const [modalLoaded, setModalLoaded] = useState(false);
+  const [bookmarkRefresh, setBookmarkRefresh] = useState(false);
  // const [userZipcode, setUserZipCode] = useState('')
 
 
@@ -66,9 +67,11 @@ function App() {
   useEffect(() => {
     if (state.modalId.length <= 0) return;
     handleModalData(state.modalId);
-  }, [state.active]);
+  }, [state.active, bookmarkRefresh]);
 
-
+  const handleModalBookmark = () => {
+    setBookmarkRefresh(!bookmarkRefresh)
+  }
 
   const handleModalData = async (id) => {
     setActiveModal(true);
@@ -99,6 +102,7 @@ function App() {
           handleCloseModal={handleCloseModal}
           handleOpenModal={handleOpenModal}
           modalLoaded={modalLoaded}
+          handleModalBookmark={handleModalBookmark}
         />
 
         <main className="App  bg-black h-full min-h-screen w-screen px-5 pb-5 relative">
