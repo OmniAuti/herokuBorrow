@@ -5,7 +5,7 @@ import { getAccountItems, getAccountItemsAsked, getAccountBookmarked} from "../a
 import AccountDashboardAsked from "../components/AccountDashBoardAsked";
 import AccountDashboardBookmarked from "../components/AccountDashBoardBookmarked";
 import AccountDashboardOffered from "../components/AccountDashBoardOffered";
-import AccountDashboardSettingsBar from "./AccountDashboardSettingsBar";
+import AccountDashboardSettingsBar from "../components/AccountDashboardSettingsBar";
 
 const AccountDashboard = () => {
 
@@ -60,7 +60,7 @@ const handleLogOutUser = async () => {
 
 
   return (
-    <section className=" grid grid-cols-7 grid-rows-6 gap-3 pt-5 max-h-screen min-h-[750px]">
+    <section className=" grid grid-cols-7 grid-rows-8 md:grid-rows-6 gap-3 pt-5 max-h-fit min-h-[750px]">
 
       
       <AccountDashboardSettingsBar handleLogOutUser={handleLogOutUser}/>
