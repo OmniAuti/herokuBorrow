@@ -127,7 +127,6 @@ const bookmarkChangeStatus = async (req, res) => {
   }
 };
 
-
 const postBookmark = async (req, res) => {
   try {
 
@@ -166,6 +165,11 @@ const deleteBookmark = async (req,res) => {
   }
 }
 
+const getAccountBookmarked = async (req,res) => {
+  const bookmarked = await BookmarkSchema.find({})
+  res.status(200).json(bookmarked)
+}
+
 module.exports = {
   getAllItems,
   getSingleItem,
@@ -177,4 +181,5 @@ module.exports = {
   getAccountItemsAsked,
   postBookmark,
   deleteBookmark,
+  getAccountBookmarked
 };

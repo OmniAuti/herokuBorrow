@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { postBookmark, bookmarkChangeStatus, deleteBookmark } from "../api/api";
 import { UserAuth } from "../context/AuthContext";
@@ -12,8 +11,6 @@ const SingleItemFocusModal = ({
   modalLoaded,
   handleModalBookmark,
 }) => {
-
-  console.log(data.bookmarked, 'bookmarked')
 
   useEffect(() => {
     if (Object.values(data).length <= 0) return;

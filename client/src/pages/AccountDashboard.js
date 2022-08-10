@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { getAccountItems, getAccountItemsAsked} from "../api/api";
+import { getAccountItems, getAccountItemsAsked, getAccountBookmarked} from "../api/api";
 import AccountDashboardAsked from "../components/AccountDashBoardAsked";
-import AccountDashboardBorrowedInterest from "../components/AccountDashBoardBorrowed";
+import AccountDashboardBookmarked from "../components/AccountDashBoardBookmarked";
 import AccountDashboardOffered from "../components/AccountDashBoardOffered";
 import AccountDashboardSettingsBar from "./AccountDashboardSettingsBar";
 
@@ -15,29 +15,42 @@ const AccountDashboard = () => {
 
   const [accountItemsData, setAccountItemsData] = useState([])
   const [accountAskedData, setAccountAskedData] = useState([])
+  const [accountBookmarked, setAccountBookmarked] = useState([])
   const [isAskLoaded, setIsAskLoaded] = useState(false)
   const [isItemsLoaded, setIsItemsLoaded] = useState(false)
+  const [isBookmarkLoaded, setIsBookmarkLoaded] = useState(false)
+  const [userUid, setUserUid] = useState('')
 
 // THIS IS OFFERED/BORROWED DATA
   useEffect(() => {
     if (user === undefined) return
     getAccountItems({_uid: user.uid}).then(res => setAccountItemsData(res.data))
     setIsItemsLoaded(true)
+    setUserUid(user.uid);
     return () => {
       setIsItemsLoaded(false)
     }
   }, [user])
 
-//THIS IS ASKED DATA
-useEffect(() => {
-  if (user === undefined) return
-  getAccountItemsAsked({_uid: user.uid}).then(res => setAccountAskedData(res.data))
-  setIsAskLoaded(true);
-  return () => {
-    setIsAskLoaded(false)
-  }
-}, [user])
+  //THIS IS ASKED DATA
+  useEffect(() => {
+    if (user === undefined) return
+    getAccountItemsAsked({_uid: user.uid}).then(res => setAccountAskedData(res.data))
+    setIsAskLoaded(true);
+    return () => {
+      setIsAskLoaded(false)
+    }
+  }, [user])
 
+  useEffect(() => {
+    if (user === undefined) return
+
+    getAccountBookmarked({_uid: user.uid}).then(res => setAccountBookmarked(res.data))
+    setIsBookmarkLoaded(true)
+    return () => {
+      setIsBookmarkLoaded(false)
+    }
+  }, [user])
 
 
 const handleLogOutUser = async () => {
@@ -53,9 +66,7 @@ const handleLogOutUser = async () => {
       <AccountDashboardSettingsBar handleLogOutUser={handleLogOutUser}/>
       <AccountDashboardAsked isAskLoaded={isAskLoaded} accountAskedData={accountAskedData}/>
       <AccountDashboardOffered isItemsLoaded={isItemsLoaded} accountItemsData={accountItemsData}/>
-      <AccountDashboardBorrowedInterest isItemsLoaded={isItemsLoaded} accountItemsData={accountItemsData}/>
-
-
+      <AccountDashboardBookmarked userUid={userUid} isBookmarkLoaded={isBookmarkLoaded} accountBookmarked={accountBookmarked} accountItemsData={accountItemsData}/>
 
     </section>
   );
