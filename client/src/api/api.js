@@ -10,6 +10,7 @@ const urlSeven = "http://localhost:2000/api/v1/items/bookmarked"
 const urlEight = "http://localhost:2000/api/v1/items/bookmark-change-status"
 const urlNine = "http://localhost:2000/api/v1/items/delete-bookmark"
 const urlTen = "http://localhost:2000/api/v1/items/bookmarked-account"
+const urlEleven = "http://localhost:2000/api/v1/items/single-ask-item"
 
 export const fetchAllItems = async () => {
   return axios.get(url)
@@ -28,6 +29,9 @@ export const postAskItem = (askItem) => {
 
 export const getSingleItem = async (id) => {
     return axios.get(urlFour, {params: id})
+}
+export const getSingleItemAsk = async (id) => {
+    return axios.get(urlEleven, {params: id})
 }
 
 export const getAccountItems = async (_uid) => {

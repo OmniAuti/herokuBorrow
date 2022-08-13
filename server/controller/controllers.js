@@ -104,6 +104,18 @@ const getSingleItem = async (req, res) => {
   }
 };
 
+const getSingleItemAsk = async (req, res) => {
+  try {
+    const id = req.query[0];
+    const modalItem = await AskItems.findById(id);
+    console.log(modalItem)
+    res.status(200).json(modalItem);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Error" });
+  }
+};
+
 
 const getAccountItems = async (req, res) => {
   const accountItems = await Items.find(req.query);
@@ -181,5 +193,6 @@ module.exports = {
   getAccountItemsAsked,
   postBookmark,
   deleteBookmark,
-  getAccountBookmarked
+  getAccountBookmarked,
+  getSingleItemAsk
 };

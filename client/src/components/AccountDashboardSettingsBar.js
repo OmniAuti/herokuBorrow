@@ -37,11 +37,11 @@ const AccountDashboardSettingsBar = ({handleLogOutUser}) => {
             className=" w-full h-full flex justify-center items-center flex-col"
           >
             <img
-              className="w-[25px] sm:w-[50px] mt-5 mb-7 sm:mb-0 group-hover:scale-110 group-hover:cursor-pointer transition-transform duration-1000"
+              className="w-[25px] sm:w-[50px] mt-5 mb-7 group-hover:scale-110 group-hover:cursor-pointer transition-transform duration-1000"
               src="./imgs/exit-door.svg"
               alt="Messages Icon"
             />
-            <p className="absolute sm:opacity-0 top-0 sm:top-auto text-xs sm:text-base sm:group-hover:opacity-100 sm:transition-opacity sm:duration-1000">
+            <p className="absolute sm:opacity-0 top-0 sm:bottom-0 sm:top-auto text-xs sm:text-base sm:group-hover:opacity-100 sm:transition-opacity sm:duration-1000">
               Log Out
             </p>
           </button>

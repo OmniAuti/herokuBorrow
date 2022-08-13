@@ -7,7 +7,7 @@ import AccountDashboardBookmarked from "../components/AccountDashBoardBookmarked
 import AccountDashboardOffered from "../components/AccountDashBoardOffered";
 import AccountDashboardSettingsBar from "../components/AccountDashboardSettingsBar";
 
-const AccountDashboard = () => {
+const AccountDashboard = ({modalDispatch }) => {
 
   const navigate = useNavigate();
 
@@ -64,8 +64,8 @@ const handleLogOutUser = async () => {
 
       
       <AccountDashboardSettingsBar handleLogOutUser={handleLogOutUser}/>
-      <AccountDashboardAsked isAskLoaded={isAskLoaded} accountAskedData={accountAskedData}/>
-      <AccountDashboardOffered isItemsLoaded={isItemsLoaded} accountItemsData={accountItemsData}/>
+      <AccountDashboardAsked modalDispatch={modalDispatch} isAskLoaded={isAskLoaded} accountAskedData={accountAskedData}/>
+      <AccountDashboardOffered isItemsLoaded={isItemsLoaded} accountItemsData={accountItemsData} modalDispatch={modalDispatch}/>
       <AccountDashboardBookmarked userUid={userUid} isBookmarkLoaded={isBookmarkLoaded} accountBookmarked={accountBookmarked} accountItemsData={accountItemsData}/>
 
     </section>

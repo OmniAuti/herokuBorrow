@@ -1,7 +1,7 @@
 import AccountSupplyObjectCard from "./AccountSupplyObjectCard";
 import AccountSupplyLoading from "./AccountSupplyLoading";
 
-const AccountDashboardAsked = ({ accountAskedData, isAskLoaded }) => {
+const AccountDashboardAsked = ({ accountAskedData, isAskLoaded, modalDispatch }) => {
   return (
     <div className="row-start-2 row-end-4 md:row-start-1 md:row-end-4 md:min-h-[400px] max-h-[500px] col-start-1 -ml-5 sm:-ml-0 w-screen sm:w-full sm:col-start-2 col-end-8 md:col-end-5 bg-slate-400 rounded-sm overflow-scroll">
       <p className="w-full text-2xl text-center py-2 sticky top-0 bg-slate-400">
@@ -18,7 +18,7 @@ const AccountDashboardAsked = ({ accountAskedData, isAskLoaded }) => {
             accountAskedData
               .filter((data) => data.postType === "ask")
               .map((data) => (
-                <AccountSupplyObjectCard key={data._id} data={data} />
+                <AccountSupplyObjectCard modalDispatch={modalDispatch} key={data._id} data={data} />
               ))
           ) : (
             <p className="text-2xl flex items-center justify-center w-full font-thin">

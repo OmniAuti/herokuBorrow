@@ -13,12 +13,14 @@ const {
   postBookmark,
   deleteBookmark,
   getAccountBookmarked,
+  getSingleItemAsk
 } = require("../controller/controllers");
 
 router.route('/').get(getAllItems).post(createSingleItem);
 router.route('/filter').get(getFilteredItems)
 router.route('/ask').post(postAskItem)
 router.route('/modal').get(getSingleItem)
+router.route('/single-ask-item').get(getSingleItemAsk)
 router.route('/account-items').get(getAccountItems)
 router.route('/account-asked').get(getAccountItemsAsked)
 router.route('/bookmarked').post(postBookmark)

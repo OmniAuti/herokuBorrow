@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { postBookmark, bookmarkChangeStatus, deleteBookmark } from "../api/api";
 import { UserAuth } from "../context/AuthContext";
 import Loading from "./Loading";

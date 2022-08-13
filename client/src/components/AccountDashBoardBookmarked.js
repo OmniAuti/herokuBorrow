@@ -5,11 +5,6 @@ import { useEffect } from "react";
 
 const AccountDashboardBookmarked = ({isBookmarkLoaded, accountBookmarked, accountItemsData, userUid}) => {
 
-
-useEffect(() => {
-  console.log(accountBookmarked)
-}, [userUid])
-
   // THIS IS FOR LIKED POSTS THAT ARE OF INTEREST
     return (
         <div className="row-start-6 row-end-8 h-[400px] -ml-5 sm:-ml-0 w-screen sm:w-full md:h-fit md:row-start-4 min-h-[350px] md:row-end-7 max-h-[500px] col-start-1 sm:col-start-2 col-span-7 sm:col-span-6 bg-slate-400 rounded-sm overflow-scroll">

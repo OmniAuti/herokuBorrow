@@ -19,15 +19,32 @@ import ProtectedUserRoute from "./components/ProtectedUserRoute";
 //WRAP FOR SCROLL TO TOP ON NEW ROUTE
 import ScrollToTop from "./components/ScrollToTop";
 import SingleItemFocusModal from "./components/SingleItemFocusModal";
+import AccountEditPostModal from "./components/AccountEditPostModal";
 //CONTEXT IMPORT
 import AuthContextProvider from "./context/AuthContext";
 // APPI CALLS
-import { getSingleItem } from "./api/api";
+import { getSingleItem, getSingleItemAsk } from "./api/api";
 // USE REDUCER FUNCTION
 const modalReducer = (state, action) => {
   switch (action.type) {
     case "MODAL":
-      return { modalId: action.payload, active: !state.active };
+      return {
+        modalId: action.payload,
+        active: !state.active,
+        modalType: "singleFocus",
+      };
+    case "ACCOUNT_MODAL-offer":
+      return {
+        modalId: action.payload,
+        active: !state.active,
+        modalType: "accountEditOffer",
+      };
+    case "ACCOUNT_MODAL-ask":
+      return {
+        modalId: action.payload,
+        active: !state.active,
+        modalType: "accountEditAsk",
+      };
   }
 };
 
@@ -35,59 +52,66 @@ function App() {
   const [state, modalDispatch] = useReducer(modalReducer, {
     modalId: "",
     active: false,
+    modalType: "",
   });
-  const [modalData, setModalData] = useState([]);
+  const [modalDataSingleFocus, setModalDataSingleFocus] = useState([]);
+  const [modalDataEdit, setModalDataEdit] = useState([]);
   const [activeModal, setActiveModal] = useState(false);
+  const [activeModalEdit, setActiveModalEdit] = useState(false);
   const [modalLoaded, setModalLoaded] = useState(false);
+  const [modalLoadedEdit, setModalLoadedEdit] = useState(false);
   const [bookmarkRefresh, setBookmarkRefresh] = useState(false);
- // const [userZipcode, setUserZipCode] = useState('')
 
+  const location = useLocation();
 
-  const location = useLocation()
-
-  // USING FOR POSSIBLE DEFAULT PULL FROM LOCAL POSTS
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition(getzipcode, (err) => {
-  //     console.log(err)
-  //   })
-  // }, [])
-
-  // const getzipcode = async (position) => {
-  //   console.log(position)
-  //   fetch(`https://api.opencagedata.com/geocode/v1/json?q=${41.964159}+${-87.6797706}&key=6172764d97b8435b90574015c5f717fb`).then(res => res.json()).then(data => console.log(data))
-    
-  // }
-
+  // USED TO CLOSE MODAL ON PAGE CHANGE
   useEffect(() => {
     if (activeModal === true) {
-      handleCloseModal()
+      handleCloseModal();
     }
-  }, [location.pathname])
-
+  }, [location.pathname]);
+  // REFRESH THE DATA TO SHOW CHANGING BOOKMARK
   useEffect(() => {
     if (state.modalId.length <= 0) return;
     handleModalData(state.modalId);
   }, [state.active, bookmarkRefresh]);
 
   const handleModalBookmark = () => {
-    setBookmarkRefresh(!bookmarkRefresh)
-  }
+    setBookmarkRefresh(!bookmarkRefresh);
+  };
 
   const handleModalData = async (id) => {
-    setActiveModal(true);
-
-    await getSingleItem(id)
-      .then((res) => setModalData(res.data))
-      .catch((err) => console.log(err));
+    if (state.modalType === "singleFocus") {
+      await getSingleItem(id)
+        .then((res) => setModalDataSingleFocus(res.data))
+        .catch((err) => console.log(err));
+      setActiveModal(true);
+    } else if (state.modalType === "accountEditOffer") {
+      await getSingleItem(id)
+        .then((res) => setModalDataEdit(res.data))
+        .catch((err) => console.log(err));
+      setActiveModalEdit(true);
+    } else if (state.modalType === "accountEditAsk") {
+      console.log("askpost", id);
+      await getSingleItemAsk(id)
+        .then((res) => setModalDataEdit(res.data))
+        .catch((err) => console.log(err));
+        setActiveModalEdit(true);
+    }
   };
 
   const handleCloseModal = () => {
     setActiveModal(false);
+    setActiveModalEdit(false);
     setModalLoaded(false);
+    setModalLoadedEdit(false);
   };
 
   const handleOpenModal = () => {
     setModalLoaded(true);
+  };
+  const handleOpenModalEdit = () => {
+    setModalLoadedEdit(true);
   };
 
   return (
@@ -96,13 +120,23 @@ function App() {
         <Header />
 
         <SingleItemFocusModal
-          data={modalData}
+          data={modalDataSingleFocus}
           activeModal={activeModal}
           handleModalData={handleModalData}
           handleCloseModal={handleCloseModal}
           handleOpenModal={handleOpenModal}
           modalLoaded={modalLoaded}
           handleModalBookmark={handleModalBookmark}
+        />
+
+        <AccountEditPostModal
+          // GOING TO NEED TO MAKE A API PULL FOR ASK ITEMS AND SEPERATE ONE FOR OFFERED ITEMS. MAKE AN EDIT BUTTON ON THE ACCOUNT CARDS AND THEN THAT WILL OPEN THE MODAL AS A FORM TO EDIT
+          data={modalDataEdit}
+          activeModal={activeModalEdit}
+          handleModalData={handleModalData}
+          handleCloseModal={handleCloseModal}
+          handleOpenModal={handleOpenModalEdit}
+          modalLoaded={modalLoadedEdit}
         />
 
         <main className="App  bg-black h-full min-h-screen w-screen px-5 pb-5 relative">
@@ -125,14 +159,29 @@ function App() {
                 element={
                   <ProtectedUserRoute>
                     {" "}
-                    <AccountDashboard />{" "}
+                    <AccountDashboard modalDispatch={modalDispatch} />{" "}
                   </ProtectedUserRoute>
                 }
               />
 
-              <Route path="/offer" element={<ProtectedUserRoute> <Offer /></ProtectedUserRoute>} />
+              <Route
+                path="/offer"
+                element={
+                  <ProtectedUserRoute>
+                    {" "}
+                    <Offer />
+                  </ProtectedUserRoute>
+                }
+              />
 
-              <Route path="/ask" element={<ProtectedUserRoute><Ask /></ProtectedUserRoute>} />
+              <Route
+                path="/ask"
+                element={
+                  <ProtectedUserRoute>
+                    <Ask />
+                  </ProtectedUserRoute>
+                }
+              />
             </Routes>
           </ScrollToTop>
         </main>
