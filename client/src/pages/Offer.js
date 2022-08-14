@@ -24,7 +24,6 @@ const Offer = () => {
     }
   }, [user])
 
-
   return (
     <section className="flex flex-col">
       <h1 className="text-center mb-10 text-5xl">Offer</h1>

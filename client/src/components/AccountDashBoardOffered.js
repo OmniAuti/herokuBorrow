@@ -4,7 +4,7 @@ import AccountSupplyLoading from "./AccountSupplyLoading";
 const AccountDashboardOffered = ({ accountItemsData, isItemsLoaded, modalDispatch }) => {
   return (
     <div className="row-start-4 row-end-6 h-[400px] md:h-fit -ml-5 sm:-ml-0 w-screen sm:w-full md:row-start-1 md:row-end-4 md:min-h-[400px] max-h-[500px] col-start-1 sm:col-start-2 md:col-start-5 col-end-8 bg-slate-400 rounded-sm overflow-scroll relative">
-      <p className="w-full text-2xl text-center py-2 sticky top-0 bg-slate-400">
+      <p className="w-full text-2xl text-center py-2 sticky top-0 bg-slate-400 z-10">
         Offered
       </p>
       {!isItemsLoaded ? (
@@ -19,7 +19,7 @@ const AccountDashboardOffered = ({ accountItemsData, isItemsLoaded, modalDispatc
             accountItemsData
               .filter((data) => data.postType === "offer")
               .map((data) => (
-                <AccountSupplyObjectCard key={data._id} data={data} modalDispatch={modalDispatch}/>
+                <AccountSupplyObjectCard  key={data._id} data={data} modalDispatch={modalDispatch}/>
               ))
           ) : (
             <p className="text-2xl flex items-center justify-center w-full font-thin">

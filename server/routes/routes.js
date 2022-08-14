@@ -13,7 +13,8 @@ const {
   postBookmark,
   deleteBookmark,
   getAccountBookmarked,
-  getSingleItemAsk
+  getSingleItemAsk,
+  editAccountOffered
 } = require("../controller/controllers");
 
 router.route('/').get(getAllItems).post(createSingleItem);
@@ -27,5 +28,6 @@ router.route('/bookmarked').post(postBookmark)
 router.route('/bookmark-change-status').put(bookmarkChangeStatus)
 router.route('/delete-bookmark').delete(deleteBookmark)
 router.route('/bookmarked-account').get(getAccountBookmarked)
+router.route('/account-offered-edit').put(editAccountOffered)
 
 module.exports = router;

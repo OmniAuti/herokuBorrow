@@ -29,11 +29,10 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
   }
   return (
     <div
-      onClick={() => modalDispatch({ type: `ACCOUNT_MODAL-${data.postType}`, payload: data._id })}
       className=" w-full rounded-md my-1 mx-[12px] p-1 cursor-pointer"
       style={{ backgroundColor: cardBgColor }}
     >
-      <div className="flex justify-around flex-col bg-white w-full h-full pb-5 rounded-md shadow-inner transition-all hover:shadow-black outline">
+      <div className="flex justify-around flex-col bg-white w-full h-full pb-5 rounded-md relative overflow-hidden">
       <div className="flex justify-around w-full p-5">
         
         <img
@@ -53,7 +52,10 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
         <ul>
           <li className="text-black m-1 clear-left">Description: {data.description}</li>
         </ul>
+
       </div>
+
+      <button onClick={() => modalDispatch({ type: `ACCOUNT_MODAL-${data.postType}`, payload: data._id })} className="text-black text-center cursor-pointer absolute -right-2 -top-2 border p-2 hover:shadow-lg rounded-lg"><img className="w-10 mx-auto my-1" src="./imgs/editPost.png" alt="Edit Post Icon"/></button>
       </div>
     </div>
   );

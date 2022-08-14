@@ -1,7 +1,6 @@
 const Items = require("../models/ItemModel");
 const AskItems = require("../models/AskModel");
 const BookmarkSchema = require("../models/BookmarkModel");
-const { find } = require("../models/ItemModel");
 
 const getAllItems = async (req, res) => {
   try {
@@ -105,6 +104,8 @@ const getSingleItem = async (req, res) => {
 };
 
 const getSingleItemAsk = async (req, res) => {
+
+  // NEED TO DO SOMETHING TO ACCOUNT FOR MULTIPLE CONDITIONS BEING ASKED. A P TAG THEN INPUT SELECT BELOW IT
   try {
     const id = req.query[0];
     const modalItem = await AskItems.findById(id);
@@ -182,6 +183,15 @@ const getAccountBookmarked = async (req,res) => {
   res.status(200).json(bookmarked)
 }
 
+const editAccountOffered = async (req, res) => {
+  
+const item = req.body
+const id = item._id;
+delete item._id;
+ const editItem = await Items.findOneAndUpdate(id, item, {new:true})
+ res.json({msg:'success', editItem})
+}
+
 module.exports = {
   getAllItems,
   getSingleItem,
@@ -194,5 +204,6 @@ module.exports = {
   postBookmark,
   deleteBookmark,
   getAccountBookmarked,
-  getSingleItemAsk
+  getSingleItemAsk,
+  editAccountOffered
 };

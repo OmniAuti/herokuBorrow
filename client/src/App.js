@@ -62,6 +62,8 @@ function App() {
   const [modalLoadedEdit, setModalLoadedEdit] = useState(false);
   const [bookmarkRefresh, setBookmarkRefresh] = useState(false);
 
+  const [refreshAfterEdit, setRefreshAfterEdit] = useState(false)
+
   const location = useLocation();
 
   // USED TO CLOSE MODAL ON PAGE CHANGE
@@ -91,6 +93,7 @@ function App() {
         .then((res) => setModalDataEdit(res.data))
         .catch((err) => console.log(err));
       setActiveModalEdit(true);
+
     } else if (state.modalType === "accountEditAsk") {
       console.log("askpost", id);
       await getSingleItemAsk(id)
@@ -113,6 +116,11 @@ function App() {
   const handleOpenModalEdit = () => {
     setModalLoadedEdit(true);
   };
+
+  const handleItemRefreshAfterEdit = () => {
+    setRefreshAfterEdit(!refreshAfterEdit)
+    console.log('refresh')
+  }
 
   return (
     <div className="overflow-x-hidden">
@@ -137,6 +145,7 @@ function App() {
           handleCloseModal={handleCloseModal}
           handleOpenModal={handleOpenModalEdit}
           modalLoaded={modalLoadedEdit}
+          handleItemRefreshAfterEdit={handleItemRefreshAfterEdit }
         />
 
         <main className="App  bg-black h-full min-h-screen w-screen px-5 pb-5 relative">
@@ -159,7 +168,7 @@ function App() {
                 element={
                   <ProtectedUserRoute>
                     {" "}
-                    <AccountDashboard modalDispatch={modalDispatch} />{" "}
+                    <AccountDashboard refreshAfterEdit={refreshAfterEdit} modalDispatch={modalDispatch} />{" "}
                   </ProtectedUserRoute>
                 }
               />
