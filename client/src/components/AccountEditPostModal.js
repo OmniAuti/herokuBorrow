@@ -39,7 +39,7 @@ const AccountEditPostModal = ({
       postType: data.postType,
       _uid: data.uid,
       bookmarked: data.bookmarked,
-      _id:data._id
+      _id:data._id,
     });
     return () => {
       console.log("cleared");
@@ -76,7 +76,6 @@ const AccountEditPostModal = ({
     try {
       if (user.uid === undefined) return;
       var uid = await user.uid;
-      console.log(uid);
       setFormData({ ...formData, _uid: uid });
     } catch (e) {
       console.log(e);
@@ -100,6 +99,7 @@ const AccountEditPostModal = ({
         postType: data.postType,
         _uid: "",
         bookmarked: data.bookmarked,
+        _id: "",
       });
 
       // MAKE SOMETHING IN HERE THAT LEAVES A CHECK MARK FOR SUCCESSFUL EDIT BEFORE CLOSE
