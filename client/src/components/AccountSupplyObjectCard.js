@@ -29,7 +29,7 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
   }
   return (
     <div
-      className=" w-full rounded-md my-1 mx-[12px] p-1 cursor-pointer"
+      className=" w-full rounded-md my-1 mx-[12px] p-1"
       style={{ backgroundColor: cardBgColor }}
     >
       <div className="flex justify-around flex-col bg-white w-full h-full pb-5 rounded-md relative overflow-hidden">

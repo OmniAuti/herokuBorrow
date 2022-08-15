@@ -138,7 +138,6 @@ function App() {
         />
 
         <AccountEditPostModal
-          // GOING TO NEED TO MAKE A API PULL FOR ASK ITEMS AND SEPERATE ONE FOR OFFERED ITEMS. MAKE AN EDIT BUTTON ON THE ACCOUNT CARDS AND THEN THAT WILL OPEN THE MODAL AS A FORM TO EDIT
           data={modalDataEdit}
           activeModal={activeModalEdit}
           handleModalData={handleModalData}
