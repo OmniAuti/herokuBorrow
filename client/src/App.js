@@ -119,7 +119,6 @@ function App() {
 
   const handleItemRefreshAfterEdit = () => {
     setRefreshAfterEdit(!refreshAfterEdit)
-    console.log('refresh')
   }
 
   return (
@@ -177,7 +176,7 @@ function App() {
                 element={
                   <ProtectedUserRoute>
                     {" "}
-                    <Offer />
+                    <Offer refreshAfterEdit={refreshAfterEdit} modalDispatch={modalDispatch}/>
                   </ProtectedUserRoute>
                 }
               />
@@ -186,7 +185,7 @@ function App() {
                 path="/ask"
                 element={
                   <ProtectedUserRoute>
-                    <Ask />
+                    <Ask refreshAfterEdit={refreshAfterEdit} modalDispatch={modalDispatch}/>
                   </ProtectedUserRoute>
                 }
               />

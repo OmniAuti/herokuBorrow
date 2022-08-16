@@ -1,7 +1,7 @@
 import AccountSupplyObjectCard from "./AccountSupplyObjectCard";
 import AccountSupplyLoading from "./AccountSupplyLoading";
 
-const AskAccountColumn = ({ accountAskedData, isAskLoaded }) => {
+const AskAccountColumn = ({ accountAskedData, isAskLoaded, modalDispatch }) => {
   return (
     <div className="w-screen -ml-5 sm:-ml-0 sm:w-full mb-10 lg:w-1/2 max-h-screen min-h-[750px]  bg-slate-400 rounded-sm overflow-scroll">
       <p className="w-full text-3xl underline text-center py-2 sticky top-0 bg-slate-400">
@@ -18,7 +18,7 @@ const AskAccountColumn = ({ accountAskedData, isAskLoaded }) => {
             accountAskedData
               .filter((data) => data.postType === "ask")
               .map((data) => (
-                <AccountSupplyObjectCard key={data._id} data={data} />
+                <AccountSupplyObjectCard modalDispatch={modalDispatch} key={data._id} data={data} />
               ))
           ) : (
             <p className="text-2xl flex items-center justify-center w-full font-thin">
