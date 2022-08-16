@@ -75,7 +75,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
   };
 
   return (
-    <section className=" grid grid-cols-7 grid-rows-8 md:grid-rows-6 gap-3 pt-5 max-h-fit h-fit">
+    <section className=" grid grid-cols-7 grid-rows-8 lg:grid-rows-6 gap-3 pt-5 max-h-fit h-fit">
       <AccountDashboardSettingsBar handleLogOutUser={handleLogOutUser} />
       <AccountDashboardAsked
         modalDispatch={modalDispatch}

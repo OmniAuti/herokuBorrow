@@ -37,7 +37,7 @@ const AccountEditPostModal = ({
         <div className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="h-fit w-[500px] bg-white pb-2 rounded-tr-sm rounded-tl-sm relative text-center">
             <div className="relative w-full h-fit rounded-md overflow-hidden">
-              {data.postType === 'offer' ? <ModalEditOffer handleOpenModal={handleOpenModal} handleCloseModal={handleCloseModal} user={user} handleItemRefreshAfterEdit={handleItemRefreshAfterEdit} data={data}/>: <ModalEditAsk handleOpenModal={handleOpenModal} user={user} handleItemRefreshAfterEdit={handleItemRefreshAfterEdit} data={data}/>}
+              {data.postType === 'offer' ? <ModalEditOffer handleOpenModal={handleOpenModal} handleCloseModal={handleCloseModal} user={user} handleItemRefreshAfterEdit={handleItemRefreshAfterEdit} data={data}/>: <ModalEditAsk handleOpenModal={handleOpenModal} handleCloseModal={handleCloseModal} user={user} handleItemRefreshAfterEdit={handleItemRefreshAfterEdit} data={data}/>}
             </div>
 
             <button

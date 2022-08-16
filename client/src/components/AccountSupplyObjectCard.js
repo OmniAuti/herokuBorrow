@@ -41,6 +41,7 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
           alt=""
         />
           <ul className="w-1/2 pl-5 h-52 max-h-52 flex flex-col justify-around">
+            {data.postType === 'ask' && <li className="text-black">Who: {data.who}</li>}
             <li className="text-black">Type: {data.type}</li>
             <li className="text-black ">Quantity: {data.quantity}</li>
             <li className="text-black ">Condition: {data.condition}</li>
@@ -55,7 +56,7 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
 
       </div>
 
-      <button onClick={() => modalDispatch({ type: `ACCOUNT_MODAL-${data.postType}`, payload: data._id })} className="text-black text-center cursor-pointer absolute -right-2 -top-2 border p-2 hover:shadow-lg rounded-lg"><img className="w-10 mx-auto my-1" src="./imgs/editPost.png" alt="Edit Post Icon"/></button>
+      <button onClick={() => modalDispatch({ type: `ACCOUNT_MODAL-${data.postType}`, payload: data._id })} className="text-black text-center cursor-pointer absolute -right-2 -top-2 border p-2 hover:shadow-lg rounded-lg bg-white"><img className="w-10 mx-auto my-1 " src="./imgs/editPost.png" alt="Edit Post Icon"/></button>
       </div>
     </div>
   );

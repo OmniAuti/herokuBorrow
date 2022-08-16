@@ -184,11 +184,18 @@ const getAccountBookmarked = async (req,res) => {
 }
 
 const editAccountOffered = async (req, res) => {
-  
 const item = req.body
 var id = item._id;
 delete item._id;
  const editItem = await Items.findOneAndUpdate({_id: id}, item)
+ res.json({msg:'success', editItem})
+}
+
+const editAccountAsked = async (req,res) => {
+  const item = req.body
+var id = item._id;
+delete item._id;
+ const editItem = await AskItems.findOneAndUpdate({_id: id}, item)
  res.json({msg:'success', editItem})
 }
 
@@ -205,5 +212,6 @@ module.exports = {
   deleteBookmark,
   getAccountBookmarked,
   getSingleItemAsk,
-  editAccountOffered
+  editAccountOffered,
+  editAccountAsked
 };

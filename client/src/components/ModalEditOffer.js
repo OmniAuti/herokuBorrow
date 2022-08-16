@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import { editAccountOffered } from "../api/api";
 
 
-const ModalEditOffer = ({data,handleItemRefreshAfterEdit,handleOpenModal,handleCloseModal, user}) => {
+const ModalEditOffer = ({data,handleItemRefreshAfterEdit,handleCloseModal}) => {
 
       const [formData, setFormData] = useState({
           type: "",
@@ -33,9 +33,6 @@ const ModalEditOffer = ({data,handleItemRefreshAfterEdit,handleOpenModal,handleC
         }, [data])
     
       //  APPENDING FIREBASE USER ID ONTO ITEM POST
-      useEffect(() => {
-        handleUIDChange(user);
-      }, [formData.type]);
     
       const handleTypeChange = (e) => {
         setFormData({ ...formData, type: e.target.value });
@@ -82,26 +79,14 @@ const ModalEditOffer = ({data,handleItemRefreshAfterEdit,handleOpenModal,handleC
           console.log(err);
         }
       };
-    
-
-      const handleUIDChange = async (user) => {
-        if (!user) return;
-        try {
-          if (user.uid === undefined) return;
-          var uid = await user.uid;
-          setFormData({ ...formData, _uid: uid });
-        } catch (e) {
-          console.log(e);
-        }
-      };
-    
-
 
     return (
         <form
                 onSubmit={(e) => handleSubmit(e)}
                 className="text-black w-full sm:w-1/2 mx-auto"
               >
+                <legend className="text-black text-xl underline underline-offset-1">Offer Item Edit: </legend>
+
                 <label htmlFor="type">Type of supplies</label>
                 <select
                   id="type"

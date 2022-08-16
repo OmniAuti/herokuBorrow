@@ -3,7 +3,7 @@ import AccountSupplyLoading from "./AccountSupplyLoading";
 
 const AccountDashboardOffered = ({ accountItemsData, isItemsLoaded, modalDispatch }) => {
   return (
-    <div className="row-start-4 row-end-6 h-[400px] md:h-fit -ml-5 sm:-ml-0 w-screen sm:w-full md:row-start-1 md:row-end-4 md:min-h-[400px] max-h-[500px] col-start-1 sm:col-start-2 md:col-start-5 col-end-8 bg-slate-400 rounded-sm overflow-scroll relative">
+    <div className="row-start-4 row-end-6 h-[400px] md:h-fit -ml-5 sm:-ml-0 w-screen sm:w-full lg:row-start-1 lg:row-end-4 lg:min-h-[400px] max-h-[500px] col-start-1 sm:col-start-2 lg:col-start-5 col-end-8 bg-slate-400 rounded-sm overflow-scroll relative">
       <p className="w-full text-2xl text-center py-2 sticky top-0 bg-slate-400 z-10">
         Offered
       </p>
