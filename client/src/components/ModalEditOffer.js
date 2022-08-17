@@ -4,7 +4,8 @@ import { editAccountOffered } from "../api/api";
 const ModalEditOffer = ({
   data,
   handleItemRefreshAfterEdit,
-  handleCloseModal,
+  handleEditSuccessModalClose,
+  handleEditSuccess
 }) => {
   const [formData, setFormData] = useState({
     type: "",
@@ -60,6 +61,7 @@ const ModalEditOffer = ({
     e.preventDefault();
     try {
       await editAccountOffered(formData);
+      handleEditSuccess()
       handleItemRefreshAfterEdit();
       e.target.reset();
       setFormData({
@@ -75,8 +77,6 @@ const ModalEditOffer = ({
         _id: "",
       });
 
-      // MAKE SOMETHING IN HERE THAT LEAVES A CHECK MARK FOR SUCCESSFUL EDIT BEFORE CLOSE
-      handleCloseModal();
     } catch (err) {
       console.log(err);
     }

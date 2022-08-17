@@ -115,15 +115,15 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
             <li className="text-black">Zipcode: {data.zipcode}</li>
           </ul>
         </div>
-        <div className="p-5">
-          {data.postType === "offer" && (
+        {data.postType === "offer" && ( <div className="pt-5 pl-5">
+          
             <ul>
               <li className="text-black m-1 clear-left">
                 Description: {data.description}
               </li>
             </ul>
-          )}
-        </div>
+          
+        </div>)}
 
         <button
           onClick={() =>

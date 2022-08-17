@@ -4,10 +4,10 @@ import { editAccountAsked } from "../api/api";
 const ModalEditAsk = ({
   data,
   handleItemRefreshAfterEdit,
-  handleCloseModal
+  handleEditSuccessModalClose,
+  handleEditSuccess
 }) => {
-
-  const [newCondition, setNewCondition] = useState([])
+  const [newCondition, setNewCondition] = useState([]);
 
   const [askObj, setAskObj] = useState({
     who: "",
@@ -48,25 +48,24 @@ const ModalEditAsk = ({
 
   const handleCheckBoxes = (e) => {
     if (e.target.checked === true) {
-      setNewCondition([ ...newCondition, `${e.target.value}, `],
-      );
+      setNewCondition([...newCondition, `${e.target.value}, `]);
     } else if (e.target.checked === false) {
       const idx = newCondition.indexOf(`${e.target.value}, `);
-      const arr = newCondition
+      const arr = newCondition;
       arr.splice(idx, 1);
-      setNewCondition( [arr]);
+      setNewCondition([arr]);
     }
-    console.log(newCondition, 'check box ')
+    console.log(newCondition, "check box ");
   };
 
   const handleCommas = async () => {
-    if (newCondition.length <= 0) return
-    var arr = newCondition
+    if (newCondition.length <= 0) return;
+    var arr = newCondition;
     arr[arr.length - 1] = arr[arr.length - 1].slice(
       0,
       arr[arr.length - 1].length - 2
     );
-    setAskObj(askObj.condition = arr);
+    setAskObj((askObj.condition = arr));
   };
 
   const handleAskSubmit = async (e) => {
@@ -75,8 +74,9 @@ const ModalEditAsk = ({
       if (newCondition.length > 0) {
         await handleCommas();
       }
-      await editAccountAsked(askObj)
-      handleItemRefreshAfterEdit()
+      await editAccountAsked(askObj);
+      handleEditSuccess()
+      handleItemRefreshAfterEdit();
       e.target.reset();
       setAskObj({
         who: "",
@@ -90,15 +90,16 @@ const ModalEditAsk = ({
         _id: "",
       });
 
-      handleCloseModal()
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <form className="text-black " onSubmit={(e) => handleAskSubmit(e)}>
-      <legend className="text-black text-xl underline underline-offset-1 mb-2">Ask Item Edit: </legend>
+   <form className="text-black " onSubmit={(e) => handleAskSubmit(e)}>
+      <legend className="text-black text-xl underline underline-offset-1 mb-2">
+        Ask Item Edit:{" "}
+      </legend>
       <label htmlFor="who" className="text-black mb-">
         I am a . . .
       </label>
@@ -110,15 +111,9 @@ const ModalEditAsk = ({
         required
         value={askObj.who}
       >
-        <option value="">
-          Who Are You?
-        </option>
-        <option  value="teacher">
-          Teacher
-        </option>
-        <option value="parent">
-          Parent
-        </option>
+        <option value="">Who Are You?</option>
+        <option value="teacher">Teacher</option>
+        <option value="parent">Parent</option>
       </select>
       <label htmlFor="type" className=" text-black">
         In need of a . . .
@@ -140,9 +135,11 @@ const ModalEditAsk = ({
         <option value="graphing paper">Graphing Paper</option>
         <option value="colored paper">Colored Paper</option>
         <option value="notecard">Notecards</option>
-        <option value="flashcard">Flashcards</option>      
-        <option value="miscellaneous study material">Miscellaneous Study Material</option>
-  
+        <option value="flashcard">Flashcards</option>
+        <option value="miscellaneous study material">
+          Miscellaneous Study Material
+        </option>
+
         <option value="sticky note">Sticky Note</option>
         <option value="folder">Folder</option>
         <option value="binder">Binder</option>
@@ -156,7 +153,7 @@ const ModalEditAsk = ({
         <option value="paint brush">Paint Brush</option>
         <option value="calculator">Calculator</option>
         <option value="book">Book</option>
-          <option value="miscellaneous books">Miscellaneous Books</option>
+        <option value="miscellaneous books">Miscellaneous Books</option>
       </select>
       <label htmlFor="quantity" className=" text-black">
         Quantity
@@ -172,9 +169,11 @@ const ModalEditAsk = ({
         value={askObj.quantity}
         onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
       />
-   <hr className="mt-2"></hr>
-      <p className=" text-black my-2">Currently Asked For Condition: {data.condition}</p>
-   
+      <hr className="mt-2"></hr>
+      <p className=" text-black my-2">
+        Currently Asked For Condition: {data.condition}
+      </p>
+
       <hr className="mb-2"></hr>
 
       <label htmlFor="condition" className=" text-black underline">

@@ -96,7 +96,7 @@ const SingleItemFocusModal = ({
                     href={`https://www.unitedstateszipcodes.org/${data.zipcode}/`}
                     target="_blank"
                   >
-                    <span className="text-black font-light underline underline-offset-2 hover:underline-offset-0">
+                    <span className="text-black font-light underline underline-offset-2 hover:underline-offset-1">
                       {data.zipcode}
                     </span>
                   </a>
