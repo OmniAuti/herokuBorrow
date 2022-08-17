@@ -151,7 +151,7 @@ const Header = () => {
               </p>
             </Link>
           </li>
-          <li className="cursor-pointer grow flex items-center justify-center group order-2 sm:order-none">
+          <li className="cursor-pointer grow flex items-center justify-center group hover:scale-105 order-2 sm:order-none">
             <Link
               className="grow flex h-full items-center justify-center"
               to="/dashboard"

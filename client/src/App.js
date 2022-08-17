@@ -68,9 +68,7 @@ function App() {
 
   // USED TO CLOSE MODAL ON PAGE CHANGE
   useEffect(() => {
-    if (activeModal === true) {
       handleCloseModal();
-    }
   }, [location.pathname]);
   // REFRESH THE DATA TO SHOW CHANGING BOOKMARK
   useEffect(() => {

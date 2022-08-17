@@ -149,14 +149,14 @@ const AskItemForm = () => {
         />
         <label htmlFor="condition">Acceptable Condition</label>
 
-        <div className="flex flex-wrap items-center justify-around">
+        <div className="flex flex-wrap items-center justify-around mb-5">
           {checkBoxArr.map((checkbox) => {
             return (
-              <div className="my-5" key={checkbox.id}>
-                <label htmlFor={checkbox.value}>{checkbox.value}</label>
+              <div className="my-5 h-1 " key={checkbox.id}>
+                <label className=" mr-2" htmlFor={checkbox.value}>{checkbox.value}</label>
                 <input
                   onChange={(e) => handleCheckBoxes(e)}
-                  className="mx-2"
+                  className="my-1 mr-2 mb-3 p-1"
                   id={checkbox.value}
                   type="checkbox"
                   value={checkbox.value}

@@ -16,7 +16,6 @@ useEffect(() => {
     if (user === undefined) return
     getAccountItemsAsked({_uid: user.uid}).then(res => setAccountAskData(res.data))
     setIsAskLoaded(true)
-    console.log('yes')
     return () => {
         setIsAskLoaded(false)
     }

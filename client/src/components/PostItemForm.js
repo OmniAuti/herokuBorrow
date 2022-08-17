@@ -78,7 +78,7 @@ const PostItemForm = () => {
 
   return (
     <div className="text-center block sm:w-3/4 w-full lg:w-1/2 xl:w-1/3 xl:mx-auto mx-auto lg:mx-5 max-h-screen min-h-[750px]">
-      <h2 className="text-3xl mb-5 underline">Offer Some Supplies</h2>
+      <h2 className="text-3xl mb-5 underline">Offer Supplies</h2>
       <form
         onSubmit={(e) => handleSubmit(e)}
         className="text-black text-2xl"

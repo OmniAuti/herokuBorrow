@@ -83,14 +83,14 @@ const ModalEditOffer = ({data,handleItemRefreshAfterEdit,handleCloseModal}) => {
     return (
         <form
                 onSubmit={(e) => handleSubmit(e)}
-                className="text-black w-full sm:w-1/2 mx-auto"
+                className="text-black w-full mx-auto"
               >
-                <legend className="text-black text-xl underline underline-offset-1">Offer Item Edit: </legend>
+                <legend className="text-black text-xl mb-2 underline underline-offset-1">Offer Item Edit: </legend>
 
-                <label htmlFor="type">Type of supplies</label>
+                <label htmlFor="type" className="text-black">Type of supplies</label>
                 <select
                   id="type"
-                  className="w-full pl-1 text-center rounded-md border"
+                  className="w-full p-1 my-1 mb-3 text-center rounded-md border"
                   required
                   onChange={(e) => handleTypeChange(e)}
                   value={formData.type}
@@ -116,35 +116,35 @@ const ModalEditOffer = ({data,handleItemRefreshAfterEdit,handleCloseModal}) => {
                   <option value="crayon">Crayon</option>
                   <option value="calculator">Calculator</option>
                 </select>
-                <label htmlFor="description">Description</label>
+                <label htmlFor="description" className="text-black">Description</label>
                 <input
                   id="description"
                   onChange={(e) => handleDescriptionChange(e)}
-                  className="block w-full pl-1 text-center rounded-md border"
+                  className="block w-full p-1 my-1 mb-3 text-center rounded-md border"
                   type="text"
                   name="type"
                   maxLength="49"
                   value={formData.description}
                   placeholder="This has . . ."
                 />
-                <label htmlFor="quantity">Quantity</label>
+                <label htmlFor="quantity" className="text-black">Quantity</label>
                 <input
                   id="quantity"
                   required
                   onChange={(e) => handleQuantityChange(e)}
-                  className="block w-1/2 mx-auto pl-1 text-center rounded-md border"
+                  className="block w-1/2 mx-auto p-1 my-1 mb-3 text-center rounded-md border"
                   type="number"
                   name="quantity"
                   max="999"
                   min="1"
                   value={formData.quantity}
                 />
-                <label htmlFor="condition">Condition</label>
+                <label htmlFor="condition" className="text-black">Condition</label>
                 <select
                   id="condition"
                   required
                   onChange={(e) => handleConditionChange(e)}
-                  className="block w-full pl-1 text-center rounded-md border"
+                  className="block w-full p-1 my-1 mb-3 text-center rounded-md border"
                   value={formData.condition}
                 >
                   <option default value="">
@@ -157,24 +157,24 @@ const ModalEditOffer = ({data,handleItemRefreshAfterEdit,handleCloseModal}) => {
                   <option value="moderately used">Moderately Used</option>
                   <option value="heavily used">Heavily Used</option>
                 </select>
-                <label htmlFor="location">General Location</label>
+                <label htmlFor="location" className="text-black">General Location</label>
                 <input
                   id="location"
                   required
                   onChange={(e) => handleLocationChange(e)}
-                  className="block w-full pl-1 text-center rounded-md border"
+                  className="block w-full p-1 my-1 mb-3 text-center rounded-md border"
                   type="text"
                   name="location"
                   maxLength="49"
                   value={formData.location}
                   placeholder="Somewhere City"
                 />
-                <label htmlFor="zipcode">Zipcode</label>
+                <label htmlFor="zipcode" className="text-black">Zipcode</label>
                 <input
                   id="zipcode"
                   required
                   onChange={(e) => handleZIPChange(e)}
-                  className="block w-full pl-1 text-center rounded-md"
+                  className="block w-full p-1 my-1 mb-3 text-center rounded-md border"
                   type="text"
                   pattern="[0-9]{5}"
                   maxLength="5"
@@ -185,7 +185,7 @@ const ModalEditOffer = ({data,handleItemRefreshAfterEdit,handleCloseModal}) => {
                 <input
                   value="Save Changes"
                   type="submit"
-                  className="text-white cursor-pointer bg-sky-900 px-10 py-2 mb-2 mt-5 rounded-md w-full"
+                  className="bg-sky-500 w-full h-10 my-2 rounded-sm hover:bg-sky-900 cursor-pointer"
                 />
               </form>
     )

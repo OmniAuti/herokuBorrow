@@ -6,6 +6,9 @@ const ModalEditAsk = ({
   handleItemRefreshAfterEdit,
   handleCloseModal
 }) => {
+
+  const [newCondition, setNewCondition] = useState([])
+
   const [askObj, setAskObj] = useState({
     who: "",
     type: "",
@@ -45,31 +48,33 @@ const ModalEditAsk = ({
 
   const handleCheckBoxes = (e) => {
     if (e.target.checked === true) {
-      setAskObj({
-        ...askObj,
-        condition: [...askObj.condition, `${e.target.value}, `],
-      });
+      setNewCondition([ ...newCondition, `${e.target.value}, `],
+      );
     } else if (e.target.checked === false) {
-      const idx = askObj.condition.indexOf(`${e.target.value}, `);
-      const arr = askObj.condition;
+      const idx = newCondition.indexOf(`${e.target.value}, `);
+      const arr = newCondition
       arr.splice(idx, 1);
-      setAskObj({ ...askObj, condition: arr });
+      setNewCondition( [arr]);
     }
+    console.log(newCondition, 'check box ')
   };
 
   const handleCommas = async () => {
-    var arr = askObj.condition;
+    if (newCondition.length <= 0) return
+    var arr = newCondition
     arr[arr.length - 1] = arr[arr.length - 1].slice(
       0,
       arr[arr.length - 1].length - 2
     );
-    setAskObj({ ...askObj, condition: arr });
+    setAskObj(askObj.condition = arr);
   };
 
   const handleAskSubmit = async (e) => {
     e.preventDefault();
     try {
-      await handleCommas();
+      if (newCondition.length > 0) {
+        await handleCommas();
+      }
       await editAccountAsked(askObj)
       handleItemRefreshAfterEdit()
       e.target.reset();
@@ -93,7 +98,7 @@ const ModalEditAsk = ({
 
   return (
     <form className="text-black " onSubmit={(e) => handleAskSubmit(e)}>
-      <legend className="text-black text-xl underline underline-offset-1">Ask Item Edit: </legend>
+      <legend className="text-black text-xl underline underline-offset-1 mb-2">Ask Item Edit: </legend>
       <label htmlFor="who" className="text-black mb-">
         I am a . . .
       </label>
@@ -101,7 +106,7 @@ const ModalEditAsk = ({
         onChange={(e) => setAskObj({ ...askObj, who: e.target.value })}
         id="who"
         name="who"
-        className="w-full border text-black text-center rounded-md"
+        className="w-full border my-1 mb-3 p-1 text-black text-center rounded-md"
         required
         value={askObj.who}
       >
@@ -121,7 +126,7 @@ const ModalEditAsk = ({
       <select
         value={askObj.type}
         id="type"
-        className="w-full text-black border text-center rounded-md"
+        className="w-full my-1 mb-3 p-1 text-black border text-center rounded-md"
         required
         onChange={(e) => setAskObj({ ...askObj, type: e.target.value })}
       >
@@ -152,7 +157,7 @@ const ModalEditAsk = ({
       <input
         id="quantity"
         required
-        className="block border w-1/2 mx-auto text-center text-black rounded-md"
+        className="block border my-1 mb-3 p-1 w-1/2 mx-auto text-center text-black rounded-md"
         type="number"
         name="quantity"
         max="999"
@@ -160,25 +165,25 @@ const ModalEditAsk = ({
         value={askObj.quantity}
         onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
       />
-
-      <p className=" text-black">Current Condition: {data.condition}</p>
-      <hr className="mt-2"></hr>
-
-      <label htmlFor="condition" className=" text-black">
-        Acceptable Condition
-      </label>
+   <hr className="mt-2"></hr>
+      <p className=" text-black my-2">Currently Asked For Condition: {data.condition}</p>
+   
       <hr className="mb-2"></hr>
 
-      <div className="flex flex-wrap items-center justify-around">
+      <label htmlFor="condition" className=" text-black underline">
+        Update Asked For Condition:
+      </label>
+
+      <div className="flex flex-wrap items-center justify-around mt-1">
         {checkBoxArr.map((checkbox) => {
           return (
             <div className="" key={checkbox.id}>
-              <label className="text-black" htmlFor={checkbox.value}>
+              <label className="text-black mr-2" htmlFor={checkbox.value}>
                 {checkbox.value}
               </label>
               <input
                 onChange={(e) => handleCheckBoxes(e)}
-                className="text-black"
+                className="text-black my-1 mr-2 mb-3 p-1"
                 id={checkbox.value}
                 type="checkbox"
                 value={checkbox.value}
@@ -193,7 +198,7 @@ const ModalEditAsk = ({
       <input
         id="location"
         required
-        className="block w-full text-black text-center border rounded-md"
+        className="block w-full my-1 mb-3 p-1 text-black text-center border rounded-md"
         type="text"
         name="location"
         maxLength="49"
@@ -207,7 +212,7 @@ const ModalEditAsk = ({
       <input
         id="zipcode"
         required
-        className="block w-full border text-center rounded-md"
+        className="block my-1 mb-3 p-1 w-full border text-center rounded-md"
         type="text"
         pattern="[0-9]{5}"
         maxLength="5"
@@ -219,7 +224,7 @@ const ModalEditAsk = ({
       <input
         value="Save Changes"
         type="submit"
-        className="text-white cursor-pointer bg-sky-900 px-10 py-2 my-5 rounded-md"
+        className="bg-sky-500 w-full h-10 my-2 rounded-sm hover:bg-sky-900 cursor-pointer"
       />
     </form>
   );

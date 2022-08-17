@@ -50,9 +50,9 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
           </ul>
         </div>
         <div className="px-5">
-        <ul>
+       {data.postType === 'offer' && <ul>
           <li className="text-black m-1 clear-left">Description: {data.description}</li>
-        </ul>
+        </ul>}
 
       </div>
 
