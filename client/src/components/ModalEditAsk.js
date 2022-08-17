@@ -136,20 +136,27 @@ const ModalEditAsk = ({
         <option value="ruler">Ruler</option>
         <option value="protractor">Protractor</option>
         <option value="notebook">Notebook</option>
+        <option value="journal">Journal</option>
         <option value="graphing paper">Graphing Paper</option>
         <option value="colored paper">Colored Paper</option>
-        <option value="notecard/flashcard">Notecard/Flashcard</option>
+        <option value="notecard">Notecards</option>
+        <option value="flashcard">Flashcards</option>      
+        <option value="miscellaneous study material">Miscellaneous Study Material</option>
+  
         <option value="sticky note">Sticky Note</option>
         <option value="folder">Folder</option>
         <option value="binder">Binder</option>
-        <option value="backpack">Backpack</option>
+        <option value="backpack">Backpack/Bookbag</option>
         <option value="pencil pouch/case">Pencil Pouch/Case</option>
         <option value="lunchbox">Lunchbox</option>
         <option value="highlighter">Highlighter</option>
         <option value="marker">Marker</option>
         <option value="colored pencil">Colored Pencil</option>
         <option value="crayon">Crayon</option>
+        <option value="paint brush">Paint Brush</option>
         <option value="calculator">Calculator</option>
+        <option value="book">Book</option>
+          <option value="miscellaneous books">Miscellaneous Books</option>
       </select>
       <label htmlFor="quantity" className=" text-black">
         Quantity

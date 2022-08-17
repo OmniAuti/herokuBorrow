@@ -2,26 +2,91 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
   var cardBgColor;
 
   switch (data.type) {
+    // THINGS THAT MARK OR WRITE
+
     case "pencil":
-      cardBgColor = "#fee2e2";
+      cardBgColor = "#fecaca";
       break;
-    case "notebook":
-      cardBgColor = "#dbeafe";
+    case "pen":
+      cardBgColor = "#fecaca";
       break;
     case "highlighter":
-      cardBgColor = "#dcfce7";
+      cardBgColor = "#fecaca";
       break;
+    case "marker":
+      cardBgColor = "#fecaca";
+      break;
+    case "colored pencil":
+      cardBgColor = "#fecaca";
+      break;
+    case "crayon":
+      cardBgColor = "#fecaca";
+      break;
+    case "paint brush":
+      cardBgColor = "#fecaca";
+      break;
+    case "highlighter":
+      cardBgColor = "#fecaca";
+      break;
+    // HOLDERS OF SUPPLIES
     case "binder":
-      cardBgColor = "#fef9ce";
+      cardBgColor = "#fef08a";
       break;
+    case "folder":
+      cardBgColor = "#fef08a";
+      break;
+    case "pencil pouch/case":
+      cardBgColor = "#fef08a";
+      break;
+    case "lunchbox":
+      cardBgColor = "#fef08a";
+      break;
+    //PAPER
+    case "notebook":
+      cardBgColor = "#bae6fd";
+      break;
+    case "journal":
+      cardBgColor = "#bae6fd";
+      break;
+    case "colored paper":
+      cardBgColor = "#bae6fd";
+      break;
+    case "graphing paper":
+      cardBgColor = "#bae6fd";
+      break;
+    case "sticky note":
+      cardBgColor = "#bae6fd";
+      break;
+    case "notecard":
+      cardBgColor = "#bae6fd";
+      break;
+    // STUDY MATERIAL
+    case "flashcard":
+      cardBgColor = "#bbf7d0";
+      break;
+    case "miscellaneous study material":
+      cardBgColor = "#bbf7d0";
+      break;
+    //BOOKS
+    case "book":
+      cardBgColor = "#1e293b";
+      break;
+    case "miscellaneous books":
+      cardBgColor = "#1e293b";
+      break;
+    // TOOLS
     case "ruler":
-      cardBgColor = "#fce7f3";
+      cardBgColor = "#fed7aa";
       break;
     case "calculator":
-      cardBgColor = "#f1f5f9";
+      cardBgColor = "#fed7aa";
       break;
+    case "protractor":
+      cardBgColor = "#fed7aa";
+      break;
+    // BACKPACK
     case "backpack":
-      cardBgColor = "#f3e8ff";
+      cardBgColor = "#e9d5ff";
       break;
     default:
       cardBgColor = "#fff";
@@ -33,15 +98,16 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
       style={{ backgroundColor: cardBgColor }}
     >
       <div className="flex justify-around flex-col bg-white w-full h-full pb-5 rounded-md relative overflow-hidden">
-      <div className="flex justify-around w-full p-5">
-        
-        <img
-          className="max-h-52 h-52 w-1/2 max-w-1/2 object-contain"
-          src="./imgs/astockphoto.jpg"
-          alt=""
-        />
+        <div className="flex justify-around w-full p-5">
+          <img
+            className="max-h-52 h-52 w-1/2 max-w-1/2 object-contain"
+            src="./imgs/astockphoto.jpg"
+            alt=""
+          />
           <ul className="w-1/2 pl-5 h-52 max-h-52 flex flex-col justify-around">
-            {data.postType === 'ask' && <li className="text-black">Who: {data.who}</li>}
+            {data.postType === "ask" && (
+              <li className="text-black">Who: {data.who}</li>
+            )}
             <li className="text-black">Type: {data.type}</li>
             <li className="text-black ">Quantity: {data.quantity}</li>
             <li className="text-black ">Condition: {data.condition}</li>
@@ -49,14 +115,31 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
             <li className="text-black">Zipcode: {data.zipcode}</li>
           </ul>
         </div>
-        <div className="px-5">
-       {data.postType === 'offer' && <ul>
-          <li className="text-black m-1 clear-left">Description: {data.description}</li>
-        </ul>}
+        <div className="p-5">
+          {data.postType === "offer" && (
+            <ul>
+              <li className="text-black m-1 clear-left">
+                Description: {data.description}
+              </li>
+            </ul>
+          )}
+        </div>
 
-      </div>
-
-      <button onClick={() => modalDispatch({ type: `ACCOUNT_MODAL-${data.postType}`, payload: data._id })} className="text-black text-center cursor-pointer absolute -right-2 -top-2 border p-2 hover:shadow-lg rounded-lg bg-white"><img className="w-10 mx-auto my-1 " src="./imgs/editPost.png" alt="Edit Post Icon"/></button>
+        <button
+          onClick={() =>
+            modalDispatch({
+              type: `ACCOUNT_MODAL-${data.postType}`,
+              payload: data._id,
+            })
+          }
+          className="text-black text-center cursor-pointer absolute -right-2 -top-2 border p-2 hover:shadow-lg rounded-lg bg-white"
+        >
+          <img
+            className="w-10 mx-auto my-1 "
+            src="./imgs/editPost.png"
+            alt="Edit Post Icon"
+          />
+        </button>
       </div>
     </div>
   );
