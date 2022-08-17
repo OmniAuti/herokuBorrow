@@ -16,8 +16,8 @@ const About = () => {
           <p className="font-thin text-lg z-10">
             A simple request from a student can often seem like nothing, but for
             some, it may represent an underlying problem that faces families
-            around the country. Proper supplies for the classroom can be
-            expensive and unatainable as the school year carries on. We're here
+            around the country. Getting supplies for the classroom can be an
+            expensive and simply unatainable as the school year carries on. We're here
             to connect those that can afford to give a little to help those that
             need a little.
           </p>
@@ -25,7 +25,7 @@ const About = () => {
           <p className="font-thin text-lg z-10">
             In the United States there are an estimated 11.6 million children
             living below the poverty line. For these families, purchasing school
-            supplies is not something that fits in their budget.
+            supplies is not something that fits in the budget.
           </p>
         </div>
 

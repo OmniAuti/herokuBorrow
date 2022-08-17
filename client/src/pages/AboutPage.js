@@ -19,10 +19,10 @@ const AboutPage = () => {
             <p className="font-thin text-lg">
               A simple request from a student can often seem like nothing, but
               for some, it may represent an underlying problem that faces
-              families around the country. Proper supplies for the classroom can
-              be expensive and unatainable as the school year carries on. We're
-              here to connect those that can afford to give a little to help
-              those that need a little.
+              families around the country. Getting supplies for the classroom
+              can be an expensive and simply unatainable as the school year
+              carries on. We're here to connect those that can afford to give a
+              little to help those that need a little.
             </p>
             <br></br>
             <p className="font-thin text-lg">
@@ -189,7 +189,6 @@ const AboutPage = () => {
                 spend $1000 or more on supplies for their classrooms.
               </p>
               <br></br>
-
               <p>
                 <i>Can't teachers just write off the expenses?</i>
               </p>
@@ -205,9 +204,9 @@ const AboutPage = () => {
                 </a>{" "}
                 each year. It's unacceptable that we ask teachers to spend their
                 own money to provide a quality learning enviroment. Teachers
-                should be focused on helping students reach their full potential
-                and not worrying if they have the supplies to complete each
-                lesson.
+                should be focused on helping students reach their full
+                potential, not worrying if they have the supplies to
+                complete each lesson.
                 <br></br>
               </p>
             </div>
