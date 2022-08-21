@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AccountSettingsChangePasswordForm = ( {handleSettinsChangeSubmit }) => {
+const AccountSettingsChangePasswordForm = ( {handleSettingsChangeSubmit }) => {
 
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -8,17 +8,13 @@ const AccountSettingsChangePasswordForm = ( {handleSettinsChangeSubmit }) => {
     const handleSubmit = async (e) => {
       try {
         e.preventDefault();
-        handleSettinsChangeSubmit(e, newPassword, confirmPassword);
+        await handleSettingsChangeSubmit(newPassword, confirmPassword);
         setNewPassword("");
         setConfirmPassword("");
       } catch (e) {
         console.log(e);
       }
     };
-  
-
-
-
 
   return (
     <form className="h-full text-black" onSubmit={(e) => handleSubmit(e)}>
@@ -30,7 +26,7 @@ const AccountSettingsChangePasswordForm = ( {handleSettinsChangeSubmit }) => {
         className="block my-1 mb-3 p-1 w-full border text-center rounded-md text-black"
         value={newPassword}
         onChange={(e) => setNewPassword(e.target.value)}
-        type="email"
+        type="password"
         placeholder="New Password"
       />
       <label className="pl-2 text-black">Re-enter Password</label>

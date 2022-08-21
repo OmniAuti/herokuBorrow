@@ -6,7 +6,7 @@ const AccountSettingsModal = ({
   modalState,
   settingsDispatch,
   userEmail,
-  handleSettinsChangeSubmit,
+  handleSettingsChangeSubmit,
   editSuccess,
 }) => {
   return (
@@ -27,7 +27,9 @@ const AccountSettingsModal = ({
                   src="/imgs/postsavedCheck.svg"
                   alt="Post Edit Saved Successfully Icon"
                 />
-                <p className="text-black text-center text-2xl my-5">Change Successful!</p>
+                <p className="text-black text-center text-2xl my-5">
+                  Change Successful!
+                </p>
                 <button
                   onClick={() => settingsDispatch({ type: "CLOSE" })}
                   className="w-full h-10 bg-gray-400 rounded-sm rounded-bl-sm hover:bg-gray-700"
@@ -49,12 +51,14 @@ const AccountSettingsModal = ({
                 )}
                 {modalState.settingsType === "email" && (
                   <AccountSettingsChangeEmailForm
-                    handleSettinsChangeSubmit={handleSettinsChangeSubmit}
+                    handleSettingsChangeSubmit={handleSettingsChangeSubmit}
                     userEmail={userEmail}
                   />
                 )}
                 {modalState.settingsType === "password" && (
-                  <AccountSettingsChangePasswordForm />
+                  <AccountSettingsChangePasswordForm
+                    handleSettingsChangeSubmit={handleSettingsChangeSubmit}
+                  />
                 )}
                 {modalState.settingsType === "delete" && (
                   <AccountSettingsDeleteUserForm />

@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-const AccountSettingsChangeEmailForm = ({ handleSettinsChangeSubmit }) => {
+const AccountSettingsChangeEmailForm = ({ handleSettingsChangeSubmit }) => {
   const [newEmail, setNewEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await handleSettinsChangeSubmit(newEmail, confirmPassword);
+      await handleSettingsChangeSubmit(newEmail, confirmPassword);
       setNewEmail("");
       setConfirmPassword("");
     } catch (e) {

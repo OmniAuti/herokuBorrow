@@ -57,9 +57,9 @@ const AuthContextProvider = ({ children }) => {
     return reauthenticateWithCredential(auth.currentUser, cred)
   }
 
-  // const updateUserPassword = (newPass) => {
-  //   return updatePassword()
-  // }
+  const updateUserPassword = (newPass) => {
+    return updatePassword(auth.currentUser, newPass)
+  }
 
   const updateUserEmail = (newEmail) => {
     return updateEmail(auth.currentUser, newEmail)
@@ -67,7 +67,7 @@ const AuthContextProvider = ({ children }) => {
 
 
   return (
-    <UserContext.Provider value={{ user, createUser, logInUser, logOutUser, reAuth, updateUserEmail,  }}>
+    <UserContext.Provider value={{ user, createUser, logInUser, logOutUser, reAuth, updateUserEmail, updateUserPassword }}>
       {children}
     </UserContext.Provider>
   );

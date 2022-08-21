@@ -18,7 +18,7 @@ const settingsReducer = (state, action) => {
 };
 
 const AccountSettings = () => {
-  const { user, updateUserEmail, reAuth } = UserAuth();
+  const { user, updateUserEmail, updateUserPassword, reAuth } = UserAuth();
   const [submitEdit, setSubmitEdit] = useState(false);
   const [editSuccess, setEditSuccess] = useState(false)
 
@@ -43,7 +43,7 @@ const AccountSettings = () => {
     setUserEmail(user.email);
   }, [user, submitEdit]);
 
-  const handleSettinsChangeSubmit = async (newInfo, rePassword) => {
+  const handleSettingsChangeSubmit = async (newInfo, rePassword) => {
     const cred = await handleReAuth(rePassword);
     await reAuth(cred);
     if (state.settingsType === "email") {
@@ -51,9 +51,11 @@ const AccountSettings = () => {
       setSubmitEdit(!submitEdit);
       setEditSuccess(true)
     }
-    // if (state.settingsType === 'password') {
-    //   updateUserEmail(newEmail);
-    // }
+    if (state.settingsType === 'password') {
+      await updateUserPassword(newInfo);
+      setSubmitEdit(!submitEdit);
+      setEditSuccess(true)
+    }
   };
 
   return (
@@ -64,7 +66,7 @@ const AccountSettings = () => {
         settingsDispatch={settingsDispatch}
         modalState={state}
         userEmail={userEmail}
-        handleSettinsChangeSubmit={handleSettinsChangeSubmit}
+        handleSettingsChangeSubmit={handleSettingsChangeSubmit}
         editSuccess={editSuccess}
       />
 
