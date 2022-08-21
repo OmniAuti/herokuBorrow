@@ -28,7 +28,9 @@ const AccountSettingsModal = ({
                   alt="Post Edit Saved Successfully Icon"
                 />
                 <p className="text-black text-center text-2xl my-5">
-                  Change Successful!
+                  {modalState.settingsType === "email" && "Email Change Successful!"}
+                  {modalState.settingsType === "password" && "Password Change Successful"}
+                  {modalState.settingsType === "delete" && "Account Deleted. Goodbye :("}
                 </p>
                 <button
                   onClick={() => settingsDispatch({ type: "CLOSE" })}

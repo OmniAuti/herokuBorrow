@@ -199,6 +199,14 @@ delete item._id;
  res.json({msg:'success', editItem})
 }
 
+const deleteAllAccountData = async (req,res) => {
+  const uid = req.body.uid
+  await Items.deleteMany({_uid: uid})
+  await AskItems.deleteMany({_uid: uid})
+  await BookmarkSchema.deleteMany({_uid: uid})
+  res.json({msg:'All Deleted'})
+}
+
 module.exports = {
   getAllItems,
   getSingleItem,
@@ -213,5 +221,6 @@ module.exports = {
   getAccountBookmarked,
   getSingleItemAsk,
   editAccountOffered,
-  editAccountAsked
+  editAccountAsked,
+  deleteAllAccountData
 };

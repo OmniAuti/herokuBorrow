@@ -47,7 +47,6 @@ const PostItemForm = () => {
     try {
       if (user.uid === undefined) return;
       var uid = await user.uid;
-      console.log(uid);
       setFormData({ ...formData, _uid: uid });
     } catch (e) {
       console.log(e);

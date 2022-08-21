@@ -3,6 +3,7 @@ import AccountSettingsModal from "../components/AccountSettingsModal";
 import { UserAuth } from "../context/AuthContext";
 import { useState, useEffect, useReducer } from "react";
 import { EmailAuthProvider } from "firebase/auth";
+import { deleteAllAccountData } from "../api/api";
 
 const settingsReducer = (state, action) => {
   switch (action.type) {
@@ -63,6 +64,9 @@ const AccountSettings = () => {
       setEditSuccess(true);
     }
     if (state.settingsType === "delete") {
+      const id = user.uid
+      console.log(id, 'in settings')
+      await deleteAllAccountData(user.uid)
       await deleteUserAndAllPosts();
       setSubmitEdit(!submitEdit);
       setEditSuccess(true);
