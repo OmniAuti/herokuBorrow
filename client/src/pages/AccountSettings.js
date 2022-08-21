@@ -71,7 +71,7 @@ const AccountSettings = () => {
 
   return (
     <section className="pt-10">
-      <p className="text-5xl underline underline-offset-3 text-center mb-10">
+      <p className="text-5xl underline underline-offset-3 text-center mb-10 font-light">
         Account Settings
       </p>
 
@@ -83,10 +83,9 @@ const AccountSettings = () => {
         editSuccess={editSuccess}
       />
 
-      <div className="flex justify-around">
-        <div className="text-center">
+      <div className="flex justify-around flex-col md:flex-row">
+        <div className="text-center my-10">
           <h2 className="my-2">Change Email</h2>
-          <p>Current Email: {userEmail}</p>
           <button
             onClick={() => settingsDispatch({ type: "EMAIL" })}
             className="bg-sky-500 px-5 py-2 rounded-sm mt-5 hover:bg-sky-900"
@@ -95,9 +94,8 @@ const AccountSettings = () => {
           </button>
         </div>
 
-        <div className="text-center">
+        <div className="text-center my-10">
           <h2 className="my-2">Change Password</h2>
-          <p className="text-black">Password</p>
 
           <button
             onClick={() => settingsDispatch({ type: "PASSWORD" })}
@@ -107,9 +105,8 @@ const AccountSettings = () => {
           </button>
         </div>
 
-        <div className="text-center">
+        <div className="text-center my-10">
           <h2 className="my-2">Delete Account</h2>
-          <p className="text-black">Delete</p>
           <button
             onClick={() => settingsDispatch({ type: "DELETE" })}
             className="bg-sky-500 px-5 py-2 rounded-sm mt-5 hover:bg-sky-900"

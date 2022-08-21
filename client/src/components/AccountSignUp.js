@@ -29,7 +29,6 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
       confirmedCheck.current.style.outline = '2px solid #22c55e'
       confirmedCheck.current.style.outlineOffset = '2px'
     }
-
   };
 
   return (
@@ -77,9 +76,10 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
           <input
             onChange={(e) => setPassword(e.target.value)}
             className="shadow-inner p-1 rounded-sm text-black my-1 border"
-            id="password-retype"
+            id="password-confirm"
             type="password"
             placeholder="Password"
+            minLength={6}
           />
         </div>
         <div className="flex flex-col my-1 py-2">
@@ -94,6 +94,7 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
             type="password"
             placeholder="Confirm Password"
             className="shadow-inner p-1 rounded-sm text-black my-1 border "
+            minLength={6}
           />
         </div>
 
