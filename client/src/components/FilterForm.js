@@ -23,11 +23,10 @@ const FilterForm = ({ dispatch }) => {
     await filteredQuery(filterQuery)
       .then((res) => setDataDump(res.data))
       .catch((err) => console.log(err));
-      console.log(dataDump)
+    console.log(dataDump);
   };
 
   const handleReset = async (e) => {
-
     const clearedSearch = {
       type: "",
       quantity: "",
@@ -52,16 +51,16 @@ const FilterForm = ({ dispatch }) => {
 
   return (
     <form
-      className="text-black flex flex-col items-center"
+      className="text-black flex w-full md:w-1/2 lg:w-full mx-auto flex-col items-center"
       onSubmit={(e) => handleQuery(e)}
     >
-      <div className="text-black flex justify-around items-center w-full mt-2">
-        <div className="flex flex-col items-center justify-around">
-          <label className="my-2" htmlFor="type">
+      <div className="text-black flex flex-col lg:flex-row justify-around items-center w-full mt-2">
+        <div className="flex flex-col items-center w-3/4 lg:w-fit justify-around">
+          <label className="my-2 text-xl" htmlFor="type">
             Type of supplies
           </label>
           <select
-            className="text-black text-2xl rounded-sm"
+            className="text-black text-2xl w-full text-center lg:w-11/12 rounded-sm"
             id="type"
             value={filterQuery.type}
             onChange={(e) =>
@@ -69,34 +68,42 @@ const FilterForm = ({ dispatch }) => {
             }
           >
             {" "}
-            <option value="">Select Type</option>
+            <option value="">Looking for a . . .</option>
             <option value="pencil">Pencil</option>
             <option value="pen">Pen</option>
             <option value="ruler">Ruler</option>
             <option value="protractor">Protractor</option>
             <option value="notebook">Notebook</option>
+            <option value="journal">Journal</option>
             <option value="graphing paper">Graphing Paper</option>
             <option value="colored paper">Colored Paper</option>
-            <option value="notecard/flashcard">Notecard/Flashcard</option>
+            <option value="notecard">Notecards</option>
+            <option value="flashcard">Flashcards</option>
+            <option value="miscellaneous study material">
+              Miscellaneous Study Material
+            </option>
             <option value="sticky note">Sticky Note</option>
             <option value="folder">Folder</option>
             <option value="binder">Binder</option>
-            <option value="backpack">Backpack</option>
+            <option value="backpack">Backpack/Bookbag</option>
             <option value="pencil pouch/case">Pencil Pouch/Case</option>
             <option value="lunchbox">Lunchbox</option>
             <option value="highlighter">Highlighter</option>
             <option value="marker">Marker</option>
             <option value="colored pencil">Colored Pencil</option>
             <option value="crayon">Crayon</option>
+            <option value="paint brush">Paint Brush</option>
             <option value="calculator">Calculator</option>
+            <option value="book">Book</option>
+            <option value="miscellaneous books">Miscellaneous Books</option>
           </select>
         </div>
-        <div className="flex flex-col items-center justify-around">
-          <label className="my-2" htmlFor="quantity">
+        <div className="flex flex-col items-center justify-around w-3/4 lg:w-fit">
+          <label className="my-2 text-xl" htmlFor="quantity">
             Quantity
           </label>
           <input
-            className="text-black pl-1 text-2xl rounded-sm"
+            className="text-black w-full  text-center lg:w-11/12 text-2xl rounded-sm"
             id="quantity"
             value={filterQuery.quantity}
             onChange={(e) => handleQuantitiy(e)}
@@ -108,12 +115,12 @@ const FilterForm = ({ dispatch }) => {
             placeholder="1"
           />
         </div>
-        <div className="flex flex-col items-center justify-around">
-          <label className="my-2" htmlFor="condition">
+        <div className="flex flex-col items-center justify-around w-3/4 lg:w-fit">
+          <label className="my-2 text-xl" htmlFor="condition">
             Condition
           </label>
           <select
-            className="text-black text-2xl rounded-sm"
+            className="text-black w-full text-center  lg:w-11/12 text-2xl rounded-sm"
             id="condition"
             value={filterQuery.condition}
             onChange={(e) =>
@@ -121,19 +128,19 @@ const FilterForm = ({ dispatch }) => {
             }
           >
             {" "}
-            <option value="">Select Condition</option>
+            <option value="">How Used?</option>
             <option value="new">New</option>
             <option value="slightly used">Slightly Used</option>
             <option value="moderately used">Moderately Used</option>
             <option value="heavily used">Heavily Used</option>
           </select>
         </div>
-        <div className="flex flex-col items-center justify-around">
-          <label className="my-2" htmlFor="location">
+        <div className="flex flex-col items-center justify-around w-3/4 lg:w-fit">
+          <label className="my-2 text-xl" htmlFor="location">
             General Location
           </label>
           <input
-            className="text-black pl-1 text-2xl rounded-sm"
+            className="text-black text-center w-full lg:w-11/12 text-2xl rounded-sm "
             id="location"
             value={filterQuery.location}
             onChange={(e) =>
@@ -145,12 +152,12 @@ const FilterForm = ({ dispatch }) => {
             placeholder="Somewhere City"
           />
         </div>
-        <div className="flex flex-col items-center justify-around">
-          <label className="my-2" htmlFor="zipcode">
+        <div className="flex flex-col  items-center justify-around w-3/4 lg:w-fit">
+          <label className="my-2 text-xl" htmlFor="zipcode">
             Zipcode
           </label>
           <input
-            className="text-black pl-1 text-2xl rounded-sm"
+            className="text-black text-center w-full text-2xl rounded-sm "
             id="zipcode"
             value={filterQuery.zipcode}
             onChange={(e) =>
@@ -164,13 +171,13 @@ const FilterForm = ({ dispatch }) => {
           />
         </div>
       </div>
-      <div className="w-1/2 flex items-center justify-around">
-        <button className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-2/5">
+      <div className="w-full flex flex-col lg:flex-row items-center justify-around">
+        <button className="text-white text-center border py-3 mt-7 mx-auto min-w-[200px] rounded-sm w-2/5">
           Filter Supplies
         </button>
         <input
           onClick={(e) => handleReset(e)}
-          className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-2/5 cursor-pointer"
+          className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-2/5 min-w-[200px] cursor-pointer"
           type="reset"
           value="Clear Filters"
         />

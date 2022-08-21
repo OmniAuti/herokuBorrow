@@ -59,10 +59,11 @@ const Borrow = ({ modalDispatch }) => {
       <div
         className={
           activeFilter
-            ? "bg-sky-900 h-44 transition-all overflow-hidden rounded-sm"
+            ? "bg-sky-900 w-screen -ml-5 sm:-ml-0 sm:w-full  transition-all overflow-hidden rounded-sm pb-5"
             : "h-0 transition-all overflow-hidden"
         }
       >
+        <h3 className="text-center text-4xl pt-2 underline underline-offset-2 font-light">Filter</h3>
         <FilterForm dispatch={dispatch} />
       </div>
 
@@ -71,7 +72,7 @@ const Borrow = ({ modalDispatch }) => {
           className={
             dataDump.length <= 0
               ? "w-full flex flex-col items-center justify-around"
-              : "w-full flex flex-wrap items-center justify-start"
+              : "sm:w-full sm:-ml-0 w-screen -ml-5 flex flex-wrap items-center justify-start"
           }
         >
           {dataDump.length <= 0 ? (

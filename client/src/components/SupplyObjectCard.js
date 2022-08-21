@@ -96,7 +96,7 @@ const SupplyObjectCard = ({ data, modalDispatch }) => {
 
     <div
       onClick={() => modalDispatch({ type: "MODAL", payload: data._id })}
-      className=" w-[calc(33.3333%-24px)] min-w-[400px] rounded-md my-5 mx-[12px] p-1 cursor-pointer group"
+      className="w-screen lg:w-[32.33333%] lg:min-w-[318px] rounded-md my-2 lg:ml-[9px] p-1 cursor-pointer group"
       style={{ backgroundColor: cardBgColor }}
     >
       <div className="relative bg-white w-full h-[310px] max-h-[310px] rounded-md overflow-hidden py-2 shadow-inner transition-all duration-500 hover:shadow-black outline">

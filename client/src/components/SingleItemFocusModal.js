@@ -49,7 +49,7 @@ const SingleItemFocusModal = ({
     >
       {modalLoaded ? (
         <div className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="h-fit p-5 w-[500px] bg-white rounded-tr-sm rounded-tl-sm relative">
+          <div className="h-fit p-5 w-screen sm:w-[500px] bg-white rounded-tr-sm rounded-tl-sm relative">
             <div className="relative w-full h-fit min-h-[400px] rounded-md overflow-hidden py-2">
               <div className="h-52 max-h-52 min-h-52 w-full relative overflow-hidden">
                 <div className="bg-black bg-opacity-80 w-fit absolute pr-10 pt-5 pb-24 -bottom-20 pl-40 -left-36 rounded-full text-2xl font-light">
@@ -61,7 +61,7 @@ const SingleItemFocusModal = ({
                   alt=""
                 />
               </div>
-              <p className="text-black m-5 font-light">
+              <p className="text-black m-5 font-light max-w-[80%]">
                 {" "}
                 <span className=" text-black font-medium ">
                   Description:
@@ -106,7 +106,7 @@ const SingleItemFocusModal = ({
            
               <div
                 onClick={() => handleBookmark()}
-                className="h-12 absolute rounded-full w-12 top-1/2 right-0 cursor-pointer hover:scale-105"
+                className="h-12 absolute rounded-full w-12 top-1/2 -right-1 cursor-pointer hover:scale-105"
               >
                 {data.bookmarked === false ? <img
                   className=""
