@@ -18,9 +18,15 @@ const settingsReducer = (state, action) => {
 };
 
 const AccountSettings = () => {
-  const { user, updateUserEmail, updateUserPassword, reAuth } = UserAuth();
+  const {
+    user,
+    updateUserEmail,
+    updateUserPassword,
+    deleteUserAndAllPosts,
+    reAuth,
+  } = UserAuth();
   const [submitEdit, setSubmitEdit] = useState(false);
-  const [editSuccess, setEditSuccess] = useState(false)
+  const [editSuccess, setEditSuccess] = useState(false);
 
   const [state, settingsDispatch] = useReducer(settingsReducer, {
     settingsType: "",
@@ -35,8 +41,8 @@ const AccountSettings = () => {
   };
 
   useEffect(() => {
-    setEditSuccess(false)
-  }, [state.active])
+    setEditSuccess(false);
+  }, [state.active]);
 
   useEffect(() => {
     if (user === undefined) return;
@@ -49,18 +55,25 @@ const AccountSettings = () => {
     if (state.settingsType === "email") {
       await updateUserEmail(newInfo);
       setSubmitEdit(!submitEdit);
-      setEditSuccess(true)
+      setEditSuccess(true);
     }
-    if (state.settingsType === 'password') {
+    if (state.settingsType === "password") {
       await updateUserPassword(newInfo);
       setSubmitEdit(!submitEdit);
-      setEditSuccess(true)
+      setEditSuccess(true);
+    }
+    if (state.settingsType === "delete") {
+      await deleteUserAndAllPosts();
+      setSubmitEdit(!submitEdit);
+      setEditSuccess(true);
     }
   };
 
   return (
     <section className="pt-10">
-      <p className="text-5xl underline underline-offset-3 text-center mb-10">Account Settings</p>
+      <p className="text-5xl underline underline-offset-3 text-center mb-10">
+        Account Settings
+      </p>
 
       <AccountSettingsModal
         settingsDispatch={settingsDispatch}

@@ -22,6 +22,7 @@ const AccountSettingsChangePasswordForm = ( {handleSettingsChangeSubmit }) => {
         Enter New Password
       </label>
       <input
+      required
         id="newPassword"
         className="block my-1 mb-3 p-1 w-full border text-center rounded-md text-black"
         value={newPassword}
@@ -31,6 +32,7 @@ const AccountSettingsChangePasswordForm = ( {handleSettingsChangeSubmit }) => {
       />
       <label className="pl-2 text-black">Re-enter Password</label>
       <input
+        required
         type="password"
         className="block text-black my-1 mb-3 p-1 w-full border text-center rounded-md "
         placeholder="Validation"

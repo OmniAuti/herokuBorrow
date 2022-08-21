@@ -34,13 +34,13 @@ const AuthContextProvider = ({ children }) => {
   }, []);
 
   const createUser = async (email, password) => {
-    const ActionCodeSettings = {
-      url: "http://localhost:3000/dashboard",
-      handleCodeInApp: true,
-    };
+    // const ActionCodeSettings = {
+    //   url: "http://localhost:3000/dashboard",
+    //   handleCodeInApp: true,
+    // };
     await createUserWithEmailAndPassword(auth, email, password);
-    await sendSignInLinkToEmail(auth, email, ActionCodeSettings);
-    return console.log("check email");
+    // await sendSignInLinkToEmail(auth, email, ActionCodeSettings);
+    // return console.log("check email");
   };
 
   const logInUser = (email, password) => {
@@ -54,20 +54,34 @@ const AuthContextProvider = ({ children }) => {
   // PROFILE UPDATES
 
   const reAuth = (cred) => {
-    return reauthenticateWithCredential(auth.currentUser, cred)
-  }
+    return reauthenticateWithCredential(auth.currentUser, cred);
+  };
 
   const updateUserPassword = (newPass) => {
-    return updatePassword(auth.currentUser, newPass)
-  }
+    return updatePassword(auth.currentUser, newPass);
+  };
 
   const updateUserEmail = (newEmail) => {
-    return updateEmail(auth.currentUser, newEmail)
-  }
+    return updateEmail(auth.currentUser, newEmail);
+  };
 
+  const deleteUserAndAllPosts = () => {
+    return deleteUser(auth.currentUser);
+  };
 
   return (
-    <UserContext.Provider value={{ user, createUser, logInUser, logOutUser, reAuth, updateUserEmail, updateUserPassword }}>
+    <UserContext.Provider
+      value={{
+        user,
+        createUser,
+        logInUser,
+        logOutUser,
+        reAuth,
+        updateUserEmail,
+        updateUserPassword,
+        deleteUserAndAllPosts,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

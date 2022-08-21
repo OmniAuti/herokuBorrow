@@ -44,6 +44,12 @@ const AccountSettingsModal = ({
                   {modalState.settingsType === "password" && "Change Password"}
                   {modalState.settingsType === "delete" && "Delete Account"}
                 </h2>
+                {modalState.settingsType === "delete" && (
+                  <p className="text-black text-center ">
+                    Are you sure you want delete your account and all your
+                    posts?
+                  </p>
+                )}
                 {modalState.settingsType === "email" && (
                   <p className="text-black text-center my-2">
                     Current Email: {userEmail}
@@ -61,7 +67,9 @@ const AccountSettingsModal = ({
                   />
                 )}
                 {modalState.settingsType === "delete" && (
-                  <AccountSettingsDeleteUserForm />
+                  <AccountSettingsDeleteUserForm
+                    handleSettingsChangeSubmit={handleSettingsChangeSubmit}
+                  />
                 )}
                 <button
                   onClick={() => settingsDispatch({ type: "CLOSE" })}

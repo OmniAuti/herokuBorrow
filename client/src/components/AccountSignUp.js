@@ -30,10 +30,6 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
       confirmedCheck.current.style.outlineOffset = '2px'
     }
 
-    if (confirmPassword === '') {
-      confirmedCheck.current.style.outline = 'none'
-    }
-
   };
 
   return (

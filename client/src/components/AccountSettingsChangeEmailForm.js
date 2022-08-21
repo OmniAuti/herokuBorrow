@@ -21,6 +21,7 @@ const AccountSettingsChangeEmailForm = ({ handleSettingsChangeSubmit }) => {
         Enter New Email
       </label>
       <input
+        required
         id="newEmail"
         className="block my-1 mb-3 p-1 w-full border text-center rounded-md text-black"
         value={newEmail}
@@ -30,6 +31,7 @@ const AccountSettingsChangeEmailForm = ({ handleSettingsChangeSubmit }) => {
       />
       <label className="pl-2 text-black">Re-enter Password</label>
       <input
+        required
         type="password"
         className="block text-black my-1 mb-3 p-1 w-full border text-center rounded-md "
         placeholder="Validation"
