@@ -3,13 +3,14 @@ import { useState, useRef } from "react";
 const AccountSettingsChangePasswordForm = ({ handleSettingsChangeSubmit }) => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmOldPassword, setConfirmOldPassword] = useState("");
 
   const confirmedCheck = useRef();
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      await handleSettingsChangeSubmit(newPassword, confirmPassword);
+      await handleSettingsChangeSubmit(newPassword, confirmOldPassword);
       setNewPassword("");
       setConfirmPassword("");
     } catch (e) {
@@ -42,16 +43,27 @@ const AccountSettingsChangePasswordForm = ({ handleSettingsChangeSubmit }) => {
         placeholder="New Password"
         minLength={6}
       />
-      <label className="pl-2 text-black">Re-enter Password</label>
+      <label htmlFor="confirmPassword" className="pl-2 text-black">Re-enter New Password</label>
       <input
+      id="confirmPassword"
         required
         type="password"
         className="block text-black my-1 mb-3 p-1 w-[90%] mx-auto border text-center rounded-md "
-        placeholder="Validation"
+        placeholder="Confirm New Password"
         onChange={(e) => setConfirmPassword(e.target.value)}
         minLength={6}
         onKeyUp={handleConfirmedPassword}
         ref={confirmedCheck}
+      />
+      <label htmlFor="validatePassword" className="pl-2 text-black">Confirm Old Password</label>
+      <input
+        id="validatePassword"
+        required
+        type="password"
+        className="block text-black my-1 mb-3 p-1 w-[90%] mx-auto border text-center rounded-md "
+        placeholder="Validation"
+        onChange={(e) => setConfirmOldPassword(e.target.value)}
+        minLength={6}
       />
       <input
         className="bg-sky-500 w-full h-10 my-2 text-black rounded-sm hover:bg-sky-900 cursor-pointer"
