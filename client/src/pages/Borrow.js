@@ -36,11 +36,14 @@ const Borrow = ({ modalDispatch }) => {
   const handleLoading = async () => {
     try {
       await fetchAllItems().then((res) => setDataDump(res.data));
+      setIsLoaded(true);
     } catch(e) {
       console.log(e)
     }
-    setIsLoaded(true);
+    
   };
+
+
   return (
     <section>
       <h1 className="text-5xl text-center mb-5">Available Supplies</h1>

@@ -5,31 +5,42 @@ import { getAccountItems } from "../api/api";
 import PostItemForm from "../components/PostItemForm";
 import OfferedAccountColumn from "../components/OfferedAccountColumn";
 
-const Offer = ({modalDispatch, refreshAfterEdit}) => {
-  const [isItemsLoaded, setIsItemsLoaded] = useState(false)
-  const [accountItemsData, setAccountItemsData] = useState([])
+const Offer = ({ modalDispatch, refreshAfterEdit }) => {
+  const [isItemsLoaded, setIsItemsLoaded] = useState(false);
+  const [accountItemsData, setAccountItemsData] = useState([]);
 
- // PLACE HOLDER FOR PROIFLE HASNT OFFERED ANYTHING YET. OR SIGN IN SECTION TO OFFER SOMETHING -- WHEN SIGNED IN SHOWS YOUR OFFERED ITEMS SIDE BY SIDE WITH FORM TO SUBMIT ITEMS
+  // PLACE HOLDER FOR PROIFLE HASNT OFFERED ANYTHING YET. OR SIGN IN SECTION TO OFFER SOMETHING -- WHEN SIGNED IN SHOWS YOUR OFFERED ITEMS SIDE BY SIDE WITH FORM TO SUBMIT ITEMS
 
- // LAYOUT SHOULD HAVE ONE HALF THE LIST OF POSTED ITEMS -- OTHER SIDE FORM TO ADD MORE. IF NOT SIGN IN TO PROFILE
+  // LAYOUT SHOULD HAVE ONE HALF THE LIST OF POSTED ITEMS -- OTHER SIDE FORM TO ADD MORE. IF NOT SIGN IN TO PROFILE
 
-  const {user} = UserAuth()
+  const { user } = UserAuth();
 
   useEffect(() => {
     if (user === undefined) return;
-    getAccountItems({_uid: user.uid}).then(res => setAccountItemsData(res.data))
-    setIsItemsLoaded(true)
+    handleOfferLoading(user)
     return () => {
-      setIsItemsLoaded(false)
-    }
-  }, [user, refreshAfterEdit])
+      setIsItemsLoaded(false);
+    };
+  }, [user, refreshAfterEdit]);
+
+  const handleOfferLoading = async () => {
+    await getAccountItems({ _uid: user.uid }).then((res) =>
+      setAccountItemsData(res.data)
+    );
+    setIsItemsLoaded(true);
+  };
 
   return (
     <section className="flex flex-col">
       <h1 className="text-center mb-10 text-5xl">Offer</h1>
       <div className="flex flex-col lg:flex-row justify-around">
-      <OfferedAccountColumn refreshAfterEdit={refreshAfterEdit} modalDispatch={modalDispatch} isItemsLoaded={isItemsLoaded} accountItemsData={accountItemsData}/>
-      <PostItemForm />
+        <OfferedAccountColumn
+          refreshAfterEdit={refreshAfterEdit}
+          modalDispatch={modalDispatch}
+          isItemsLoaded={isItemsLoaded}
+          accountItemsData={accountItemsData}
+        />
+        <PostItemForm />
       </div>
     </section>
   );

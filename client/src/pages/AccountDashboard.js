@@ -27,11 +27,8 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
   // THIS IS OFFERED/BORROWED DATA
   useEffect(() => {
     if (user === undefined) return;
-    getAccountItems({ _uid: user.uid }).then((res) =>
-      setAccountItemsData(res.data)
-    );
-    setIsItemsLoaded(true);
     setUserUid(user.uid);
+    handleOfferedLoading(user);
     return () => {
       setIsItemsLoaded(false);
     };
@@ -40,27 +37,39 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
   //THIS IS ASKED DATA
   useEffect(() => {
     if (user === undefined) return;
-    getAccountItemsAsked({ _uid: user.uid }).then((res) =>
-      setAccountAskedData(res.data)
-    );
-    setIsAskLoaded(true);
+    handleAskedLoading(user);
     return () => {
       setIsAskLoaded(false);
     };
   }, [user, refreshAfterEdit]);
-
+  // BOOKMARKED LOADING
   useEffect(() => {
     if (user === undefined) return;
-
-    getAccountBookmarked({ _uid: user.uid }).then((res) =>
-      setAccountBookmarked(res.data)
-    );
-    setIsBookmarkLoaded(true);
+    handleBookmarkedLoaded(user);
     return () => {
       setIsBookmarkLoaded(false);
     };
   }, [user, refreshAfterEdit]);
+  const handleAskedLoading = async (user) => {
+    await getAccountItemsAsked({ _uid: user.uid }).then((res) =>
+      setAccountAskedData(res.data)
+    );
+    setIsAskLoaded(true);
+  };
 
+  const handleOfferedLoading = async (user) => {
+    await getAccountItems({ _uid: user.uid }).then((res) =>
+      setAccountItemsData(res.data)
+    );
+    setIsItemsLoaded(true);
+  };
+
+  const handleBookmarkedLoaded = async (user) => {
+    await getAccountBookmarked({ _uid: user.uid }).then((res) =>
+      setAccountBookmarked(res.data)
+    );
+    setIsBookmarkLoaded(true);
+  };
 
   const handleLogOutUser = async () => {
     await logOutUser();

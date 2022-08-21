@@ -77,7 +77,7 @@ const PostItemForm = () => {
   };
 
   return (
-    <div className="text-center block sm:w-3/4 w-full lg:w-1/2 xl:w-1/3 xl:mx-auto mx-auto lg:mx-5 max-h-screen min-h-[750px]">
+    <div className="text-center block sm:w-3/4 w-full lg:w-1/2 xl:w-1/3 xl:mx-auto mx-auto lg:mx-5 max-h-[750px] h-[750px] min-h-[750px]">
       <h2 className="text-3xl mb-5 underline">Offer Supplies</h2>
       <form
         onSubmit={(e) => handleSubmit(e)}
@@ -185,8 +185,9 @@ const PostItemForm = () => {
           placeholder="12345"
         />
         <input
+          value="Offer Supplies"
           type="submit"
-          className="text-white cursor-pointer bg-sky-900 px-10 py-2 my-5 rounded-md"
+          className="text-white w-full cursor-pointer hover:bg-sky-900 bg-sky-500 px-10 py-2 mt-16 rounded-md"
         />
       </form>
     </div>
