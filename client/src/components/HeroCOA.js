@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HeroCoa.css";
+import HeroSectionBuildingBlocks from "./HeroSectionBuildingBlocks";
 import React from "react";
 
 const HeroCOA = () => {
@@ -138,9 +139,7 @@ const HeroCOA = () => {
         </div>
       </div>
 
-      <div className="w-1/4 hidden md:block">
-        <div className="w-[500px] h-[500px] rounded-full sm:bg-blue-500 md:bg-red-500 lg:bg-green-500"></div>
-      </div>
+     <HeroSectionBuildingBlocks/>
     </section>
   );
 };

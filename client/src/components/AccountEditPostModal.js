@@ -53,7 +53,7 @@ if (activeModal === false) {
             {editSaved ? (
               <div>
                 <img className="w-[100px] mx-auto my-5" src="/imgs/postsavedCheck.svg" alt="Post Edit Saved Successfully Icon"/>
-                <p className="text-black text-2xl my-5">Edit Successfully Saved</p>
+                <p className="text-black text-center text-2xl my-5">Edit Successfully Saved</p>
               </div>
             ) : (
               <div className="relative w-full h-fit rounded-md overflow-hidden">

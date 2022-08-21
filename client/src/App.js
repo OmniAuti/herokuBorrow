@@ -16,6 +16,7 @@ import Offer from "./pages/Offer";
 import AccountGateway from "./pages/AccountGateway";
 import AccountDashboard from "./pages/AccountDashboard";
 import ProtectedUserRoute from "./components/ProtectedUserRoute";
+import AccountSettings from "./pages/AccountSettings";
 //WRAP FOR SCROLL TO TOP ON NEW ROUTE
 import ScrollToTop from "./components/ScrollToTop";
 import SingleItemFocusModal from "./components/SingleItemFocusModal";
@@ -62,13 +63,13 @@ function App() {
   const [modalLoadedEdit, setModalLoadedEdit] = useState(false);
   const [bookmarkRefresh, setBookmarkRefresh] = useState(false);
 
-  const [refreshAfterEdit, setRefreshAfterEdit] = useState(false)
+  const [refreshAfterEdit, setRefreshAfterEdit] = useState(false);
 
   const location = useLocation();
 
   // USED TO CLOSE MODAL ON PAGE CHANGE
   useEffect(() => {
-      handleCloseModal();
+    handleCloseModal();
   }, [location.pathname]);
   // REFRESH THE DATA TO SHOW CHANGING BOOKMARK
   useEffect(() => {
@@ -91,13 +92,12 @@ function App() {
         .then((res) => setModalDataEdit(res.data))
         .catch((err) => console.log(err));
       setActiveModalEdit(true);
-
     } else if (state.modalType === "accountEditAsk") {
       console.log("askpost", id);
       await getSingleItemAsk(id)
         .then((res) => setModalDataEdit(res.data))
         .catch((err) => console.log(err));
-        setActiveModalEdit(true);
+      setActiveModalEdit(true);
     }
   };
 
@@ -116,8 +116,8 @@ function App() {
   };
 
   const handleItemRefreshAfterEdit = () => {
-    setRefreshAfterEdit(!refreshAfterEdit)
-  }
+    setRefreshAfterEdit(!refreshAfterEdit);
+  };
 
   return (
     <div className="overflow-x-hidden">
@@ -141,7 +141,7 @@ function App() {
           handleCloseModal={handleCloseModal}
           handleOpenModal={handleOpenModalEdit}
           modalLoaded={modalLoadedEdit}
-          handleItemRefreshAfterEdit={handleItemRefreshAfterEdit }
+          handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
         />
 
         <main className="App  bg-black h-full min-h-screen w-screen px-5 pb-5 relative">
@@ -164,7 +164,18 @@ function App() {
                 element={
                   <ProtectedUserRoute>
                     {" "}
-                    <AccountDashboard refreshAfterEdit={refreshAfterEdit} modalDispatch={modalDispatch} />{" "}
+                    <AccountDashboard
+                      refreshAfterEdit={refreshAfterEdit}
+                      modalDispatch={modalDispatch}
+                    />{" "}
+                  </ProtectedUserRoute>
+                }
+              />
+              <Route
+                path="/account-settings"
+                element={
+                  <ProtectedUserRoute>
+                    <AccountSettings />
                   </ProtectedUserRoute>
                 }
               />
@@ -174,7 +185,10 @@ function App() {
                 element={
                   <ProtectedUserRoute>
                     {" "}
-                    <Offer refreshAfterEdit={refreshAfterEdit} modalDispatch={modalDispatch}/>
+                    <Offer
+                      refreshAfterEdit={refreshAfterEdit}
+                      modalDispatch={modalDispatch}
+                    />
                   </ProtectedUserRoute>
                 }
               />
@@ -183,7 +197,10 @@ function App() {
                 path="/ask"
                 element={
                   <ProtectedUserRoute>
-                    <Ask refreshAfterEdit={refreshAfterEdit} modalDispatch={modalDispatch}/>
+                    <Ask
+                      refreshAfterEdit={refreshAfterEdit}
+                      modalDispatch={modalDispatch}
+                    />
                   </ProtectedUserRoute>
                 }
               />

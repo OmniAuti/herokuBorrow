@@ -5,16 +5,20 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  sendSignInLinkToEmail
+  sendSignInLinkToEmail,
+  updateEmail,
+  updatePassword,
+  deleteUser,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  reauthenticateWithCredential,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import firebaseApp, { auth } from "../firebase";
 
 const UserContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState();
-
-  console.log(user, 'this is the user')
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -30,11 +34,13 @@ const AuthContextProvider = ({ children }) => {
   }, []);
 
   const createUser = async (email, password) => {
-
-    const ActionCodeSettings = {url: "http://localhost:3000/dashboard",handleCodeInApp: true,}
+    const ActionCodeSettings = {
+      url: "http://localhost:3000/dashboard",
+      handleCodeInApp: true,
+    };
     await createUserWithEmailAndPassword(auth, email, password);
-    await sendSignInLinkToEmail(auth, email, ActionCodeSettings)
-    return console.log('check email')
+    await sendSignInLinkToEmail(auth, email, ActionCodeSettings);
+    return console.log("check email");
   };
 
   const logInUser = (email, password) => {
@@ -45,8 +51,23 @@ const AuthContextProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // PROFILE UPDATES
+
+  const reAuth = (cred) => {
+    return reauthenticateWithCredential(auth.currentUser, cred)
+  }
+
+  // const updateUserPassword = (newPass) => {
+  //   return updatePassword()
+  // }
+
+  const updateUserEmail = (newEmail) => {
+    return updateEmail(auth.currentUser, newEmail)
+  }
+
+
   return (
-    <UserContext.Provider value={{ user, createUser, logInUser, logOutUser }}>
+    <UserContext.Provider value={{ user, createUser, logInUser, logOutUser, reAuth, updateUserEmail,  }}>
       {children}
     </UserContext.Provider>
   );

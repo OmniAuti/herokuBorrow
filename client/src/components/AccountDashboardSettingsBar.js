@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const AccountDashboardSettingsBar = ({handleLogOutUser}) => {
     return (
         <div className="flex flex-row h-[50px] -mt-[20px] sm:-mt-5 sm:h-fit sm:flex-col items-center col-start-1 col-end-8 sm:col-end-2 row-start-1 row-end-2 sm:row-end-7">
         <div className="w-full mt-5 flex justify-center relative overflow-hidden group">
-          <button
-            onClick={() => console.log("ok")}
+          <Link
+            to="/account-settings"
             className=" w-full h-full flex justify-center items-center flex-col"
           >
             <img
@@ -14,7 +16,7 @@ const AccountDashboardSettingsBar = ({handleLogOutUser}) => {
             <p className="absolute top-0 sm:top-auto text-xs sm:text-base sm:bottom-0 sm:-left-[250px] sm:group-hover:left-[50%] sm:group-hover:-translate-x-[50%] sm:transition-all sm:duration-1000">
               Settings
             </p>
-          </button>
+          </Link>
         </div>
         <div className="w-full mt-5 flex justify-center relative overflow-hidden group">
           <button
