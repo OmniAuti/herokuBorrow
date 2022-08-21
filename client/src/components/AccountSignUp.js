@@ -4,30 +4,30 @@ import { useNavigate } from "react-router-dom";
 
 const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
   const { createUser } = UserAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const confirmedCheck = useRef();
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      return alert('Please confirm that passwords match')
+      return alert("Please confirm that passwords match");
     }
-    await createUser(email, password)
-    navigate('/dashboard')
+    await createUser(email, password);
+    navigate("/dashboard");
   };
 
   const handleConfirmedPassword = () => {
     if (password !== confirmPassword) {
-      confirmedCheck.current.style.outline = '2px solid #ef4444'
-      confirmedCheck.current.style.outlineOffset = '2px'
+      confirmedCheck.current.style.outline = "2px solid #ef4444";
+      confirmedCheck.current.style.outlineOffset = "2px";
     } else if (password === confirmPassword) {
-      confirmedCheck.current.style.outline = '2px solid #22c55e'
-      confirmedCheck.current.style.outlineOffset = '2px'
+      confirmedCheck.current.style.outline = "2px solid #22c55e";
+      confirmedCheck.current.style.outlineOffset = "2px";
     }
   };
 

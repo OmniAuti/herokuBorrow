@@ -5,7 +5,7 @@ const OfferedAccountColumn = ({ accountItemsData, isItemsLoaded, modalDispatch }
 
   return (
     <div className="w-screen -ml-5 sm:-ml-0 sm:w-full mb-10 lg:w-1/2 bg-slate-400 max-h-screen min-h-[750px] rounded-sm overflow-scroll relative">
-      <p className="w-full text-3xl underline text-center py-2 sticky top-0 bg-slate-400">
+      <p className="w-full text-3xl underline text-center py-2 z-50 sticky top-0 bg-slate-400">
         Currently Offered
       </p>
       {!isItemsLoaded ? (

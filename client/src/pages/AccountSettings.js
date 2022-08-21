@@ -85,7 +85,11 @@ const AccountSettings = () => {
 
       <div className="flex justify-around flex-col md:flex-row">
         <div className="text-center my-10">
-          <h2 className="my-2">Change Email</h2>
+          <img
+            className="w-[100px] mx-auto my-10"
+            src="/imgs/emailChange.svg"
+            alt="Change Email Icon"
+          />{" "}
           <button
             onClick={() => settingsDispatch({ type: "EMAIL" })}
             className="bg-sky-500 px-5 py-2 rounded-sm mt-5 hover:bg-sky-900"
@@ -95,8 +99,11 @@ const AccountSettings = () => {
         </div>
 
         <div className="text-center my-10">
-          <h2 className="my-2">Change Password</h2>
-
+          <img
+            className="w-[100px] mx-auto my-10"
+            src="/imgs/passwordChange.svg"
+            alt="Change Password Icon"
+          />
           <button
             onClick={() => settingsDispatch({ type: "PASSWORD" })}
             className="bg-sky-500 px-5 py-2 rounded-sm mt-5 hover:bg-sky-900"
@@ -106,7 +113,11 @@ const AccountSettings = () => {
         </div>
 
         <div className="text-center my-10">
-          <h2 className="my-2">Delete Account</h2>
+          <img
+            className="w-[100px] mx-auto my-10"
+            src="/imgs/deleteAccount.svg"
+            alt="Delete Account Icon"
+          />
           <button
             onClick={() => settingsDispatch({ type: "DELETE" })}
             className="bg-sky-500 px-5 py-2 rounded-sm mt-5 hover:bg-sky-900"
