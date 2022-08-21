@@ -3,11 +3,24 @@ import { useState, useEffect } from "react";
 
 const Header = () => {
   const [hamburger, setHamburger] = useState(false);
+  const [showAccountText, setShowAccountText] = useState(false);
 
   const location = useLocation();
 
+  useEffect(() => {
+    setHamburger(false);
+  }, [location]);
+
   const handleActiveHamburger = () => {
     setHamburger(!hamburger);
+
+    if (hamburger === false) {
+      setShowAccountText(true);
+    } else if (hamburger === true) {
+      setTimeout(() => {
+        setShowAccountText(false);
+      }, 500);
+    }
   };
 
   return (
@@ -62,7 +75,7 @@ const Header = () => {
       <nav
         className={
           hamburger
-            ? "sm:w-2/5 w-1/2 flex items-center absolute right-0 h-screen top-0 border sm:border-0 bg-black transition-all duration-500 sm:relative"
+            ? "sm:w-2/5 w-1/2 flex items-center fixed right-0 h-screen top-0 border sm:border-0 bg-black transition-all duration-500 sm:relative"
             : "sm:w-2/5 w-1/2 h-screen sm:h-full flex items-center absolute sm:relative -right-80 sm:border-0 sm:-right-0 top-0 bg-black transition-all duration-500"
         }
       >
@@ -153,7 +166,7 @@ const Header = () => {
           </li>
           <li className="cursor-pointer grow flex items-center justify-center group hover:scale-105 order-2 sm:order-none">
             <Link
-              className="grow flex h-full items-center justify-center"
+              className="grow text-xl flex flex-col h-full items-center justify-center"
               to="/dashboard"
             >
               {location.pathname === "/dashboard" ? (
@@ -171,6 +184,7 @@ const Header = () => {
                   alt="Account Icon"
                 />
               )}
+              {showAccountText && <p>Account</p>}
             </Link>
           </li>
         </ul>
