@@ -23,7 +23,6 @@ const createSingleItem = async (req, res) => {
       zipcode: req.body.zipcode,
       postType: req.body.postType,
       _uid: req.body._uid,
-      bookmarked: req.body.bookmarked,
     });
 
     await item.save((err, post) => {

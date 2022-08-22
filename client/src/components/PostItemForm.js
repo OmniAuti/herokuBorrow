@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { postSingleItem } from "../api/api";
 import { UserAuth } from "../context/AuthContext";
 
-const PostItemForm = () => {
+const PostItemForm = ({handleUpdateAfterPost}) => {
   const { user } = UserAuth();
 
   const [formData, setFormData] = useState({
@@ -70,6 +70,7 @@ const PostItemForm = () => {
         _uid: "",
         bookmarked: false,
       });
+      handleUpdateAfterPost()
     } catch (err) {
       console.log(err);
     }

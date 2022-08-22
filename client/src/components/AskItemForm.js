@@ -3,7 +3,7 @@ import { postAskItem } from "../api/api";
 
 import { UserAuth } from "../context/AuthContext";
 
-const AskItemForm = () => {
+const AskItemForm = ({handleUpdateAfterPost}) => {
   const { user } = UserAuth();
 
   const [askObj, setAskObj] = useState({
@@ -77,6 +77,7 @@ const AskItemForm = () => {
         postType: "ask",
         _uid: "",
       });
+      handleUpdateAfterPost()
     } catch (err) {
       console.log(err);
     }

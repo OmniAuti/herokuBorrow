@@ -8,6 +8,7 @@ import AskAccountColumn from "../components/AskAccountColumn";
 const Ask = ({ modalDispatch, refreshAfterEdit }) => {
   const [isAskLoaded, setIsAskLoaded] = useState(false);
   const [accountAskedData, setAccountAskData] = useState([]);
+  const [updateAfterPost, setUpdateAfterPost] = useState(false);
 
   const { user } = UserAuth();
 
@@ -17,13 +18,18 @@ const Ask = ({ modalDispatch, refreshAfterEdit }) => {
     return () => {
       setIsAskLoaded(false);
     };
-  }, [user, refreshAfterEdit]);
+  }, [user, refreshAfterEdit, updateAfterPost]);
 
   const handleAskLoading = async (user) => {
     await getAccountItemsAsked({ _uid: user.uid }).then((res) =>
       setAccountAskData(res.data)
     );
     setIsAskLoaded(true);
+  };
+
+  const handleUpdateAfterPost = () => {
+    setIsAskLoaded(false)
+    setUpdateAfterPost(!updateAfterPost);
   };
 
   return (
@@ -36,7 +42,7 @@ const Ask = ({ modalDispatch, refreshAfterEdit }) => {
           isAskLoaded={isAskLoaded}
         />
 
-        <AskItemForm />
+        <AskItemForm handleUpdateAfterPost={handleUpdateAfterPost} />
       </div>
     </section>
   );

@@ -8,10 +8,7 @@ import OfferedAccountColumn from "../components/OfferedAccountColumn";
 const Offer = ({ modalDispatch, refreshAfterEdit }) => {
   const [isItemsLoaded, setIsItemsLoaded] = useState(false);
   const [accountItemsData, setAccountItemsData] = useState([]);
-
-  // PLACE HOLDER FOR PROIFLE HASNT OFFERED ANYTHING YET. OR SIGN IN SECTION TO OFFER SOMETHING -- WHEN SIGNED IN SHOWS YOUR OFFERED ITEMS SIDE BY SIDE WITH FORM TO SUBMIT ITEMS
-
-  // LAYOUT SHOULD HAVE ONE HALF THE LIST OF POSTED ITEMS -- OTHER SIDE FORM TO ADD MORE. IF NOT SIGN IN TO PROFILE
+  const [updateAfterPost, setUpdateAfterPost] = useState(false);
 
   const { user } = UserAuth();
 
@@ -21,13 +18,18 @@ const Offer = ({ modalDispatch, refreshAfterEdit }) => {
     return () => {
       setIsItemsLoaded(false);
     };
-  }, [user, refreshAfterEdit]);
+  }, [user, refreshAfterEdit, updateAfterPost]);
 
   const handleOfferLoading = async () => {
     await getAccountItems({ _uid: user.uid }).then((res) =>
       setAccountItemsData(res.data)
     );
     setIsItemsLoaded(true);
+  };
+
+  const handleUpdateAfterPost = () => {
+    setIsItemsLoaded(false)
+    setUpdateAfterPost(!updateAfterPost);
   };
 
   return (
@@ -40,7 +42,7 @@ const Offer = ({ modalDispatch, refreshAfterEdit }) => {
           isItemsLoaded={isItemsLoaded}
           accountItemsData={accountItemsData}
         />
-        <PostItemForm />
+        <PostItemForm handleUpdateAfterPost={handleUpdateAfterPost}/>
       </div>
     </section>
   );

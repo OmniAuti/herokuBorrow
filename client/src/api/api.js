@@ -59,6 +59,7 @@ export const deleteBookmark = async (bookmark) => {
 export const getAccountBookmarked = async (uid) => {
   return axios.get(urlTen, { params: uid });
 };
+
 export const editAccountOffered = async (data) => {
   return axios.put(urlTwelve, data);
 };
