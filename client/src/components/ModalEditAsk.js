@@ -4,7 +4,6 @@ import { editAccountAsked } from "../api/api";
 const ModalEditAsk = ({
   data,
   handleItemRefreshAfterEdit,
-  handleEditSuccessModalClose,
   handleEditSuccess
 }) => {
   const [newCondition, setNewCondition] = useState([]);
