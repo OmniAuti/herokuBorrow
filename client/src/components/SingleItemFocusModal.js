@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { postBookmark, bookmarkChangeStatus, deleteBookmark } from "../api/api";
+import { useEffect, useState } from "react";
+import { addBookmark } from "../api/api";
 import { UserAuth } from "../context/AuthContext";
 import Loading from "./Loading";
 
@@ -11,31 +11,34 @@ const SingleItemFocusModal = ({
   modalLoaded,
   handleModalBookmark,
 }) => {
+  const { user } = UserAuth();
+
+  const [bookmarkCheck, setBookmarkCheck] = useState(false);
 
   useEffect(() => {
     if (Object.values(data).length <= 0) return;
     handleOpenModal();
+    handleBookmarkCheck();
     return () => {
       console.log("cleared");
     };
   }, [data]);
 
-  const { user } = UserAuth();
-
   const handleBookmark = async () => {
     var bookmark = { _uid: user.uid, postId: data._id };
     try {
-      if (data.bookmarked === true) {
-        // DELETE 
-        await deleteBookmark(bookmark)
-        await bookmarkChangeStatus(bookmark) 
-      } else if (data.bookmarked === false) {
-        await postBookmark(bookmark);
-        await bookmarkChangeStatus(bookmark) 
-      }
-      handleModalBookmark()
-    } catch (e) {
-      console.error(e);
+      await addBookmark(bookmark);
+    } catch (err) {
+      console.log(err);
+    }
+    handleModalBookmark();
+  };
+
+  const handleBookmarkCheck = async () => {
+    if (data.bookmarked.indexOf(user.uid) >= 0) {
+      setBookmarkCheck(true);
+    } else {
+      setBookmarkCheck(false);
     }
   };
 
@@ -92,31 +95,27 @@ const SingleItemFocusModal = ({
 
                 <li className="text-black m-1 mt-2 font-medium">
                   Zipcode:{" "}
-                  <a
-                    href={`https://www.unitedstateszipcodes.org/${data.zipcode}/`}
-                    target="_blank"
-                  >
-                    <span className="text-black font-light underline underline-offset-2 hover:underline-offset-1">
-                      {data.zipcode}
-                    </span>
-                  </a>
+                  <span className="text-black font-light">{data.zipcode}</span>
                 </li>
               </ul>
 
-           
               <div
                 onClick={() => handleBookmark()}
                 className="h-12 absolute rounded-full w-12 top-1/2 -right-1 cursor-pointer hover:scale-105"
               >
-                {data.bookmarked === false ? <img
-                  className=""
-                  src="/imgs/bookmark.svg"
-                  alt="Add Post Icon"
-                /> : <img
-                className=""
-                src="/imgs/bookmarkBooked.svg"
-                alt="Add Post Icon"
-              /> }
+                {bookmarkCheck ? (
+                  <img
+                    className=""
+                    src="/imgs/bookmarkBooked.svg"
+                    alt="Add Post Icon"
+                  />
+                ) : (
+                  <img
+                    className=""
+                    src="/imgs/bookmark.svg"
+                    alt="Add Post Icon"
+                  />
+                )}
               </div>
             </div>
 

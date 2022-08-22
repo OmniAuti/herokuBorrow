@@ -5,13 +5,11 @@ const {
   getAllItems,
   getSingleItem,
   createSingleItem,
-  bookmarkChangeStatus,
   getFilteredItems,
   postAskItem,
   getAccountItems,
   getAccountItemsAsked,
-  postBookmark,
-  deleteBookmark,
+  addBookmark,
   getAccountBookmarked,
   getSingleItemAsk,
   editAccountOffered,
@@ -26,9 +24,7 @@ router.route('/modal').get(getSingleItem)
 router.route('/single-ask-item').get(getSingleItemAsk)
 router.route('/account-items').get(getAccountItems)
 router.route('/account-asked').get(getAccountItemsAsked)
-router.route('/bookmarked').post(postBookmark)
-router.route('/bookmark-change-status').put(bookmarkChangeStatus)
-router.route('/delete-bookmark').delete(deleteBookmark)
+router.route('/bookmarked').put(addBookmark)
 router.route('/bookmarked-account').get(getAccountBookmarked)
 router.route('/account-offered-edit').put(editAccountOffered)
 router.route('/account-asked-edit').put(editAccountAsked)

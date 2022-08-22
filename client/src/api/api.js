@@ -7,8 +7,6 @@ const urlFour = "http://localhost:2000/api/v1/items/modal";
 const urlFive = "http://localhost:2000/api/v1/items/account-items";
 const urlSix = "http://localhost:2000/api/v1/items/account-asked";
 const urlSeven = "http://localhost:2000/api/v1/items/bookmarked";
-const urlEight = "http://localhost:2000/api/v1/items/bookmark-change-status";
-const urlNine = "http://localhost:2000/api/v1/items/delete-bookmark";
 const urlTen = "http://localhost:2000/api/v1/items/bookmarked-account";
 const urlEleven = "http://localhost:2000/api/v1/items/single-ask-item";
 const urlTwelve = "http://localhost:2000/api/v1/items/account-offered-edit";
@@ -44,16 +42,9 @@ export const getAccountItemsAsked = async (_uid) => {
   return axios.get(urlSix, { params: _uid });
 };
 
-export const postBookmark = async (bookmark) => {
-  return axios.post(urlSeven, bookmark);
-};
-
-export const bookmarkChangeStatus = async (bookmark) => {
-  return axios.put(urlEight, bookmark);
-};
-
-export const deleteBookmark = async (bookmark) => {
-  return axios.delete(urlNine, { data: bookmark });
+export const addBookmark = async (bookmark) => {
+  console.log(bookmark)
+  return axios.put(urlSeven, bookmark);
 };
 
 export const getAccountBookmarked = async (uid) => {

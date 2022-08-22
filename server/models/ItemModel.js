@@ -34,6 +34,9 @@ const ItemSchema = new mongoose.Schema({
   _uid: {
     type: String,
   },
+  bookmarked: {
+    type: Array,
+  }
 })
 
 

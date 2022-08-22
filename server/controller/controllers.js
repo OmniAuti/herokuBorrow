@@ -25,7 +25,7 @@ const createSingleItem = async (req, res) => {
       _uid: req.body._uid,
     });
 
-    await item.save((err, post) => {
+    item.save((err, post) => {
       if (err) {
         console.log(err);
         return;
@@ -103,19 +103,16 @@ const getSingleItem = async (req, res) => {
 };
 
 const getSingleItemAsk = async (req, res) => {
-
-  // NEED TO DO SOMETHING TO ACCOUNT FOR MULTIPLE CONDITIONS BEING ASKED. A P TAG THEN INPUT SELECT BELOW IT
   try {
     const id = req.query[0];
     const modalItem = await AskItems.findById(id);
-    console.log(modalItem)
+    console.log(modalItem);
     res.status(200).json(modalItem);
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Error" });
   }
 };
-
 
 const getAccountItems = async (req, res) => {
   const accountItems = await Items.find(req.query);
@@ -127,99 +124,63 @@ const getAccountItemsAsked = async (req, res) => {
   res.status(200).json(accountItems);
 };
 
-const bookmarkChangeStatus = async (req, res) => {
-  try {
-    var item = await Items.findOne({_id: req.body.postId, _uid: req.body._uid})
-    item.bookmarked = !item.bookmarked;
-    await item.save()
-    res.json({msg:'bookmark status changed'})
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Error" });
+const addBookmark = async (req, res) => {
+  var bookmarkCheck = await Items.findOne({ _id: req.body.postId });
+  if (bookmarkCheck.bookmarked.indexOf(req.body._uid) >= 0) {
+    const idx = bookmarkCheck.bookmarked.indexOf(req.body._uid);
+    bookmarkCheck.bookmarked.splice(idx, 1);
+    await Items.findOneAndUpdate({ _id: req.body.postId }, bookmarkCheck);
+    res.json({ msg: "Bookmark Removed" });
+  } else {
+    await Items.findOneAndUpdate(
+      { _id: req.body.postId },
+      { $push: { bookmarked: req.body._uid } }
+    );
+    res.json({ msg: "Bookmark Success" });
   }
 };
 
-const postBookmark = async (req, res) => {
-  try {
-
-    const item = await BookmarkSchema.find({_uid: req.body._uid, postId: req.body.postId})
-    // CHECK TO MAKE SURE IT EXISTS TO NOT DUPLICATE
-    if (item.length > 0) {
-      res.json({msg: "Already Saved"})
-      return;
-    }
-
-    const bookmark = new BookmarkSchema({
-      _uid: req.body._uid,
-      postType: 'bookmark',
-      postId: req.body.postId,
-    })
-
-    await bookmark.save((err, post) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      res.status(201).json(post);
-    });
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ msg: "Error" });
-  }
+const getAccountBookmarked = async (req, res) => {
+  const bookmarked = await BookmarkSchema.find({});
+  res.status(200).json(bookmarked);
 };
-
-const deleteBookmark = async (req,res) => {
-  try {
-    await BookmarkSchema.deleteOne({_uid: req.body._uid, postId: req.body.postId})
-    res.send({msg: 'Bookmark Deleted'})
-  } catch (err) {
-    console.error
-  }
-}
-
-const getAccountBookmarked = async (req,res) => {
-  const bookmarked = await BookmarkSchema.find({})
-  res.status(200).json(bookmarked)
-}
 
 const editAccountOffered = async (req, res) => {
-const item = req.body
-var id = item._id;
-delete item._id;
- const editItem = await Items.findOneAndUpdate({_id: id}, item)
- res.json({msg:'success', editItem})
-}
+  const item = req.body;
+  var id = item._id;
+  delete item._id;
+  const editItem = await Items.findOneAndUpdate({ _id: id }, item);
+  res.json({ msg: "success", editItem });
+};
 
-const editAccountAsked = async (req,res) => {
-  const item = req.body
-var id = item._id;
-delete item._id;
- const editItem = await AskItems.findOneAndUpdate({_id: id}, item)
- res.json({msg:'success', editItem})
-}
+const editAccountAsked = async (req, res) => {
+  const item = req.body;
+  var id = item._id;
+  delete item._id;
+  const editItem = await AskItems.findOneAndUpdate({ _id: id }, item);
+  res.json({ msg: "success", editItem });
+};
 
-const deleteAllAccountData = async (req,res) => {
-  const uid = req.body.uid
-  await Items.deleteMany({_uid: uid})
-  await AskItems.deleteMany({_uid: uid})
-  await BookmarkSchema.deleteMany({_uid: uid})
-  res.json({msg:'All Deleted'})
-}
+const deleteAllAccountData = async (req, res) => {
+  const uid = req.body.uid;
+  await Items.deleteMany({ _uid: uid });
+  await AskItems.deleteMany({ _uid: uid });
+  await BookmarkSchema.deleteMany({ _uid: uid });
+  res.json({ msg: "All Deleted" });
+};
 
 module.exports = {
   getAllItems,
   getSingleItem,
   createSingleItem,
-  bookmarkChangeStatus,
   getFilteredItems,
   postAskItem,
   getAccountItems,
   getAccountItemsAsked,
-  postBookmark,
-  deleteBookmark,
+  addBookmark,
   getAccountBookmarked,
   getSingleItemAsk,
   editAccountOffered,
   editAccountAsked,
-  deleteAllAccountData
+  deleteAllAccountData,
 };
