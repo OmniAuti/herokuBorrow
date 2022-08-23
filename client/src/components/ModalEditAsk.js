@@ -4,7 +4,7 @@ import { editAccountAsked } from "../api/api";
 const ModalEditAsk = ({
   data,
   handleItemRefreshAfterEdit,
-  handleEditSuccess
+  handleEditSuccess,
 }) => {
   const [newCondition, setNewCondition] = useState([]);
 
@@ -12,13 +12,12 @@ const ModalEditAsk = ({
     who: "",
     type: "",
     quantity: 1,
-    description: "",
+    specify: "",
     condition: [],
     location: "",
     zipcode: "",
     postType: "ask",
     _uid: "",
-    bookmarked: "",
     _id: "",
   });
 
@@ -27,17 +26,16 @@ const ModalEditAsk = ({
       who: data.who,
       type: data.type,
       quantity: data.quantity,
-      description: data.description,
+      specify: data.specify,
       condition: data.condition,
       location: data.location,
       zipcode: data.zipcode,
       postType: data.postType,
       _uid: data.uid,
-      bookmarked: data.bookmarked,
       _id: data._id,
     });
   }, [data]);
-  console.log(askObj)
+  console.log(askObj);
 
   const checkBoxArr = [
     { id: 1, value: "New", checked: false },
@@ -74,13 +72,14 @@ const ModalEditAsk = ({
         await handleCommas();
       }
       await editAccountAsked(askObj);
-      handleEditSuccess()
+      handleEditSuccess();
       handleItemRefreshAfterEdit();
       e.target.reset();
       setAskObj({
         who: "",
         type: "",
         quantity: 1,
+        specify: "",
         condition: [],
         location: "",
         zipcode: "",
@@ -88,14 +87,13 @@ const ModalEditAsk = ({
         _uid: "",
         _id: "",
       });
-
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-   <form className="text-black " onSubmit={(e) => handleAskSubmit(e)}>
+    <form className="text-black " onSubmit={(e) => handleAskSubmit(e)}>
       <legend className="text-black text-xl underline underline-offset-1 mb-2">
         Ask Item Edit:{" "}
       </legend>
@@ -167,6 +165,18 @@ const ModalEditAsk = ({
         min="1"
         value={askObj.quantity}
         onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
+      />
+      <label className=" text-black" htmlFor="specify">Specify Your Needs</label>
+      <input
+        id="specify"
+        required
+        value={askObj.specify}
+        className="block w-full border my-1 mb-3 p-1 mx-auto text-center text-black rounded-md"
+        type="text"
+        name="specify"
+        maxLength="49"
+        onChange={(e) => setAskObj({ ...askObj, specify: e.target.value })}
+        placeholder="This is for . . ."
       />
       <hr className="mt-2"></hr>
       <p className=" text-black my-2">

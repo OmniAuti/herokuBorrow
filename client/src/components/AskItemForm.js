@@ -18,6 +18,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
     who: "",
     type: "",
     quantity: 1,
+    specify:"",
     condition: [],
     location: "",
     zipcode: "",
@@ -80,6 +81,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
         who: "",
         type: "",
         quantity: 1,
+        specify:"",
         condition: "",
         location: "",
         zipcode: "",
@@ -96,13 +98,13 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
     <div className=" text-center block sm:w-3/4 w-full lg:w-1/2 xl:w-1/3 mx-auto xl:mx-auto lg:ml-5 max-h-screen h-[750px] min-h-[750px]">
       <h2 className="text-3xl underline mb-5">Ask For Supplies</h2>
       {!postSuccess && (
-        <form className="text-black text-2xl" onSubmit={(e) => handleSubmit(e)}>
+        <form className="text-black text-xl" onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor="who">I am a . . .</label>
           <select
             onChange={(e) => setAskObj({ ...askObj, who: e.target.value })}
             id="who"
             name="who"
-            className="w-full h-12 my-2 pl-1 text-center rounded-md"
+            className="w-full h-10 my-2 pl-1 text-center rounded-md"
             required
             value={setAskObj.who}
           >
@@ -119,7 +121,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
           <select
             value={askObj.type}
             id="type"
-            className="w-full h-12 my-2 pl-1 text-center rounded-md"
+            className="w-full h-10 my-2 pl-1 text-center rounded-md"
             required
             onChange={(e) => setAskObj({ ...askObj, type: e.target.value })}
           >
@@ -157,7 +159,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
           <input
             id="quantity"
             required
-            className="block w-1/2 h-12 my-2 mx-auto pl-1 text-center rounded-md"
+            className="block w-1/2 h-10 my-2 mx-auto pl-1 text-center rounded-md"
             type="number"
             name="quantity"
             max="999"
@@ -165,18 +167,27 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
             value={askObj.quantity}
             onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
           />
-          <label htmlFor="condition">Acceptable Condition</label>
+          <label htmlFor="specify">Specify Your Needs</label>
+          <input  
+            id="specify"
+            required
+            className="block w-full h-10 my-2 pl-1 text-center rounded-md"
+            type="text"
+            name="specify"
+            maxLength="49"
+            onChange={(e) => setAskObj({ ...askObj, specify: e.target.value })}
+            placeholder="This is for . . ."/>
 
-          <div className="flex flex-wrap items-center justify-around mb-5">
+          <label htmlFor="condition">Acceptable Condition</label>
+          <div className="flex flex-wrap items-center justify-around mb-7 mx-5">
             {checkBoxArr.map((checkbox) => {
               return (
-                <div className="my-5 h-1 " key={checkbox.id}>
-                  <label className=" mr-2" htmlFor={checkbox.value}>
+                <div className="mt-4 h-1 mb-3" key={checkbox.id}>
+                  <label className="mr-2" htmlFor={checkbox.value}>
                     {checkbox.value}
                   </label>
                   <input
                     onChange={(e) => handleCheckBoxes(e)}
-                    className="my-1 mr-2 mb-3 p-1"
                     id={checkbox.value}
                     type="checkbox"
                     value={checkbox.value}
@@ -189,7 +200,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
           <input
             id="location"
             required
-            className="block w-full h-12 my-2 pl-1 text-center rounded-md"
+            className="block w-full h-10 my-2 pl-1 text-center rounded-md"
             type="text"
             name="location"
             maxLength="49"
@@ -200,7 +211,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
           <input
             id="zipcode"
             required
-            className="block w-full h-12 my-2 pl-1 text-center rounded-md"
+            className="block w-full h-10 my-2 pl-1 text-center rounded-md"
             type="text"
             pattern="[0-9]{5}"
             maxLength="5"

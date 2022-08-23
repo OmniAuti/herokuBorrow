@@ -89,12 +89,12 @@ const PostItemForm = ({handleUpdateAfterPost}) => {
       <h2 className="text-3xl mb-5 underline">Offer Supplies</h2>
      {!postSuccess && <form
         onSubmit={(e) => handleSubmit(e)}
-        className="text-black text-2xl"
+        className="text-black text-xl"
       >
         <label htmlFor="type">Type of supplies</label>
         <select
           id="type"
-          className="w-full h-12 my-2 pl-1 text-center rounded-md"
+          className="w-full h-10 my-2 pl-1 text-center rounded-md"
           required
           onChange={(e) => handleTypeChange(e)}
           value={formData.type}
@@ -130,7 +130,7 @@ const PostItemForm = ({handleUpdateAfterPost}) => {
         <input
           id="description"
           onChange={(e) => handleDescriptionChange(e)}
-          className="block w-full h-12 my-2 pl-1 text-center rounded-md"
+          className="block w-full h-10 my-2 pl-1 text-center rounded-md"
           type="text"
           name="type"
           maxLength="49"
@@ -142,7 +142,7 @@ const PostItemForm = ({handleUpdateAfterPost}) => {
           id="quantity"
           required
           onChange={(e) => handleQuantityChange(e)}
-          className="block w-1/2 h-12 my-2 mx-auto pl-1 text-center rounded-md"
+          className="block w-1/2 h-10 my-2 mx-auto pl-1 text-center rounded-md"
           type="number"
           name="quantity"
           max="999"
@@ -154,7 +154,7 @@ const PostItemForm = ({handleUpdateAfterPost}) => {
           id="condition"
           required
           onChange={(e) => handleConditionChange(e)}
-          className="block w-full h-12 my-2 pl-1 text-center rounded-md"
+          className="block w-full h-10 my-2 pl-1 text-center rounded-md"
           value={formData.condition}
         >
           <option default value="">
@@ -172,7 +172,7 @@ const PostItemForm = ({handleUpdateAfterPost}) => {
           id="location"
           required
           onChange={(e) => handleLocationChange(e)}
-          className="block w-full h-12 my-2 pl-1 text-center rounded-md"
+          className="block w-full h-10 my-2 pl-1 text-center rounded-md"
           type="text"
           name="location"
           maxLength="49"
@@ -184,7 +184,7 @@ const PostItemForm = ({handleUpdateAfterPost}) => {
           id="zipcode"
           required
           onChange={(e) => handleZIPChange(e)}
-          className="block w-full h-12 my-2 pl-1 text-center rounded-md"
+          className="block w-full h-10 my-2 pl-1 text-center rounded-md"
           type="text"
           pattern="[0-9]{5}"
           maxLength="5"

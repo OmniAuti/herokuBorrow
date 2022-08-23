@@ -49,7 +49,7 @@ if (activeModal === false) {
     >
       {modalLoaded ? (
         <div className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="h-fit w-screen sm:w-[500px] bg-white p-5 rounded-tr-sm rounded-tl-sm relative text-center">
+          <div className="h-fit max-h-screen overflow-scroll w-screen sm:w-[500px] bg-white p-5 rounded-tr-sm rounded-tl-sm relative text-center">
             {editSaved ? (
               <div>
                 <img className="w-[100px] mx-auto my-5" src="/imgs/postsavedCheck.svg" alt="Post Edit Saved Successfully Icon"/>

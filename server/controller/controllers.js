@@ -56,7 +56,6 @@ const getFilteredItems = async (req, res) => {
     if (req.query.zipcode.length > 0) {
       queryObj.zipcode = req.query.zipcode;
     }
-    console.log(queryObj);
     const filteredItems = await Items.find(queryObj);
     res.status(200).json(filteredItems);
   } catch (e) {
@@ -70,6 +69,7 @@ const postAskItem = async (req, res) => {
       who: req.body.who,
       type: req.body.type,
       quantity: req.body.quantity,
+      specify:req.body.specify,
       condition: req.body.condition,
       location: req.body.location,
       zipcode: req.body.zipcode,
@@ -77,7 +77,7 @@ const postAskItem = async (req, res) => {
       _uid: req.body._uid,
     });
 
-    await askItem.save((err, post) => {
+    askItem.save((err, post) => {
       if (err) {
         console.log(err);
         return;
@@ -105,7 +105,6 @@ const getSingleItemAsk = async (req, res) => {
   try {
     const id = req.query[0];
     const modalItem = await AskItems.findById(id);
-    console.log(modalItem);
     res.status(200).json(modalItem);
   } catch (error) {
     console.log(error);
@@ -141,7 +140,6 @@ const addBookmark = async (req, res) => {
 
 const getAccountBookmarked = async (req, res) => {
   const bookmarkedItems = await Items.find({bookmarked: req.query._uid})
-  // console.log(bookmarkedItems)
   res.status(200).json(bookmarkedItems);
 };
 
