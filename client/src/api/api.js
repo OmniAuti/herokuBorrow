@@ -7,6 +7,7 @@ const urlFour = "http://localhost:2000/api/v1/items/modal";
 const urlFive = "http://localhost:2000/api/v1/items/account-items";
 const urlSix = "http://localhost:2000/api/v1/items/account-asked";
 const urlSeven = "http://localhost:2000/api/v1/items/bookmarked";
+const urlEight = "http://localhost:2000/api/v1/items/delete-single-item";
 const urlTen = "http://localhost:2000/api/v1/items/bookmarked-account";
 const urlEleven = "http://localhost:2000/api/v1/items/single-ask-item";
 const urlTwelve = "http://localhost:2000/api/v1/items/account-offered-edit";
@@ -44,6 +45,10 @@ export const getAccountItemsAsked = async (_uid) => {
 
 export const addBookmark = async (bookmark) => {
   return axios.put(urlSeven, bookmark);
+};
+export const deleteSingleItem = async (data) => {
+  console.log(data)
+  // return axios.delete(urlEight, data);
 };
 
 export const getAccountBookmarked = async (uid) => {

@@ -69,7 +69,7 @@ const postAskItem = async (req, res) => {
       who: req.body.who,
       type: req.body.type,
       quantity: req.body.quantity,
-      specify:req.body.specify,
+      specify: req.body.specify,
       condition: req.body.condition,
       location: req.body.location,
       zipcode: req.body.zipcode,
@@ -139,7 +139,7 @@ const addBookmark = async (req, res) => {
 };
 
 const getAccountBookmarked = async (req, res) => {
-  const bookmarkedItems = await Items.find({bookmarked: req.query._uid})
+  const bookmarkedItems = await Items.find({ bookmarked: req.query._uid });
   res.status(200).json(bookmarkedItems);
 };
 
@@ -166,6 +166,10 @@ const deleteAllAccountData = async (req, res) => {
   await BookmarkSchema.deleteMany({ _uid: uid });
   res.json({ msg: "All Deleted" });
 };
+const deleteSingleItem = async (req, res) => {
+  console.log(req.body);
+  res.json({ msg: "Item Deleted" });
+};
 
 module.exports = {
   getAllItems,
@@ -181,4 +185,5 @@ module.exports = {
   editAccountOffered,
   editAccountAsked,
   deleteAllAccountData,
+  deleteSingleItem,
 };
