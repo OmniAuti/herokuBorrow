@@ -43,7 +43,6 @@ export const getAccountItemsAsked = async (_uid) => {
 };
 
 export const addBookmark = async (bookmark) => {
-  console.log(bookmark)
   return axios.put(urlSeven, bookmark);
 };
 

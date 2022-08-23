@@ -1,6 +1,5 @@
 const Items = require("../models/ItemModel");
 const AskItems = require("../models/AskModel");
-const BookmarkSchema = require("../models/BookmarkModel");
 
 const getAllItems = async (req, res) => {
   try {
@@ -141,8 +140,9 @@ const addBookmark = async (req, res) => {
 };
 
 const getAccountBookmarked = async (req, res) => {
-  const bookmarked = await BookmarkSchema.find({});
-  res.status(200).json(bookmarked);
+  const bookmarkedItems = await Items.find({bookmarked: req.query._uid})
+  // console.log(bookmarkedItems)
+  res.status(200).json(bookmarkedItems);
 };
 
 const editAccountOffered = async (req, res) => {

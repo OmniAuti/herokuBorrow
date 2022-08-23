@@ -22,12 +22,10 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
   const [isAskLoaded, setIsAskLoaded] = useState(false);
   const [isItemsLoaded, setIsItemsLoaded] = useState(false);
   const [isBookmarkLoaded, setIsBookmarkLoaded] = useState(false);
-  const [userUid, setUserUid] = useState("");
 
   // THIS IS OFFERED/BORROWED DATA
   useEffect(() => {
     if (user === undefined) return;
-    setUserUid(user.uid);
     handleOfferedLoading(user);
     return () => {
       setIsItemsLoaded(false);
@@ -99,10 +97,8 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
       />
       <AccountDashboardBookmarked
         modalDispatch={modalDispatch}
-        userUid={userUid}
         isBookmarkLoaded={isBookmarkLoaded}
         accountBookmarked={accountBookmarked}
-        accountItemsData={accountItemsData}
       />
     </section>
   );

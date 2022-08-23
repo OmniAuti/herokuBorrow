@@ -93,7 +93,6 @@ function App() {
         .catch((err) => console.log(err));
       setActiveModalEdit(true);
     } else if (state.modalType === "accountEditAsk") {
-      console.log("askpost", id);
       await getSingleItemAsk(id)
         .then((res) => setModalDataEdit(res.data))
         .catch((err) => console.log(err));
