@@ -8,6 +8,7 @@ import FilterForm from "../components/FilterForm";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import EmptyFilteredSuppliesPlaceHolder from "../components/EmptyFilteredSuppliesPlaceholder";
+import EmptySuppliesPlaceHolder from "../components/EmptySuppliesPlaceholder";
 
 const Borrow = ({ modalDispatch }) => {
   // WHEN YOU CLICK ON ONE DO A SINGLE ITEM SEARCH TO PULL MODAL CARD OF INTERESTED ITEM
@@ -76,7 +77,9 @@ const Borrow = ({ modalDispatch }) => {
           }
         >
           {dataDump.length <= 0 ? (
-            <EmptyFilteredSuppliesPlaceHolder />
+            <div>
+            {activeFilter ? <EmptyFilteredSuppliesPlaceHolder /> : <EmptySuppliesPlaceHolder/>}
+            </div>
           ) : (
             dataDump.map((data) => (
               <SupplyObjectCard

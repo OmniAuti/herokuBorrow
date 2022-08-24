@@ -12,7 +12,7 @@ const EmptyFilteredSuppliesPlaceHolder = () => {
       <p className="font-thin text-2xl my-5">
         Expand your filters and try again
       </p>
-      <p className="text-2xl font-thin mb-5">
+      <p className="text-2xl font-thin mb-5 text-center">
         If you're having no luck, try posting on the{" "}
         <Link
           to="/ask"
