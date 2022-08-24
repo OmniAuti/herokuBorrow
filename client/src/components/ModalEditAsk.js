@@ -35,7 +35,6 @@ const ModalEditAsk = ({
       _id: data._id,
     });
   }, [data]);
-  console.log(askObj);
 
   const checkBoxArr = [
     { id: 1, value: "New", checked: false },

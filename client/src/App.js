@@ -21,6 +21,7 @@ import AccountSettings from "./pages/AccountSettings";
 import ScrollToTop from "./components/ScrollToTop";
 import SingleItemFocusModal from "./components/SingleItemFocusModal";
 import AccountEditPostModal from "./components/AccountEditPostModal";
+import DeleteSinglePostModal from "./components/DeleteSinglePostModal";
 //CONTEXT IMPORT
 import AuthContextProvider from "./context/AuthContext";
 // APPI CALLS
@@ -46,6 +47,12 @@ const modalReducer = (state, action) => {
         active: !state.active,
         modalType: "accountEditAsk",
       };
+    case "DELETE_SINGLE_POST":
+      return {
+        modalId: action.payload,
+        active: !state.active,
+        modalType: "deleteSinglePost",
+      };
   }
 };
 
@@ -59,6 +66,7 @@ function App() {
   const [modalDataEdit, setModalDataEdit] = useState([]);
   const [activeModal, setActiveModal] = useState(false);
   const [activeModalEdit, setActiveModalEdit] = useState(false);
+  const [activeModalDelete, setActiveModalDelete] = useState(false);
   const [modalLoaded, setModalLoaded] = useState(false);
   const [modalLoadedEdit, setModalLoadedEdit] = useState(false);
   const [bookmarkRefresh, setBookmarkRefresh] = useState(false);
@@ -97,6 +105,8 @@ function App() {
         .then((res) => setModalDataEdit(res.data))
         .catch((err) => console.log(err));
       setActiveModalEdit(true);
+    } else if (state.modalType === "deleteSinglePost") {
+      setActiveModalDelete(true);
     }
   };
 
@@ -105,6 +115,7 @@ function App() {
     setActiveModalEdit(false);
     setModalLoaded(false);
     setModalLoadedEdit(false);
+    setActiveModalDelete(false);
   };
 
   const handleOpenModal = () => {
@@ -141,6 +152,15 @@ function App() {
           handleOpenModal={handleOpenModalEdit}
           modalLoaded={modalLoadedEdit}
           handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
+        />
+
+        <DeleteSinglePostModal
+          postId={state.modalId}
+          handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
+          activeModalDelete={activeModalDelete}
+          handleCloseModal={handleCloseModal}
+          // SEND ASK OR ITEM TYPE !
+          data
         />
 
         <main className="App  bg-black h-full min-h-screen w-screen px-5 pb-5 relative">

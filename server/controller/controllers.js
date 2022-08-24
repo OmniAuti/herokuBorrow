@@ -167,8 +167,18 @@ const deleteAllAccountData = async (req, res) => {
   res.json({ msg: "All Deleted" });
 };
 const deleteSingleItem = async (req, res) => {
-  console.log(req.body);
-  res.json({ msg: "Item Deleted" });
+  const id = req.body._id[0];
+  try {
+    if (req.body._id[1] === "ask") {
+      await AskItems.deleteOne({ _id: id });
+      res.json({ msg: "Item Deleted" });
+    } else if (req.body._id[1] === "offer") {
+      await Items.deleteOne({ _id: id });
+      res.json({ msg: "Item Deleted" });
+    }
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 module.exports = {

@@ -46,9 +46,8 @@ export const getAccountItemsAsked = async (_uid) => {
 export const addBookmark = async (bookmark) => {
   return axios.put(urlSeven, bookmark);
 };
-export const deleteSingleItem = async (data) => {
-  console.log(data)
-  // return axios.delete(urlEight, data);
+export const deleteSingleItem = async (id) => {
+  return axios.delete(urlEight, {data: {_id:id}});
 };
 
 export const getAccountBookmarked = async (uid) => {

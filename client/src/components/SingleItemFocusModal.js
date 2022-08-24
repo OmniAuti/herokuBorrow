@@ -46,8 +46,8 @@ const SingleItemFocusModal = ({
     <div
       className={
         activeModal
-          ? "fixed bg-black/50 z-40 w-full h-full top-0 left-0 right-0"
-          : "fixed bg-black/50 z-40 w-full h-full top-0 left-0 right-0 hidden"
+          ? "fixed bg-black/50 z-50 w-full h-full top-0 left-0 right-0"
+          : "fixed bg-black/50 z-50 w-full h-full top-0 left-0 right-0 hidden"
       }
     >
       {modalLoaded ? (

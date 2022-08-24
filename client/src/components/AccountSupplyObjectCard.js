@@ -143,7 +143,9 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
             alt="Edit Post Icon"
           />
         </button>
-        <button className="bg-white text-center cursor-pointer absolute -right-2 -bottom-2 border p-2 hover:shadow-[0px_-4px_15px_-3px_rgb(0,0,0,0.1),0px_-3px_6px_-4px_rgb(0,0,0,0.1)] rounded-lg">
+        <button onClick={() => {
+          modalDispatch({type: 'DELETE_SINGLE_POST', payload: [data._id, data.postType]})
+        }} className="bg-white text-center cursor-pointer absolute -right-2 -bottom-2 border py-2 pl-1 pr-3 hover:shadow-[-1px_-4px_15px_-3px_rgb(0,0,0,0.1),-1px_-3px_6px_-4px_rgb(0,0,0,0.1)] rounded-lg">
         <img
             className="w-10 mx-auto mb-1 "
             src="./imgs/deletePost.svg"
