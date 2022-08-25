@@ -5,7 +5,7 @@ import { useState } from "react";
 const AccountSignIn = ({ handleActiveSignIn, activeSignUp }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [errorMsg, setErrorMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState("");
   const [signInError, setSignInError] = useState(false);
 
   const navigate = useNavigate();
@@ -17,14 +17,13 @@ const AccountSignIn = ({ handleActiveSignIn, activeSignUp }) => {
     try {
       await logInUser(email, password);
       setSignInError(false);
-      setErrorMsg("")
+      setErrorMsg("");
       navigate("/dashboard");
     } catch (err) {
-      console.error(err);
-      const erro = err.toString().slice(25,)
-      setErrorMsg(erro)
+      console.log(err);
+      const erro = err.toString().slice(25, err.toString().length - 1);
+      setErrorMsg(erro);
       setSignInError(true);
-
     }
   };
 
@@ -40,10 +39,14 @@ const AccountSignIn = ({ handleActiveSignIn, activeSignUp }) => {
           </button>
         ) : (
           <>
-          <p className="text-black text-2xl border-b pb-2 w-3/4 mx-auto text-center">
-            Sign In
-          </p>
-          {signInError && <p className="text-red-500 bg-white absolute font-thin w-full translate-x-[-50%] left-[50%]">{errorMsg}</p>}
+            <p className="text-black text-2xl border-b pb-2 w-3/4 mx-auto text-center">
+              Sign In
+            </p>
+            {signInError && (
+              <p className="text-red-500 bg-white absolute font-thin w-full translate-x-[-50%] left-[50%]">
+                {errorMsg}
+              </p>
+            )}
           </>
         )}
       </div>

@@ -24,9 +24,9 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
       setSignUpError(false);
       setErrorMsg("");
       navigate("/dashboard");
-    } catch (e) {
-      console.log(e);
-      const erro = e.toString().slice(25, 58);
+    } catch (err) {
+      console.log(err);
+      const erro = err.toString().slice(25, err.toString().length - 1);
       setErrorMsg(erro);
       setSignUpError(true);
     }
