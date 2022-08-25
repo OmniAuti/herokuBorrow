@@ -35,9 +35,6 @@ if (activeModal === false) {
   const handleEditSuccess = () => {
     setEditSaved(true)
   }
-  const handleEditSuccessModalClose = () => {
-    setEditSaved(false)
-  }
 
   return (
     <div
@@ -65,7 +62,6 @@ if (activeModal === false) {
                     handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
                     data={data}
                     handleEditSuccess={handleEditSuccess}
-                    handleEditSuccessModalClose={handleEditSuccessModalClose}
                   />
                 ) : (
                   <ModalEditAsk
@@ -75,7 +71,6 @@ if (activeModal === false) {
                     handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
                     data={data}
                     handleEditSuccess={handleEditSuccess}
-                    handleEditSuccessModalClose={handleEditSuccessModalClose}
                   />
                 )}
               </div>

@@ -12,7 +12,6 @@ const SingleItemFocusModal = ({
   handleModalBookmark,
 }) => {
   const { user } = UserAuth();
-
   const [bookmarkCheck, setBookmarkCheck] = useState(false);
 
   useEffect(() => {
@@ -27,11 +26,17 @@ const SingleItemFocusModal = ({
   const handleBookmark = async () => {
     var bookmark = { _uid: user.uid, postId: data._id };
     try {
-      await addBookmark(bookmark);
+      await addBookmark(bookmark).then((res) => {
+        if (res.status >= 200 && res.status <= 299) {
+          handleModalBookmark();
+        } else if (res.status >= 400 && res.status <= 499) {
+          alert('Bookmark Failed. Try Again.')
+        }
+      });
     } catch (err) {
+      alert('Bookmark Failed. Try Again.')
       console.log(err);
     }
-    handleModalBookmark();
   };
 
   const handleBookmarkCheck = async () => {

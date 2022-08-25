@@ -8,11 +8,17 @@ const DeleteSinglePostModal = ({
 }) => {
   const handleDeleteSinglePost = async () => {
     try {
-      await deleteSingleItem(postId);
-      handleItemRefreshAfterEdit();
-      handleCloseModal();
-    } catch (e) {
-      console.log(e);
+      await deleteSingleItem(postId).then((res) => {
+        if (res.status >= 200 && res.status <= 299) {
+          handleItemRefreshAfterEdit();
+          handleCloseModal();
+        } else if (res.status >= 400 && res.status <= 499)
+          alert("Delete Item failed. Try to submit again.");
+        return;
+      });
+    } catch (err) {
+      alert("Delete Item failed. Try to submit again.");
+      console.log(err);
     }
   };
 

@@ -9,6 +9,8 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [signUpError, setSignUpError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const confirmedCheck = useRef();
 
@@ -17,8 +19,17 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
     if (password !== confirmPassword) {
       return alert("Please confirm that passwords match");
     }
-    await createUser(email, password);
-    navigate("/dashboard");
+    try {
+      await createUser(email, password);
+      setSignUpError(false);
+      setErrorMsg("");
+      navigate("/dashboard");
+    } catch (e) {
+      console.log(e);
+      const erro = e.toString().slice(25, 58);
+      setErrorMsg(erro);
+      setSignUpError(true);
+    }
   };
 
   const handleConfirmedPassword = () => {
@@ -36,14 +47,22 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
       className={
         activeSignUp
           ? " flex flex-col items-center justify-center py-2 absolute top-[50px] w-full bg-white transition-all duration-500"
-          : "transition-all duration-500 flex flex-col items-center justify-center py-2 absolute top-[290px] w-full bg-white"
+          : "transition-all duration-500 flex flex-col items-center justify-center py-2 absolute top-[295px] w-full bg-white"
       }
     >
       <div className="m-1 w-3/4">
         {activeSignUp ? (
-          <p className="text-black text-2xl text-center border-b pb-2">
-            Sign Up
-          </p>
+          <>
+            <p className="text-black text-2xl text-center border-b pb-2">
+              Sign Up
+            </p>
+
+            {signUpError && (
+              <p className="text-red-500 bg-white text-center absolute font-thin w-full translate-x-[-50%] left-[50%]">
+                {errorMsg}
+              </p>
+            )}
+          </>
         ) : (
           <button
             onClick={handleActiveSignUp}
@@ -57,7 +76,7 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
         onSubmit={(e) => handleSignUpSubmit(e)}
         className="text-black w-3/4"
       >
-        <div className="flex flex-col my-1 py-2">
+        <div className="flex flex-col mb-1 mt-2 py-2">
           <label htmlFor="email" className="text-black">
             Email
           </label>

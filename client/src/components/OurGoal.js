@@ -23,7 +23,7 @@ const OurGoal = () => {
           <p className="font-thin text-center">Post supplies that you have to offer</p>
         </div>
         </Link>
-        <Link className='w-full md:w-1/3 p-5 group' to="/borrow">
+        <Link className='w-full md:w-1/3 p-5 group' to="/ask">
         <div className="flex items-center justify-center flex-col">
           <div className="ask-container my-3"></div>
           <p className="text-2xl group-hover:underline underline-offset-2">Ask</p>

@@ -5,7 +5,6 @@ import { fetchAllItems } from "../api/api";
 import { useEffect, useState, useReducer, useCallback } from "react";
 import SupplyObjectCard from "../components/SupplyObjectCard";
 import FilterForm from "../components/FilterForm";
-import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import EmptyFilteredSuppliesPlaceHolder from "../components/EmptyFilteredSuppliesPlaceholder";
 import EmptySuppliesPlaceHolder from "../components/EmptySuppliesPlaceholder";

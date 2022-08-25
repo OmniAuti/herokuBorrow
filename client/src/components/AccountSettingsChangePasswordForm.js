@@ -14,6 +14,7 @@ const AccountSettingsChangePasswordForm = ({ handleSettingsChangeSubmit }) => {
       setNewPassword("");
       setConfirmPassword("");
     } catch (e) {
+      alert('Something went wrong. Please try again.')
       console.log(e);
     }
   };

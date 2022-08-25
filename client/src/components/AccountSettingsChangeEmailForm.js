@@ -11,6 +11,7 @@ const AccountSettingsChangeEmailForm = ({ handleSettingsChangeSubmit }) => {
       setNewEmail("");
       setConfirmPassword("");
     } catch (e) {
+      alert('Something went wrong. Please try again.')
       console.log(e);
     }
   };

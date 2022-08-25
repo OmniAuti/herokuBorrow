@@ -70,23 +70,29 @@ const ModalEditAsk = ({
       if (newCondition.length > 0) {
         await handleCommas();
       }
-      await editAccountAsked(askObj);
-      handleEditSuccess();
-      handleItemRefreshAfterEdit();
-      e.target.reset();
-      setAskObj({
-        who: "",
-        type: "",
-        quantity: 1,
-        specify: "",
-        condition: [],
-        location: "",
-        zipcode: "",
-        postType: "ask",
-        _uid: "",
-        _id: "",
+      await editAccountAsked(askObj).then((res) => {
+        if (res.status >= 200 && res.status <= 299) {
+          handleEditSuccess();
+          handleItemRefreshAfterEdit();
+          e.target.reset();
+          setAskObj({
+            who: "",
+            type: "",
+            quantity: 1,
+            specify: "",
+            condition: [],
+            location: "",
+            zipcode: "",
+            postType: "ask",
+            _uid: "",
+            _id: "",
+          });
+        } else if (res.status >= 400 && res.status <= 499)
+          alert("Edit Failed. Try Again.");
+        return;
       });
     } catch (err) {
+      alert("Edit Failed. Try Again.");
       console.log(err);
     }
   };
@@ -165,7 +171,9 @@ const ModalEditAsk = ({
         value={askObj.quantity}
         onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
       />
-      <label className=" text-black" htmlFor="specify">Specify Your Needs</label>
+      <label className=" text-black" htmlFor="specify">
+        Specify Your Needs
+      </label>
       <input
         id="specify"
         required

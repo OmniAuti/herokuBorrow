@@ -159,8 +159,6 @@ function App() {
           handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
           activeModalDelete={activeModalDelete}
           handleCloseModal={handleCloseModal}
-          // SEND ASK OR ITEM TYPE !
-          data
         />
 
         <main className="App  bg-black h-full min-h-screen w-screen px-5 pb-5 relative">

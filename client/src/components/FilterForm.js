@@ -21,9 +21,14 @@ const FilterForm = ({ dispatch }) => {
   const handleQuery = async (e) => {
     e.preventDefault();
     await filteredQuery(filterQuery)
-      .then((res) => setDataDump(res.data))
+      .then((res) => {
+        if (res.status >= 200 && res.status <= 299) {
+          setDataDump(res.data);
+        } else if (res.status >= 400 && res.status <= 499) {
+          alert("Filter Query Failed. Try Again.");
+        }
+      })
       .catch((err) => console.log(err));
-    console.log(dataDump);
   };
 
   const handleReset = async (e) => {
@@ -38,8 +43,15 @@ const FilterForm = ({ dispatch }) => {
     setFilterQuery(clearedSearch);
 
     await filteredQuery(clearedSearch)
-      .then((res) => setDataDump(res.data))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        if (res.status >= 200 && res.status <= 299) {
+          setDataDump(res.data);
+        } else if (res.status >= 400 && res.status <= 499) {
+          alert("Filter Query Failed. Try Again.");
+        }
+      })
+      .catch((err) => alert("Filter Query Failed. Try Again."));
+      
   };
 
   useEffect(() => {

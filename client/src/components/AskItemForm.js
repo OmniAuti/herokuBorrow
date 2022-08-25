@@ -18,7 +18,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
     who: "",
     type: "",
     quantity: 1,
-    specify:"",
+    specify: "",
     condition: [],
     location: "",
     zipcode: "",
@@ -75,22 +75,28 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
     e.preventDefault();
     try {
       await handleCommas();
-      await postAskItem(askObj);
-      e.target.reset();
-      setAskObj({
-        who: "",
-        type: "",
-        quantity: 1,
-        specify:"",
-        condition: "",
-        location: "",
-        zipcode: "",
-        postType: "ask",
-        _uid: "",
+      await postAskItem(askObj).then((res) => {
+        if (res.status >= 200 && res.status <= 299) {
+          handleUpdateAfterPost();
+          setPostSuccess(true);
+          e.target.reset();
+          setAskObj({
+            who: "",
+            type: "",
+            quantity: 1,
+            specify: "",
+            condition: "",
+            location: "",
+            zipcode: "",
+            postType: "ask",
+            _uid: "",
+          });
+        } else if (res.status >= 400 && res.status <= 499) {
+          alert("Posting Ask Item Failed. Try Again.");
+        }
       });
-      handleUpdateAfterPost();
-      setPostSuccess(true);
     } catch (err) {
+      alert("Posting Ask Item Failed. Try Again.");
       console.log(err);
     }
   };
@@ -167,8 +173,8 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
             value={askObj.quantity}
             onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
           />
-          <label htmlFor="specify">Specify Your Needs</label>
-          <input  
+          <label htmlFor="specify">Needed For . . .</label>
+          <input
             id="specify"
             required
             className="block w-full h-10 my-2 pl-1 text-center rounded-md"
@@ -176,7 +182,8 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
             name="specify"
             maxLength="49"
             onChange={(e) => setAskObj({ ...askObj, specify: e.target.value })}
-            placeholder="This is for . . ."/>
+            placeholder="This is for . . ."
+          />
 
           <label htmlFor="condition">Acceptable Condition</label>
           <div className="flex flex-wrap items-center justify-around mb-7 mx-5">

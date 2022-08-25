@@ -4,8 +4,7 @@ import { editAccountOffered } from "../api/api";
 const ModalEditOffer = ({
   data,
   handleItemRefreshAfterEdit,
-  handleEditSuccessModalClose,
-  handleEditSuccess
+  handleEditSuccess,
 }) => {
   const [formData, setFormData] = useState({
     type: "",
@@ -60,24 +59,30 @@ const ModalEditOffer = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await editAccountOffered(formData);
-      handleEditSuccess()
-      handleItemRefreshAfterEdit();
-      e.target.reset();
-      setFormData({
-        type: "",
-        quantity: 1,
-        description: "",
-        condition: "",
-        location: "",
-        zipcode: "",
-        postType: data.postType,
-        _uid: "",
-        bookmarked: data.bookmarked,
-        _id: "",
+      await editAccountOffered(formData).then((res) => {
+        if (res.status >= 200 && res.status <= 299) {
+          handleEditSuccess();
+          handleItemRefreshAfterEdit();
+          e.target.reset();
+          setFormData({
+            type: "",
+            quantity: 1,
+            description: "",
+            condition: "",
+            location: "",
+            zipcode: "",
+            postType: data.postType,
+            _uid: "",
+            bookmarked: data.bookmarked,
+            _id: "",
+          });
+        } else if (res.status >= 400 && res.status <= 499) {
+          alert("Edit Failed. Try Again.");
+          return;
+        }
       });
-
     } catch (err) {
+      alert("Edit Failed. Try Again.");
       console.log(err);
     }
   };
