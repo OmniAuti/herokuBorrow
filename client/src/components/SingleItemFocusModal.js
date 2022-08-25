@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { addBookmark } from "../api/api";
+import { Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import Loading from "./Loading";
 
@@ -13,33 +14,43 @@ const SingleItemFocusModal = ({
 }) => {
   const { user } = UserAuth();
   const [bookmarkCheck, setBookmarkCheck] = useState(false);
+  const [logInCheck, setLogInCheck] = useState(false);
 
   useEffect(() => {
     if (Object.values(data).length <= 0) return;
     handleOpenModal();
     handleBookmarkCheck();
-    return () => {
-      console.log("cleared");
-    };
+    return () => {};
   }, [data]);
 
+  useEffect(() => {
+    if (user === undefined || !user) {
+      setLogInCheck(false);
+      return;
+    }
+    setLogInCheck(true);
+  }, []);
+
   const handleBookmark = async () => {
+    if (!user) return;
     var bookmark = { _uid: user.uid, postId: data._id };
     try {
       await addBookmark(bookmark).then((res) => {
         if (res.status >= 200 && res.status <= 299) {
           handleModalBookmark();
         } else if (res.status >= 400 && res.status <= 499) {
-          alert('Bookmark Failed. Try Again.')
+          alert("Bookmark Failed. Try Again.");
         }
       });
     } catch (err) {
-      alert('Bookmark Failed. Try Again.')
+      alert("Bookmark Failed. Try Again.");
       console.log(err);
     }
   };
 
   const handleBookmarkCheck = async () => {
+    if (!user) return;
+    console.log(user, "user");
     if (data.bookmarked.indexOf(user.uid) >= 0) {
       setBookmarkCheck(true);
     } else {
@@ -51,7 +62,7 @@ const SingleItemFocusModal = ({
     <div
       className={
         activeModal
-          ? "fixed bg-black/50 z-50 w-full h-full top-0 left-0 right-0"
+          ? "fixed bg-black/50 z-50 w-full h-full top-0 left-0 right-0 overflow-scroll"
           : "fixed bg-black/50 z-50 w-full h-full top-0 left-0 right-0 hidden"
       }
     >
@@ -104,36 +115,55 @@ const SingleItemFocusModal = ({
                 </li>
               </ul>
 
-              <div
-                onClick={() => handleBookmark()}
-                className="h-12 absolute rounded-full w-12 top-1/2 -right-1 cursor-pointer hover:scale-105"
-              >
-                {bookmarkCheck ? (
-                  <img
-                    className=""
-                    src="/imgs/bookmarkBooked.svg"
-                    alt="Add Post Icon"
-                  />
-                ) : (
-                  <img
-                    className=""
-                    src="/imgs/bookmark.svg"
-                    alt="Add Post Icon"
-                  />
-                )}
-              </div>
+              {logInCheck && (
+                <div
+                  onClick={() => handleBookmark()}
+                  className="h-12 absolute rounded-full w-12 top-1/2 -right-1 cursor-pointer hover:scale-105"
+                >
+                  {bookmarkCheck ? (
+                    <img
+                      className=""
+                      src="/imgs/bookmarkBooked.svg"
+                      alt="Add Post Icon"
+                    />
+                  ) : (
+                    <img
+                      className=""
+                      src="/imgs/bookmark.svg"
+                      alt="Add Post Icon"
+                    />
+                  )}
+                </div>
+              )}
             </div>
 
-            <button className="bg-sky-500 w-full h-10 my-2 rounded-sm hover:bg-sky-900">
-              Inquire
-            </button>
-
-            <button
-              onClick={() => handleCloseModal()}
-              className="w-full h-10 bg-gray-400 rounded-sm rounded-bl-sm hover:bg-gray-700"
-            >
-              Close
-            </button>
+            {logInCheck ? (
+              <>
+                <button className="bg-sky-500 w-full h-10 my-2 rounded-sm hover:bg-sky-900">
+                  Inquire
+                </button>
+                <button
+                  onClick={() => handleCloseModal()}
+                  className="w-full h-10 bg-gray-400 rounded-sm rounded-bl-sm hover:bg-gray-700"
+                >
+                  Close
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="account-gateway">
+                  <p className="flex items-center justify-center bg-sky-500 w-full my-2 h-10 rounded-sm hover:bg-sky-900">
+                    Please Log In For More Details
+                  </p>
+                </Link>
+                <button
+                  onClick={() => handleCloseModal()}
+                  className="w-full h-10 bg-gray-400 rounded-sm rounded-bl-sm hover:bg-gray-700"
+                >
+                  Close
+                </button>
+              </>
+            )}
           </div>
         </div>
       ) : (
