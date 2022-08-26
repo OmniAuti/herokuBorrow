@@ -148,7 +148,7 @@ const Header = () => {
               </p>
             </Link>
           </li>
-          <li className="cursor-pointer grow flex items-center justify-center group order-5 sm:order-none relative">
+          <li className="cursor-pointer grow flex items-center group justify-center order-5 sm:order-none relative">
             <div
               className="grow flex h-full items-center justify-center"
               to="/ask"
@@ -168,14 +168,14 @@ const Header = () => {
               <li className="h-1/2">
                 {" "}
                 <Link
-                  className="grow flex h-full p-2 items-center justify-center"
+                  className="grow flex h-full items-center justify-center"
                   to="/asked"
                 >
                   <p
                     className={
                       location.pathname === "/asked"
-                        ? "underline underline-offset-4"
-                        : "hover:underline hover:underline-offset-4"
+                        ? "underline underline-offset-4 w-full h-full flex items-center justify-center"
+                        : "hover:underline hover:underline-offset-4 w-full h-full flex items-center justify-center"
                     }
                   >
                     Asked
@@ -191,8 +191,8 @@ const Header = () => {
                   <p
                     className={
                       location.pathname === "/ask-for"
-                      ? "underline underline-offset-4"
-                      : "hover:underline hover:underline-offset-4"
+                      ? "underline underline-offset-4 w-full h-full flex items-center justify-center"
+                      : "hover:underline hover:underline-offset-4 w-full h-full flex items-center justify-center"
                     }
                   >
                     Post
