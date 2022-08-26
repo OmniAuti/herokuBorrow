@@ -50,7 +50,6 @@ const SingleItemFocusModal = ({
 
   const handleBookmarkCheck = async () => {
     if (!user || data.postType === "ask") return;
-    console.log(user, "user");
     if (data.bookmarked.indexOf(user.uid) >= 0) {
       setBookmarkCheck(true);
     } else {
@@ -68,7 +67,8 @@ const SingleItemFocusModal = ({
     >
       {modalLoaded ? (
         <div className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="h-fit p-5 w-screen sm:w-[500px] bg-white rounded-tr-sm rounded-tl-sm relative">
+          <div className="h-fit p-5 pt-2 w-screen sm:w-[500px] bg-white rounded-tr-sm rounded-tl-sm relative">
+            <p className="text-black text-center mb-3 underline">{data.postType === 'offer' ? 'Offered Supplies' : "Asked For Supplies"}</p>
             <div className="relative w-full h-fit min-h-[400px] rounded-md overflow-hidden py-2">
               <div className="h-52 max-h-52 min-h-52 w-full relative overflow-hidden">
                 <div className="bg-black bg-opacity-80 w-fit absolute pr-10 pt-5 pb-24 -bottom-20 pl-40 -left-36 rounded-full text-2xl font-light">

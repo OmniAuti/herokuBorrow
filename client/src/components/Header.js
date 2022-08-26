@@ -168,7 +168,7 @@ const Header = () => {
               <li className="h-1/2">
                 {" "}
                 <Link
-                  className="grow flex h-full items-center justify-center"
+                  className="grow flex h-full min-w-[75px] items-center justify-center"
                   to="/asked"
                 >
                   <p
@@ -178,7 +178,7 @@ const Header = () => {
                         : "hover:underline hover:underline-offset-4 w-full h-full flex items-center justify-center"
                     }
                   >
-                    Asked
+                    Asked For
                   </p>
                 </Link>
               </li>

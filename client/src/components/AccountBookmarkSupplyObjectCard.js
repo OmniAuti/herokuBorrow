@@ -32,11 +32,14 @@ const AccountBookmarkSupplyObjectCard = ({ data, modalDispatch }) => {
   // NEED TO MAKE A LIKE OPTION TO STORE IN INTEREST SECTIO OF ACCOUNT
   
       <div
-        onClick={() => modalDispatch({ type: "MODAL", payload: data._id })}
+        onClick={() => modalDispatch({ type: `MODAL-${data.postType}`, payload: data._id })}
         className=" w-full rounded-md my-1 mx-[12px] p-1 cursor-pointer"
         style={{ backgroundColor: cardBgColor }}
       >
+        
         <div className="flex justify-around flex-col bg-white w-full h-full pb-5 rounded-md shadow-inner transition-all hover:shadow-black outline">
+        <p className="text-black text-center mt-1 underline">{data.postType === 'offer' ? 'Offered Supplies' : "Asked For Supplies"}</p>
+
         <div className="flex justify-around w-full p-5">
           
           <img
