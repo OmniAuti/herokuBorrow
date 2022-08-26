@@ -10,7 +10,8 @@ import Footer from "./components/Footer";
 //PAGES
 import Home from "./pages/Home";
 import Borrow from "./pages/Borrow";
-import Ask from "./pages/Ask";
+import Asked from "./pages/Asked";
+import AskFor from "./pages/AskFor";
 import AboutPage from "./pages/AboutPage";
 import Offer from "./pages/Offer";
 import AccountGateway from "./pages/AccountGateway";
@@ -222,10 +223,15 @@ function App() {
               />
 
               <Route
-                path="/ask"
+                path="/asked"
+                element={<Asked modalDispatch={modalDispatch} />}
+              />
+              
+              <Route
+                path="/ask-for"
                 element={
                   <ProtectedUserRoute>
-                    <Ask
+                    <AskFor
                       refreshAfterEdit={refreshAfterEdit}
                       modalDispatch={modalDispatch}
                     />

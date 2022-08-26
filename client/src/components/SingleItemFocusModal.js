@@ -24,7 +24,6 @@ const SingleItemFocusModal = ({
   }, [data]);
 
   useEffect(() => {
-    console.log(user);
     if (user === undefined || !user) {
       setLogInCheck(true);
       return;
