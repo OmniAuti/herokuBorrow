@@ -1,17 +1,13 @@
-import styles from "./Borrow.css";
-
-import { fetchAllItems } from "../api/api";
+import { getAskedForItems } from "../api/api";
 
 import { useEffect, useState, useReducer, useCallback } from "react";
 import SupplyObjectCard from "../components/SupplyObjectCard";
-import FilterForm from "../components/FilterForm";
+import FilterFormAsked from "../components/FilterFormAsked";
 import Loading from "../components/Loading";
 import EmptyFilteredSuppliesPlaceHolder from "../components/EmptyFilteredSuppliesPlaceholder";
 import EmptySuppliesPlaceHolder from "../components/EmptySuppliesPlaceholder";
 
-const Borrow = ({ modalDispatch }) => {
-  // WHEN YOU CLICK ON ONE DO A SINGLE ITEM SEARCH TO PULL MODAL CARD OF INTERESTED ITEM
-
+const AskedForItems = ({ modalDispatch }) => {
   const reducer = (state, action) => {
     switch (action.type) {
       case "LOADED":
@@ -27,24 +23,19 @@ const Borrow = ({ modalDispatch }) => {
   const [state, dispatch] = useReducer(reducer, { dataFiltered: dataDump });
 
   useEffect(() => {
-    handleLoading()
+    handleLoading();
   }, []);
 
   const handleLoading = async () => {
     try {
-      await fetchAllItems().then((res) => setDataDump(res.data));
+      await getAskedForItems().then((res) => setDataDump(res.data));
       setIsLoaded(true);
-    } catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
     }
-    
   };
-
-
   return (
-    <section>
-      <h1 className="text-5xl text-center mb-5">Available Supplies</h1>
-
+    <div>
       <div className="mx-auto h-fit w-fit my-5">
         <button
           className="p-2 mx-auto"
@@ -60,8 +51,10 @@ const Borrow = ({ modalDispatch }) => {
             : "h-0 transition-all overflow-hidden"
         }
       >
-        <h3 className="text-center text-4xl pt-2 underline underline-offset-2 font-light">Filter</h3>
-        <FilterForm dispatch={dispatch} />
+        <h3 className="text-center text-4xl pt-2 underline underline-offset-2 font-light">
+          Filter
+        </h3>
+        <FilterFormAsked dispatch={dispatch} />
       </div>
 
       {isLoaded ? (
@@ -74,7 +67,11 @@ const Borrow = ({ modalDispatch }) => {
         >
           {dataDump.length <= 0 ? (
             <div>
-            {activeFilter ? <EmptyFilteredSuppliesPlaceHolder /> : <EmptySuppliesPlaceHolder/>}
+              {activeFilter ? (
+                <EmptyFilteredSuppliesPlaceHolder />
+              ) : (
+                <EmptySuppliesPlaceHolder />
+              )}
             </div>
           ) : (
             dataDump.map((data) => (
@@ -93,8 +90,8 @@ const Borrow = ({ modalDispatch }) => {
           fontColor={"font-white"}
         />
       )}
-    </section>
+    </div>
   );
 };
 
-export default Borrow;
+export default AskedForItems;

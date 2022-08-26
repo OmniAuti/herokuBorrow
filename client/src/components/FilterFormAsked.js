@@ -1,7 +1,7 @@
-import { filteredQuery } from "../api/api";
+import { filteredAskedQuery } from "../api/api";
 import { useState, useEffect } from "react";
 
-const FilterForm = ({ dispatch }) => {
+const FilterFormAsked = ({ dispatch }) => {
   const [filterQuery, setFilterQuery] = useState({
     type: "",
     quantity: "",
@@ -20,7 +20,7 @@ const FilterForm = ({ dispatch }) => {
 
   const handleQuery = async (e) => {
     e.preventDefault();
-    await filteredQuery(filterQuery)
+    await filteredAskedQuery(filterQuery)
       .then((res) => {
         if (res.status >= 200 && res.status <= 299) {
           setDataDump(res.data);
@@ -42,7 +42,7 @@ const FilterForm = ({ dispatch }) => {
 
     setFilterQuery(clearedSearch);
 
-    await filteredQuery(clearedSearch)
+    await filteredAskedQuery(clearedSearch)
       .then((res) => {
         if (res.status >= 200 && res.status <= 299) {
           setDataDump(res.data);
@@ -51,7 +51,6 @@ const FilterForm = ({ dispatch }) => {
         }
       })
       .catch((err) => alert("Filter Query Failed. Try Again."));
-      
   };
 
   useEffect(() => {
@@ -195,4 +194,4 @@ const FilterForm = ({ dispatch }) => {
   );
 };
 
-export default FilterForm;
+export default FilterFormAsked;

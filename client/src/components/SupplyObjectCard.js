@@ -95,7 +95,7 @@ const SupplyObjectCard = ({ data, modalDispatch }) => {
     // NEED TO MAKE A LIKE OPTION TO STORE IN INTEREST SECTIO OF ACCOUNT
 
     <div
-      onClick={() => modalDispatch({ type: "MODAL", payload: data._id, cardBgColor })}
+      onClick={() => modalDispatch({ type: `MODAL-${data.postType}`, payload: data._id })}
       className="w-screen lg:w-[32.33333%] lg:min-w-[318px] rounded-md my-2 lg:ml-[9px] p-1 cursor-pointer group"
       style={{ backgroundColor: cardBgColor }}
     >

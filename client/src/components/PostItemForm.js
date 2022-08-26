@@ -153,6 +153,7 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
             name="quantity"
             max="999"
             min="1"
+            maxLength={3}
             value={formData.quantity}
           />
           <label htmlFor="condition">Condition</label>

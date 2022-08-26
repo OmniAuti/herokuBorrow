@@ -34,7 +34,7 @@ const Offer = ({ modalDispatch, refreshAfterEdit }) => {
 
   return (
     <section className="flex flex-col">
-      <h1 className="text-center mb-10 text-5xl">Offer</h1>
+      <h1 className="text-center mb-10 text-5xl">Offer Supplies</h1>
       <div className="flex flex-col lg:flex-row justify-around">
         <OfferedAccountColumn
           refreshAfterEdit={refreshAfterEdit}

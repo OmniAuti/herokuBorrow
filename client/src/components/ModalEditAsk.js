@@ -21,6 +21,7 @@ const ModalEditAsk = ({
     _id: "",
   });
 
+
   useEffect(() => {
     setAskObj({
       who: data.who,
@@ -42,6 +43,11 @@ const ModalEditAsk = ({
     { id: 3, value: "Moderately Used", checked: false },
     { id: 4, value: "Heavily Used", checked: false },
   ];
+
+  const handleQuantityChange = (e) => {
+    if (e.target.value.length > 3) return;
+    setAskObj({ ...askObj, quantity: e.target.value });
+  };
 
   const handleCheckBoxes = (e) => {
     if (e.target.checked === true) {
@@ -169,7 +175,7 @@ const ModalEditAsk = ({
         max="999"
         min="1"
         value={askObj.quantity}
-        onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
+        onChange={(e) => handleQuantityChange(e)}
       />
       <label className=" text-black" htmlFor="specify">
         Specify Your Needs

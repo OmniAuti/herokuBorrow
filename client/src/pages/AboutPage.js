@@ -71,7 +71,7 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="w-full col-span-2 pb-5 px-5 row-span-1 z-50">
+          <div className="w-full col-span-2 pb-5 px-5 row-span-1 z-40">
             <br></br>
             <p className="font-thin text-lg">
               According to a
@@ -94,7 +94,7 @@ const AboutPage = () => {
           <div className="bg-sky-900 md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:mr-2 relative overflow-hidden">
             <div className="cap-background absolute"></div>
 
-            <div className="sm:rounded-md p-5 z-50 w-full h-full absolute">
+            <div className="sm:rounded-md p-5 z-40 w-full h-full absolute">
               <h2 className="text-2xl font-light mb-2 mt-0 text-center">
                 What if a student is not prepared?
               </h2>
@@ -135,7 +135,7 @@ const AboutPage = () => {
               </div>
             </div>
 
-            <div className="sm:rounded-md p-5 z-50 w-full h-full">
+            <div className="sm:rounded-md p-5 z-40 w-full h-full">
               <h2 className="text-2xl font-light mb-2 mt-0 text-center opacity-0">
                 What if a student is not prepared?
               </h2>
@@ -179,8 +179,8 @@ const AboutPage = () => {
 
           <div className="bg-sky-900 mt-5 md:mt-0 md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:ml-2 relative overflow-hidden">
             <div className="teacher-background absolute z-0"></div>
-            <div className="sm:rounded-md p-5 z-50 absolute w-full h-full">
-              <h3 className="text-2xl font-light mb-2 mt-0 text-center z-50">
+            <div className="sm:rounded-md p-5 z-40 absolute w-full h-full">
+              <h3 className="text-2xl font-light mb-2 mt-0 text-center z-40">
                 What about the teachers?
               </h3>
               <p className="font-thin">

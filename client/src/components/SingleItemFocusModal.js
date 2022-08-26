@@ -24,15 +24,16 @@ const SingleItemFocusModal = ({
   }, [data]);
 
   useEffect(() => {
+    console.log(user);
     if (user === undefined || !user) {
-      setLogInCheck(false);
+      setLogInCheck(true);
       return;
     }
-    setLogInCheck(true);
-  }, []);
+    setLogInCheck(false);
+  }, [user]);
 
   const handleBookmark = async () => {
-    if (!user) return;
+    if (!user || user === undefined) return;
     var bookmark = { _uid: user.uid, postId: data._id };
     try {
       await addBookmark(bookmark).then((res) => {
@@ -49,7 +50,7 @@ const SingleItemFocusModal = ({
   };
 
   const handleBookmarkCheck = async () => {
-    if (!user) return;
+    if (!user || data.postType === "ask") return;
     console.log(user, "user");
     if (data.bookmarked.indexOf(user.uid) >= 0) {
       setBookmarkCheck(true);
@@ -80,13 +81,19 @@ const SingleItemFocusModal = ({
                   alt=""
                 />
               </div>
-              <p className="text-black m-5 font-light max-w-[80%]">
-                {" "}
-                <span className=" text-black font-medium ">
-                  Description:
-                </span>{" "}
-                {data.description}
-              </p>
+              {data.postType === "ask" ? (
+                <p className="text-black m-5 font-light max-w-[80%]">
+                  {" "}
+                  <span className=" text-black font-medium ">Specifically Asked For: </span>
+                  {data.specify}
+                </p>
+              ) : (
+                <p className="text-black m-5 font-light max-w-[80%]">
+                  {" "}
+                  <span className=" text-black font-medium ">Description: </span>
+                  {data.description}
+                </p>
+              )}
 
               <ul className="mt-5 ml-2 px-2">
                 <li className="text-black m-1 mt-2 font-medium">
@@ -115,7 +122,7 @@ const SingleItemFocusModal = ({
                 </li>
               </ul>
 
-              {logInCheck && (
+              {!logInCheck && (
                 <div
                   onClick={() => handleBookmark()}
                   className="h-12 absolute rounded-full w-12 top-1/2 -right-1 cursor-pointer hover:scale-105"
@@ -137,7 +144,7 @@ const SingleItemFocusModal = ({
               )}
             </div>
 
-            {logInCheck ? (
+            {!logInCheck ? (
               <>
                 <button className="bg-sky-500 w-full h-10 my-2 rounded-sm hover:bg-sky-900">
                   Inquire

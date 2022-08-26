@@ -29,11 +29,17 @@ import { getSingleItem, getSingleItemAsk } from "./api/api";
 // USE REDUCER FUNCTION
 const modalReducer = (state, action) => {
   switch (action.type) {
-    case "MODAL":
+    case "MODAL-offer":
       return {
         modalId: action.payload,
         active: !state.active,
-        modalType: "singleFocus",
+        modalType: "singleFocusOffer",
+      };
+    case "MODAL-ask":
+      return {
+        modalId: action.payload,
+        active: !state.active,
+        modalType: "singleFocusAsk",
       };
     case "ACCOUNT_MODAL-offer":
       return {
@@ -90,8 +96,13 @@ function App() {
   };
 
   const handleModalData = async (id) => {
-    if (state.modalType === "singleFocus") {
+    if (state.modalType === "singleFocusOffer") {
       await getSingleItem(id)
+        .then((res) => setModalDataSingleFocus(res.data))
+        .catch((err) => console.log(err));
+      setActiveModal(true);
+    } else if (state.modalType === "singleFocusAsk") {
+      await getSingleItemAsk(id)
         .then((res) => setModalDataSingleFocus(res.data))
         .catch((err) => console.log(err));
       setActiveModal(true);

@@ -20,6 +20,7 @@ const HeroCOA = () => {
   const [transformInterval, setTransformInterval] = useState(0);
   const wordContainer = useRef(null);
 
+
   const handleTransform = (idx, interval) => {
     var opacityIdx = 1;
 
@@ -70,7 +71,6 @@ const HeroCOA = () => {
     return () => {
       clearInterval(handleTextInterval);
       clearInterval(transformEl);
-      console.log("cleared");
     };
   }, []);
 
@@ -84,7 +84,9 @@ const HeroCOA = () => {
           >
             <div className="">
               <h1 className="inline-block md:block">Can I</h1>
-              <h1 className="inline-block md:block ml-3 sm:pl-3 md:pl-0 md:ml-0">borrow</h1>
+              <h1 className="inline-block md:block ml-3 sm:pl-3 md:pl-0 md:ml-0">
+                borrow
+              </h1>
               <h1 className="">
                 a
                 <div
@@ -139,7 +141,7 @@ const HeroCOA = () => {
         </div>
       </div>
 
-     <HeroSectionBuildingBlocks/>
+      <HeroSectionBuildingBlocks />
     </section>
   );
 };

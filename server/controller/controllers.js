@@ -180,12 +180,42 @@ const deleteSingleItem = async (req, res) => {
     console.log(e);
   }
 };
+const getAskedItems = async (req, res) => {
+  const askedItems = await AskItems.find();
+  res.json(askedItems);
+};
+const getFilteredAskedItems = async (req, res) => {
+  try {
+    var queryObj = {};
+
+    if (req.query.type.length > 0) {
+      queryObj.type = req.query.type;
+    }
+    if (req.query.quantity > 0) {
+      queryObj.quantity = { $gte: Number(req.query.quantity) };
+    }
+    if (req.query.condition.length > 0) {
+      queryObj.condition = req.query.condition;
+    }
+    if (req.query.location.length > 0) {
+      queryObj.location = req.query.location;
+    }
+    if (req.query.zipcode.length > 0) {
+      queryObj.zipcode = req.query.zipcode;
+    }
+    const askedItems = await AskItems.find(queryObj);
+    res.json(askedItems);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 module.exports = {
   getAllItems,
   getSingleItem,
   createSingleItem,
   getFilteredItems,
+  getFilteredAskedItems,
   postAskItem,
   getAccountItems,
   getAccountItemsAsked,
@@ -196,4 +226,5 @@ module.exports = {
   editAccountAsked,
   deleteAllAccountData,
   deleteSingleItem,
+  getAskedItems,
 };

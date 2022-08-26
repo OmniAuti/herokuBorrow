@@ -37,6 +37,11 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
     }
   };
 
+  const handleQuantityChange = (e) => {
+    if (e.target.value.length > 3) return;
+    setAskObj({ ...askObj, quantity: e.target.value });
+  };
+
   useEffect(() => {
     handleUIDChange(user);
   }, [askObj.type]);
@@ -171,7 +176,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
             max="999"
             min="1"
             value={askObj.quantity}
-            onChange={(e) => setAskObj({ ...askObj, quantity: e.target.value })}
+            onChange={(e) => handleQuantityChange(e)}
           />
           <label htmlFor="specify">Needed For . . .</label>
           <input

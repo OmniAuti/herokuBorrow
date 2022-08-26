@@ -16,9 +16,6 @@ const MainSupplyDump = ({ modalDispatch }) => {
     } catch (e) {
       console.log(e);
     }
-    return () => {
-      console.log("cleared");
-    };
   }, []);
 
   const handleLoad = useCallback(() => {

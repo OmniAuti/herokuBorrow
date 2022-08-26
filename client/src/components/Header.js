@@ -24,10 +24,10 @@ const Header = () => {
   };
 
   return (
-    <header className="h-16 flex items-center w-full bg-black relative sm:overflow-y-hidden z-50">
-      <div className="sm:w-3/5 w-3/4 h-full p-2">
+    <header className="h-16 flex items-center w-full bg-black relative z-50">
+      <div className="sm:w-3/5 w-3/4 h-full p-2 bg-black">
         <Link
-          className="sm:px-5 px-0 w-fit h-full group  cursor-pointer flex items-center font-thin"
+          className="sm:px-5 px-0 w-fit h-full group cursor-pointer flex items-center font-thin"
           to="/"
         >
           <img
@@ -75,8 +75,8 @@ const Header = () => {
       <nav
         className={
           hamburger
-            ? "sm:w-2/5 w-1/2 flex items-center fixed right-0 h-screen top-0 border sm:border-0 bg-black transition-all duration-500 sm:relative"
-            : "sm:w-2/5 w-1/2 h-screen sm:h-full flex items-center absolute sm:relative -right-80 sm:border-0 sm:-right-0 top-0 bg-black transition-all duration-500"
+            ? "sm:w-2/5 w-1/2 flex sm:h-16 items-center fixed right-0 h-screen top-0 border sm:border-0 bg-black transition-all duration-500 sm:relative z-50"
+            : "sm:w-2/5 w-1/2 h-screen sm:h-full flex items-center absolute sm:relative -right-80 sm:border-0 sm:-right-0 top-0 bg-black transition-all duration-500 z-50"
         }
       >
         <ul className="flex flex-col sm:flex-row justify-around font-thin w-full h-full">
@@ -148,8 +148,8 @@ const Header = () => {
               </p>
             </Link>
           </li>
-          <li className="cursor-pointer grow flex items-center justify-center group order-5 sm:order-none">
-            <Link
+          <li className="cursor-pointer grow flex items-center justify-center group order-5 sm:order-none relative">
+            <div
               className="grow flex h-full items-center justify-center"
               to="/ask"
             >
@@ -162,7 +162,44 @@ const Header = () => {
               >
                 Ask
               </p>
-            </Link>
+            </div>
+
+            <ul className="absolute sm:right-0 -left-[0px] sm:group-hover:-left-0 md:group-hover:-left-0 group-hover:-left-[100%] sm:-left-[20px] md:-left-[0px] sm:border-t-0 bg-black sm:top-[100%] overflow-hidden group-hover:block border-r-0 sm:border h-full sm:h-[0px] opacity-0 sm:group-hover:h-[90px] border group-hover:opacity-100 sm:transition-[all] sm:duration-500 z-50 w-full min-w-fit text-center">
+              <li className="h-1/2">
+                {" "}
+                <Link
+                  className="grow flex h-full p-2 items-center justify-center"
+                  to="/asked"
+                >
+                  <p
+                    className={
+                      location.pathname === "/asked"
+                        ? "underline underline-offset-4"
+                        : "hover:underline hover:underline-offset-4"
+                    }
+                  >
+                    Asked
+                  </p>
+                </Link>
+              </li>
+              <li className="h-1/2">
+                {" "}
+                <Link
+                  className="grow flex h-full items-center p-2 justify-center"
+                  to="/ask-for"
+                >
+                  <p
+                    className={
+                      location.pathname === "/ask-for"
+                      ? "underline underline-offset-4"
+                      : "hover:underline hover:underline-offset-4"
+                    }
+                  >
+                    Post
+                  </p>
+                </Link>
+              </li>
+            </ul>
           </li>
           <li className="cursor-pointer grow flex items-center justify-center group hover:scale-105 order-2 sm:order-none">
             <Link
@@ -184,7 +221,7 @@ const Header = () => {
                   alt="Account Icon"
                 />
               )}
-              {showAccountText && <p>Account</p>}
+              {showAccountText && <p className="sm:hidden">Account</p>}
             </Link>
           </li>
         </ul>
