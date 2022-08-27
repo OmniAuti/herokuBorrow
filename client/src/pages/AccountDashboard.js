@@ -49,29 +49,43 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
     };
   }, [user, refreshAfterEdit]);
   const handleAskedLoading = async (user) => {
-    await getAccountItemsAsked({ _uid: user.uid }).then((res) =>
-      setAccountAskedData(res.data)
-    );
-    setIsAskLoaded(true);
+    try {
+      await getAccountItemsAsked({ _uid: user.uid }).then((res) =>
+        setAccountAskedData(res.data)
+      );
+      setIsAskLoaded(true);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleOfferedLoading = async (user) => {
-    await getAccountItems({ _uid: user.uid }).then((res) =>
-      setAccountItemsData(res.data)
-    );
-    setIsItemsLoaded(true);
+    try {
+      await getAccountItems({ _uid: user.uid }).then((res) =>
+        setAccountItemsData(res.data)
+      );
+      setIsItemsLoaded(true);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleBookmarkedLoaded = async (user) => {
-    await getAccountBookmarked({ _uid: user.uid }).then((res) =>
-      setAccountBookmarked(res.data)
-    );
-    setIsBookmarkLoaded(true);
+    try {
+      await getAccountBookmarked({ _uid: user.uid }).then((res) =>
+        setAccountBookmarked(res.data)
+      );
+      setIsBookmarkLoaded(true);
+    } catch (e) {}
   };
 
   const handleLogOutUser = async () => {
-    await logOutUser();
-    navigate("/account-gateway");
+    try {
+      await logOutUser();
+      navigate("/account-gateway");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const refreshItemsLoaded = () => {

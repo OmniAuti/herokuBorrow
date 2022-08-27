@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { addBookmark } from "../api/api";
+import { addBookmark, bookmarkAskItem } from "../api/api";
 import { Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import Loading from "./Loading";
@@ -33,15 +33,28 @@ const SingleItemFocusModal = ({
 
   const handleBookmark = async () => {
     if (!user || user === undefined) return;
+
     var bookmark = { _uid: user.uid, postId: data._id };
     try {
-      await addBookmark(bookmark).then((res) => {
-        if (res.status >= 200 && res.status <= 299) {
-          handleModalBookmark();
-        } else if (res.status >= 400 && res.status <= 499) {
-          alert("Bookmark Failed. Try Again.");
-        }
-      });
+      if (data.postType === "ask") {
+        await bookmarkAskItem(bookmark).then((res) => {
+          {
+            if (res.status >= 200 && res.status <= 299) {
+              handleModalBookmark();
+            } else if (res.status >= 400 && res.status <= 499) {
+              alert("Bookmark Failed. Try Again.");
+            }
+          }
+        });
+      } else if (data.postType === "offer") {
+        await addBookmark(bookmark).then((res) => {
+          if (res.status >= 200 && res.status <= 299) {
+            handleModalBookmark();
+          } else if (res.status >= 400 && res.status <= 499) {
+            alert("Bookmark Failed. Try Again.");
+          }
+        });
+      }
     } catch (err) {
       alert("Bookmark Failed. Try Again.");
       console.log(err);
@@ -49,11 +62,15 @@ const SingleItemFocusModal = ({
   };
 
   const handleBookmarkCheck = async () => {
-    if (!user || data.postType === "ask") return;
-    if (data.bookmarked.indexOf(user.uid) >= 0) {
-      setBookmarkCheck(true);
-    } else {
-      setBookmarkCheck(false);
+    if (!user || user === undefined) return;
+    try {
+      if (data.bookmarked.indexOf(user.uid) >= 0) {
+        setBookmarkCheck(true);
+      } else {
+        setBookmarkCheck(false);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -68,7 +85,11 @@ const SingleItemFocusModal = ({
       {modalLoaded ? (
         <div className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="h-fit p-5 pt-2 w-screen sm:w-[500px] bg-white rounded-tr-sm rounded-tl-sm relative">
-            <p className="text-black text-center mb-3 underline">{data.postType === 'offer' ? 'Offered Supplies' : "Asked For Supplies"}</p>
+            <p className="text-black text-center mb-3 underline">
+              {data.postType === "offer"
+                ? "Offered Supplies"
+                : "Asked For Supplies"}
+            </p>
             <div className="relative w-full h-fit min-h-[400px] rounded-md overflow-hidden py-2">
               <div className="h-52 max-h-52 min-h-52 w-full relative overflow-hidden">
                 <div className="bg-black bg-opacity-80 w-fit absolute pr-10 pt-5 pb-24 -bottom-20 pl-40 -left-36 rounded-full text-2xl font-light">
@@ -83,13 +104,17 @@ const SingleItemFocusModal = ({
               {data.postType === "ask" ? (
                 <p className="text-black m-5 font-light max-w-[80%]">
                   {" "}
-                  <span className=" text-black font-medium ">Specifically Asked For: </span>
+                  <span className=" text-black font-medium ">
+                    Specifically Asked For:{" "}
+                  </span>
                   {data.specify}
                 </p>
               ) : (
                 <p className="text-black m-5 font-light max-w-[80%]">
                   {" "}
-                  <span className=" text-black font-medium ">Description: </span>
+                  <span className=" text-black font-medium ">
+                    Description:{" "}
+                  </span>
                   {data.description}
                 </p>
               )}

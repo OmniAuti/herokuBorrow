@@ -37,8 +37,12 @@ const AccountSettings = () => {
   const [userEmail, setUserEmail] = useState("");
 
   const handleReAuth = async (providedP) => {
-    const cred = EmailAuthProvider.credential(user.email, providedP);
-    return cred;
+    try {
+      const cred = EmailAuthProvider.credential(user.email, providedP);
+      return cred;
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -51,25 +55,29 @@ const AccountSettings = () => {
   }, [user, submitEdit]);
 
   const handleSettingsChangeSubmit = async (newInfo, rePassword) => {
-    const cred = await handleReAuth(rePassword);
-    await reAuth(cred);
-    if (state.settingsType === "email") {
-      await updateUserEmail(newInfo);
-      setSubmitEdit(!submitEdit);
-      setEditSuccess(true);
-    }
-    if (state.settingsType === "password") {
-      await updateUserPassword(newInfo);
-      setSubmitEdit(!submitEdit);
-      setEditSuccess(true);
-    }
-    if (state.settingsType === "delete") {
-      const id = user.uid
-      console.log(id, 'in settings')
-      await deleteAllAccountData(user.uid)
-      await deleteUserAndAllPosts();
-      setSubmitEdit(!submitEdit);
-      setEditSuccess(true);
+    try {
+      const cred = await handleReAuth(rePassword);
+      await reAuth(cred);
+      if (state.settingsType === "email") {
+        await updateUserEmail(newInfo);
+        setSubmitEdit(!submitEdit);
+        setEditSuccess(true);
+      }
+      if (state.settingsType === "password") {
+        await updateUserPassword(newInfo);
+        setSubmitEdit(!submitEdit);
+        setEditSuccess(true);
+      }
+      if (state.settingsType === "delete") {
+        const id = user.uid;
+        console.log(id, "in settings");
+        await deleteAllAccountData(user.uid);
+        await deleteUserAndAllPosts();
+        setSubmitEdit(!submitEdit);
+        setEditSuccess(true);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 

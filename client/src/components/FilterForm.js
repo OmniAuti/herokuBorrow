@@ -20,38 +20,45 @@ const FilterForm = ({ dispatch }) => {
 
   const handleQuery = async (e) => {
     e.preventDefault();
-    await filteredQuery(filterQuery)
-      .then((res) => {
-        if (res.status >= 200 && res.status <= 299) {
-          setDataDump(res.data);
-        } else if (res.status >= 400 && res.status <= 499) {
-          alert("Filter Query Failed. Try Again.");
-        }
-      })
-      .catch((err) => console.log(err));
+    try {
+      await filteredQuery(filterQuery)
+        .then((res) => {
+          if (res.status >= 200 && res.status <= 299) {
+            setDataDump(res.data);
+          } else if (res.status >= 400 && res.status <= 499) {
+            alert("Filter Query Failed. Try Again.");
+          }
+        })
+        .catch((err) => console.log(err));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleReset = async (e) => {
-    const clearedSearch = {
-      type: "",
-      quantity: "",
-      condition: "",
-      location: "",
-      zipcode: "",
-    };
+    try {
+      const clearedSearch = {
+        type: "",
+        quantity: "",
+        condition: "",
+        location: "",
+        zipcode: "",
+      };
 
-    setFilterQuery(clearedSearch);
+      setFilterQuery(clearedSearch);
 
-    await filteredQuery(clearedSearch)
-      .then((res) => {
-        if (res.status >= 200 && res.status <= 299) {
-          setDataDump(res.data);
-        } else if (res.status >= 400 && res.status <= 499) {
-          alert("Filter Query Failed. Try Again.");
-        }
-      })
-      .catch((err) => alert("Filter Query Failed. Try Again."));
-      
+      await filteredQuery(clearedSearch)
+        .then((res) => {
+          if (res.status >= 200 && res.status <= 299) {
+            setDataDump(res.data);
+          } else if (res.status >= 400 && res.status <= 499) {
+            alert("Filter Query Failed. Try Again.");
+          }
+        })
+        .catch((e) => alert("Filter Query Failed. Try Again."));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

@@ -138,9 +138,27 @@ const addBookmark = async (req, res) => {
   }
 };
 
+const addAskItemBookmark = async (req, res) => {
+  var bookmarkCheck = await AskItems.findOne({ _id: req.body.postId });
+  if (bookmarkCheck.bookmarked.indexOf(req.body._uid) >= 0) {
+    const idx = bookmarkCheck.bookmarked.indexOf(req.body._uid);
+    bookmarkCheck.bookmarked.splice(idx, 1);
+    await AskItems.findOneAndUpdate({ _id: req.body.postId }, bookmarkCheck);
+    res.json({ msg: "Bookmark Removed" });
+  } else {
+    await AskItems.findOneAndUpdate(
+      { _id: req.body.postId },
+      { $push: { bookmarked: req.body._uid } }
+    );
+    res.json({ msg: "Bookmark Success" });
+  }
+};
+
 const getAccountBookmarked = async (req, res) => {
   const bookmarkedItems = await Items.find({ bookmarked: req.query._uid });
-  res.status(200).json(bookmarkedItems);
+  const bookmarkedAskItems = await AskItems.find({bookmarked: req.query._uid})
+  const combinedBookmarkArr = bookmarkedItems.concat(bookmarkedAskItems)
+  res.status(200).json(combinedBookmarkArr);
 };
 
 const editAccountOffered = async (req, res) => {
@@ -227,4 +245,5 @@ module.exports = {
   deleteAllAccountData,
   deleteSingleItem,
   getAskedItems,
+  addAskItemBookmark,
 };

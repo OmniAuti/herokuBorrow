@@ -20,37 +20,45 @@ const FilterFormAsked = ({ dispatch }) => {
 
   const handleQuery = async (e) => {
     e.preventDefault();
-    await filteredAskedQuery(filterQuery)
-      .then((res) => {
-        if (res.status >= 200 && res.status <= 299) {
-          setDataDump(res.data);
-        } else if (res.status >= 400 && res.status <= 499) {
-          alert("Filter Query Failed. Try Again.");
-        }
-      })
-      .catch((err) => console.log(err));
+    try {
+      await filteredAskedQuery(filterQuery)
+        .then((res) => {
+          if (res.status >= 200 && res.status <= 299) {
+            setDataDump(res.data);
+          } else if (res.status >= 400 && res.status <= 499) {
+            alert("Filter Query Failed. Try Again.");
+          }
+        })
+        .catch((err) => console.log(err));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleReset = async (e) => {
-    const clearedSearch = {
-      type: "",
-      quantity: "",
-      condition: "",
-      location: "",
-      zipcode: "",
-    };
+    try {
+      const clearedSearch = {
+        type: "",
+        quantity: "",
+        condition: "",
+        location: "",
+        zipcode: "",
+      };
 
-    setFilterQuery(clearedSearch);
+      setFilterQuery(clearedSearch);
 
-    await filteredAskedQuery(clearedSearch)
-      .then((res) => {
-        if (res.status >= 200 && res.status <= 299) {
-          setDataDump(res.data);
-        } else if (res.status >= 400 && res.status <= 499) {
-          alert("Filter Query Failed. Try Again.");
-        }
-      })
-      .catch((err) => alert("Filter Query Failed. Try Again."));
+      await filteredAskedQuery(clearedSearch)
+        .then((res) => {
+          if (res.status >= 200 && res.status <= 299) {
+            setDataDump(res.data);
+          } else if (res.status >= 400 && res.status <= 499) {
+            alert("Filter Query Failed. Try Again.");
+          }
+        })
+        .catch((err) => alert("Filter Query Failed. Try Again."));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

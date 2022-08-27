@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { UserAuth } from "../context/AuthContext";
 import { getAccountItemsAsked } from "../api/api";
 import AskAccountColumn from "../components/AskAccountColumn";
 import AskItemForm from "../components/AskItemForm";

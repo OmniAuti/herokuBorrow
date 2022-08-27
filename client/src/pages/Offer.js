@@ -14,21 +14,25 @@ const Offer = ({ modalDispatch, refreshAfterEdit }) => {
 
   useEffect(() => {
     if (user === undefined) return;
-    handleOfferLoading(user)
+    handleOfferLoading(user);
     return () => {
       setIsItemsLoaded(false);
     };
   }, [user, refreshAfterEdit, updateAfterPost]);
 
   const handleOfferLoading = async () => {
-    await getAccountItems({ _uid: user.uid }).then((res) =>
-      setAccountItemsData(res.data)
-    );
-    setIsItemsLoaded(true);
+    try {
+      await getAccountItems({ _uid: user.uid }).then((res) =>
+        setAccountItemsData(res.data)
+      );
+      setIsItemsLoaded(true);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleUpdateAfterPost = () => {
-    setIsItemsLoaded(false)
+    setIsItemsLoaded(false);
     setUpdateAfterPost(!updateAfterPost);
   };
 
@@ -42,7 +46,7 @@ const Offer = ({ modalDispatch, refreshAfterEdit }) => {
           isItemsLoaded={isItemsLoaded}
           accountItemsData={accountItemsData}
         />
-        <PostItemForm handleUpdateAfterPost={handleUpdateAfterPost}/>
+        <PostItemForm handleUpdateAfterPost={handleUpdateAfterPost} />
       </div>
     </section>
   );

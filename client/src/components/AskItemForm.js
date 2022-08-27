@@ -68,12 +68,16 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
   };
 
   const handleCommas = async () => {
-    var arr = askObj.condition;
-    arr[arr.length - 1] = arr[arr.length - 1].slice(
-      0,
-      arr[arr.length - 1].length - 2
-    );
-    setAskObj({ ...askObj, condition: arr });
+    try {
+      var arr = askObj.condition;
+      arr[arr.length - 1] = arr[arr.length - 1].slice(
+        0,
+        arr[arr.length - 1].length - 2
+      );
+      setAskObj({ ...askObj, condition: arr });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -194,8 +198,11 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
           <div className="flex flex-wrap items-center justify-around mb-7 mx-5">
             {checkBoxArr.map((checkbox) => {
               return (
-                <div className="mt-4 h-1 mb-3" key={checkbox.id}>
-                  <label className="mr-2" htmlFor={checkbox.value}>
+                <div className="mt-4 h-1 mb-3 cursor-pointer" key={checkbox.id}>
+                  <label
+                    className="mr-2 cursor-pointer"
+                    htmlFor={checkbox.value}
+                  >
                     {checkbox.value}
                   </label>
                   <input
@@ -203,6 +210,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
                     id={checkbox.value}
                     type="checkbox"
                     value={checkbox.value}
+                    className="cursor-pointer"
                   />
                 </div>
               );

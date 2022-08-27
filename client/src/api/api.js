@@ -15,6 +15,7 @@ const urlTwelve = "http://localhost:2000/api/v1/items/account-offered-edit";
 const urlThirteen = "http://localhost:2000/api/v1/items/account-asked-edit";
 const urlFourteen = "http://localhost:2000/api/v1/items/delete-all-account-data";
 const urlFifteen = "http://localhost:2000/api/v1/items/filter-asked";
+const urlSixteen = "http://localhost:2000/api/v1/items/bookmark-ask-item";
 
 export const fetchAllItems = async () => {
   return axios.get(url);
@@ -76,3 +77,7 @@ export const editAccountAsked = async (data) => {
 export const deleteAllAccountData = async (id) => {
   return axios.delete(urlFourteen, { data: { uid: id } });
 };
+
+export const bookmarkAskItem = async (bookmark) => {
+  return axios.put(urlSixteen, bookmark)
+}

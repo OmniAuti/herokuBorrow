@@ -18,6 +18,7 @@ const {
   deleteAllAccountData,
   deleteSingleItem,
   getAskedItems,
+  addAskItemBookmark,
 } = require("../controller/controllers");
 
 router.route('/').get(getAllItems).post(createSingleItem);
@@ -35,5 +36,6 @@ router.route('/account-asked-edit').put(editAccountAsked)
 router.route('/delete-all-account-data').delete(deleteAllAccountData)
 router.route('/delete-single-item').delete(deleteSingleItem)
 router.route('/get-asked-items').get(getAskedItems)
+router.route('/bookmark-ask-item').put(addAskItemBookmark)
 
 module.exports = router;

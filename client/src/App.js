@@ -97,28 +97,32 @@ function App() {
   };
 
   const handleModalData = async (id) => {
-    if (state.modalType === "singleFocusOffer") {
-      await getSingleItem(id)
-        .then((res) => setModalDataSingleFocus(res.data))
-        .catch((err) => console.log(err));
-      setActiveModal(true);
-    } else if (state.modalType === "singleFocusAsk") {
-      await getSingleItemAsk(id)
-        .then((res) => setModalDataSingleFocus(res.data))
-        .catch((err) => console.log(err));
-      setActiveModal(true);
-    } else if (state.modalType === "accountEditOffer") {
-      await getSingleItem(id)
-        .then((res) => setModalDataEdit(res.data))
-        .catch((err) => console.log(err));
-      setActiveModalEdit(true);
-    } else if (state.modalType === "accountEditAsk") {
-      await getSingleItemAsk(id)
-        .then((res) => setModalDataEdit(res.data))
-        .catch((err) => console.log(err));
-      setActiveModalEdit(true);
-    } else if (state.modalType === "deleteSinglePost") {
-      setActiveModalDelete(true);
+    try {
+      if (state.modalType === "singleFocusOffer") {
+        await getSingleItem(id)
+          .then((res) => setModalDataSingleFocus(res.data))
+          .catch((err) => console.log(err));
+        setActiveModal(true);
+      } else if (state.modalType === "singleFocusAsk") {
+        await getSingleItemAsk(id)
+          .then((res) => setModalDataSingleFocus(res.data))
+          .catch((err) => console.log(err));
+        setActiveModal(true);
+      } else if (state.modalType === "accountEditOffer") {
+        await getSingleItem(id)
+          .then((res) => setModalDataEdit(res.data))
+          .catch((err) => console.log(err));
+        setActiveModalEdit(true);
+      } else if (state.modalType === "accountEditAsk") {
+        await getSingleItemAsk(id)
+          .then((res) => setModalDataEdit(res.data))
+          .catch((err) => console.log(err));
+        setActiveModalEdit(true);
+      } else if (state.modalType === "deleteSinglePost") {
+        setActiveModalDelete(true);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -226,7 +230,7 @@ function App() {
                 path="/asked"
                 element={<Asked modalDispatch={modalDispatch} />}
               />
-              
+
               <Route
                 path="/ask-for"
                 element={

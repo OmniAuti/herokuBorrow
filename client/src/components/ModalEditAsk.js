@@ -21,7 +21,6 @@ const ModalEditAsk = ({
     _id: "",
   });
 
-
   useEffect(() => {
     setAskObj({
       who: data.who,
@@ -61,13 +60,17 @@ const ModalEditAsk = ({
   };
 
   const handleCommas = async () => {
-    if (newCondition.length <= 0) return;
-    var arr = newCondition;
-    arr[arr.length - 1] = arr[arr.length - 1].slice(
-      0,
-      arr[arr.length - 1].length - 2
-    );
-    setAskObj((askObj.condition = arr));
+    try {
+      if (newCondition.length <= 0) return;
+      var arr = newCondition;
+      arr[arr.length - 1] = arr[arr.length - 1].slice(
+        0,
+        arr[arr.length - 1].length - 2
+      );
+      setAskObj((askObj.condition = arr));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleAskSubmit = async (e) => {
@@ -206,12 +209,15 @@ const ModalEditAsk = ({
         {checkBoxArr.map((checkbox) => {
           return (
             <div className="" key={checkbox.id}>
-              <label className="text-black mr-2" htmlFor={checkbox.value}>
+              <label
+                className="text-black mr-2 cursor-pointer"
+                htmlFor={checkbox.value}
+              >
                 {checkbox.value}
               </label>
               <input
                 onChange={(e) => handleCheckBoxes(e)}
-                className="text-black my-1 mr-2 mb-3 p-1"
+                className="text-black my-1 mr-2 mb-3 p-1 cursor-pointer"
                 id={checkbox.value}
                 type="checkbox"
                 value={checkbox.value}
