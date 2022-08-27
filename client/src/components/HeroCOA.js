@@ -133,7 +133,7 @@ const HeroCOA = () => {
             Offer Supplies
           </Link>
           <Link
-            to="/ask"
+            to="/ask-for"
             className="text-center px-10 py-5 sm:text-2xl mx-5 mt-2 md:mb-5 mb-2 md:mr-0 border-2 border-solid rounded-md border-sky-100 hover:border-red-500 transition-colors"
           >
             Ask For Supplies
