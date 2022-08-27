@@ -13,7 +13,6 @@ const Header = () => {
 
   const handleActiveHamburger = () => {
     setHamburger(!hamburger);
-
     if (hamburger === false) {
       setShowAccountText(true);
     } else if (hamburger === true) {
@@ -76,7 +75,7 @@ const Header = () => {
         className={
           hamburger
             ? "sm:w-2/5 w-1/2 flex sm:h-16 items-center fixed right-0 h-screen top-0 border sm:border-0 bg-black transition-all duration-500 sm:relative z-50"
-            : "sm:w-2/5 w-1/2 h-screen sm:h-full flex items-center absolute sm:relative -right-80 sm:border-0 sm:-right-0 top-0 bg-black transition-all duration-500 z-50"
+            : "sm:w-2/5 bg-black w-1/2 h-screen sm:h-full flex items-center absolute sm:relative -right-[100vw] sm:border-0 sm:-right-0 top-0  transition-all duration-500 z-50"
         }
       >
         <ul className="flex flex-col sm:flex-row justify-around font-thin w-full h-full">
@@ -191,11 +190,11 @@ const Header = () => {
                   <p
                     className={
                       location.pathname === "/ask-for"
-                      ? "underline underline-offset-4 w-full h-full flex items-center justify-center"
-                      : "hover:underline hover:underline-offset-4 w-full h-full flex items-center justify-center"
+                        ? "underline underline-offset-4 w-full h-full flex items-center justify-center"
+                        : "hover:underline hover:underline-offset-4 w-full h-full flex items-center justify-center"
                     }
                   >
-                    Post
+                    Ask For
                   </p>
                 </Link>
               </li>
