@@ -10,7 +10,6 @@ const getAllItems = async (req, res) => {
     res.status(500).json({ msg: "Error" });
   }
 };
-
 const createSingleItem = async (req, res) => {
   try {
     const item = new Items({
@@ -36,7 +35,6 @@ const createSingleItem = async (req, res) => {
     res.status(500).json({ msg: "Error" });
   }
 };
-
 const getFilteredItems = async (req, res) => {
   try {
     var queryObj = {};
@@ -62,7 +60,6 @@ const getFilteredItems = async (req, res) => {
     console.log(e);
   }
 };
-
 const postAskItem = async (req, res) => {
   try {
     const askItem = new AskItems({
@@ -89,7 +86,6 @@ const postAskItem = async (req, res) => {
     res.status(500).json({ msg: "Error" });
   }
 };
-
 const getSingleItem = async (req, res) => {
   try {
     const id = req.query[0];
@@ -100,7 +96,6 @@ const getSingleItem = async (req, res) => {
     res.status(500).json({ msg: "Error" });
   }
 };
-
 const getSingleItemAsk = async (req, res) => {
   try {
     const id = req.query[0];
@@ -111,17 +106,14 @@ const getSingleItemAsk = async (req, res) => {
     res.status(500).json({ msg: "Error" });
   }
 };
-
 const getAccountItems = async (req, res) => {
   const accountItems = await Items.find(req.query);
   res.status(200).json(accountItems);
 };
-
 const getAccountItemsAsked = async (req, res) => {
   const accountItems = await AskItems.find(req.query);
   res.status(200).json(accountItems);
 };
-
 const addBookmark = async (req, res) => {
   var bookmarkCheck = await Items.findOne({ _id: req.body.postId });
   if (bookmarkCheck.bookmarked.indexOf(req.body._uid) >= 0) {
@@ -137,7 +129,6 @@ const addBookmark = async (req, res) => {
     res.json({ msg: "Bookmark Success" });
   }
 };
-
 const addAskItemBookmark = async (req, res) => {
   var bookmarkCheck = await AskItems.findOne({ _id: req.body.postId });
   if (bookmarkCheck.bookmarked.indexOf(req.body._uid) >= 0) {
@@ -153,14 +144,14 @@ const addAskItemBookmark = async (req, res) => {
     res.json({ msg: "Bookmark Success" });
   }
 };
-
 const getAccountBookmarked = async (req, res) => {
   const bookmarkedItems = await Items.find({ bookmarked: req.query._uid });
-  const bookmarkedAskItems = await AskItems.find({bookmarked: req.query._uid})
-  const combinedBookmarkArr = bookmarkedItems.concat(bookmarkedAskItems)
+  const bookmarkedAskItems = await AskItems.find({
+    bookmarked: req.query._uid,
+  });
+  const combinedBookmarkArr = bookmarkedItems.concat(bookmarkedAskItems);
   res.status(200).json(combinedBookmarkArr);
 };
-
 const editAccountOffered = async (req, res) => {
   const item = req.body;
   var id = item._id;
@@ -168,7 +159,6 @@ const editAccountOffered = async (req, res) => {
   const editItem = await Items.findOneAndUpdate({ _id: id }, item);
   res.json({ msg: "success", editItem });
 };
-
 const editAccountAsked = async (req, res) => {
   const item = req.body;
   var id = item._id;
@@ -176,7 +166,6 @@ const editAccountAsked = async (req, res) => {
   const editItem = await AskItems.findOneAndUpdate({ _id: id }, item);
   res.json({ msg: "success", editItem });
 };
-
 const deleteAllAccountData = async (req, res) => {
   const uid = req.body.uid;
   await Items.deleteMany({ _uid: uid });

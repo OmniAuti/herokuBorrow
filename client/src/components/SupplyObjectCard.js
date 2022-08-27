@@ -95,7 +95,9 @@ const SupplyObjectCard = ({ data, modalDispatch }) => {
     // NEED TO MAKE A LIKE OPTION TO STORE IN INTEREST SECTIO OF ACCOUNT
 
     <div
-      onClick={() => modalDispatch({ type: `MODAL-${data.postType}`, payload: data._id })}
+      onClick={() =>
+        modalDispatch({ type: `MODAL-${data.postType}`, payload: data._id })
+      }
       className="w-screen lg:w-[32.33333%] lg:min-w-[318px] rounded-md my-2 lg:ml-[9px] p-1 cursor-pointer group"
       style={{ backgroundColor: cardBgColor }}
     >
@@ -117,10 +119,21 @@ const SupplyObjectCard = ({ data, modalDispatch }) => {
             Quantity:{" "}
             <span className="text-black font-light">{data.quantity}</span>
           </li>
-          <li className="text-black m-1 font-medium inline-block truncate ">
+         {data.postType === 'ask' ? <li className="text-black m-1 font-medium inline-block truncate ">
             Condition:{" "}
-            <span className="text-black font-light">{data.condition}</span>{" "}
-          </li>
+            <span className="text-black font-light">
+              {" "}
+              {data.condition
+                .join("")
+                .slice(0, data.condition.join("").length - 2)}
+            </span>{" "}
+          </li> : <li className="text-black m-1 font-medium inline-block truncate ">
+            Condition:{" "}
+            <span className="text-black font-light">
+              {" "}
+              {data.condition}
+            </span>{" "}
+          </li>}
         </ul>
         <button className="p-1 text-black absolute bg-sky-400 w-11/12 left-1/2 -translate-x-1/2 rounded-md bottom-2 font-base group-hover:bg-sky-900 group-hover:shadow-sm group-hover:text-white transition-colors duration-500">
           More Details

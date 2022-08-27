@@ -110,14 +110,30 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
             )}
             <li className="text-black">Type: {data.type}</li>
             <li className="text-black ">Quantity: {data.quantity}</li>
-            <li className="text-black ">Condition: {data.condition}</li>
+            {data.postType === "ask" ? (
+              <li className="text-black ">
+                Condition:{" "}
+                {data.condition
+                  .join("")
+                  .slice(0, data.condition.join("").length - 2)}
+              </li>
+            ) : (
+              <li className="text-black ">
+                Condition:{" "}
+                {data.condition}
+              </li>
+            )}
             <li className="text-black ">Location: {data.location}</li>
             <li className="text-black">Zipcode: {data.zipcode}</li>
           </ul>
         </div>
-        {data.postType === "ask" && ( <ul className="block ml-5">
-          <li className="text-black">Specifically Asked For: {data.specify}</li>
-        </ul>)}
+        {data.postType === "ask" && (
+          <ul className="block ml-5">
+            <li className="text-black">
+              Specifically Asked For: {data.specify}
+            </li>
+          </ul>
+        )}
         {data.postType === "offer" && (
           <div className="pt-5 pl-5">
             <ul>
@@ -143,10 +159,16 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
             alt="Edit Post Icon"
           />
         </button>
-        <button onClick={() => {
-          modalDispatch({type: 'DELETE_SINGLE_POST', payload: [data._id, data.postType]})
-        }} className="bg-white text-center cursor-pointer absolute -right-2 -bottom-2 border py-2 pl-1 pr-3 hover:shadow-[-1px_-4px_15px_-3px_rgb(0,0,0,0.1),-1px_-3px_6px_-4px_rgb(0,0,0,0.1)] rounded-lg">
-        <img
+        <button
+          onClick={() => {
+            modalDispatch({
+              type: "DELETE_SINGLE_POST",
+              payload: [data._id, data.postType],
+            });
+          }}
+          className="bg-white text-center cursor-pointer absolute -right-2 -bottom-2 border py-2 pl-1 pr-3 hover:shadow-[-1px_-4px_15px_-3px_rgb(0,0,0,0.1),-1px_-3px_6px_-4px_rgb(0,0,0,0.1)] rounded-lg"
+        >
+          <img
             className="w-10 mx-auto mb-1 "
             src="./imgs/deletePost.svg"
             alt="Edit Post Icon"

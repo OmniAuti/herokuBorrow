@@ -145,10 +145,10 @@ const FilterForm = ({ dispatch }) => {
           >
             {" "}
             <option value="">How Used?</option>
-            <option value="new">New</option>
-            <option value="slightly used">Slightly Used</option>
-            <option value="moderately used">Moderately Used</option>
-            <option value="heavily used">Heavily Used</option>
+            <option value="New">New</option>
+            <option value="Slightly Used">Slightly Used</option>
+            <option value="Moderately Used">Moderately Used</option>
+            <option value="Heavily Used">Heavily Used</option>
           </select>
         </div>
         <div className="flex flex-col items-center justify-around w-3/4 lg:w-fit">

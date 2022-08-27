@@ -125,12 +125,23 @@ const SingleItemFocusModal = ({
                   <span className="text-black font-light">{data.quantity}</span>
                 </li>
 
-                <li className="text-black m-1 mt-2 font-medium">
-                  Condition:{" "}
-                  <span className="text-black font-light">
-                    {data.condition}
-                  </span>{" "}
-                </li>
+                {data.postType === "ask" ? (
+                  <li className="text-black m-1 mt-2 font-medium">
+                    Condition:{" "}
+                    <span className="text-black font-light">
+                      {data.condition
+                        .join("")
+                        .slice(0, data.condition.join("").length - 2)}
+                    </span>{" "}
+                  </li>
+                ) : (
+                  <li className="text-black m-1 mt-2 font-medium">
+                    Condition:{" "}
+                    <span className="text-black font-light">
+                      {data.condition}
+                    </span>{" "}
+                  </li>
+                )}
 
                 <li className="text-black m-1 mt-2 font-medium">
                   General Location:{" "}

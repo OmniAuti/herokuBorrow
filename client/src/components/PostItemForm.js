@@ -167,12 +167,12 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
             <option default value="">
               Select Condition Of Supplies
             </option>
-            <option default value="new">
+            <option default value="New">
               New
             </option>
-            <option value="slightly used">Slightly Used</option>
-            <option value="moderately used">Moderately Used</option>
-            <option value="heavily used">Heavily Used</option>
+            <option value="Slightly Used">Slightly Used</option>
+            <option value="Moderately Used">Moderately Used</option>
+            <option value="Heavily Used">Heavily Used</option>
           </select>
           <label htmlFor="location">General Location</label>
           <input

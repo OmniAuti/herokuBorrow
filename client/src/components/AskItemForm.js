@@ -67,23 +67,9 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
     }
   };
 
-  const handleCommas = async () => {
-    try {
-      var arr = askObj.condition;
-      arr[arr.length - 1] = arr[arr.length - 1].slice(
-        0,
-        arr[arr.length - 1].length - 2
-      );
-      setAskObj({ ...askObj, condition: arr });
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await handleCommas();
       await postAskItem(askObj).then((res) => {
         if (res.status >= 200 && res.status <= 299) {
           handleUpdateAfterPost();
