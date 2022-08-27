@@ -80,7 +80,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
             type: "",
             quantity: 1,
             specify: "",
-            condition: "",
+            condition: [],
             location: "",
             zipcode: "",
             postType: "ask",

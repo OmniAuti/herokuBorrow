@@ -11,27 +11,6 @@ const FilterFormAsked = ({ dispatch }) => {
   });
   const [dataDump, setDataDump] = useState([]);
 
-  const checkBoxArr = [
-    { id: 1, value: "New", checked: false },
-    { id: 2, value: "Slightly Used", checked: false },
-    { id: 3, value: "Moderately Used", checked: false },
-    { id: 4, value: "Heavily Used", checked: false },
-  ];
-
-  const handleCheckBoxes = (e) => {
-    if (e.target.checked === true) {
-      setFilterQuery({
-        ...filterQuery,
-        condition: [...filterQuery.condition, `${e.target.value}, `],
-      });
-    } else if (e.target.checked === false) {
-      const idx = filterQuery.condition.indexOf(`${e.target.value}, `);
-      const arr = filterQuery.condition;
-      arr.splice(idx, 1);
-      setFilterQuery({ ...filterQuery, condition: arr });
-    }
-  };
-
   // THEN FILTERS COMPONET
 
   const handleQuantitiy = (e) => {
@@ -42,7 +21,6 @@ const FilterFormAsked = ({ dispatch }) => {
   const handleQuery = async (e) => {
     e.preventDefault();
     try {
-      console.log(filterQuery)
       await filteredAskedQuery(filterQuery)
         .then((res) => {
           if (res.status >= 200 && res.status <= 299) {
@@ -154,22 +132,24 @@ const FilterFormAsked = ({ dispatch }) => {
           />
         </div>
         <div className="flex flex-col items-center justify-around w-3/4 lg:w-fit">
-          {checkBoxArr.map((checkbox) => {
-            return (
-              <div className="mt-4 h-1 mb-3 cursor-pointer" key={checkbox.id}>
-                <label className="mr-2 cursor-pointer" htmlFor={checkbox.value}>
-                  {checkbox.value}
-                </label>
-                <input
-                  onChange={(e) => handleCheckBoxes(e)}
-                  id={checkbox.value}
-                  type="checkbox"
-                  value={checkbox.value}
-                  className="cursor-pointer"
-                />
-              </div>
-            );
-          })}
+          <label className="my-2 text-xl" htmlFor="condition">
+            Acceptable Condition
+          </label>
+          <select
+            className="text-black w-full text-center  lg:w-11/12 text-2xl rounded-sm"
+            id="condition"
+            value={filterQuery.condition}
+            onChange={(e) =>
+              setFilterQuery({ ...filterQuery, condition: e.target.value })
+            }
+          >
+            {" "}
+            <option value="">How Used?</option>
+            <option value="New, ">New</option>
+            <option value="Slightly Used, ">Slightly Used</option>
+            <option value="Moderately Used, ">Moderately Used</option>
+            <option value="Heavily Used, ">Heavily Used</option>
+          </select>
         </div>
         <div className="flex flex-col items-center justify-around w-3/4 lg:w-fit">
           <label className="my-2 text-xl" htmlFor="location">

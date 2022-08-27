@@ -63,10 +63,10 @@ const ModalEditAsk = ({
     try {
       if (newCondition.length <= 0) return;
       var arr = newCondition;
-      arr[arr.length - 1] = arr[arr.length - 1].slice(
-        0,
-        arr[arr.length - 1].length - 2
-      );
+      // arr[arr.length - 1] = arr[arr.length - 1].slice(
+      //   0,
+      //   arr[arr.length - 1].length - 2
+      // );
       setAskObj((askObj.condition = arr));
     } catch (e) {
       console.log(e);
