@@ -82,6 +82,7 @@ function App() {
 
   const location = useLocation();
 
+
   // USED TO CLOSE MODAL ON PAGE CHANGE
   useEffect(() => {
     handleCloseModal();

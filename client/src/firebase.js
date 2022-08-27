@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
+
 
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_API_KEY,
@@ -27,3 +29,12 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 export default firebaseApp;
 export const auth = getAuth(firebaseApp);
+const storage = getStorage()
+export const storageRef = ref(storage)
+export const imagesRef = ref(storage, 'images')
+const image = ref(storage, 'images/favicon.ico')
+
+
+// console.log(image)
+
+// getDownloadURL(ref(storage, 'images/favicon.ico'))
