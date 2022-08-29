@@ -17,6 +17,7 @@ const ModalEditOffer = ({
   data,
   handleItemRefreshAfterEdit,
   handleEditSuccess,
+  handleShowBtn,
 }) => {
   const { user } = UserAuth();
   const [postLoading, setPostLoading] = useState(false);
@@ -91,6 +92,7 @@ const ModalEditOffer = ({
     e.preventDefault();
     try {
       setPostLoading(true)
+      handleShowBtn(false)
       if (!imageUpload) {
         await editAccountOffered(formData);
       } else if (imageUpload) {
@@ -106,6 +108,7 @@ const ModalEditOffer = ({
       }
       setPostLoading(false)
       handleEditSuccess();
+      handleShowBtn(true)
       handleItemRefreshAfterEdit();
       e.target.reset();
       setFormData({

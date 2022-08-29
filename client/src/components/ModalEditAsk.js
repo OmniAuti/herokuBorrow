@@ -6,6 +6,7 @@ const ModalEditAsk = ({
   data,
   handleItemRefreshAfterEdit,
   handleEditSuccess,
+  handleShowBtn,
 }) => {
   const [newCondition, setNewCondition] = useState([]);
   const [postLoading, setPostLoading] = useState(false);
@@ -78,12 +79,14 @@ const ModalEditAsk = ({
     e.preventDefault();
     try {
       setPostLoading(true);
+      handleShowBtn(false)
       if (newCondition.length > 0) {
         await handleCommas();
       }
       await editAccountAsked(askObj);
       setPostLoading(false);
       handleEditSuccess();
+      handleShowBtn(true)
       handleItemRefreshAfterEdit();
       e.target.reset();
       setAskObj({
@@ -112,7 +115,7 @@ const ModalEditAsk = ({
           fontColor={"text-black"}
         />
       ) : (
-        <form className="text-black " onSubmit={(e) => handleAskSubmit(e)}>
+        <form className="text-black overflow-scroll" onSubmit={(e) => handleAskSubmit(e)}>
           <legend className="text-black text-xl underline underline-offset-1 mb-2">
             Ask Item Edit:{" "}
           </legend>

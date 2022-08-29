@@ -107,6 +107,7 @@ const AccountEditPostModal = ({
   }
 
   const [editSaved, setEditSaved] = useState(false);
+  const [showbtn, setShowBtn] = useState(false)
 
   const { user } = UserAuth();
 
@@ -125,6 +126,10 @@ const AccountEditPostModal = ({
   const handleEditSuccess = () => {
     setEditSaved(true);
   };
+
+  const handleShowBtn = (bool) => {
+    setShowBtn(bool)
+  }
 
   return (
     <div
@@ -161,6 +166,7 @@ const AccountEditPostModal = ({
                     handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
                     data={data}
                     handleEditSuccess={handleEditSuccess}
+                    handleShowBtn={handleShowBtn}
                   />
                 ) : (
                   <ModalEditAsk
@@ -170,17 +176,18 @@ const AccountEditPostModal = ({
                     handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
                     data={data}
                     handleEditSuccess={handleEditSuccess}
+                    handleShowBtn={handleShowBtn}
                   />
                 )}
               </div>
             )}
 
-            <button
+            {showbtn && <button
               onClick={() => handleCloseModal()}
               className="w-full h-10 bg-gray-400 rounded-sm rounded-bl-sm hover:bg-gray-700"
             >
               {editSaved ? "Close" : "Discard Changes"}
-            </button>
+            </button>}
           </div>
         </div>
       ) : (
