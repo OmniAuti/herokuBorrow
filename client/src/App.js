@@ -173,7 +173,7 @@ function App() {
         />
 
         <DeleteSinglePostModal
-          postId={state.modalId}
+          postId={state}
           handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
           activeModalDelete={activeModalDelete}
           handleCloseModal={handleCloseModal}

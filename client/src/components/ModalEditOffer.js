@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 import { editAccountOffered } from "../api/api";
 
+import { UserAuth } from "../context/AuthContext";
+
+import { storage } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { attachPhotoInfo } from "../api/api";
+
 const ModalEditOffer = ({
   data,
   handleItemRefreshAfterEdit,
   handleEditSuccess,
 }) => {
+  const { user } = UserAuth();
+  const [imageUpload, setImageUpload] = useState();
   const [formData, setFormData] = useState({
     type: "",
     quantity: 1,
@@ -17,6 +25,7 @@ const ModalEditOffer = ({
     _uid: "",
     bookmarked: "",
     _id: "",
+    photoInfo: { uid: "", id: "", url: "", imageRef: "" },
   });
 
   useEffect(() => {
@@ -55,6 +64,23 @@ const ModalEditOffer = ({
   const handleZIPChange = (e) => {
     setFormData({ ...formData, zipcode: e.target.value });
   };
+  // GET URL OF IMAGE TO PUT IN POST
+  const handleImageUpload = async (id) => {
+    var data = {};
+    var imageRefRes;
+    var uid;
+    var imageRef = await ref(storage, `imagesOFFER/${user.uid}-${id}`);
+    await uploadBytes(imageRef, imageUpload).then((res) => {
+      // var postIdIn = res.ref._location.path_.split("-")[1]; // THIS IS POST ID
+      uid = res.ref._location.path_.split("-")[0].slice(12); // THIS IS POST ID
+      imageRefRes = res.ref;
+    });
+    await getDownloadURL(imageRefRes).then((url) => {
+      data = { uid: uid, id: id, url: url, imageRef: imageRef._location.path_ };
+    });
+    console.log(data);
+    return data;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,6 +100,7 @@ const ModalEditOffer = ({
             postType: data.postType,
             _uid: "",
             bookmarked: data.bookmarked,
+
             _id: "",
           });
         } else if (res.status >= 400 && res.status <= 499) {
@@ -101,7 +128,7 @@ const ModalEditOffer = ({
       </label>
       <select
         id="type"
-        className="w-full p-1 my-1 mb-3 text-center rounded-md border"
+        className="w-full p-1 my-1 mb-2 text-center rounded-md border"
         required
         onChange={(e) => handleTypeChange(e)}
         value={formData.type}
@@ -142,7 +169,7 @@ const ModalEditOffer = ({
       <input
         id="description"
         onChange={(e) => handleDescriptionChange(e)}
-        className="block w-full p-1 my-1 mb-3 text-center rounded-md border"
+        className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
         type="text"
         name="type"
         maxLength="49"
@@ -156,7 +183,7 @@ const ModalEditOffer = ({
         id="quantity"
         required
         onChange={(e) => handleQuantityChange(e)}
-        className="block w-1/2 mx-auto p-1 my-1 mb-3 text-center rounded-md border"
+        className="block w-1/2 mx-auto p-1 my-1 mb-2 text-center rounded-md border"
         type="number"
         name="quantity"
         max="999"
@@ -170,7 +197,7 @@ const ModalEditOffer = ({
         id="condition"
         required
         onChange={(e) => handleConditionChange(e)}
-        className="block w-full p-1 my-1 mb-3 text-center rounded-md border"
+        className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
         value={formData.condition}
       >
         <option default value="">
@@ -190,7 +217,7 @@ const ModalEditOffer = ({
         id="location"
         required
         onChange={(e) => handleLocationChange(e)}
-        className="block w-full p-1 my-1 mb-3 text-center rounded-md border"
+        className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
         type="text"
         name="location"
         maxLength="49"
@@ -204,13 +231,21 @@ const ModalEditOffer = ({
         id="zipcode"
         required
         onChange={(e) => handleZIPChange(e)}
-        className="block w-full p-1 my-1 mb-3 text-center rounded-md border"
+        className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
         type="text"
         pattern="[0-9]{5}"
         maxLength="5"
         name="zipcode"
         value={formData.zipcode}
         placeholder="12345"
+      />
+      <label htmlFor="file"className="text-black">Change Image</label>
+      <input
+        id="file"
+        name="file"
+        type="file"
+        className="block w-fit p-2 my-1 mb-2 rounded-md border mx-auto cursor-pointer text-black hover:border-sky-500"
+        onChange={(e) => setImageUpload(e.target.files[0])}
       />
       <input
         value="Save Changes"

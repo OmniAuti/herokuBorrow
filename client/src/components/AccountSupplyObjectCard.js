@@ -169,10 +169,13 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
         </button>
         <button
           onClick={() => {
-            modalDispatch({
+          {data.postType === 'offer' ? modalDispatch({
+              type: "DELETE_SINGLE_POST",
+              payload: [data._id, data.postType, data.photoInfo],
+            }) : modalDispatch({
               type: "DELETE_SINGLE_POST",
               payload: [data._id, data.postType],
-            });
+            })}
           }}
           className="bg-white text-center cursor-pointer absolute -right-2 -bottom-2 border py-2 pl-1 pr-3 hover:shadow-[-1px_-4px_15px_-3px_rgb(0,0,0,0.1),-1px_-3px_6px_-4px_rgb(0,0,0,0.1)] rounded-lg"
         >

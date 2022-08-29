@@ -155,6 +155,7 @@ const getAccountBookmarked = async (req, res) => {
 };
 const editAccountOffered = async (req, res) => {
   const item = req.body;
+  console.log(item)
   var id = item._id;
   delete item._id;
   const editItem = await Items.findOneAndUpdate({ _id: id }, item);
@@ -219,7 +220,6 @@ const getFilteredAskedItems = async (req, res) => {
 };
 
 const attachPhotoInfo = async (req,res) => {
-  console.log(req.body)
   await Items.findOneAndUpdate({_id: req.body.id}, {photoInfo: req.body})
   res.json({msg: 'Photo Info Added'})
 }

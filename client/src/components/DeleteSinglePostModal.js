@@ -1,4 +1,5 @@
 import { deleteSingleItem } from "../api/api";
+import { getStorage, ref, deleteObject } from "firebase/storage";
 
 const DeleteSinglePostModal = ({
   activeModalDelete,
@@ -6,16 +7,18 @@ const DeleteSinglePostModal = ({
   handleCloseModal,
   handleItemRefreshAfterEdit,
 }) => {
+  const storage = getStorage();
+
   const handleDeleteSinglePost = async () => {
     try {
-      await deleteSingleItem(postId).then((res) => {
-        if (res.status >= 200 && res.status <= 299) {
-          handleItemRefreshAfterEdit();
-          handleCloseModal();
-        } else if (res.status >= 400 && res.status <= 499)
-          alert("Delete Item failed. Try to submit again.");
-        return;
-      });
+      // FIREBASE PHOTO DELTE ------------
+      if (postId.modalId[1] === "offer") {
+        const deleteRef = ref(storage, postId.modalId[2].imageRef);
+        await deleteObject(deleteRef);
+      }
+      await deleteSingleItem(postId.modalId);
+      handleItemRefreshAfterEdit();
+      handleCloseModal();
     } catch (err) {
       alert("Delete Item failed. Try to submit again.");
       console.log(err);

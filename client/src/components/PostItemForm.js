@@ -10,6 +10,7 @@ import { attachPhotoInfo } from "../api/api";
 const PostItemForm = ({ handleUpdateAfterPost }) => {
   const { user } = UserAuth();
 
+  const [imageUpload, setImageUpload] = useState();
   const [postSuccess, setPostSuccess] = useState(false);
   const [formData, setFormData] = useState({
     type: "",
@@ -23,7 +24,6 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
     bookmarked: false,
     photoInfo: { uid: "", id: "", url: "", imageRef: '' },
   });
-  const [imageUpload, setImageUpload] = useState();
 
   const handleCloceSuccessfulPost = () => {
     setPostSuccess(false);
@@ -84,7 +84,6 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       if (!imageUpload) {
         await postSingleItem(formData);
