@@ -4,8 +4,9 @@ import { editAccountOffered } from "../api/api";
 import { UserAuth } from "../context/AuthContext";
 
 import { storage } from "../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, deleteObject, getStorage } from "firebase/storage";
 import { attachPhotoInfo } from "../api/api";
+
 
 const ModalEditOffer = ({
   data,
@@ -24,7 +25,6 @@ const ModalEditOffer = ({
     postType: "",
     _uid: "",
     bookmarked: "",
-    _id: "",
     photoInfo: { uid: "", id: "", url: "", imageRef: "" },
   });
 
@@ -69,7 +69,7 @@ const ModalEditOffer = ({
     var data = {};
     var imageRefRes;
     var uid;
-    var imageRef = await ref(storage, `imagesOFFER/${user.uid}-${id}`);
+    var imageRef = ref(storage, `imagesOFFER/${user.uid}-${id}`);
     await uploadBytes(imageRef, imageUpload).then((res) => {
       // var postIdIn = res.ref._location.path_.split("-")[1]; // THIS IS POST ID
       uid = res.ref._location.path_.split("-")[0].slice(12); // THIS IS POST ID
@@ -85,28 +85,31 @@ const ModalEditOffer = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await editAccountOffered(formData).then((res) => {
-        if (res.status >= 200 && res.status <= 299) {
-          handleEditSuccess();
-          handleItemRefreshAfterEdit();
-          e.target.reset();
-          setFormData({
-            type: "",
-            quantity: 1,
-            description: "",
-            condition: "",
-            location: "",
-            zipcode: "",
-            postType: data.postType,
-            _uid: "",
-            bookmarked: data.bookmarked,
-
-            _id: "",
-          });
-        } else if (res.status >= 400 && res.status <= 499) {
-          alert("Edit Failed. Try Again.");
-          return;
-        }
+      if (!imageUpload) {
+        await editAccountOffered(formData);
+      } else if (imageUpload) {
+        const storage = getStorage()
+        const deleteRef = ref(storage, data.photoInfo.imageRef)
+        await deleteObject(deleteRef)
+        await editAccountOffered(formData)
+          .then((res) => res.data._id)
+          .then((id) => handleImageUpload(id))
+          .then((data) => attachPhotoInfo(data));
+      }
+      handleEditSuccess();
+      handleItemRefreshAfterEdit();
+      e.target.reset();
+      setFormData({
+        type: "",
+        quantity: 1,
+        description: "",
+        condition: "",
+        location: "",
+        zipcode: "",
+        postType: "offer",
+        _uid: "",
+        bookmarked: false,
+        photoInfo: { uid: "", id: "", url: "", imageRef: '' },
       });
     } catch (err) {
       alert("Edit Failed. Try Again.");
@@ -239,7 +242,9 @@ const ModalEditOffer = ({
         value={formData.zipcode}
         placeholder="12345"
       />
-      <label htmlFor="file"className="text-black">Change Image</label>
+      <label htmlFor="file" className="text-black">
+        Change Image
+      </label>
       <input
         id="file"
         name="file"

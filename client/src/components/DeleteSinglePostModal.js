@@ -7,12 +7,11 @@ const DeleteSinglePostModal = ({
   handleCloseModal,
   handleItemRefreshAfterEdit,
 }) => {
-  const storage = getStorage();
-
   const handleDeleteSinglePost = async () => {
     try {
       // FIREBASE PHOTO DELTE ------------
       if (postId.modalId[1] === "offer") {
+        const storage = getStorage();
         const deleteRef = ref(storage, postId.modalId[2].imageRef);
         await deleteObject(deleteRef);
       }

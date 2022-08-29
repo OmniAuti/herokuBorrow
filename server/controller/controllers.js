@@ -21,7 +21,7 @@ const createSingleItem = async (req, res) => {
       zipcode: req.body.zipcode,
       postType: req.body.postType,
       _uid: req.body._uid,
-      photoInfo: req.body.photoInfo
+      photoInfo: req.body.photoInfo,
     });
 
     item.save((err, post) => {
@@ -155,11 +155,10 @@ const getAccountBookmarked = async (req, res) => {
 };
 const editAccountOffered = async (req, res) => {
   const item = req.body;
-  console.log(item)
   var id = item._id;
   delete item._id;
   const editItem = await Items.findOneAndUpdate({ _id: id }, item);
-  res.json({ msg: "success", editItem });
+  res.json(editItem);
 };
 const editAccountAsked = async (req, res) => {
   const item = req.body;
@@ -219,10 +218,10 @@ const getFilteredAskedItems = async (req, res) => {
   }
 };
 
-const attachPhotoInfo = async (req,res) => {
-  await Items.findOneAndUpdate({_id: req.body.id}, {photoInfo: req.body})
-  res.json({msg: 'Photo Info Added'})
-}
+const attachPhotoInfo = async (req, res) => {
+  await Items.findOneAndUpdate({ _id: req.body.id }, { photoInfo: req.body });
+  res.json({ msg: "Photo Info Added" });
+};
 
 module.exports = {
   getAllItems,

@@ -18,7 +18,6 @@ const ModalEditAsk = ({
     zipcode: "",
     postType: "ask",
     _uid: "",
-    _id: "",
   });
 
   useEffect(() => {
@@ -94,7 +93,6 @@ const ModalEditAsk = ({
             zipcode: "",
             postType: "ask",
             _uid: "",
-            _id: "",
           });
         } else if (res.status >= 400 && res.status <= 499)
           alert("Edit Failed. Try Again.");
