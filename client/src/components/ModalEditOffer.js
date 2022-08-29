@@ -83,7 +83,6 @@ const ModalEditOffer = ({
     await getDownloadURL(imageRefRes).then((url) => {
       data = { uid: uid, id: id, url: url, imageRef: imageRef._location.path_ };
     });
-    console.log(data);
     return data;
   };
 
