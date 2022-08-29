@@ -12,6 +12,99 @@ const SingleItemFocusModal = ({
   modalLoaded,
   handleModalBookmark,
 }) => {
+  var cardBgColor;
+  switch (data.type) {
+    // THINGS THAT MARK OR WRITE
+
+    case "pencil":
+      cardBgColor = "#fecaca";
+      break;
+    case "pen":
+      cardBgColor = "#fecaca";
+      break;
+    case "highlighter":
+      cardBgColor = "#fecaca";
+      break;
+    case "marker":
+      cardBgColor = "#fecaca";
+      break;
+    case "colored pencil":
+      cardBgColor = "#fecaca";
+      break;
+    case "crayon":
+      cardBgColor = "#fecaca";
+      break;
+    case "paint brush":
+      cardBgColor = "#fecaca";
+      break;
+    case "highlighter":
+      cardBgColor = "#fecaca";
+      break;
+    // HOLDERS OF SUPPLIES
+    case "binder":
+      cardBgColor = "#fef08a";
+      break;
+    case "folder":
+      cardBgColor = "#fef08a";
+      break;
+    case "pencil pouch/case":
+      cardBgColor = "#fef08a";
+      break;
+    case "lunchbox":
+      cardBgColor = "#fef08a";
+      break;
+    //PAPER
+    case "notebook":
+      cardBgColor = "#bae6fd";
+      break;
+    case "journal":
+      cardBgColor = "#bae6fd";
+      break;
+    case "colored paper":
+      cardBgColor = "#bae6fd";
+      break;
+    case "graphing paper":
+      cardBgColor = "#bae6fd";
+      break;
+    case "sticky note":
+      cardBgColor = "#bae6fd";
+      break;
+    case "notecard":
+      cardBgColor = "#bae6fd";
+      break;
+    // STUDY MATERIAL
+    case "flashcard":
+      cardBgColor = "#bbf7d0";
+      break;
+    case "miscellaneous study material":
+      cardBgColor = "#bbf7d0";
+      break;
+    //BOOKS
+    case "book":
+      cardBgColor = "#1e293b";
+      break;
+    case "miscellaneous books":
+      cardBgColor = "#1e293b";
+      break;
+    // TOOLS
+    case "ruler":
+      cardBgColor = "#fed7aa";
+      break;
+    case "calculator":
+      cardBgColor = "#fed7aa";
+      break;
+    case "protractor":
+      cardBgColor = "#fed7aa";
+      break;
+    // BACKPACK
+    case "backpack":
+      cardBgColor = "#e9d5ff";
+      break;
+    default:
+      cardBgColor = "#fff";
+      break;
+  }
+
   const { user } = UserAuth();
   const [bookmarkCheck, setBookmarkCheck] = useState(false);
   const [logInCheck, setLogInCheck] = useState(false);
@@ -83,8 +176,10 @@ const SingleItemFocusModal = ({
       }
     >
       {modalLoaded ? (
-        <div className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="h-fit p-5 pt-2 w-screen sm:w-[500px] bg-white rounded-tr-sm rounded-tl-sm relative">
+        <div
+          className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="h-fit p-5 pt-2 w-screen sm:w-[500px] bg-white rounded-sm relative" style={{ border: `3px solid ${cardBgColor}` }}>
             <p className="text-black text-center mb-3 underline">
               {data.postType === "offer"
                 ? "Offered Supplies"

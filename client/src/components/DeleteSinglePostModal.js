@@ -33,7 +33,7 @@ const DeleteSinglePostModal = ({
       }
     >
       <div className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="h-fit p-5 w-screen sm:w-[500px] bg-white rounded-tr-sm rounded-tl-sm relative">
+        <div className="h-fit p-5 w-screen sm:w-[500px] bg-white rounded-sm relative">
           <div className="relative w-full h-fit rounded-md overflow-hidden py-2">
             <p className="text-black text-center text-xl">
               Are you sure you want to delete this post?

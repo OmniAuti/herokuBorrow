@@ -97,8 +97,13 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
       className=" w-full rounded-md my-1 mx-[12px] p-1"
       style={{ backgroundColor: cardBgColor }}
     >
-      <div className="flex justify-around flex-col bg-white w-full h-full pb-5 rounded-md relative overflow-hidden">
-        <div className="flex justify-around w-full p-5">
+      <div className="flex justify-around flex-col bg-white w-full h-full pb-2 rounded-md relative overflow-hidden">
+        <div className="flex justify-around w-full p-5 relative overflow-hidden">
+        <div className="bg-black bg-opacity-80 w-fit absolute pr-10 pt-1 pb-20 -bottom-24 pl-40 -left-36 rounded-full text-3xl font-light">
+            <p className="mb-5 -ml-2">
+              {data.type.slice(0, 1).toUpperCase() + data.type.slice(1)}
+            </p>
+          </div>
         {data.postType === 'offer' ? <img
             className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
             src={
@@ -112,11 +117,10 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
           src="./imgs/astockphoto.jpg"
           alt="Supply Item Picture"
         />}
-          <ul className="w-1/2 pl-2 h-52 max-h-52 flex flex-col pt-10 justify-around">
+          <ul className="w-1/2 pl-2 h-full max-h-52 flex flex-col justify-around">
             {data.postType === "ask" && (
               <li className="text-black my-1">Who: {data.who}</li>
             )}
-            <li className="text-black my-1">Type: {data.type}</li>
             <li className="text-black my-1 ">Quantity: {data.quantity}</li>
             {data.postType === "ask" ? (
               <li className="text-black my-1">
