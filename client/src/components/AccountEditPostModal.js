@@ -21,9 +21,6 @@ const AccountEditPostModal = ({
     if (data.length === 0 || data === undefined) return;
     if (Object.values(data).length <= 0) return;
     handleOpenModal();
-    return () => {
-      console.log("cleared");
-    };
   }, [data]);
 
   useEffect(() => {

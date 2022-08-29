@@ -4,9 +4,14 @@ import { editAccountOffered } from "../api/api";
 import { UserAuth } from "../context/AuthContext";
 
 import { storage } from "../firebase";
-import { ref, uploadBytes, getDownloadURL, deleteObject, getStorage } from "firebase/storage";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+  getStorage,
+} from "firebase/storage";
 import { attachPhotoInfo } from "../api/api";
-
 
 const ModalEditOffer = ({
   data,
@@ -88,9 +93,11 @@ const ModalEditOffer = ({
       if (!imageUpload) {
         await editAccountOffered(formData);
       } else if (imageUpload) {
-        const storage = getStorage()
-        const deleteRef = ref(storage, data.photoInfo.imageRef)
-        await deleteObject(deleteRef)
+        if (data.photoInfo.url !== "") {
+          const storage = getStorage();
+          const deleteRef = ref(storage, data.photoInfo.imageRef);
+          await deleteObject(deleteRef);
+        }
         await editAccountOffered(formData)
           .then((res) => res.data._id)
           .then((id) => handleImageUpload(id))
@@ -109,7 +116,7 @@ const ModalEditOffer = ({
         postType: "offer",
         _uid: "",
         bookmarked: false,
-        photoInfo: { uid: "", id: "", url: "", imageRef: '' },
+        photoInfo: { uid: "", id: "", url: "", imageRef: "" },
       });
     } catch (err) {
       alert("Edit Failed. Try Again.");
