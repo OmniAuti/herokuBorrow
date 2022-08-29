@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HeroCoa.css";
+import { useLocation } from "react-router-dom";
 import HeroSectionBuildingBlocks from "./HeroSectionBuildingBlocks";
 import React from "react";
 
@@ -20,6 +21,7 @@ const HeroCOA = () => {
   const [transformInterval, setTransformInterval] = useState(0);
   const wordContainer = useRef(null);
 
+  const location = useLocation();
 
   const handleTransform = (idx, interval) => {
     var opacityIdx = 1;

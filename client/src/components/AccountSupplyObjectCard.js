@@ -99,43 +99,51 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
     >
       <div className="flex justify-around flex-col bg-white w-full h-full pb-5 rounded-md relative overflow-hidden">
         <div className="flex justify-around w-full p-5">
-          <img
-            className="max-h-52 h-52 w-1/2 max-w-1/2 object-contain"
-            src="./imgs/astockphoto.jpg"
-            alt=""
-          />
-          <ul className="w-1/2 pl-5 h-52 max-h-52 flex flex-col justify-around">
+        {data.postType === 'offer' ? <img
+            className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+            src={
+              data.photoInfo.url !== ""
+                ? data.photoInfo.url
+                : "./imgs/missing-file.svg"
+            }
+            alt="Supply Item Picture"
+          /> : <img
+          className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+          src="./imgs/astockphoto.jpg"
+          alt="Supply Item Picture"
+        />}
+          <ul className="w-1/2 pl-2 h-52 max-h-52 flex flex-col pt-10 justify-around">
             {data.postType === "ask" && (
-              <li className="text-black">Who: {data.who}</li>
+              <li className="text-black my-1">Who: {data.who}</li>
             )}
-            <li className="text-black">Type: {data.type}</li>
-            <li className="text-black ">Quantity: {data.quantity}</li>
+            <li className="text-black my-1">Type: {data.type}</li>
+            <li className="text-black my-1 ">Quantity: {data.quantity}</li>
             {data.postType === "ask" ? (
-              <li className="text-black ">
+              <li className="text-black my-1">
                 Condition:{" "}
                 {data.condition
                   .join("")
                   .slice(0, data.condition.join("").length - 2)}
               </li>
             ) : (
-              <li className="text-black ">
+              <li className="text-black my-1">
                 Condition:{" "}
                 {data.condition}
               </li>
             )}
-            <li className="text-black ">Location: {data.location}</li>
-            <li className="text-black">Zipcode: {data.zipcode}</li>
+            <li className="text-black my-1">Location: {data.location}</li>
+            <li className="text-black my-1">Zipcode: {data.zipcode}</li>
           </ul>
         </div>
         {data.postType === "ask" && (
-          <ul className="block ml-5">
+          <ul className="block ml-5 pt-2">
             <li className="text-black">
               Specifically Asked For: {data.specify}
             </li>
           </ul>
         )}
         {data.postType === "offer" && (
-          <div className="pt-5 pl-5">
+          <div className="pt-2 pl-5">
             <ul>
               <li className="text-black m-1 clear-left">
                 Description: {data.description}

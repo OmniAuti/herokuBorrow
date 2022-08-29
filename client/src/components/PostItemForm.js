@@ -3,16 +3,14 @@ import { useState, useEffect } from "react";
 import { postSingleItem } from "../api/api";
 import SuccessfulPost from "./SuccessfulPost";
 import { UserAuth } from "../context/AuthContext";
+import { storage } from "../firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { attachPhotoInfo } from "../api/api";
 
 const PostItemForm = ({ handleUpdateAfterPost }) => {
   const { user } = UserAuth();
 
   const [postSuccess, setPostSuccess] = useState(false);
-
-  const handleCloceSuccessfulPost = () => {
-    setPostSuccess(false);
-  };
-
   const [formData, setFormData] = useState({
     type: "",
     quantity: 1,
@@ -23,7 +21,14 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
     postType: "offer",
     _uid: "",
     bookmarked: false,
+    photoInfo: { uid: "", id: "", url: "", imageRef: '' },
   });
+  const [imageUpload, setImageUpload] = useState();
+
+  const handleCloceSuccessfulPost = () => {
+    setPostSuccess(false);
+  };
+
   //  APPENDING FIREBASE USER ID ONTO ITEM POST
   useEffect(() => {
     handleUIDChange(user);
@@ -59,30 +64,50 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
       console.log(e);
     }
   };
+  // GET URL OF IMAGE TO PUT IN POST
+  const handleImageUpload = async (id) => {
+    var data = {};
+    var imageRefRes;
+    var uid;
+    var imageRef = await ref(storage, `imagesOFFER/${user.uid}-${id}`);
+    await uploadBytes(imageRef, imageUpload).then((res) => {
+      // var postIdIn = res.ref._location.path_.split("-")[1]; // THIS IS POST ID
+      uid = res.ref._location.path_.split("-")[0].slice(12); // THIS IS POST ID
+      imageRefRes = res.ref;
+    });
+    await getDownloadURL(imageRefRes).then((url) => {
+      data = { uid: uid, id: id, url: url, imageRef: imageRef._location.path_ };
+    });
+    console.log(data)
+    return data;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await postSingleItem(formData).then((res) => {
-        if (res.status >= 200 && res.status <= 299) {
-          handleUpdateAfterPost();
-          setPostSuccess(true);
-          e.target.reset();
-          setFormData({
-            type: "",
-            quantity: 1,
-            description: "",
-            condition: "",
-            location: "",
-            zipcode: "",
-            postType: "offer",
-            _uid: "",
-            bookmarked: false,
-          });
-        } else if (res.status >= 400 && res.status <= 499) {
-          alert("Posting Offer Item Failed. Try Again.");
-        }
+      if (!imageUpload) {
+        await postSingleItem(formData);
+      } else if (imageUpload) {
+        await postSingleItem(formData)
+          .then((res) => res.data._id)
+          .then((id) => handleImageUpload(id))
+          .then((data) => attachPhotoInfo(data));
+      }
+      handleUpdateAfterPost();
+      setPostSuccess(true);
+      e.target.reset();
+      setFormData({
+        type: "",
+        quantity: 1,
+        description: "",
+        condition: "",
+        location: "",
+        zipcode: "",
+        postType: "offer",
+        _uid: "",
+        bookmarked: false,
+        photoInfo: { uid: "", id: "", url: "", imageRef: '' },
       });
     } catch (err) {
       alert("Posting Offer Item Failed. Try Again.");
@@ -199,10 +224,18 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
             value={formData.zipcode}
             placeholder="12345"
           />
+          <label htmlFor="file">Upload Image</label>
+          <input
+            id="file"
+            name="file"
+            type="file"
+            className="block w-fit p-2 my-2 rounded-md border mx-auto cursor-pointer text-white hover:border-sky-500"
+            onChange={(e) => setImageUpload(e.target.files[0])}
+          />
           <input
             value="Offer Supplies"
             type="submit"
-            className="text-white w-full cursor-pointer hover:bg-sky-900 bg-sky-500 px-10 py-2 mt-16 rounded-md"
+            className="text-white w-full cursor-pointer hover:bg-sky-900 bg-sky-500 px-10 py-2 mt-10 rounded-md"
           />
         </form>
       )}

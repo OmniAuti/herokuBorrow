@@ -95,11 +95,23 @@ const SingleItemFocusModal = ({
                 <div className="bg-black bg-opacity-80 w-fit absolute pr-10 pt-5 pb-24 -bottom-20 pl-40 -left-36 rounded-full text-2xl font-light">
                   {data.type.slice(0, 1).toUpperCase() + data.type.slice(1)}
                 </div>
-                <img
-                  className="w-full h-full object-contain object-center"
-                  src="./imgs/astockphoto.jpg"
-                  alt=""
-                />
+                {data.postType === "offer" ? (
+                  <img
+                    className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+                    src={
+                      data.photoInfo.url !== ""
+                        ? data.photoInfo.url
+                        : "./imgs/missing-file.svg"
+                    }
+                    alt="Supply Item Picture"
+                  />
+                ) : (
+                  <img
+                    className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+                    src="./imgs/astockphoto.jpg"
+                    alt="Supply Item Picture"
+                  />
+                )}
               </div>
               {data.postType === "ask" ? (
                 <p className="text-black m-5 font-light max-w-[80%]">

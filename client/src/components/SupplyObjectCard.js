@@ -1,3 +1,5 @@
+import {useState, useEffect} from 'react'
+
 const SupplyObjectCard = ({ data, modalDispatch }) => {
   var cardBgColor;
   switch (data.type) {
@@ -91,6 +93,8 @@ const SupplyObjectCard = ({ data, modalDispatch }) => {
       cardBgColor = "#fff";
       break;
   }
+
+
   return (
     // NEED TO MAKE A LIKE OPTION TO STORE IN INTEREST SECTIO OF ACCOUNT
 
@@ -108,11 +112,19 @@ const SupplyObjectCard = ({ data, modalDispatch }) => {
               {data.type.slice(0, 1).toUpperCase() + data.type.slice(1)}
             </p>
           </div>
-          <img
-            className="w-full h-full object-contain object-center"
-            src="./imgs/astockphoto.jpg"
-            alt=""
-          />
+          {data.postType === 'offer' ? <img
+            className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+            src={
+              data.photoInfo.url !== ""
+                ? data.photoInfo.url
+                : "./imgs/missing-file.svg"
+            }
+            alt="Supply Item Picture"
+          /> : <img
+          className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+          src="./imgs/astockphoto.jpg"
+          alt="Supply Item Picture"
+        />}
         </div>
         <ul className="mt-3 px-1 flex items-center justify-around">
           <li className="text-black m-1 font-medium inline-block max-w-[140px] w-[125px] truncate">

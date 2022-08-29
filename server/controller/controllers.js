@@ -21,6 +21,7 @@ const createSingleItem = async (req, res) => {
       zipcode: req.body.zipcode,
       postType: req.body.postType,
       _uid: req.body._uid,
+      photoInfo: req.body.photoInfo
     });
 
     item.save((err, post) => {
@@ -217,6 +218,12 @@ const getFilteredAskedItems = async (req, res) => {
   }
 };
 
+const attachPhotoInfo = async (req,res) => {
+  console.log(req.body)
+  await Items.findOneAndUpdate({_id: req.body.id}, {photoInfo: req.body})
+  res.json({msg: 'Photo Info Added'})
+}
+
 module.exports = {
   getAllItems,
   getSingleItem,
@@ -235,4 +242,5 @@ module.exports = {
   deleteSingleItem,
   getAskedItems,
   addAskItemBookmark,
+  attachPhotoInfo,
 };

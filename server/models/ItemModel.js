@@ -36,7 +36,21 @@ const ItemSchema = new mongoose.Schema({
   },
   bookmarked: {
     type: Array,
-  }
+  },
+  photoInfo: {
+    uid: {
+      type: String,
+    },
+    id: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
+    imageRef: {
+      type: String,
+    },
+  },
 })
 
 

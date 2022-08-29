@@ -25,6 +25,8 @@ import AccountEditPostModal from "./components/AccountEditPostModal";
 import DeleteSinglePostModal from "./components/DeleteSinglePostModal";
 //CONTEXT IMPORT
 import AuthContextProvider from "./context/AuthContext";
+// IMAGE STORAGE URLS
+// import {}
 // APPI CALLS
 import { getSingleItem, getSingleItemAsk } from "./api/api";
 // USE REDUCER FUNCTION
@@ -81,7 +83,6 @@ function App() {
   const [refreshAfterEdit, setRefreshAfterEdit] = useState(false);
 
   const location = useLocation();
-
 
   // USED TO CLOSE MODAL ON PAGE CHANGE
   useEffect(() => {

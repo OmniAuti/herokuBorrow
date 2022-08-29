@@ -45,11 +45,19 @@ const AccountBookmarkSupplyObjectCard = ({ data, modalDispatch }) => {
         </p>
 
         <div className="flex justify-around w-full p-5">
-          <img
-            className="max-h-52 h-52 w-1/2 max-w-1/2 object-contain"
-            src="./imgs/astockphoto.jpg"
-            alt=""
-          />
+        {data.postType === 'offer' ? <img
+            className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+            src={
+              data.photoInfo.url !== ""
+                ? data.photoInfo.url
+                : "./imgs/missing-file.svg"
+            }
+            alt="Supply Item Picture"
+          /> : <img
+          className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+          src="./imgs/astockphoto.jpg"
+          alt="Supply Item Picture"
+        />}
           <ul className="w-1/2 pl-5 h-52 max-h-52 flex flex-col justify-around">
             <li className="text-black">Type: {data.type}</li>
             <li className="text-black ">Quantity: {data.quantity}</li>

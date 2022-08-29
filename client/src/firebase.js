@@ -29,12 +29,4 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 export default firebaseApp;
 export const auth = getAuth(firebaseApp);
-const storage = getStorage()
-export const storageRef = ref(storage)
-export const imagesRef = ref(storage, 'images')
-const image = ref(storage, 'images/favicon.ico')
-
-
-// console.log(image)
-
-// getDownloadURL(ref(storage, 'images/favicon.ico'))
+export const storage = getStorage(firebaseApp)

@@ -8,6 +8,7 @@ import { fetchAllItems } from "../api/api";
 const MainSupplyDump = ({ modalDispatch }) => {
   const [dumpData, setDumpData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imageStore, setImageStore] = useState([]);
 
   useEffect(() => {
     try {
@@ -36,6 +37,7 @@ const MainSupplyDump = ({ modalDispatch }) => {
               .slice(0, 3)
               .map((data) => (
                 <SupplyObjectCard
+                  imageStore={imageStore}
                   modalDispatch={modalDispatch}
                   key={data._id}
                   data={data}
