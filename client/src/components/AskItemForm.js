@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { postAskItem } from "../api/api";
+import Loading from "./Loading";
 
 import SuccessfulPost from "./SuccessfulPost";
 
@@ -9,22 +10,21 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
   const { user } = UserAuth();
 
   const [postSuccess, setPostSuccess] = useState(false);
-
-  const handleCloceSuccessfulPost = () => {
-    setPostSuccess(false);
-  };
-
+  const [postLoading, setPostLoading] = useState(false)
   const [askObj, setAskObj] = useState({
     who: "",
     type: "",
     quantity: 1,
     specify: "",
-    condition: [],
+    condition: ['Any Condition, '],
     location: "",
     zipcode: "",
     postType: "ask",
     _uid: "",
   });
+  const handleCloceSuccessfulPost = () => {
+    setPostSuccess(false);
+  };
 
   const handleUIDChange = async (user) => {
     if (!user) return;
@@ -69,26 +69,24 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     try {
-      await postAskItem(askObj).then((res) => {
-        if (res.status >= 200 && res.status <= 299) {
-          handleUpdateAfterPost();
-          setPostSuccess(true);
-          e.target.reset();
-          setAskObj({
-            who: "",
-            type: "",
-            quantity: 1,
-            specify: "",
-            condition: [],
-            location: "",
-            zipcode: "",
-            postType: "ask",
-            _uid: "",
-          });
-        } else if (res.status >= 400 && res.status <= 499) {
-          alert("Posting Ask Item Failed. Try Again.");
-        }
+      setPostLoading(true)
+      await postAskItem(askObj)
+      setPostLoading(false)
+      handleUpdateAfterPost();
+      setPostSuccess(true);
+      e.target.reset();
+      setAskObj({
+        who: "",
+        type: "",
+        quantity: 1,
+        specify: "",
+        condition: ['Any Condition, '],
+        location: "",
+        zipcode: "",
+        postType: "ask",
+        _uid: "",
       });
     } catch (err) {
       alert("Posting Ask Item Failed. Try Again.");
@@ -98,6 +96,7 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
   return (
     <div className=" text-center block sm:w-3/4 w-full lg:w-1/2 xl:w-1/3 mx-auto xl:mx-auto lg:ml-5 max-h-screen h-[750px] min-h-[750px]">
       <h2 className="text-3xl underline mb-5">Ask For Supplies</h2>
+      {postLoading && <Loading background={'bg-black'} outerBackground={'bg-white'} fontColor={'bg-black'}/ >}
       {!postSuccess && (
         <form className="text-black text-xl" onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor="who">I am a . . .</label>

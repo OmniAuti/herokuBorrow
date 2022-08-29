@@ -6,12 +6,14 @@ import { UserAuth } from "../context/AuthContext";
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { attachPhotoInfo } from "../api/api";
+import Loading from "./Loading";
 
 const PostItemForm = ({ handleUpdateAfterPost }) => {
   const { user } = UserAuth();
 
   const [imageUpload, setImageUpload] = useState();
   const [postSuccess, setPostSuccess] = useState(false);
+  const [postLoading, setPostLoading] = useState(false);
   const [formData, setFormData] = useState({
     type: "",
     quantity: 1,
@@ -22,7 +24,7 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
     postType: "offer",
     _uid: "",
     bookmarked: false,
-    photoInfo: { uid: "", id: "", url: "", imageRef: '' },
+    photoInfo: { uid: "", id: "", url: "", imageRef: "" },
   });
 
   const handleCloceSuccessfulPost = () => {
@@ -84,6 +86,7 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setPostLoading(true);
       if (!imageUpload) {
         await postSingleItem(formData);
       } else if (imageUpload) {
@@ -92,6 +95,7 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
           .then((id) => handleImageUpload(id))
           .then((data) => attachPhotoInfo(data));
       }
+      setPostLoading(false);
       handleUpdateAfterPost();
       setPostSuccess(true);
       e.target.reset();
@@ -105,9 +109,9 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
         postType: "offer",
         _uid: "",
         bookmarked: false,
-        photoInfo: { uid: "", id: "", url: "", imageRef: '' },
+        photoInfo: { uid: "", id: "", url: "", imageRef: "" },
       });
-      setImageUpload()
+      setImageUpload();
     } catch (err) {
       alert("Posting Offer Item Failed. Try Again.");
       console.log(err);
@@ -115,8 +119,9 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
   };
 
   return (
-    <div className="text-center block sm:w-3/4 w-full lg:w-1/2 xl:w-1/3 xl:mx-auto mx-auto lg:mx-5 max-h-[750px] h-[750px] min-h-[750px]">
+    <div className="text-center block sm:w-3/4 w-full lg:w-1/2 xl:w-1/3 xl:mx-auto mx-auto relative lg:mx-5 max-h-[750px] h-[750px] min-h-[750px]">
       <h2 className="text-3xl mb-5 underline">Offer Supplies</h2>
+      {postLoading && <Loading background={'bg-black'} outerBackground={'bg-white'} fontColor={'bg-black'}/ >}
       {!postSuccess && (
         <form onSubmit={(e) => handleSubmit(e)} className="text-black text-xl">
           <label htmlFor="type">Type of supplies</label>

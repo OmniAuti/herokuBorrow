@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { editAccountOffered } from "../api/api";
-
+import Loading from "./Loading";
 import { UserAuth } from "../context/AuthContext";
 
 import { storage } from "../firebase";
@@ -19,6 +19,7 @@ const ModalEditOffer = ({
   handleEditSuccess,
 }) => {
   const { user } = UserAuth();
+  const [postLoading, setPostLoading] = useState(false);
   const [imageUpload, setImageUpload] = useState();
   const [formData, setFormData] = useState({
     type: "",
@@ -89,6 +90,7 @@ const ModalEditOffer = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setPostLoading(true)
       if (!imageUpload) {
         await editAccountOffered(formData);
       } else if (imageUpload) {
@@ -102,6 +104,7 @@ const ModalEditOffer = ({
           .then((id) => handleImageUpload(id))
           .then((data) => attachPhotoInfo(data));
       }
+      setPostLoading(false)
       handleEditSuccess();
       handleItemRefreshAfterEdit();
       e.target.reset();
@@ -125,146 +128,156 @@ const ModalEditOffer = ({
   };
 
   return (
-    <form
-      onSubmit={(e) => handleSubmit(e)}
-      className="text-black w-full mx-auto"
-    >
-      <legend className="text-black text-xl mb-2 underline underline-offset-1">
-        Offer Item Edit:{" "}
-      </legend>
+    <>
+      {postLoading ? (
+        <Loading
+          background={"bg-white"}
+          outerBackground={"bg-black"}
+          fontColor={"text-black"}
+        />
+      ) : (
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          className="text-black w-full mx-auto"
+        >
+          <legend className="text-black text-xl mb-2 underline underline-offset-1">
+            Offer Item Edit:{" "}
+          </legend>
 
-      <label htmlFor="type" className="text-black">
-        Type of supplies
-      </label>
-      <select
-        id="type"
-        className="w-full p-1 my-1 mb-2 text-center rounded-md border"
-        required
-        onChange={(e) => handleTypeChange(e)}
-        value={formData.type}
-      >
-        <option value="">Select A Type Of Supplies</option>
-        <option value="pencil">Pencil</option>
-        <option value="pen">Pen</option>
-        <option value="ruler">Ruler</option>
-        <option value="protractor">Protractor</option>
-        <option value="notebook">Notebook</option>
-        <option value="journal">Journal</option>
-        <option value="graphing paper">Graphing Paper</option>
-        <option value="colored paper">Colored Paper</option>
-        <option value="notecard">Notecards</option>
-        <option value="flashcard">Flashcards</option>
-        <option value="miscellaneous study material">
-          Miscellaneous Study Material
-        </option>
+          <label htmlFor="type" className="text-black">
+            Type of supplies
+          </label>
+          <select
+            id="type"
+            className="w-full p-1 my-1 mb-2 text-center rounded-md border"
+            required
+            onChange={(e) => handleTypeChange(e)}
+            value={formData.type}
+          >
+            <option value="">Select A Type Of Supplies</option>
+            <option value="pencil">Pencil</option>
+            <option value="pen">Pen</option>
+            <option value="ruler">Ruler</option>
+            <option value="protractor">Protractor</option>
+            <option value="notebook">Notebook</option>
+            <option value="journal">Journal</option>
+            <option value="graphing paper">Graphing Paper</option>
+            <option value="colored paper">Colored Paper</option>
+            <option value="notecard">Notecards</option>
+            <option value="flashcard">Flashcards</option>
+            <option value="miscellaneous study material">
+              Miscellaneous Study Material
+            </option>
 
-        <option value="sticky note">Sticky Note</option>
-        <option value="folder">Folder</option>
-        <option value="binder">Binder</option>
-        <option value="backpack">Backpack/Bookbag</option>
-        <option value="pencil pouch/case">Pencil Pouch/Case</option>
-        <option value="lunchbox">Lunchbox</option>
-        <option value="highlighter">Highlighter</option>
-        <option value="marker">Marker</option>
-        <option value="colored pencil">Colored Pencil</option>
-        <option value="paint brush">Paint Brush</option>
-        <option value="crayon">Crayon</option>
-        <option value="calculator">Calculator</option>
-        <option value="book">Book</option>
-        <option value="miscellaneous books">Miscellaneous Books</option>
-      </select>
-      <label htmlFor="description" className="text-black">
-        Description
-      </label>
-      <input
-        id="description"
-        onChange={(e) => handleDescriptionChange(e)}
-        className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
-        type="text"
-        name="type"
-        maxLength="49"
-        value={formData.description}
-        placeholder="This has . . ."
-      />
-      <label htmlFor="quantity" className="text-black">
-        Quantity
-      </label>
-      <input
-        id="quantity"
-        required
-        onChange={(e) => handleQuantityChange(e)}
-        className="block w-1/2 mx-auto p-1 my-1 mb-2 text-center rounded-md border"
-        type="number"
-        name="quantity"
-        max="999"
-        min="1"
-        value={formData.quantity}
-      />
-      <label htmlFor="condition" className="text-black">
-        Condition
-      </label>
-      <select
-        id="condition"
-        required
-        onChange={(e) => handleConditionChange(e)}
-        className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
-        value={formData.condition}
-      >
-        <option default value="">
-          Select Condition Of Supplies
-        </option>
-        <option default value="New">
-          New
-        </option>
-        <option value="Slightly Used">Slightly Used</option>
-        <option value="Moderately Used">Moderately Used</option>
-        <option value="Heavily Used">Heavily Used</option>
-      </select>
-      <label htmlFor="location" className="text-black">
-        General Location
-      </label>
-      <input
-        id="location"
-        required
-        onChange={(e) => handleLocationChange(e)}
-        className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
-        type="text"
-        name="location"
-        maxLength="49"
-        value={formData.location}
-        placeholder="Somewhere City"
-      />
-      <label htmlFor="zipcode" className="text-black">
-        Zipcode
-      </label>
-      <input
-        id="zipcode"
-        required
-        onChange={(e) => handleZIPChange(e)}
-        className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
-        type="text"
-        pattern="[0-9]{5}"
-        maxLength="5"
-        name="zipcode"
-        value={formData.zipcode}
-        placeholder="12345"
-      />
-      <label htmlFor="file" className="text-black">
-        Change Image
-      </label>
-      <input
-        id="file"
-        name="file"
-        type="file"
-        className="block w-fit p-2 my-1 mb-2 rounded-md border mx-auto cursor-pointer text-black hover:border-sky-500"
-        onChange={(e) => setImageUpload(e.target.files[0])}
-      />
-      <input
-        value="Save Changes"
-        type="submit"
-        className="bg-sky-500 w-full h-10 my-2 rounded-sm hover:bg-sky-900 cursor-pointer"
-      />
-    </form>
+            <option value="sticky note">Sticky Note</option>
+            <option value="folder">Folder</option>
+            <option value="binder">Binder</option>
+            <option value="backpack">Backpack/Bookbag</option>
+            <option value="pencil pouch/case">Pencil Pouch/Case</option>
+            <option value="lunchbox">Lunchbox</option>
+            <option value="highlighter">Highlighter</option>
+            <option value="marker">Marker</option>
+            <option value="colored pencil">Colored Pencil</option>
+            <option value="paint brush">Paint Brush</option>
+            <option value="crayon">Crayon</option>
+            <option value="calculator">Calculator</option>
+            <option value="book">Book</option>
+            <option value="miscellaneous books">Miscellaneous Books</option>
+          </select>
+          <label htmlFor="description" className="text-black">
+            Description
+          </label>
+          <input
+            id="description"
+            onChange={(e) => handleDescriptionChange(e)}
+            className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
+            type="text"
+            name="type"
+            maxLength="49"
+            value={formData.description}
+            placeholder="This has . . ."
+          />
+          <label htmlFor="quantity" className="text-black">
+            Quantity
+          </label>
+          <input
+            id="quantity"
+            required
+            onChange={(e) => handleQuantityChange(e)}
+            className="block w-1/2 mx-auto p-1 my-1 mb-2 text-center rounded-md border"
+            type="number"
+            name="quantity"
+            max="999"
+            min="1"
+            value={formData.quantity}
+          />
+          <label htmlFor="condition" className="text-black">
+            Condition
+          </label>
+          <select
+            id="condition"
+            required
+            onChange={(e) => handleConditionChange(e)}
+            className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
+            value={formData.condition}
+          >
+            <option default value="">
+              Select Condition Of Supplies
+            </option>
+            <option default value="New">
+              New
+            </option>
+            <option value="Slightly Used">Slightly Used</option>
+            <option value="Moderately Used">Moderately Used</option>
+            <option value="Heavily Used">Heavily Used</option>
+          </select>
+          <label htmlFor="location" className="text-black">
+            General Location
+          </label>
+          <input
+            id="location"
+            required
+            onChange={(e) => handleLocationChange(e)}
+            className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
+            type="text"
+            name="location"
+            maxLength="49"
+            value={formData.location}
+            placeholder="Somewhere City"
+          />
+          <label htmlFor="zipcode" className="text-black">
+            Zipcode
+          </label>
+          <input
+            id="zipcode"
+            required
+            onChange={(e) => handleZIPChange(e)}
+            className="block w-full p-1 my-1 mb-2 text-center rounded-md border"
+            type="text"
+            pattern="[0-9]{5}"
+            maxLength="5"
+            name="zipcode"
+            value={formData.zipcode}
+            placeholder="12345"
+          />
+          <label htmlFor="file" className="text-black">
+            Change Image
+          </label>
+          <input
+            id="file"
+            name="file"
+            type="file"
+            className="block w-fit p-2 my-1 mb-2 rounded-md border mx-auto cursor-pointer text-black hover:border-sky-500"
+            onChange={(e) => setImageUpload(e.target.files[0])}
+          />
+          <input
+            value="Save Changes"
+            type="submit"
+            className="bg-sky-500 w-full h-10 my-2 rounded-sm hover:bg-sky-900 cursor-pointer"
+          />
+        </form>
+      )}
+    </>
   );
 };
 

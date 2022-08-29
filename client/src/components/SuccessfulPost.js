@@ -1,6 +1,6 @@
 const SuccessfulPost = ({ handleCloceSuccessfulPost }) => {
   return (
-    <div className="h-fit p-3 w-screen sm:w-[400px] mx-auto bg-white rounded-sm ">
+    <div className="h-fit p-3 w-screen -ml-5 sm:w-[400px] sm:mx-auto bg-white rounded-sm ">
       <div className="relative w-full h-fit rounded-md overflow-hidden py-2">
         <img
           className="w-[150px] mx-auto my-10"

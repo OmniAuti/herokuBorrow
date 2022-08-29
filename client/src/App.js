@@ -79,6 +79,7 @@ function App() {
   const [modalLoaded, setModalLoaded] = useState(false);
   const [modalLoadedEdit, setModalLoadedEdit] = useState(false);
   const [bookmarkRefresh, setBookmarkRefresh] = useState(false);
+  
 
   const [refreshAfterEdit, setRefreshAfterEdit] = useState(false);
 
@@ -134,6 +135,7 @@ function App() {
     setModalLoaded(false);
     setModalLoadedEdit(false);
     setActiveModalDelete(false);
+
   };
 
   const handleOpenModal = () => {
