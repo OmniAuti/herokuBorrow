@@ -8,6 +8,7 @@ const FilterForm = ({ dispatch }) => {
     condition: "",
     location: "",
     zipcode: "",
+    photoFilter: false,
   });
   const [dataDump, setDataDump] = useState([]);
 
@@ -24,7 +25,11 @@ const FilterForm = ({ dispatch }) => {
       await filteredQuery(filterQuery)
         .then((res) => {
           if (res.status >= 200 && res.status <= 299) {
-            setDataDump(res.data);
+            if (filterQuery.photoFilter === "true") {
+              setDataDump(res.data.filter((item) => item.photoInfo.url !== ""));
+            } else if (filterQuery.photoFilter === "false") {
+              setDataDump(res.data);
+            }
           } else if (res.status >= 400 && res.status <= 499) {
             alert("Filter Query Failed. Try Again.");
           }
@@ -43,6 +48,7 @@ const FilterForm = ({ dispatch }) => {
         condition: "",
         location: "",
         zipcode: "",
+        photoFilter: false,
       };
 
       setFilterQuery(clearedSearch);
@@ -73,7 +79,7 @@ const FilterForm = ({ dispatch }) => {
       <div className="text-black flex flex-col lg:flex-row justify-around items-center w-full mt-2">
         <div className="flex flex-col items-center w-3/4 lg:w-fit justify-around">
           <label className="my-2 text-xl" htmlFor="type">
-            Type of supplies
+            Type Of Supplies
           </label>
           <select
             className="text-black text-2xl w-full text-center lg:w-11/12 rounded-sm"
@@ -186,6 +192,43 @@ const FilterForm = ({ dispatch }) => {
             placeholder="12345"
           />
         </div>
+        <div className="flex items-center w-3/4 lg:w-fit justify-around text-center mt-5 flex-col">
+          <p className="my-2 text-xl">With or Without Photo</p>
+          <div className="flex w-full justify-around items-center">
+          <div className="flex items-center ">
+            <label htmlFor="with-photo" className="cursor-pointer">
+              With
+            </label>
+            <input
+              onChange={(e) =>
+                setFilterQuery({ ...filterQuery, photoFilter: e.target.value })
+              }
+              name="photo"
+              id="with-photo"
+              value={true}
+              type="radio"
+              className="ml-2 cursor-pointer"
+            />
+          </div>
+          <div className="flex items-center">
+            <label htmlFor="without-photo" className="cursor-pointer">
+              Either
+            </label>
+            <input
+              defaultChecked
+              onChange={(e) =>
+                setFilterQuery({ ...filterQuery, photoFilter: e.target.value })
+              }
+              name="photo"
+              id="without-photo"
+              value={false}
+              type="radio"
+              className="ml-2 cursor-pointer"
+            />
+          </div>
+          </div>
+        </div>
+        
       </div>
       <div className="w-full flex flex-col lg:flex-row items-center justify-around">
         <button className="text-white text-center border py-3 mt-7 mx-auto min-w-[200px] rounded-sm w-2/5">

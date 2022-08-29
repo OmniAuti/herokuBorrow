@@ -73,7 +73,7 @@ const FilterFormAsked = ({ dispatch }) => {
       <div className="text-black flex flex-col lg:flex-row justify-around items-center w-full mt-2">
         <div className="flex flex-col items-center w-3/4 lg:w-fit justify-around">
           <label className="my-2 text-xl" htmlFor="type">
-            Type of supplies
+            Type Of Supplies
           </label>
           <select
             className="text-black text-2xl w-full text-center lg:w-11/12 rounded-sm"
@@ -133,7 +133,7 @@ const FilterFormAsked = ({ dispatch }) => {
         </div>
         <div className="flex flex-col items-center justify-around w-3/4 lg:w-fit">
           <label className="my-2 text-xl" htmlFor="condition">
-            Acceptable Condition
+            Condition
           </label>
           <select
             className="text-black w-full text-center  lg:w-11/12 text-2xl rounded-sm"

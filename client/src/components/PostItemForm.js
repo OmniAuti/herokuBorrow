@@ -107,6 +107,7 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
         bookmarked: false,
         photoInfo: { uid: "", id: "", url: "", imageRef: '' },
       });
+      setImageUpload()
     } catch (err) {
       alert("Posting Offer Item Failed. Try Again.");
       console.log(err);

@@ -117,6 +117,7 @@ const ModalEditOffer = ({
         bookmarked: false,
         photoInfo: { uid: "", id: "", url: "", imageRef: "" },
       });
+      setImageUpload();
     } catch (err) {
       alert("Edit Failed. Try Again.");
       console.log(err);
