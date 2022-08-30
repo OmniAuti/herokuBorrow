@@ -11,7 +11,7 @@ import AccountDashboardBookmarked from "../components/AccountDashBoardBookmarked
 import AccountDashboardOffered from "../components/AccountDashBoardOffered";
 import AccountDashboardSettingsBar from "../components/AccountDashboardSettingsBar";
 
-const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
+const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }) => {
   const navigate = useNavigate();
 
   const { user, logOutUser } = UserAuth();
@@ -55,6 +55,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
       );
       setIsAskLoaded(true);
     } catch (e) {
+      handlePostFailure(e)
       console.log(e);
     }
   };
@@ -66,6 +67,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
       );
       setIsItemsLoaded(true);
     } catch (e) {
+      handlePostFailure(e)
       console.log(e);
     }
   };
@@ -76,7 +78,9 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
         setAccountBookmarked(res.data)
       );
       setIsBookmarkLoaded(true);
-    } catch (e) {}
+    } catch (e) {
+      handlePostFailure(e)
+    }
   };
 
   const handleLogOutUser = async () => {
@@ -84,6 +88,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit }) => {
       await logOutUser();
       navigate("/account-gateway");
     } catch (e) {
+      handlePostFailure(e)
       console.log(e);
     }
   };

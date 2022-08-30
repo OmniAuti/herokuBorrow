@@ -7,6 +7,10 @@ import { useLocation } from "react-router-dom";
 // COMPONENTS
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SingleItemFocusModal from "./components/SingleItemFocusModal";
+import AccountEditPostModal from "./components/AccountEditPostModal";
+import DeleteSinglePostModal from "./components/DeleteSinglePostModal";
+import UnSuccessfulPostModal from "./components/UnSuccessfulPostModal";
 //PAGES
 import Home from "./pages/Home";
 import Borrow from "./pages/Borrow";
@@ -20,14 +24,12 @@ import ProtectedUserRoute from "./components/ProtectedUserRoute";
 import AccountSettings from "./pages/AccountSettings";
 //WRAP FOR SCROLL TO TOP ON NEW ROUTE
 import ScrollToTop from "./components/ScrollToTop";
-import SingleItemFocusModal from "./components/SingleItemFocusModal";
-import AccountEditPostModal from "./components/AccountEditPostModal";
-import DeleteSinglePostModal from "./components/DeleteSinglePostModal";
+
 //CONTEXT IMPORT
 import AuthContextProvider from "./context/AuthContext";
 // IMAGE STORAGE URLS
 // import {}
-// APPI CALLS
+// API CALLS
 import { getSingleItem, getSingleItemAsk } from "./api/api";
 // USE REDUCER FUNCTION
 const modalReducer = (state, action) => {
@@ -79,7 +81,8 @@ function App() {
   const [modalLoaded, setModalLoaded] = useState(false);
   const [modalLoadedEdit, setModalLoadedEdit] = useState(false);
   const [bookmarkRefresh, setBookmarkRefresh] = useState(false);
-  
+  const [postFailure, setPostFailure] = useState(false);
+  const [postFailureMsg, setPostFailureMsg] = useState(false);
 
   const [refreshAfterEdit, setRefreshAfterEdit] = useState(false);
 
@@ -104,27 +107,41 @@ function App() {
       if (state.modalType === "singleFocusOffer") {
         await getSingleItem(id)
           .then((res) => setModalDataSingleFocus(res.data))
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+            setModalLoaded(false);
+            handlePostFailure(err);
+          });
         setActiveModal(true);
       } else if (state.modalType === "singleFocusAsk") {
         await getSingleItemAsk(id)
           .then((res) => setModalDataSingleFocus(res.data))
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+            setModalLoaded(false);
+            handlePostFailure(err);
+          });
         setActiveModal(true);
       } else if (state.modalType === "accountEditOffer") {
         await getSingleItem(id)
           .then((res) => setModalDataEdit(res.data))
-          .catch((err) => console.log(err));
+          .catch((err) => {console.log(err)
+            setModalLoaded(false);
+            handlePostFailure(err)});
         setActiveModalEdit(true);
       } else if (state.modalType === "accountEditAsk") {
         await getSingleItemAsk(id)
           .then((res) => setModalDataEdit(res.data))
-          .catch((err) => console.log(err));
+          .catch((err) => {console.log(err)
+            setModalLoaded(false);
+            handlePostFailure(err)});
         setActiveModalEdit(true);
       } else if (state.modalType === "deleteSinglePost") {
         setActiveModalDelete(true);
       }
     } catch (e) {
+      setModalLoaded(false);
+      handlePostFailure(e);
       console.log(e);
     }
   };
@@ -135,7 +152,7 @@ function App() {
     setModalLoaded(false);
     setModalLoadedEdit(false);
     setActiveModalDelete(false);
-
+    setPostFailure(false);
   };
 
   const handleOpenModal = () => {
@@ -147,6 +164,11 @@ function App() {
 
   const handleItemRefreshAfterEdit = () => {
     setRefreshAfterEdit(!refreshAfterEdit);
+  };
+
+  const handlePostFailure = (err) => {
+    setPostFailureMsg(err.toString());
+    setPostFailure(true);
   };
 
   return (
@@ -162,6 +184,7 @@ function App() {
           handleOpenModal={handleOpenModal}
           modalLoaded={modalLoaded}
           handleModalBookmark={handleModalBookmark}
+          handlePostFailure={handlePostFailure}
         />
 
         <AccountEditPostModal
@@ -172,12 +195,19 @@ function App() {
           handleOpenModal={handleOpenModalEdit}
           modalLoaded={modalLoadedEdit}
           handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
+          handlePostFailure={handlePostFailure}
         />
 
         <DeleteSinglePostModal
           postId={state}
           handleItemRefreshAfterEdit={handleItemRefreshAfterEdit}
           activeModalDelete={activeModalDelete}
+          handleCloseModal={handleCloseModal}
+        />
+
+        <UnSuccessfulPostModal
+          postFailureMsg={postFailureMsg}
+          postFailure={postFailure}
           handleCloseModal={handleCloseModal}
         />
 
@@ -202,6 +232,7 @@ function App() {
                   <ProtectedUserRoute>
                     {" "}
                     <AccountDashboard
+                      handlePostFailure={handlePostFailure}
                       refreshAfterEdit={refreshAfterEdit}
                       modalDispatch={modalDispatch}
                     />{" "}
@@ -223,6 +254,7 @@ function App() {
                   <ProtectedUserRoute>
                     {" "}
                     <Offer
+                      handlePostFailure={handlePostFailure}
                       refreshAfterEdit={refreshAfterEdit}
                       modalDispatch={modalDispatch}
                     />
@@ -240,6 +272,7 @@ function App() {
                 element={
                   <ProtectedUserRoute>
                     <AskFor
+                      handlePostFailure={handlePostFailure}
                       refreshAfterEdit={refreshAfterEdit}
                       modalDispatch={modalDispatch}
                     />

@@ -2,19 +2,17 @@ import { useState, useEffect } from "react";
 
 import { postSingleItem } from "../api/api";
 import SuccessfulPost from "./SuccessfulPost";
-import UnSuccessfulPost from "./UnSuccessfulPost";
 import { UserAuth } from "../context/AuthContext";
 import { storage } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { attachPhotoInfo } from "../api/api";
 import Loading from "./Loading";
 
-const PostItemForm = ({ handleUpdateAfterPost }) => {
+const PostItemForm = ({ handleUpdateAfterPost, handlePostFailure }) => {
   const { user } = UserAuth();
 
   const [imageUpload, setImageUpload] = useState();
   const [postSuccess, setPostSuccess] = useState(false);
-  const [postFailure, setPostFailure] = useState(false);
   const [postLoading, setPostLoading] = useState(false);
   const [formData, setFormData] = useState({
     type: "",
@@ -30,12 +28,6 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
   });
 
   const handleCloceSuccessfulPost = () => {
-    setPostSuccess(false);
-  };
-
-  const handlePostFailureClose = () => {
-    setPostLoading(false);
-    setPostFailure(false);
     setPostSuccess(false);
   };
 
@@ -79,16 +71,25 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
     var data = {};
     var imageRefRes;
     var uid;
-    var imageRef = await ref(storage, `imagesOFFER/${user.uid}-${id}`);
-    await uploadBytes(imageRef, imageUpload).then((res) => {
-      // var postIdIn = res.ref._location.path_.split("-")[1]; // THIS IS POST ID
-      uid = res.ref._location.path_.split("-")[0].slice(12); // THIS IS POST ID
-      imageRefRes = res.ref;
-    });
-    await getDownloadURL(imageRefRes).then((url) => {
-      data = { uid: uid, id: id, url: url, imageRef: imageRef._location.path_ };
-    });
-    return data;
+    var imageRef = ref(storage, `imagesOFFER/${user.uid}-${id}`);
+    try {
+      await uploadBytes(imageRef, imageUpload).then((res) => {
+        // var postIdIn = res.ref._location.path_.split("-")[1]; // THIS IS POST ID
+        uid = res.ref._location.path_.split("-")[0].slice(12); // THIS IS POST ID
+        imageRefRes = res.ref;
+      });
+      await getDownloadURL(imageRefRes).then((url) => {
+        data = {
+          uid: uid,
+          id: id,
+          url: url,
+          imageRef: imageRef._location.path_,
+        };
+      });
+      return data;
+    } catch (e) {
+      handlePostFailure(e);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -121,17 +122,14 @@ const PostItemForm = ({ handleUpdateAfterPost }) => {
       });
       setImageUpload();
     } catch (err) {
-      setPostFailure(true)
+      setPostLoading(false);
+      handlePostFailure(err);
       console.log(err);
     }
   };
 
   return (
     <div className="text-center block sm:w-3/4 w-full lg:w-1/2 xl:w-1/3 xl:mx-auto mx-auto relative lg:mx-5 max-h-[750px] h-[750px] min-h-[750px]">
-      {postFailure && (
-        <UnSuccessfulPost handlePostFailureClose={handlePostFailureClose} />
-      )}
-
       <h2 className="text-3xl mb-5 underline">Offer Supplies</h2>
       {postLoading && (
         <div className="absolute bg-black w-full h-full">

@@ -7,6 +7,7 @@ const ModalEditAsk = ({
   handleItemRefreshAfterEdit,
   handleEditSuccess,
   handleShowBtn,
+  handlePostFailure,
 }) => {
   const [newCondition, setNewCondition] = useState([]);
   const [postLoading, setPostLoading] = useState(false);
@@ -101,7 +102,8 @@ const ModalEditAsk = ({
         _uid: "",
       });
     } catch (err) {
-      alert("Edit Failed. Try Again.");
+      setPostLoading(false);
+      handlePostFailure(err)
       console.log(err);
     }
   };

@@ -11,6 +11,7 @@ const SingleItemFocusModal = ({
   handleOpenModal,
   modalLoaded,
   handleModalBookmark,
+  handlePostFailure,
 }) => {
   var cardBgColor;
   switch (data.type) {
@@ -130,26 +131,14 @@ const SingleItemFocusModal = ({
     var bookmark = { _uid: user.uid, postId: data._id };
     try {
       if (data.postType === "ask") {
-        await bookmarkAskItem(bookmark).then((res) => {
-          {
-            if (res.status >= 200 && res.status <= 299) {
-              handleModalBookmark();
-            } else if (res.status >= 400 && res.status <= 499) {
-              alert("Bookmark Failed. Try Again.");
-            }
-          }
-        });
+        await bookmarkAskItem(bookmark);
+        handleModalBookmark();
       } else if (data.postType === "offer") {
-        await addBookmark(bookmark).then((res) => {
-          if (res.status >= 200 && res.status <= 299) {
-            handleModalBookmark();
-          } else if (res.status >= 400 && res.status <= 499) {
-            alert("Bookmark Failed. Try Again.");
-          }
-        });
+        await addBookmark(bookmark);
+        handleModalBookmark();
       }
     } catch (err) {
-      alert("Bookmark Failed. Try Again.");
+      handlePostFailure(err);
       console.log(err);
     }
   };
@@ -171,15 +160,16 @@ const SingleItemFocusModal = ({
     <div
       className={
         activeModal
-          ? "fixed bg-black/50 z-50 w-full h-full top-0 left-0 right-0 overflow-scroll"
-          : "fixed bg-black/50 z-50 w-full h-full top-0 left-0 right-0 hidden"
+          ? "fixed bg-black/75 z-50 w-full h-full top-0 left-0 right-0 overflow-scroll"
+          : "fixed bg-black/75 z-50 w-full h-full top-0 left-0 right-0 hidden"
       }
     >
       {modalLoaded ? (
-        <div
-          className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        >
-          <div className="h-fit p-5 pt-2 w-screen sm:w-[500px] bg-white rounded-sm relative" style={{ border: `3px solid ${cardBgColor}` }}>
+        <div className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div
+            className="h-fit p-5 pt-2 w-screen sm:w-[500px] bg-white rounded-sm relative"
+            style={{ border: `3px solid ${cardBgColor}` }}
+          >
             <p className="text-black text-center mb-3 underline">
               {data.postType === "offer"
                 ? "Offered Supplies"

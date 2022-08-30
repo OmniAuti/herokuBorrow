@@ -12,6 +12,7 @@ const AccountEditPostModal = ({
   handleOpenModal,
   modalLoaded,
   handleItemRefreshAfterEdit,
+  handlePostFailure
 }) => {
   var cardBgColor;
   switch (data.type) {
@@ -107,7 +108,7 @@ const AccountEditPostModal = ({
   }
 
   const [editSaved, setEditSaved] = useState(false);
-  const [showbtn, setShowBtn] = useState(false)
+  const [showbtn, setShowBtn] = useState(true)
 
   const { user } = UserAuth();
 
@@ -135,8 +136,8 @@ const AccountEditPostModal = ({
     <div
       className={
         activeModal
-          ? "fixed bg-black/50 z-50 w-full h-full top-0 left-0 right-0"
-          : "fixed bg-black/50 z-50 w-full h-full top-0 left-0 right-0 hidden"
+          ? "fixed bg-black/75 z-50 w-full h-full top-0 left-0 right-0"
+          : "fixed bg-black/75 z-50 w-full h-full top-0 left-0 right-0 hidden"
       }
     >
       {modalLoaded ? (
@@ -167,6 +168,7 @@ const AccountEditPostModal = ({
                     data={data}
                     handleEditSuccess={handleEditSuccess}
                     handleShowBtn={handleShowBtn}
+                    handlePostFailure={handlePostFailure}
                   />
                 ) : (
                   <ModalEditAsk
@@ -177,6 +179,7 @@ const AccountEditPostModal = ({
                     data={data}
                     handleEditSuccess={handleEditSuccess}
                     handleShowBtn={handleShowBtn}
+                    handlePostFailure={handlePostFailure}
                   />
                 )}
               </div>

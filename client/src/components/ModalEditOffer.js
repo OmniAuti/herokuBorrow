@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { editAccountOffered } from "../api/api";
 import Loading from "./Loading";
+import UnSuccessfulPost from "./UnSuccessfulPostModal";
 import { UserAuth } from "../context/AuthContext";
 
 import { storage } from "../firebase";
@@ -18,6 +19,7 @@ const ModalEditOffer = ({
   handleItemRefreshAfterEdit,
   handleEditSuccess,
   handleShowBtn,
+  handlePostFailure,
 }) => {
   const { user } = UserAuth();
   const [postLoading, setPostLoading] = useState(false);
@@ -76,16 +78,20 @@ const ModalEditOffer = ({
     var data = {};
     var imageRefRes;
     var uid;
-    var imageRef = ref(storage, `imagesOFFER/${user.uid}-${id}`);
-    await uploadBytes(imageRef, imageUpload).then((res) => {
-      // var postIdIn = res.ref._location.path_.split("-")[1]; // THIS IS POST ID
-      uid = res.ref._location.path_.split("-")[0].slice(12); // THIS IS POST ID
-      imageRefRes = res.ref;
-    });
-    await getDownloadURL(imageRefRes).then((url) => {
-      data = { uid: uid, id: id, url: url, imageRef: imageRef._location.path_ };
-    });
-    return data;
+    try {
+      var imageRef = ref(storage, `imagesOFFER/${user.uid}-${id}`);
+      await uploadBytes(imageRef, imageUpload).then((res) => {
+        // var postIdIn = res.ref._location.path_.split("-")[1]; // THIS IS POST ID
+        uid = res.ref._location.path_.split("-")[0].slice(12); // THIS IS POST ID
+        imageRefRes = res.ref;
+      });
+      await getDownloadURL(imageRefRes).then((url) => {
+        data = { uid: uid, id: id, url: url, imageRef: imageRef._location.path_ };
+      });
+      return data;
+    } catch (e) {
+      handlePostFailure(e)
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -125,7 +131,8 @@ const ModalEditOffer = ({
       });
       setImageUpload();
     } catch (err) {
-      alert("Edit Failed. Try Again.");
+      setPostLoading(false)
+      handlePostFailure(err)
       console.log(err);
     }
   };
@@ -281,6 +288,7 @@ const ModalEditOffer = ({
         </form>
       )}
     </>
+   
   );
 };
 

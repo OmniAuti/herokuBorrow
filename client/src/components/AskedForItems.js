@@ -6,6 +6,7 @@ import FilterFormAsked from "../components/FilterFormAsked";
 import Loading from "../components/Loading";
 import EmptyFilteredSuppliesPlaceHolder from "../components/EmptyFilteredSuppliesPlaceholder";
 import EmptySuppliesPlaceHolder from "../components/EmptySuppliesPlaceholder";
+import EmptyAskSuppliesPlaceHolder from "./EmptyAskSuppliesPlaceHolder";
 
 const AskedForItems = ({ modalDispatch }) => {
   const reducer = (state, action) => {
@@ -31,6 +32,7 @@ const AskedForItems = ({ modalDispatch }) => {
       await getAskedForItems().then((res) => setDataDump(res.data));
       setIsLoaded(true);
     } catch (e) {
+      setIsLoaded(true);
       console.log(e);
     }
   };
@@ -70,7 +72,7 @@ const AskedForItems = ({ modalDispatch }) => {
               {activeFilter ? (
                 <EmptyFilteredSuppliesPlaceHolder />
               ) : (
-                <EmptySuppliesPlaceHolder />
+                <EmptyAskSuppliesPlaceHolder />
               )}
             </div>
           ) : (

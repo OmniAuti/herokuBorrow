@@ -4,7 +4,7 @@ import { getAccountItemsAsked } from "../api/api";
 import AskAccountColumn from "../components/AskAccountColumn";
 import AskItemForm from "../components/AskItemForm";
 
-const AskFor = ({ modalDispatch,refreshAfterEdit }) => {
+const AskFor = ({ modalDispatch,refreshAfterEdit, handlePostFailure }) => {
   const [isAskLoaded, setIsAskLoaded] = useState(false);
   const [accountAskedData, setAccountAskData] = useState([]);
   const [updateAfterPost, setUpdateAfterPost] = useState(false);
@@ -23,6 +23,7 @@ const AskFor = ({ modalDispatch,refreshAfterEdit }) => {
       await getAccountItemsAsked().then((res) => setAccountAskData(res.data));
       setIsAskLoaded(true);
     } catch (e) {
+      handlePostFailure(e)
       console.log(e);
     }
   };
@@ -41,7 +42,7 @@ const AskFor = ({ modalDispatch,refreshAfterEdit }) => {
           isAskLoaded={isAskLoaded}
         />
 
-        <AskItemForm handleUpdateAfterPost={handleUpdateAfterPost} />
+        <AskItemForm handlePostFailure={handlePostFailure} handleUpdateAfterPost={handleUpdateAfterPost} />
       </div>
     </section>
   );

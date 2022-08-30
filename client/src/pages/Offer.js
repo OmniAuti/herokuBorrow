@@ -5,7 +5,7 @@ import { getAccountItems } from "../api/api";
 import PostItemForm from "../components/PostItemForm";
 import OfferedAccountColumn from "../components/OfferedAccountColumn";
 
-const Offer = ({ modalDispatch, refreshAfterEdit }) => {
+const Offer = ({ modalDispatch, refreshAfterEdit, handlePostFailure }) => {
   const [isItemsLoaded, setIsItemsLoaded] = useState(false);
   const [accountItemsData, setAccountItemsData] = useState([]);
   const [updateAfterPost, setUpdateAfterPost] = useState(false);
@@ -27,6 +27,7 @@ const Offer = ({ modalDispatch, refreshAfterEdit }) => {
       );
       setIsItemsLoaded(true);
     } catch (e) {
+      handlePostFailure(e)
       console.log(e);
     }
   };
@@ -46,7 +47,7 @@ const Offer = ({ modalDispatch, refreshAfterEdit }) => {
           isItemsLoaded={isItemsLoaded}
           accountItemsData={accountItemsData}
         />
-        <PostItemForm handleUpdateAfterPost={handleUpdateAfterPost} />
+        <PostItemForm handlePostFailure={handlePostFailure} handleUpdateAfterPost={handleUpdateAfterPost} />
       </div>
     </section>
   );

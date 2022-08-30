@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 import { postAskItem } from "../api/api";
 import Loading from "./Loading";
-import UnSuccessfulPost from "./UnSuccessfulPost";
 
 import SuccessfulPost from "./SuccessfulPost";
 
 import { UserAuth } from "../context/AuthContext";
 
-const AskItemForm = ({ handleUpdateAfterPost }) => {
+const AskItemForm = ({ handleUpdateAfterPost, handlePostFailure  }) => {
   const { user } = UserAuth();
   const [postSuccess, setPostSuccess] = useState(false);
-  const [postFailure, setPostFailure] = useState(false);
   const [postLoading, setPostLoading] = useState(false);
   const [acceptableConditionCheck, setAcceptableConditionCheck] =
     useState(false);
@@ -30,11 +28,6 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
   };
   const handleConditionCheck = () => {
     setAcceptableConditionCheck(false);
-  };
-  const handlePostFailureClose = () => {
-    setPostLoading(false);
-    setPostFailure(false);
-    setPostSuccess(false)
   };
 
   const handleUIDChange = async (user) => {
@@ -82,6 +75,18 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
     e.preventDefault();
     if (askObj.condition.length <= 0) {
       setAcceptableConditionCheck(true);
+      e.target.reset();
+      setAskObj({
+        who: "",
+        type: "",
+        quantity: 1,
+        specify: "",
+        condition: [],
+        location: "",
+        zipcode: "",
+        postType: "ask",
+        _uid: "",
+      });
       return;
     }
     try {
@@ -103,15 +108,15 @@ const AskItemForm = ({ handleUpdateAfterPost }) => {
         _uid: "",
       });
     } catch (err) {
-      setPostFailure(true)
+      setPostLoading(false);
+      handlePostFailure(err)
       console.log(err);
     }
   };
   return (
     <div className="relative text-center block sm:w-3/4 w-full lg:w-1/2 xl:w-1/3 mx-auto xl:mx-auto lg:ml-5 max-h-screen h-[750px] min-h-[750px]">
-      {postFailure && <UnSuccessfulPost handlePostFailureClose={handlePostFailureClose}/>}
       {acceptableConditionCheck ? (
-            <div className="h-fit p-3 w-screen -ml-5 sm:w-[400px] sm:mx-auto bg-white rounded-sm ">
+            <div className="h-fit p-3 w-screen -ml-5 sm:w-[400px] -translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2  sm:mx-auto bg-white rounded-sm ">
             <div className="relative w-full h-fit rounded-md overflow-hidden py-2">
               <img
                 className="w-[150px] mx-auto my-10"
