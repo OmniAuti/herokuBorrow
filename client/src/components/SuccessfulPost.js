@@ -1,5 +1,6 @@
 const SuccessfulPost = ({ handleCloceSuccessfulPost }) => {
   return (
+    <div className="bg-black absolute w-full h-full flex items-center justify-center">
     <div className="h-fit p-3 w-screen -ml-5 sm:w-[400px] sm:mx-auto bg-white rounded-sm ">
       <div className="relative w-full h-fit rounded-md overflow-hidden py-2">
         <img
@@ -16,6 +17,8 @@ const SuccessfulPost = ({ handleCloceSuccessfulPost }) => {
         </button>
       </div>
     </div>
+    </div>
+
   );
 };
 
