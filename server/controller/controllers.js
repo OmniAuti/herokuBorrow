@@ -171,7 +171,6 @@ const deleteAllAccountData = async (req, res) => {
   const uid = req.body.uid;
   await Items.deleteMany({ _uid: uid });
   await AskItems.deleteMany({ _uid: uid });
-  await BookmarkSchema.deleteMany({ _uid: uid });
   res.json({ msg: "All Deleted" });
 };
 const deleteSingleItem = async (req, res) => {

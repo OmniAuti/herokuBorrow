@@ -278,8 +278,8 @@ const SingleItemFocusModal = ({
 
             {!logInCheck ? (
               <>
-                <button className="bg-sky-500 w-full h-10 my-2 rounded-sm hover:bg-sky-900">
-                  Inquire
+                <button disabled={user.emailVerified === true ? false : true} className="bg-sky-500 w-full h-10 my-2 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer rounded-sm hover:bg-sky-900">
+                  {user.emailVerified === true ? 'Inquire' : 'Please Verify Your Email'}
                 </button>
                 <button
                   onClick={() => handleCloseModal()}

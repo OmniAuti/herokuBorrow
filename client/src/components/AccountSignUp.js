@@ -23,7 +23,7 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
       await createUser(email, password);
       setSignUpError(false);
       setErrorMsg("");
-      navigate("/dashboard");
+      navigate("/account-needs-verification");
     } catch (err) {
       console.log(err);
       const erro = err.toString().slice(25, err.toString().length - 1);
@@ -117,7 +117,7 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
           />
         </div>
 
-        <button className="border px-10 py-2 rounded-sm w-full my-1 bg-sky-500">
+        <button className="border px-10 py-2 rounded-sm w-full my-1 bg-sky-500 hover:bg-sky-900 hover:text-white">
           Sign Up
         </button>
       </form>

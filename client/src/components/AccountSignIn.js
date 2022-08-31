@@ -108,7 +108,7 @@ const AccountSignIn = ({ handleActiveSignIn, activeSignUp }) => {
             placeholder="Password"
           />
         </div>
-        <button className="border py-2 rounded-sm w-full my-1 bg-sky-500">
+        <button className="border py-2 rounded-sm w-full my-1 bg-sky-500 hover:bg-sky-900 hover:text-white">
           Sign In
         </button>
       </form>

@@ -5,7 +5,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  sendSignInLinkToEmail,
   updateEmail,
   updatePassword,
   deleteUser,
@@ -34,15 +33,13 @@ const AuthContextProvider = ({ children }) => {
   }, []);
 
   const createUser = async (email, password) => {
-    // const ActionCodeSettings = {
-    //   url: "http://localhost:3000/dashboard",
-    //   handleCodeInApp: true,
-    // };
     await createUserWithEmailAndPassword(auth, email, password);
-    // await sendSignInLinkToEmail(auth, email, ActionCodeSettings);
-    // return console.log("check email");
+    await sendEmailVerification(auth.currentUser)
   };
 
+  const reSendEmailVerification = async () => {
+    return sendEmailVerification(auth.currentUser)
+  }
   const logInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
@@ -86,6 +83,7 @@ const AuthContextProvider = ({ children }) => {
         updateUserPassword,
         deleteUserAndAllPosts,
         passwordReset,
+        reSendEmailVerification,
       }}
     >
       {children}

@@ -24,9 +24,15 @@ const HeroCOA = () => {
   const location = useLocation();
 
   const handleTransform = (idx, interval) => {
+    if (location.pathname !== "/") {
+      clearInterval(interval);
+    }
     var opacityIdx = 1;
 
     interval = setInterval(() => {
+      if (location.pathname !== "/") {
+        clearInterval(interval);
+      }
       setTransformInterval(idx);
       idx++;
       opacityIdx -= 0.01;
@@ -52,6 +58,9 @@ const HeroCOA = () => {
     var j = 2;
 
     handleTextInterval = setInterval(() => {
+      if (location.pathname !== "/") {
+        clearInterval(handleTextInterval);
+      }
       var YIdx = 0;
       handleTransform(YIdx, transformEl);
 

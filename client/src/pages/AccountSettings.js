@@ -34,7 +34,6 @@ const AccountSettings = () => {
 
   const handleError = (err, bool) => {
     const erro = err.toString().slice(25, err.toString().length - 1);
-    console.log(err, erro, 'this is func')
     setErrorMsg(erro);
     setSignInError(bool);
   };
@@ -80,14 +79,11 @@ const AccountSettings = () => {
         setEditSuccess(true);
       }
       if (state.settingsType === "delete") {
-        const id = user.uid;
-        console.log(id, "in settings");
         await deleteAllAccountData(user.uid);
         await deleteUserAndAllPosts();
         setSubmitEdit(!submitEdit);
         setEditSuccess(true);
       }
-      handleError('', false)
     } catch (e) {
       console.log(e);
       handleError(e, true)

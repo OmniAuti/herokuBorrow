@@ -21,7 +21,9 @@ import Offer from "./pages/Offer";
 import AccountGateway from "./pages/AccountGateway";
 import AccountDashboard from "./pages/AccountDashboard";
 import ProtectedUserRoute from "./components/ProtectedUserRoute";
+import ProtectedUserRouteVerified from "./components/ProtectedUserRouteVerified";
 import AccountSettings from "./pages/AccountSettings";
+import AccountNeedsVerification from "./pages/AccountNeedsVerification";
 //WRAP FOR SCROLL TO TOP ON NEW ROUTE
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -125,16 +127,20 @@ function App() {
       } else if (state.modalType === "accountEditOffer") {
         await getSingleItem(id)
           .then((res) => setModalDataEdit(res.data))
-          .catch((err) => {console.log(err)
+          .catch((err) => {
+            console.log(err);
             setModalLoaded(false);
-            handlePostFailure(err)});
+            handlePostFailure(err);
+          });
         setActiveModalEdit(true);
       } else if (state.modalType === "accountEditAsk") {
         await getSingleItemAsk(id)
           .then((res) => setModalDataEdit(res.data))
-          .catch((err) => {console.log(err)
+          .catch((err) => {
+            console.log(err);
             setModalLoaded(false);
-            handlePostFailure(err)});
+            handlePostFailure(err);
+          });
         setActiveModalEdit(true);
       } else if (state.modalType === "deleteSinglePost") {
         setActiveModalDelete(true);
@@ -253,11 +259,13 @@ function App() {
                 element={
                   <ProtectedUserRoute>
                     {" "}
-                    <Offer
-                      handlePostFailure={handlePostFailure}
-                      refreshAfterEdit={refreshAfterEdit}
-                      modalDispatch={modalDispatch}
-                    />
+                    <ProtectedUserRouteVerified>
+                      <Offer
+                        handlePostFailure={handlePostFailure}
+                        refreshAfterEdit={refreshAfterEdit}
+                        modalDispatch={modalDispatch}
+                      />
+                    </ProtectedUserRouteVerified>
                   </ProtectedUserRoute>
                 }
               />
@@ -271,11 +279,21 @@ function App() {
                 path="/ask-for"
                 element={
                   <ProtectedUserRoute>
-                    <AskFor
-                      handlePostFailure={handlePostFailure}
-                      refreshAfterEdit={refreshAfterEdit}
-                      modalDispatch={modalDispatch}
-                    />
+                    <ProtectedUserRouteVerified>
+                      <AskFor
+                        handlePostFailure={handlePostFailure}
+                        refreshAfterEdit={refreshAfterEdit}
+                        modalDispatch={modalDispatch}
+                      />
+                    </ProtectedUserRouteVerified>
+                  </ProtectedUserRoute>
+                }
+              />
+              <Route
+                path="/account-needs-verification"
+                element={
+                  <ProtectedUserRoute>
+                    <AccountNeedsVerification />
                   </ProtectedUserRoute>
                 }
               />
