@@ -13,7 +13,7 @@ const OurGoal = () => {
         <div className="flex items-center justify-center flex-col">
           <div className="borrow-container my-3"></div>
           <p className="text-2xl group-hover:underline underline-offset-2">Borrow</p>
-          <p className="font-thin text-center">Browse supplies in your area</p>
+          <p className="font-thin text-center">Browse available supplies</p>
         </div>
         </Link>
         <Link className='w-full md:w-1/3 md:mx-5 p-5 group' to="/offer">

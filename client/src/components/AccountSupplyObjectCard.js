@@ -140,16 +140,16 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
           </ul>
         </div>
         {data.postType === "ask" && (
-          <ul className="block ml-5 pt-2">
+          <ul className="block pl-5 pt-2">
             <li className="text-black">
               Specifically Asked For: {data.specify}
             </li>
           </ul>
         )}
         {data.postType === "offer" && (
-          <div className="pt-2 pl-5">
+          <div className="pt-2 pl-5 block">
             <ul>
-              <li className="text-black m-1 clear-left">
+              <li className="text-black">
                 Description: {data.description}
               </li>
             </ul>

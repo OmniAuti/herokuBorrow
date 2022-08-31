@@ -8,7 +8,11 @@ const AccountSettingsModal = ({
   userEmail,
   handleSettingsChangeSubmit,
   editSuccess,
+  errorMsg,
+  signInError
 }) => {
+
+
   return (
     <div
       className={
@@ -28,9 +32,12 @@ const AccountSettingsModal = ({
                   alt="Post Edit Saved Successfully Icon"
                 />
                 <p className="text-black text-center text-2xl my-5">
-                  {modalState.settingsType === "email" && "Email Change Successful!"}
-                  {modalState.settingsType === "password" && "Password Change Successful"}
-                  {modalState.settingsType === "delete" && "Account Deleted. Goodbye :("}
+                  {modalState.settingsType === "email" &&
+                    "Email Change Successful!"}
+                  {modalState.settingsType === "password" &&
+                    "Password Change Successful"}
+                  {modalState.settingsType === "delete" &&
+                    "Account Deleted. Goodbye :("}
                 </p>
                 <button
                   onClick={() => settingsDispatch({ type: "CLOSE" })}
@@ -40,12 +47,17 @@ const AccountSettingsModal = ({
                 </button>
               </div>
             ) : (
-              <div className=" min-h-52 w-full relative overflow-hidden">
+              <div className=" min-h-52 w-full overflow-hidden relative">
                 <h2 className="text-black text-center text-2xl underline underline-offset-1 mb-2">
                   {modalState.settingsType === "email" && "Change Email"}
                   {modalState.settingsType === "password" && "Change Password"}
                   {modalState.settingsType === "delete" && "Delete Account"}
                 </h2>
+                {signInError && (
+                  <p className="text-red-500 font-thin w-full text-center">
+                    {errorMsg}
+                  </p>
+                )}
                 {modalState.settingsType === "delete" && (
                   <p className="text-black text-center ">
                     Are you sure you want delete your account and all your

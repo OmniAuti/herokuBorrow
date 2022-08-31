@@ -29,6 +29,16 @@ const AccountSettings = () => {
   const [submitEdit, setSubmitEdit] = useState(false);
   const [editSuccess, setEditSuccess] = useState(false);
 
+  const [errorMsg, setErrorMsg] = useState("");
+  const [signInError, setSignInError] = useState(false);
+
+  const handleError = (err, bool) => {
+    const erro = err.toString().slice(25, err.toString().length - 1);
+    console.log(err, erro, 'this is func')
+    setErrorMsg(erro);
+    setSignInError(bool);
+  };
+
   const [state, settingsDispatch] = useReducer(settingsReducer, {
     settingsType: "",
     active: false,
@@ -47,6 +57,7 @@ const AccountSettings = () => {
 
   useEffect(() => {
     setEditSuccess(false);
+    setSignInError(false)
   }, [state.active]);
 
   useEffect(() => {
@@ -76,8 +87,10 @@ const AccountSettings = () => {
         setSubmitEdit(!submitEdit);
         setEditSuccess(true);
       }
+      handleError('', false)
     } catch (e) {
       console.log(e);
+      handleError(e, true)
     }
   };
 
@@ -88,6 +101,8 @@ const AccountSettings = () => {
       </p>
 
       <AccountSettingsModal
+      errorMsg={errorMsg}
+      signInError={signInError}
         settingsDispatch={settingsDispatch}
         modalState={state}
         userEmail={userEmail}

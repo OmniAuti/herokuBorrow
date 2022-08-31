@@ -10,9 +10,8 @@ const AccountSettingsChangeEmailForm = ({ handleSettingsChangeSubmit }) => {
       await handleSettingsChangeSubmit(newEmail, confirmPassword);
       setNewEmail("");
       setConfirmPassword("");
-    } catch (e) {
-      alert('Something went wrong. Please try again.')
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
   };
 
