@@ -69,6 +69,11 @@ const AuthContextProvider = ({ children }) => {
     return deleteUser(auth.currentUser);
   };
 
+  // PASSWORD RESET
+  const passwordReset = async (email) => {
+   return sendPasswordResetEmail(auth, email)
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -80,6 +85,7 @@ const AuthContextProvider = ({ children }) => {
         updateUserEmail,
         updateUserPassword,
         deleteUserAndAllPosts,
+        passwordReset,
       }}
     >
       {children}

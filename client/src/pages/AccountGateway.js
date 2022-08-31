@@ -25,7 +25,7 @@ const AccountGateway = () => {
         className={
           activeSignUp
             ? "mt-16  transition-[height] duration-500 bg-white w-screen sm:w-96 py-2 rounded-sm relative h-[440px] overflow-hidden"
-            : "mt-16   transition-[height] duration-500 bg-white w-screen sm:w-96 py-2 rounded-sm relative h-[360px] overflow-hidden"
+            : "mt-16   transition-[height] duration-500 bg-white w-screen sm:w-96 py-2 rounded-sm relative h-[380px] overflow-hidden"
         }
       >
         <AccountSignIn

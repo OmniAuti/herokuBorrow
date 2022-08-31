@@ -3,14 +3,36 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const AccountSignIn = ({ handleActiveSignIn, activeSignUp }) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [signInError, setSignInError] = useState(false);
+  const [emailCheckPassReset, setEmailCheckPassReset] = useState(false);
 
   const navigate = useNavigate();
 
-  const { logInUser } = UserAuth();
+  const { logInUser, passwordReset } = UserAuth();
+
+  const handlePasswordReset = async () => {
+    console.log(email, "ths is reset");
+    if (email === "" || email === undefined) {
+      setEmailCheckPassReset(true);
+      return;
+    }
+    try {
+      await passwordReset(email);
+      setEmailCheckPassReset(false);
+      setErrorMsg(
+        "Please Check Your Email or Spam Folder For Password Reset Email"
+      );
+      setSignInError(true);
+    } catch (err) {
+      console.log(err);
+      const erro = err.toString().slice(25, err.toString().length - 1);
+      setErrorMsg(erro);
+      setSignInError(true);
+    }
+  };
 
   const handleSignInSubmit = async (e) => {
     e.preventDefault();
@@ -54,19 +76,27 @@ const AccountSignIn = ({ handleActiveSignIn, activeSignUp }) => {
         onSubmit={(e) => handleSignInSubmit(e)}
         className="text-black w-3/4"
       >
-        <div className="flex flex-col mb-1 mt-2 py-2">
+        <div className="flex flex-col mt-2 py-2">
           <label htmlFor="inemail" className="text-black">
             Email
           </label>
           <input
             onChange={(e) => setEmail(e.target.value)}
-            className="shadow-inner p-1 rounded-sm text-black my-1 border"
+            className={
+              emailCheckPassReset
+                ? "shadow-inner p-1 rounded-sm text-black my-1 border border-red-500"
+                : "shadow-inner p-1 rounded-sm text-black my-1 border"
+            }
             id="inemail"
             type="email"
-            placeholder="Supplies@BorrowAPencil.org"
+            placeholder={
+              emailCheckPassReset
+                ? "ENTER EMAIL FOR PASSWORD RESET"
+                : "Supplies@BorrowAPencil.org"
+            }
           />
         </div>
-        <div className="flex flex-col my-1 py-2">
+        <div className="flex flex-col mb-1 py-2">
           <label htmlFor="inpassword" className="text-black">
             Password
           </label>
@@ -78,8 +108,16 @@ const AccountSignIn = ({ handleActiveSignIn, activeSignUp }) => {
             placeholder="Password"
           />
         </div>
-        <button className="border py-2 rounded-sm w-full my-1">Sign In</button>
+        <button className="border py-2 rounded-sm w-full my-1 bg-sky-500">
+          Sign In
+        </button>
       </form>
+      <button
+        onClick={() => handlePasswordReset()}
+        className="text-black mt-2 hover:underline underline-offset-2"
+      >
+        Forgot Password?
+      </button>
     </div>
   );
 };

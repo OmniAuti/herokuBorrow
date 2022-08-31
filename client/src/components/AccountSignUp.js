@@ -47,7 +47,7 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
       className={
         activeSignUp
           ? " flex flex-col items-center justify-center py-2 absolute top-[50px] w-full bg-white transition-all duration-500"
-          : "transition-all duration-500 flex flex-col items-center justify-center py-2 absolute top-[295px] w-full bg-white"
+          : "transition-all duration-500 flex flex-col items-center justify-center py-2 absolute top-[325px] w-full bg-white"
       }
     >
       <div className="m-1 w-3/4">
@@ -117,7 +117,7 @@ const AccountSignUp = ({ handleActiveSignUp, activeSignUp }) => {
           />
         </div>
 
-        <button className="border px-10 py-2 rounded-sm w-full my-1">
+        <button className="border px-10 py-2 rounded-sm w-full my-1 bg-sky-500">
           Sign Up
         </button>
       </form>
