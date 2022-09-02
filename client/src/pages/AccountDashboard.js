@@ -55,6 +55,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }
       );
       setIsAskLoaded(true);
     } catch (e) {
+      setIsAskLoaded(true)
       handlePostFailure(e)
       console.log(e);
     }
@@ -67,6 +68,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }
       );
       setIsItemsLoaded(true);
     } catch (e) {
+      setIsItemsLoaded(true)
       handlePostFailure(e)
       console.log(e);
     }
@@ -79,6 +81,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }
       );
       setIsBookmarkLoaded(true);
     } catch (e) {
+      setIsBookmarkLoaded(true)
       handlePostFailure(e)
     }
   };

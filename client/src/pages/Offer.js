@@ -27,6 +27,7 @@ const Offer = ({ modalDispatch, refreshAfterEdit, handlePostFailure }) => {
       );
       setIsItemsLoaded(true);
     } catch (e) {
+      setIsItemsLoaded(true)
       handlePostFailure(e)
       console.log(e);
     }

@@ -2,44 +2,37 @@ import styles from "./Borrow.css";
 
 import { fetchAllItems } from "../api/api";
 
-import { useEffect, useState, useReducer, useCallback } from "react";
+import { useEffect, useState } from "react";
 import SupplyObjectCard from "../components/SupplyObjectCard";
 import FilterForm from "../components/FilterForm";
 import Loading from "../components/Loading";
 import EmptyFilteredSuppliesPlaceHolder from "../components/EmptyFilteredSuppliesPlaceholder";
 import EmptySuppliesPlaceHolder from "../components/EmptySuppliesPlaceholder";
 
-const Borrow = ({ modalDispatch }) => {
-  // WHEN YOU CLICK ON ONE DO A SINGLE ITEM SEARCH TO PULL MODAL CARD OF INTERESTED ITEM
-
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "LOADED":
-        setDataDump(action.payload);
-    }
+const Borrow = ({ modalDispatch, handlePostFailure }) => {
+  const handleFilterForm = (data) => {
+    setDataDump(data);
   };
-
   // NEEDS DEFINE CUT OFF POINT, THEN WHEN SCROLL FAR ENOUGH IT LOADS THE NEXT BATCH OF ITEMS SO ON AND SO ON.
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [dataDump, setDataDump] = useState([]);
   const [activeFilter, setActiveFilter] = useState(false);
-  const [state, dispatch] = useReducer(reducer, { dataFiltered: dataDump });
 
   useEffect(() => {
-    handleLoading()
+    handleLoading();
   }, []);
 
   const handleLoading = async () => {
     try {
       await fetchAllItems().then((res) => setDataDump(res.data));
       setIsLoaded(true);
-    } catch(e) {
-      console.log(e)
+    } catch (e) {
+      handlePostFailure(e);
+      setIsLoaded(true);
+      console.log(e);
     }
-    
   };
-
 
   return (
     <section>
@@ -60,8 +53,13 @@ const Borrow = ({ modalDispatch }) => {
             : "h-0 transition-all overflow-hidden"
         }
       >
-        <h3 className="text-center text-4xl pt-2 underline underline-offset-2 font-light">Filter</h3>
-        <FilterForm dispatch={dispatch} />
+        <h3 className="text-center text-4xl pt-2 underline underline-offset-2 font-light">
+          Filter
+        </h3>
+        <FilterForm
+          handleFilterForm={handleFilterForm}
+          handlePostFailure={handlePostFailure}
+        />
       </div>
 
       {isLoaded ? (
@@ -74,7 +72,11 @@ const Borrow = ({ modalDispatch }) => {
         >
           {dataDump.length <= 0 ? (
             <div>
-            {activeFilter ? <EmptyFilteredSuppliesPlaceHolder /> : <EmptySuppliesPlaceHolder/>}
+              {activeFilter ? (
+                <EmptyFilteredSuppliesPlaceHolder />
+              ) : (
+                <EmptySuppliesPlaceHolder />
+              )}
             </div>
           ) : (
             dataDump.map((data) => (

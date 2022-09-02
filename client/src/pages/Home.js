@@ -3,10 +3,7 @@ import MainSupplyDump from "../components/MainSupplyDump";
 import HeroCOA from "../components/HeroCOA";
 import OurGoal from "../components/OurGoal";
 
-const Home = ({modalDispatch}) => {
-
-
-
+const Home = ({ modalDispatch }) => {
   return (
     <>
       <HeroCOA />

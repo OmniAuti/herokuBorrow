@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import OurGoal from "../components/OurGoal";
 
 const AboutPage = () => {

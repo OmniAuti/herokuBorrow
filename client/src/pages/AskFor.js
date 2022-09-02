@@ -23,6 +23,7 @@ const AskFor = ({ modalDispatch,refreshAfterEdit, handlePostFailure }) => {
       await getAccountItemsAsked().then((res) => setAccountAskData(res.data));
       setIsAskLoaded(true);
     } catch (e) {
+      setIsAskLoaded(true)
       handlePostFailure(e)
       console.log(e);
     }

@@ -1,7 +1,7 @@
 import { filteredAskedQuery } from "../api/api";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 
-const FilterFormAsked = ({ dispatch }) => {
+const FilterFormAsked = ({ handleFilterForm, handlePostFailure }) => {
   const [filterQuery, setFilterQuery] = useState({
     type: "",
     quantity: "",
@@ -9,7 +9,6 @@ const FilterFormAsked = ({ dispatch }) => {
     location: "",
     zipcode: "",
   });
-  const [dataDump, setDataDump] = useState([]);
 
   // THEN FILTERS COMPONET
 
@@ -21,21 +20,17 @@ const FilterFormAsked = ({ dispatch }) => {
   const handleQuery = async (e) => {
     e.preventDefault();
     try {
-      await filteredAskedQuery(filterQuery)
-        .then((res) => {
-          if (res.status >= 200 && res.status <= 299) {
-            setDataDump(res.data);
-          } else if (res.status >= 400 && res.status <= 499) {
-            alert("Filter Query Failed. Try Again.");
-          }
-        })
-        .catch((err) => console.log(err));
+      await filteredAskedQuery(filterQuery).then((res) =>
+      handleFilterForm(res.data)
+      );
     } catch (e) {
+      handlePostFailure(e);
       console.log(e);
     }
   };
 
   const handleReset = async (e) => {
+    e.preventDefault(e)
     try {
       const clearedSearch = {
         type: "",
@@ -47,23 +42,15 @@ const FilterFormAsked = ({ dispatch }) => {
 
       setFilterQuery(clearedSearch);
 
-      await filteredAskedQuery(clearedSearch)
-        .then((res) => {
-          if (res.status >= 200 && res.status <= 299) {
-            setDataDump(res.data);
-          } else if (res.status >= 400 && res.status <= 499) {
-            alert("Filter Query Failed. Try Again.");
-          }
-        })
-        .catch((err) => alert("Filter Query Failed. Try Again."));
+      await filteredAskedQuery(clearedSearch).then((res) =>
+      handleFilterForm(res.data)
+      );
     } catch (e) {
+      handlePostFailure(e);
       console.log(e);
     }
   };
 
-  useEffect(() => {
-    dispatch({ type: "LOADED", payload: dataDump });
-  }, [dataDump]);
 
   return (
     <form

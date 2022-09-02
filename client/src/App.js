@@ -26,50 +26,17 @@ import AccountSettings from "./pages/AccountSettings";
 import AccountNeedsVerification from "./pages/AccountNeedsVerification";
 //WRAP FOR SCROLL TO TOP ON NEW ROUTE
 import ScrollToTop from "./components/ScrollToTop";
-
+// REDUCERS 
+import { modalReducer } from "./reducers/modalReducer";
 //CONTEXT IMPORT
 import AuthContextProvider from "./context/AuthContext";
-// IMAGE STORAGE URLS
-// import {}
 // API CALLS
 import { getSingleItem, getSingleItemAsk } from "./api/api";
 // USE REDUCER FUNCTION
-const modalReducer = (state, action) => {
-  switch (action.type) {
-    case "MODAL-offer":
-      return {
-        modalId: action.payload,
-        active: !state.active,
-        modalType: "singleFocusOffer",
-      };
-    case "MODAL-ask":
-      return {
-        modalId: action.payload,
-        active: !state.active,
-        modalType: "singleFocusAsk",
-      };
-    case "ACCOUNT_MODAL-offer":
-      return {
-        modalId: action.payload,
-        active: !state.active,
-        modalType: "accountEditOffer",
-      };
-    case "ACCOUNT_MODAL-ask":
-      return {
-        modalId: action.payload,
-        active: !state.active,
-        modalType: "accountEditAsk",
-      };
-    case "DELETE_SINGLE_POST":
-      return {
-        modalId: action.payload,
-        active: !state.active,
-        modalType: "deleteSinglePost",
-      };
-  }
-};
+
 
 function App() {
+ 
   const [state, modalDispatch] = useReducer(modalReducer, {
     modalId: "",
     active: false,
@@ -228,7 +195,12 @@ function App() {
 
               <Route
                 path="/borrow"
-                element={<Borrow modalDispatch={modalDispatch} />}
+                element={
+                  <Borrow
+                    modalDispatch={modalDispatch}
+                    handlePostFailure={handlePostFailure}
+                  />
+                }
               />
               <Route path="/account-gateway" element={<AccountGateway />} />
 
@@ -272,7 +244,7 @@ function App() {
 
               <Route
                 path="/asked"
-                element={<Asked modalDispatch={modalDispatch} />}
+                element={<Asked modalDispatch={modalDispatch}handlePostFailure={handlePostFailure} />}
               />
 
               <Route
