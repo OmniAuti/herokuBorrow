@@ -8,36 +8,40 @@ import { fetchAllItems } from "../api/api";
 const MainSupplyDump = ({ modalDispatch }) => {
   const [dumpData, setDumpData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [imageStore, setImageStore] = useState([]);
+  const [errorPlaceholder, setErrorPlaceholder] = useState('')
 
   useEffect(() => {
-    try {
-      fetchAllItems().then((res) => setDumpData(res.data));
-      handleLoad();
-    } catch (e) {
-      console.log(e);
-    }
+    handleLoadPreviewOfItems()
   }, []);
+
+  const handleLoadPreviewOfItems = async () => {
+    try {
+      await fetchAllItems().then((res) => setDumpData(res.data));
+      handleLoad();
+    } catch (err) {
+      setErrorPlaceholder(err.toString())
+      setIsLoaded(true);
+    }
+  }
 
   const handleLoad = useCallback(() => {
     setIsLoaded(true);
   }, [dumpData]);
 
   return (
-    <section className="mt-24  mb-0 w-full h-full overflow-hidden px-5 bg-sky-900 rounded-md">
-      <h3 className="text-center text-3xl mt-4 font-light">
+    <section className="mt-24  mb-0 w-screen -ml-5 h-full overflow-hidden px-5 bg-sky-900">
+      <h3 className="text-center text-3xl mt-4 font-light underline underline-offset-2">
         Available Supplies In Your Area
       </h3>
       {isLoaded ? (
         <div className="flex items-center justify-around flex-wrap mb-10">
           {dumpData.length <= 0 ? (
-            <EmptySuppliesPlaceHolder />
+            <EmptySuppliesPlaceHolder errorPlaceholder={errorPlaceholder} />
           ) : (
             dumpData
               .slice(0, 3)
               .map((data) => (
                 <SupplyObjectCard
-                  imageStore={imageStore}
                   modalDispatch={modalDispatch}
                   key={data._id}
                   data={data}

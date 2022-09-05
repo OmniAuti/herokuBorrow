@@ -1,22 +1,11 @@
 import AccountSettingsModal from "../components/AccountSettingsModal";
 
+import { settingsReducer } from "../reducers/modalReducer";
+
 import { UserAuth } from "../context/AuthContext";
 import { useState, useEffect, useReducer } from "react";
 import { EmailAuthProvider } from "firebase/auth";
 import { deleteAllAccountData } from "../api/api";
-
-const settingsReducer = (state, action) => {
-  switch (action.type) {
-    case "EMAIL":
-      return { settingsType: "email", active: true };
-    case "PASSWORD":
-      return { settingsType: "password", active: true };
-    case "DELETE":
-      return { settingsType: "delete", active: true };
-    case "CLOSE":
-      return { settingsType: "", active: false };
-  }
-};
 
 const AccountSettings = () => {
   const {
@@ -56,7 +45,7 @@ const AccountSettings = () => {
 
   useEffect(() => {
     setEditSuccess(false);
-    setSignInError(false)
+    setSignInError(false);
   }, [state.active]);
 
   useEffect(() => {
@@ -86,7 +75,7 @@ const AccountSettings = () => {
       }
     } catch (e) {
       console.log(e);
-      handleError(e, true)
+      handleError(e, true);
     }
   };
 
@@ -97,8 +86,8 @@ const AccountSettings = () => {
       </p>
 
       <AccountSettingsModal
-      errorMsg={errorMsg}
-      signInError={signInError}
+        errorMsg={errorMsg}
+        signInError={signInError}
         settingsDispatch={settingsDispatch}
         modalState={state}
         userEmail={userEmail}

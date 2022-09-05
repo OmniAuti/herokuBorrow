@@ -2,8 +2,8 @@ import styles from "./About.css";
 
 const About = () => {
   return (
-    <article id="about-home" className=" mx-auto scroll-mt-5">
-      <div className=" min-h-fit -ml-5 w-screen sm:w-full sm:-ml-0 bg-sky-900 md:mx-auto sm:rounded-md grid grid-cols-2 grid-rows-2 mb-4 relative mt-10">
+    <article id="about-home" className="scroll-mt-5">
+      <div className=" min-h-fit -ml-5 w-screen bg-sky-900 grid grid-cols-2 grid-rows-2 mb-4 relative mt-10">
         <div className="school-supplies-background absolute top-1/3 h-2/3 sm:top-1/2"></div>
 
         <div

@@ -16,7 +16,6 @@ const AccountSettingsDeleteUserForm = ({ handleSettingsChangeSubmit }) => {
         await handleSettingsChangeSubmit("Nothing to pass", confirmPassword);
         setConfirmPassword("");
       } catch (e) {
-        alert('Something went wrong. Please try again.')
         console.log(e);
       }
     }

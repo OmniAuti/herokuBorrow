@@ -1,5 +1,3 @@
-import styles from "./Borrow.css";
-
 import { fetchAllItems } from "../api/api";
 
 import { useEffect, useState } from "react";
@@ -18,6 +16,7 @@ const Borrow = ({ modalDispatch, handlePostFailure }) => {
 
   const [dataDump, setDataDump] = useState([]);
   const [activeFilter, setActiveFilter] = useState(false);
+  const [errorPlaceholder, setErrorPlaceholder] = useState('')
 
   useEffect(() => {
     handleLoading();
@@ -27,10 +26,10 @@ const Borrow = ({ modalDispatch, handlePostFailure }) => {
     try {
       await fetchAllItems().then((res) => setDataDump(res.data));
       setIsLoaded(true);
-    } catch (e) {
-      handlePostFailure(e);
+    } catch (err) {
+      setErrorPlaceholder(err.toString())
       setIsLoaded(true);
-      console.log(e);
+      console.log(err);
     }
   };
 
@@ -43,7 +42,11 @@ const Borrow = ({ modalDispatch, handlePostFailure }) => {
           className="p-2 mx-auto"
           onClick={() => setActiveFilter(!activeFilter)}
         >
-          <div className="filter-icon h-8 w-8"></div>
+          <img
+            src="./imgs/filterIcon.svg"
+            alt="Filter Form Icon And Button"
+            className="h-[40px] w-[40px]"
+          />
         </button>
       </div>
       <div
@@ -73,9 +76,9 @@ const Borrow = ({ modalDispatch, handlePostFailure }) => {
           {dataDump.length <= 0 ? (
             <div>
               {activeFilter ? (
-                <EmptyFilteredSuppliesPlaceHolder />
+                <EmptyFilteredSuppliesPlaceHolder errorPlaceholder={errorPlaceholder} />
               ) : (
-                <EmptySuppliesPlaceHolder />
+                <EmptySuppliesPlaceHolder errorPlaceholder={errorPlaceholder} />
               )}
             </div>
           ) : (

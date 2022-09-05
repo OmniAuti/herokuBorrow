@@ -22,6 +22,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }
   const [isAskLoaded, setIsAskLoaded] = useState(false);
   const [isItemsLoaded, setIsItemsLoaded] = useState(false);
   const [isBookmarkLoaded, setIsBookmarkLoaded] = useState(false);
+  const [errorPlaceholder, setErrorPlaceholder] = useState('')
 
   // THIS IS OFFERED/BORROWED DATA
   useEffect(() => {
@@ -48,6 +49,8 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }
       setIsBookmarkLoaded(false);
     };
   }, [user, refreshAfterEdit]);
+
+  
   const handleAskedLoading = async (user) => {
     try {
       await getAccountItemsAsked({ _uid: user.uid }).then((res) =>
@@ -56,7 +59,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }
       setIsAskLoaded(true);
     } catch (e) {
       setIsAskLoaded(true)
-      handlePostFailure(e)
+      setErrorPlaceholder(e.toString())
       console.log(e);
     }
   };
@@ -69,7 +72,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }
       setIsItemsLoaded(true);
     } catch (e) {
       setIsItemsLoaded(true)
-      handlePostFailure(e)
+      setErrorPlaceholder(e.trString())
       console.log(e);
     }
   };
@@ -82,7 +85,7 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }
       setIsBookmarkLoaded(true);
     } catch (e) {
       setIsBookmarkLoaded(true)
-      handlePostFailure(e)
+      setErrorPlaceholder(e.toString())
     }
   };
 
@@ -110,17 +113,20 @@ const AccountDashboard = ({ modalDispatch, refreshAfterEdit, handlePostFailure }
         modalDispatch={modalDispatch}
         isAskLoaded={isAskLoaded}
         accountAskedData={accountAskedData}
+        errorPlaceholder={errorPlaceholder}
       />
       <AccountDashboardOffered
         refreshItemsLoaded={refreshItemsLoaded}
         isItemsLoaded={isItemsLoaded}
         accountItemsData={accountItemsData}
         modalDispatch={modalDispatch}
+        errorPlaceholder={errorPlaceholder}
       />
       <AccountDashboardBookmarked
         modalDispatch={modalDispatch}
         isBookmarkLoaded={isBookmarkLoaded}
         accountBookmarked={accountBookmarked}
+        errorPlaceholder={errorPlaceholder}
       />
     </section>
   );

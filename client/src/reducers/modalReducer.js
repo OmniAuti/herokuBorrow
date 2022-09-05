@@ -32,3 +32,17 @@ export const modalReducer = (state, action) => {
         };
     }
   };
+
+
+  export const settingsReducer = (state, action) => {
+    switch (action.type) {
+      case "EMAIL":
+        return { settingsType: "email", active: true };
+      case "PASSWORD":
+        return { settingsType: "password", active: true };
+      case "DELETE":
+        return { settingsType: "delete", active: true };
+      case "CLOSE":
+        return { settingsType: "", active: false };
+    }
+  };

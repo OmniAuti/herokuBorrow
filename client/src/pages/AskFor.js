@@ -8,6 +8,8 @@ const AskFor = ({ modalDispatch,refreshAfterEdit, handlePostFailure }) => {
   const [isAskLoaded, setIsAskLoaded] = useState(false);
   const [accountAskedData, setAccountAskData] = useState([]);
   const [updateAfterPost, setUpdateAfterPost] = useState(false);
+  const [errorPlaceholder, setErrorPlaceholder] = useState('')
+
 
   useEffect(() => {
     handleLoading();
@@ -22,10 +24,10 @@ const AskFor = ({ modalDispatch,refreshAfterEdit, handlePostFailure }) => {
     try {
       await getAccountItemsAsked().then((res) => setAccountAskData(res.data));
       setIsAskLoaded(true);
-    } catch (e) {
+    } catch (err) {
       setIsAskLoaded(true)
-      handlePostFailure(e)
-      console.log(e);
+      setErrorPlaceholder(err.toString())
+      console.log(err);
     }
   };
 
@@ -41,6 +43,7 @@ const AskFor = ({ modalDispatch,refreshAfterEdit, handlePostFailure }) => {
           modalDispatch={modalDispatch}
           accountAskedData={accountAskedData}
           isAskLoaded={isAskLoaded}
+          errorPlaceholder={errorPlaceholder}
         />
 
         <AskItemForm handlePostFailure={handlePostFailure} handleUpdateAfterPost={handleUpdateAfterPost} />

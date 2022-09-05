@@ -13,13 +13,11 @@ const AskedForItems = ({ modalDispatch, handlePostFailure }) => {
   const handleFilterForm = (data) => {
     setDataDump(data)
   }
-  // DONT NEED A REDUCER FOR THIS - JUST MAKE A FUNCTION THAT TAKES IN DATA AND THEN PASS IT UP
-
-  // NEEDS DEFINE CUT OFF POINT, THEN WHEN SCROLL FAR ENOUGH IT LOADS THE NEXT BATCH OF ITEMS SO ON AND SO ON.
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [dataDump, setDataDump] = useState([]);
   const [activeFilter, setActiveFilter] = useState(false);
+  const [errorPlaceholder, setErrorPlaceholder] = useState('')
 
   useEffect(() => {
     handleLoading();
@@ -29,10 +27,10 @@ const AskedForItems = ({ modalDispatch, handlePostFailure }) => {
     try {
       await getAskedForItems().then((res) => setDataDump(res.data));
       setIsLoaded(true);
-    } catch (e) {
-      handlePostFailure(e)
+    } catch (err) {
       setIsLoaded(true);
-      console.log(e);
+      setErrorPlaceholder(err.toString())
+      console.log(err);
     }
   };
   return (
@@ -41,8 +39,11 @@ const AskedForItems = ({ modalDispatch, handlePostFailure }) => {
         <button
           className="p-2 mx-auto"
           onClick={() => setActiveFilter(!activeFilter)}
-        >
-          <div className="filter-icon h-8 w-8"></div>
+        >          <img
+            src="./imgs/filterIcon.svg"
+            alt="Filter Form Icon And Button"
+            className="h-[40px] w-[40px]"
+          />
         </button>
       </div>
       <div
@@ -69,9 +70,9 @@ const AskedForItems = ({ modalDispatch, handlePostFailure }) => {
           {dataDump.length <= 0 ? (
             <div>
               {activeFilter ? (
-                <EmptyFilteredSuppliesPlaceHolder />
+                <EmptyFilteredSuppliesPlaceHolder errorPlaceholder={errorPlaceholder} />
               ) : (
-                <EmptyAskSuppliesPlaceHolder />
+                <EmptyAskSuppliesPlaceHolder errorPlaceholder={errorPlaceholder} />
               )}
             </div>
           ) : (

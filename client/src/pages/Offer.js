@@ -9,6 +9,7 @@ const Offer = ({ modalDispatch, refreshAfterEdit, handlePostFailure }) => {
   const [isItemsLoaded, setIsItemsLoaded] = useState(false);
   const [accountItemsData, setAccountItemsData] = useState([]);
   const [updateAfterPost, setUpdateAfterPost] = useState(false);
+  const [errorPlaceholder, setErrorPlaceholder] = useState('')
 
   const { user } = UserAuth();
 
@@ -26,10 +27,10 @@ const Offer = ({ modalDispatch, refreshAfterEdit, handlePostFailure }) => {
         setAccountItemsData(res.data)
       );
       setIsItemsLoaded(true);
-    } catch (e) {
+    } catch (err) {
       setIsItemsLoaded(true)
-      handlePostFailure(e)
-      console.log(e);
+      setErrorPlaceholder(err.toString())
+      console.log(err);
     }
   };
 
@@ -43,6 +44,7 @@ const Offer = ({ modalDispatch, refreshAfterEdit, handlePostFailure }) => {
       <h1 className="text-center mb-10 text-5xl">Offer Supplies</h1>
       <div className="flex flex-col lg:flex-row justify-around">
         <OfferedAccountColumn
+          errorPlaceholder={errorPlaceholder}
           refreshAfterEdit={refreshAfterEdit}
           modalDispatch={modalDispatch}
           isItemsLoaded={isItemsLoaded}

@@ -13,8 +13,8 @@ const AccountSettingsChangePasswordForm = ({ handleSettingsChangeSubmit }) => {
       await handleSettingsChangeSubmit(newPassword, confirmOldPassword);
       setNewPassword("");
       setConfirmPassword("");
+      setConfirmOldPassword("")
     } catch (e) {
-      alert('Something went wrong. Please try again.')
       console.log(e);
     }
   };
@@ -53,6 +53,7 @@ const AccountSettingsChangePasswordForm = ({ handleSettingsChangeSubmit }) => {
         placeholder="Confirm New Password"
         onChange={(e) => setConfirmPassword(e.target.value)}
         minLength={6}
+        value={confirmPassword}
         onKeyUp={handleConfirmedPassword}
         ref={confirmedCheck}
       />
@@ -65,6 +66,7 @@ const AccountSettingsChangePasswordForm = ({ handleSettingsChangeSubmit }) => {
         placeholder="Validation"
         onChange={(e) => setConfirmOldPassword(e.target.value)}
         minLength={6}
+        value={confirmOldPassword}
       />
       <input
         className="bg-sky-500 w-full h-10 my-2 text-black rounded-sm hover:bg-sky-900 cursor-pointer"
