@@ -195,7 +195,7 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
         >
           <img
             className="w-10 mx-auto mt-1 "
-            src="./imgs/editPost.png"
+            src="./imgs/editPost.svg"
             alt="Edit Post Icon"
           />
         </button>
