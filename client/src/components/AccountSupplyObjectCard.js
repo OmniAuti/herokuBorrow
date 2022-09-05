@@ -1,97 +1,125 @@
 const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
   var cardBgColor;
-
+  var askIcon;
   switch (data.type) {
     // THINGS THAT MARK OR WRITE
 
     case "pencil":
       cardBgColor = "#fecaca";
+      askIcon = "./imgs/ask-writing.svg";
       break;
     case "pen":
       cardBgColor = "#fecaca";
+      askIcon = "./imgs/ask-writing.svg";
       break;
     case "highlighter":
       cardBgColor = "#fecaca";
+      askIcon = "./imgs/ask-writing.svg";
       break;
     case "marker":
       cardBgColor = "#fecaca";
+      askIcon = "./imgs/ask-writing.svg";
       break;
     case "colored pencil":
       cardBgColor = "#fecaca";
+      askIcon = "./imgs/ask-writing.svg";
       break;
     case "crayon":
       cardBgColor = "#fecaca";
+      askIcon = "./imgs/ask-writing.svg";
       break;
     case "paint brush":
       cardBgColor = "#fecaca";
+      askIcon = "./imgs/ask-writing.svg";
       break;
     case "highlighter":
       cardBgColor = "#fecaca";
+      askIcon = "./imgs/ask-writing.svg";
       break;
     // HOLDERS OF SUPPLIES
     case "binder":
       cardBgColor = "#fef08a";
+      askIcon = "./imgs/ask-cases.svg";
       break;
     case "folder":
       cardBgColor = "#fef08a";
+      askIcon = "./imgs/ask-cases.svg";
       break;
     case "pencil pouch/case":
       cardBgColor = "#fef08a";
+      askIcon = "./imgs/ask-cases.svg";
       break;
     case "lunchbox":
       cardBgColor = "#fef08a";
+      askIcon = "./imgs/ask-cases.svg";
       break;
     //PAPER
     case "notebook":
       cardBgColor = "#bae6fd";
+      askIcon = "./imgs/ask-paper.svg";
       break;
     case "journal":
       cardBgColor = "#bae6fd";
+      askIcon = "./imgs/ask-paper.svg";
       break;
     case "colored paper":
       cardBgColor = "#bae6fd";
+      askIcon = "./imgs/ask-paper.svg";
       break;
     case "graphing paper":
       cardBgColor = "#bae6fd";
+      askIcon = "./imgs/ask-paper.svg";
       break;
     case "sticky note":
       cardBgColor = "#bae6fd";
+      askIcon = "./imgs/ask-writing.svg";
       break;
     case "notecard":
       cardBgColor = "#bae6fd";
+      askIcon = "./imgs/ask-paper.svg";
       break;
     // STUDY MATERIAL
     case "flashcard":
       cardBgColor = "#bbf7d0";
+      askIcon = "./imgs/ask-study.svg";
       break;
     case "miscellaneous study material":
       cardBgColor = "#bbf7d0";
+      askIcon = "./imgs/ask-study.svg";
       break;
     //BOOKS
     case "book":
       cardBgColor = "#1e293b";
+      askIcon = "./imgs/ask-books.svg";
       break;
     case "miscellaneous books":
       cardBgColor = "#1e293b";
+      askIcon = "./imgs/ask-books.svg";
       break;
     // TOOLS
     case "ruler":
       cardBgColor = "#fed7aa";
+      askIcon = "./imgs/ask-tools.svg";
       break;
     case "calculator":
       cardBgColor = "#fed7aa";
+      askIcon = "./imgs/ask-tools.svg";
       break;
     case "protractor":
       cardBgColor = "#fed7aa";
+      askIcon = "./imgs/ask-tools.svg";
       break;
     // BACKPACK
     case "backpack":
       cardBgColor = "#e9d5ff";
+      askIcon = "./imgs/ask-backpack.svg";
       break;
     default:
       cardBgColor = "#fff";
+      askIcon = "./imgs/missing-file.svg";
       break;
   }
+
   return (
     <div
       className=" w-full rounded-md my-1 mx-[12px] p-1"
@@ -114,8 +142,8 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
             alt="Supply Item Picture"
           /> : <img
           className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
-          src="./imgs/astockphoto.jpg"
-          alt="Supply Item Picture"
+          src={askIcon}
+          alt="Ask Item Icon"
         />}
           <ul className="w-1/2 pl-2 h-full max-h-52 flex flex-col justify-around">
             {data.postType === "ask" && (
