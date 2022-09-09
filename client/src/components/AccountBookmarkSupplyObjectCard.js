@@ -83,7 +83,7 @@ const AccountBookmarkSupplyObjectCard = ({ data, modalDispatch }) => {
       cardBgColor = "#bbf7d0";
       askIcon = "./imgs/ask-study.svg";
       break;
-    case "miscellaneous study material":
+    case "misc. study material":
       cardBgColor = "#bbf7d0";
       askIcon = "./imgs/ask-study.svg";
       break;
@@ -92,7 +92,7 @@ const AccountBookmarkSupplyObjectCard = ({ data, modalDispatch }) => {
       cardBgColor = "#1e293b";
       askIcon = "./imgs/ask-books.svg";
       break;
-    case "miscellaneous books":
+    case "misc. books":
       cardBgColor = "#1e293b";
       askIcon = "./imgs/ask-books.svg";
       break;

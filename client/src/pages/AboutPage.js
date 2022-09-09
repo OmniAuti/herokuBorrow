@@ -5,7 +5,7 @@ const AboutPage = () => {
     <>
       <article id="about-home" className=" mx-auto pt-5">
         <h1 className="text-5xl font-light text-center">What Are We About?</h1>
-        <div className=" min-h-fit -ml-5 w-screen sm:w-full sm:ml-0 md:w-3/4 mt-10 bg-sky-900 md:mx-auto sm:rounded-md grid grid-cols-2 grid-rows-2 mb-4 relative">
+        <div className=" min-h-fit -ml-5 w-screen sm:w-full sm:ml-0 md:w-3/4 mt-10 bg-sky-900 bg-no-repeat bg-center bg-contain bg-[url('/public/imgs/schoolsupplies.svg')]  md:mx-auto sm:rounded-md grid grid-cols-2 grid-rows-2 mb-4 relative">
           <div className="school-supplies-background absolute top-1/3 h-2/3 sm:top-1/2"></div>
 
           <div
@@ -90,9 +90,8 @@ const AboutPage = () => {
         </div>
 
         <div className="flex h-fit mx-auto flex-col md:flex-row">
-          <div className="bg-sky-900 md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:mr-2 relative overflow-hidden">
-            <div className="cap-background absolute"></div>
-
+          <div className="bg-sky-900 bg-no-repeat bg-center bg-contain bg-[url('/public/imgs/cap.svg')]  md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:mr-2 relative overflow-hidden">
+      
             <div className="sm:rounded-md p-5 z-40 w-full h-full absolute">
               <h2 className="text-2xl font-light mb-2 mt-0 text-center">
                 What if a student is not prepared?
@@ -176,10 +175,9 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="bg-sky-900 mt-5 md:mt-0 md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:ml-2 relative overflow-hidden">
-            <div className="teacher-background absolute z-0"></div>
-            <div className="sm:rounded-md p-5 z-40 absolute w-full h-full">
-              <h3 className="text-2xl font-light mb-2 mt-0 text-center z-40">
+          <div className="bg-sky-900 bg-no-repeat bg-center bg-contain bg-[url('/public/imgs/education.svg')] md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:mr-2 relative overflow-hidden">
+            <div className="sm:rounded-md p-5 w-full h-full">
+              <h3 className="text-2xl font-light  mb-2 mt-0 text-center z-40">
                 What about the teachers?
               </h3>
               <p className="font-thin">
