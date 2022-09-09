@@ -46,7 +46,7 @@ const Footer = () => {
           className="group w-full h-full flex items-center justify-center"
           to="/asked"
         >
-          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-100 group-hover:before:opacity-0 after:opacity-0 group-hover:after:opacity-100 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">Asked</p>
+          <p className="before:absolute before:w-0 before:bg-white before:transition-[width] before:opacity-100 group-hover:before:opacity-0 after:opacity-0 group-hover:after:opacity-100 before:duration-500 after:duration-500 before:origin-left before:left-0 after:origin-right after:h-[2px] after:w-0 group-hover:after:w-full after:bottom-0 after:right-0  after:transition-[width] after:absolute after:bg-white group-hover:before:w-full relative before:h-[2px] before:bottom-0">Asked For</p>
         </Link>
         <Link
           className="group w-full h-full flex items-center justify-center"

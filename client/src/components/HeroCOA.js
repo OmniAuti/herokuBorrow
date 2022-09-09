@@ -133,19 +133,19 @@ const HeroCOA = () => {
         <div className="mb-10 md:h-fit flex flex-col sm:flex-row item-center justify-evenly md:justify-start md:pl-16">
           <Link
             to="/borrow"
-            className="text-center px-10 py-5 sm:text-2xl mt-2 md:mt-2 mb-2 md:mb-5 mx-5 md:mx-0 rounded-md hover:bg-sky-500 bg-sky-400 transition-colors"
+            className="text-center px-10 py-5 sm:text-2xl mt-2 md:mt-2 mb-2 md:mb-5 mx-5 md:mx-0 rounded-md border-2 border-sky-500 bg-sky-500 hover:border-sky-100 hover:bg-black transition-colors"
           >
             Borrow Supplies
           </Link>
           <Link
             to="/offer"
-            className="text-center px-10 py-5 sm:text-2xl mx-5 my-2 md:mb-5 md:mr-0 border-2 border-solid rounded-md border-sky-100 hover:border-green-500 transition-colors"
+            className="text-center px-10 py-5 sm:text-2xl mx-5 my-2 md:mb-5 md:mr-0 border-2 border-solid rounded-md border-sky-100 hover:border-sky-500 transition-colors"
           >
             Offer Supplies
           </Link>
           <Link
             to="/ask-for"
-            className="text-center px-10 py-5 sm:text-2xl mx-5 mt-2 md:mb-5 mb-2 md:mr-0 border-2 border-solid rounded-md border-sky-100 hover:border-red-500 transition-colors"
+            className="text-center px-10 py-5 sm:text-2xl mx-5 mt-2 md:mb-5 mb-2 md:mr-0 border-2 border-solid rounded-md border-sky-100 hover:border-green-500 transition-colors"
           >
             Ask For Supplies
           </Link>

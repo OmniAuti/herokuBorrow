@@ -162,8 +162,8 @@ const PostItemForm = ({ handleUpdateAfterPost, handlePostFailure }) => {
             <option value="colored paper">Colored Paper</option>
             <option value="notecard">Notecards</option>
             <option value="flashcard">Flashcards</option>
-            <option value="miscellaneous study material">
-              Miscellaneous Study Material
+            <option value="misc. study material">
+              Misc. Study Material
             </option>
             <option value="sticky note">Sticky Note</option>
             <option value="folder">Folder</option>
@@ -178,7 +178,7 @@ const PostItemForm = ({ handleUpdateAfterPost, handlePostFailure }) => {
             <option value="paint brush">Paint Brush</option>
             <option value="calculator">Calculator</option>
             <option value="book">Book</option>
-            <option value="miscellaneous books">Miscellaneous Books</option>
+            <option value="misc. books">Misc. Books</option>
           </select>
           <label htmlFor="description">Description</label>
           <input
