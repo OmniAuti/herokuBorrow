@@ -168,7 +168,7 @@ const AccountBookmarkSupplyObjectCard = ({ data, modalDispatch }) => {
               <li className="text-black ">Condition: {data.condition}</li>
             ) : (
               <li className="text-black ">
-                Condition:{" "}
+                Accepted Condition:{" "}
                 {data.condition
                   .join("")
                   .slice(0, data.condition.join("").length - 2)}

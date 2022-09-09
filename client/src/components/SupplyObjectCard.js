@@ -164,7 +164,7 @@ const SupplyObjectCard = ({ data, modalDispatch }) => {
           </li>
           {data.postType === "ask" ? (
             <li className="text-black m-1 font-medium inline-block truncate ">
-              Condition:{" "}
+              Accepted Condition:{" "}
               <span className="text-black font-light">
                 {" "}
                 {data.condition

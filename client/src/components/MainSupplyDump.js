@@ -31,7 +31,7 @@ const MainSupplyDump = ({ modalDispatch }) => {
   return (
     <section className="mt-24  mb-0 w-screen -ml-5 h-full overflow-hidden px-5 bg-sky-900">
       <h3 className="text-center text-3xl mt-4 font-light underline underline-offset-2">
-        Available Supplies In Your Area
+        Available Supplies
       </h3>
       {isLoaded ? (
         <div className="flex items-center justify-around flex-wrap mb-10">

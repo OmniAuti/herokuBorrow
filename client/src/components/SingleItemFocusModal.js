@@ -252,7 +252,7 @@ const SingleItemFocusModal = ({
 
                 {data.postType === "ask" ? (
                   <li className="text-black m-1 mt-2 font-medium">
-                    Condition:{" "}
+                    Accepted Condition:{" "}
                     <span className="text-black font-light">
                       {data.condition
                         .join("")

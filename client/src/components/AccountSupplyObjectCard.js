@@ -152,7 +152,7 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
             <li className="text-black my-1 ">Quantity: {data.quantity}</li>
             {data.postType === "ask" ? (
               <li className="text-black my-1">
-                Condition:{" "}
+                Accepted Condition:{" "}
                 {data.condition
                   .join("")
                   .slice(0, data.condition.join("").length - 2)}

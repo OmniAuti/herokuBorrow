@@ -212,7 +212,7 @@ const ModalEditAsk = ({
           <hr className="mb-2"></hr>
 
           <label htmlFor="condition" className=" text-black underline">
-            Update Asked For Condition:
+            Update Accepted Condition:
           </label>
 
           <div className="flex flex-wrap items-center justify-around mt-1">
