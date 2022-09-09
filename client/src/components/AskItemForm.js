@@ -232,7 +232,7 @@ const AskItemForm = ({ handleUpdateAfterPost, handlePostFailure  }) => {
                 placeholder="This is for . . ."
               />
 
-              <label htmlFor="condition">Acceptable Condition</label>
+              <label htmlFor="condition" className="underline underline-offset-2">Acceptable Condition</label>
               <div className="flex flex-wrap items-center justify-around mb-7 mx-5">
                 {checkBoxArr.map((checkbox) => {
                   return (
