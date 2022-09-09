@@ -25,10 +25,15 @@ const FilterForm = ({ handleFilterForm, handlePostFailure }) => {
         .then((res) => {
           if (filterQuery.photoFilter === true) {
             handleFilterForm(res.data.filter((item) => item.photoInfo.url !== ""));
+            console.log(res.data)
+
           } else if (filterQuery.photoFilter === false) {
             handleFilterForm(res.data);
+            console.log(res.data)
+
           }
         })
+
     } catch (e) {
       handlePostFailure(e);
       console.log(e);
@@ -186,12 +191,11 @@ const FilterForm = ({ handleFilterForm, handlePostFailure }) => {
                 onChange={(e) =>
                   setFilterQuery({
                     ...filterQuery,
-                    photoFilter: e.target.value,
+                    photoFilter: true,
                   })
                 }
                 name="photo"
                 id="with-photo"
-                value={true}
                 type="radio"
                 className="ml-2 cursor-pointer"
               />
@@ -205,12 +209,11 @@ const FilterForm = ({ handleFilterForm, handlePostFailure }) => {
                 onChange={(e) =>
                   setFilterQuery({
                     ...filterQuery,
-                    photoFilter: e.target.value,
+                    photoFilter: false,
                   })
                 }
                 name="photo"
                 id="without-photo"
-                value={false}
                 type="radio"
                 className="ml-2 cursor-pointer"
               />
@@ -219,12 +222,12 @@ const FilterForm = ({ handleFilterForm, handlePostFailure }) => {
         </div>
       </div>
       <div className="w-full flex flex-col lg:flex-row items-center justify-around">
-        <button className="text-white text-center border py-3 mt-7 mx-auto min-w-[200px] rounded-sm w-2/5">
+        <button className="text-white text-center border py-3 mt-7 mx-auto min-w-[200px] rounded-sm w-2/5 hover:bg-white hover:text-sky-900">
           Filter Supplies
         </button>
         <input
           onClick={(e) => handleReset(e)}
-          className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-2/5 min-w-[200px] cursor-pointer"
+          className="text-white text-center border py-3 mt-7 mx-auto rounded-sm w-2/5 min-w-[200px] cursor-pointer hover:bg-white hover:text-sky-900"
           type="reset"
           value="Clear Filters"
         />
