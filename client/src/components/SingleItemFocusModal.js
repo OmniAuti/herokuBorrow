@@ -195,7 +195,7 @@ const SingleItemFocusModal = ({
       {modalLoaded ? (
         <div className="z-50 shadow-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div
-            className="h-fit p-5 pt-2 w-screen sm:w-[500px] bg-white rounded-sm relative"
+            className="h-fit p-2 sm:p-5 pt-2 w-screen sm:w-[500px] bg-white rounded-sm relative"
             style={{ border: `3px solid ${cardBgColor}` }}
           >
             <p className="text-black text-center mb-3 underline">

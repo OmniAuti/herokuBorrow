@@ -90,7 +90,7 @@ const AboutPage = () => {
         </div>
 
         <div className="flex h-fit mx-auto flex-col md:flex-row">
-          <div className="bg-sky-900 bg-no-repeat bg-center bg-contain bg-[url('/public/imgs/cap.svg')]  md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:mr-2 relative overflow-hidden">
+          <div className="bg-sky-900 bg-no-repeat bg-center bg-contain bg-[url('/public/imgs/cap.svg')] mb-5 md:mb-0 md:w-1/2 sm:w-full w-screen -ml-5 sm:-ml-0 h-[100% !important] sm:rounded-md md:mr-2 relative overflow-hidden">
       
             <div className="sm:rounded-md p-5 z-40 w-full h-full absolute">
               <h2 className="text-2xl font-light mb-2 mt-0 text-center">

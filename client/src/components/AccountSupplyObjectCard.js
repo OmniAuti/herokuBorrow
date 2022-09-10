@@ -122,30 +122,32 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
 
   return (
     <div
-      className=" w-full rounded-md my-1 mx-[12px] p-1"
+      className=" w-full sm:rounded-md sm:my-1 sm:mx-[12px] p-1"
       style={{ backgroundColor: cardBgColor }}
     >
       <div className="flex justify-around flex-col bg-white w-full h-full pb-2 rounded-md relative overflow-hidden">
-        <div className="flex justify-around w-full p-5 relative overflow-hidden">
-        <div className="bg-black bg-opacity-80 w-fit absolute pr-10 pt-1 pb-20 -bottom-24 pl-40 -left-36 rounded-full text-3xl font-light">
-            <p className="mb-5 -ml-2">
-              {data.type.slice(0, 1).toUpperCase() + data.type.slice(1)}
-            </p>
+        <div className="flex flex-col sm:flex-row justify-around w-full p-2 pb-1 sm:p-5">
+          <div className="relative overflow-hidden">
+              <div className="bg-black bg-opacity-80 w-fit absolute pr-10 pt-1 pb-20 -bottom-24 pl-40 -left-36 rounded-full text-3xl font-light">
+                  <p className="mb-5 -ml-2">
+                    {data.type.slice(0, 1).toUpperCase() + data.type.slice(1)}
+                  </p>
+              </div>
+              {data.postType === 'offer' ? <img
+                  className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+                  src={
+                    data.photoInfo.url !== ""
+                      ? data.photoInfo.url
+                      : "./imgs/missing-file.svg"
+                  }
+                  alt="Supply Item Picture"
+                /> : <img
+                className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
+                src={askIcon}
+                alt="Ask Item Icon"
+              />}
           </div>
-        {data.postType === 'offer' ? <img
-            className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
-            src={
-              data.photoInfo.url !== ""
-                ? data.photoInfo.url
-                : "./imgs/missing-file.svg"
-            }
-            alt="Supply Item Picture"
-          /> : <img
-          className="h-52 max-h-52 min-h-52 w-full object-contain object-center"
-          src={askIcon}
-          alt="Ask Item Icon"
-        />}
-          <ul className="w-1/2 pl-2 h-full max-h-52 flex flex-col justify-around">
+          <ul className="w-full sm:w-1/2 pl-2 sm:h-full max-h-52 flex flex-col justify-center sm:justify-around">
             {data.postType === "ask" && (
               <li className="text-black my-1">Who: {data.who}</li>
             )}
@@ -168,14 +170,14 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
           </ul>
         </div>
         {data.postType === "ask" && (
-          <ul className="block pl-5 pt-2">
+          <ul className="block sm:pl-5 pt-0 pl-4 sm:pt-2">
             <li className="text-black">
               Specifically Asked For: {data.specify}
             </li>
           </ul>
         )}
         {data.postType === "offer" && (
-          <div className="pt-2 pl-5 block">
+          <div className="pt-0 sm:pt-2 sm:pl-5 pl-4 block">
             <ul>
               <li className="text-black">
                 Description: {data.description}
@@ -191,7 +193,7 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
               payload: data._id,
             })
           }
-          className="text-center cursor-pointer absolute -right-2 -top-2 border p-2 hover:shadow-lg rounded-lg bg-white"
+          className="text-center cursor-pointer border absolute -right-2 -top-2 pr- p-2 hover:shadow-lg rounded-lg bg-white"
         >
           <img
             className="w-10 mx-auto mt-1 "
@@ -209,10 +211,28 @@ const AccountSupplyObjectCard = ({ data, modalDispatch }) => {
               payload: [data._id, data.postType],
             })}
           }}
-          className="bg-white text-center cursor-pointer absolute -right-2 -bottom-2 border py-2 pl-1 pr-3 hover:shadow-[-1px_-4px_15px_-3px_rgb(0,0,0,0.1),-1px_-3px_6px_-4px_rgb(0,0,0,0.1)] rounded-lg"
+          className="bg-white hidden sm:block border text-center cursor-pointer absolute -right-2 -bottom-2 py-2 pl-1 pr-3 hover:shadow-[-1px_-4px_15px_-3px_rgb(0,0,0,0.1),-1px_-3px_6px_-4px_rgb(0,0,0,0.1)] rounded-lg"
         >
           <img
             className="w-10 mx-auto mb-1 "
+            src="./imgs/deletePost.svg"
+            alt="Edit Post Icon"
+          />
+        </button>
+        <button
+          onClick={() => {
+          {data.postType === 'offer' ? modalDispatch({
+              type: "DELETE_SINGLE_POST",
+              payload: [data._id, data.postType, data.photoInfo],
+            }) : modalDispatch({
+              type: "DELETE_SINGLE_POST",
+              payload: [data._id, data.postType],
+            })}
+          }}
+          className="bg-white sm:hidden text-center border cursor-pointer absolute -left-2 -top-2 py-2 pl-2 pr-1 sm:pr-3 hover:shadow-[-1px_-4px_15px_-3px_rgb(0,0,0,0.1),-1px_-3px_6px_-4px_rgb(0,0,0,0.1)] rounded-lg"
+        >
+          <img
+            className="w-10 mx-auto mt-1 "
             src="./imgs/deletePost.svg"
             alt="Edit Post Icon"
           />
