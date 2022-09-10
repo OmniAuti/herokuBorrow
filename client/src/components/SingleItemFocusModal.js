@@ -227,7 +227,7 @@ const SingleItemFocusModal = ({
                 )}
               </div>
               {data.postType === "ask" ? (
-                <p className="text-black m-5 font-light max-w-[80%]">
+                <p className="text-black m-5 mb-0 font-light max-w-[80%]">
                   {" "}
                   <span className=" text-black font-medium ">
                     Specifically Asked For:{" "}
