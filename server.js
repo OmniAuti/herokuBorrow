@@ -9,12 +9,13 @@ require("dotenv").config();
 const cors = require("cors");
 const path = require("path");
 //MIDDLEWARE
-server.use(express.static(path.join(__dirname, "build")));
 server.use(cors());
 server.use(express.json());
 server.use("/api/v1/items", router);
 server.use(express.urlencoded({ extended: true }));
 server.use(notFound);
+server.use(express.static(path.join(__dirname, "./build")));
+
 
 
 server.get("/*", (req, res) => {
