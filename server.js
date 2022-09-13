@@ -14,6 +14,7 @@ server.use(cors());
 server.use(express.json());
 server.use("/api/v1/items", router);
 server.use(express.urlencoded({ extended: true }));
+server.use(notFound);
 
 server.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, './build/index.html'), function(err) {
