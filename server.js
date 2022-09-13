@@ -21,6 +21,9 @@ server.use(notFound);
 server.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../build/index.html"));
 });
+server.get("/borrow", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 const port = process.env.PORT || 2000;
 
