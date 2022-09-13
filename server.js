@@ -15,9 +15,13 @@ server.use(express.json());
 server.use("/api/v1/items", router);
 server.use(express.urlencoded({ extended: true }));
 
-server.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../build/index.html"));
-});
+server.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, './build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 const port = process.env.PORT || 2000;
 
